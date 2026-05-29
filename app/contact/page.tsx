@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
 import { IndustrialCard } from "@/components/industrial-card";
+import { InquiryForm } from "@/components/inquiry-form";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { salesEmail, whatsappUrl } from "@/lib/contact";
@@ -19,6 +20,15 @@ const quoteChecklist = [
   "Pallet size, stack height, and pallet pattern",
   "Factory layout, infeed/outfeed direction, and available floor area",
   "Destination country, safety requirements, and installation timeline",
+];
+
+const applicationOptions = [
+  "Palletizing",
+  "Depalletizing",
+  "Stamping / forging",
+  "Machine tending",
+  "3D vision bag breaking",
+  "Conveyor automation",
 ];
 
 export default function ContactPage() {
@@ -79,77 +89,10 @@ export default function ContactPage() {
             </div>
 
             <IndustrialCard className="p-6 md:p-8">
-              <form
-                action={`mailto:${salesEmail}`}
-                method="post"
-                encType="text/plain"
-                className="grid gap-5"
-              >
-                <div className="grid gap-5 md:grid-cols-2">
-                  <label className="grid gap-2 text-sm text-white/72">
-                    Name
-                    <input
-                      name="name"
-                      className="h-12 rounded-md border border-white/12 bg-black/24 px-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#f5b41b]"
-                      placeholder="Your name"
-                    />
-                  </label>
-                  <label className="grid gap-2 text-sm text-white/72">
-                    Company Email
-                    <input
-                      name="email"
-                      type="email"
-                      className="h-12 rounded-md border border-white/12 bg-black/24 px-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#f5b41b]"
-                      placeholder="name@company.com"
-                    />
-                  </label>
-                </div>
-                <div className="grid gap-5 md:grid-cols-2">
-                  <label className="grid gap-2 text-sm text-white/72">
-                    Application
-                    <select
-                      name="application"
-                      className="h-12 rounded-md border border-white/12 bg-black/24 px-4 text-white outline-none transition focus:border-[#f5b41b]"
-                      defaultValue="Palletizing"
-                    >
-                      <option>Palletizing</option>
-                      <option>Depalletizing</option>
-                      <option>Stamping / forging</option>
-                      <option>Machine tending</option>
-                      <option>3D vision bag breaking</option>
-                      <option>Conveyor automation</option>
-                    </select>
-                  </label>
-                  <label className="grid gap-2 text-sm text-white/72">
-                    Preferred Series
-                    <select
-                      name="series"
-                      className="h-12 rounded-md border border-white/12 bg-black/24 px-4 text-white outline-none transition focus:border-[#f5b41b]"
-                      defaultValue="Not sure"
-                    >
-                      <option>Not sure</option>
-                      {productSeries.map((series) => (
-                        <option key={series.slug}>{series.series}</option>
-                      ))}
-                    </select>
-                  </label>
-                </div>
-                <label className="grid gap-2 text-sm text-white/72">
-                  Project Details
-                  <textarea
-                    name="message"
-                    rows={6}
-                    className="rounded-md border border-white/12 bg-black/24 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#f5b41b]"
-                    placeholder="Product type, payload, reach, cycle time, pallet size, factory layout, destination country..."
-                  />
-                </label>
-                <button
-                  type="submit"
-                  className="min-h-12 rounded-md bg-[#f5b41b] px-5 py-3 text-sm font-bold uppercase tracking-[0.08em] text-black transition hover:bg-[#ffca45]"
-                >
-                  Send Inquiry
-                </button>
-              </form>
+              <InquiryForm
+                applicationOptions={applicationOptions}
+                seriesOptions={productSeries.map((series) => series.series)}
+              />
             </IndustrialCard>
           </div>
         </section>
