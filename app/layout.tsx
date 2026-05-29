@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.scr-robotics.com"),
+  metadataBase: new URL("https://www.scr-robot.com"),
   title: "SCR Robot | Palletizing Robots & Industrial Automation Systems",
   description:
     "South China Robotics Technology (Guangzhou) Co., Ltd. builds industrial robots, palletizing robots, depalletizing systems, stamping automation, and conveyor automation lines for overseas manufacturers.",

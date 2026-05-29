@@ -28,11 +28,52 @@ const trustPoints = [
   "Overseas buyer support with technical proposals, documentation, remote communication, and project-based customization.",
 ];
 
+const projectWorkflow = [
+  {
+    step: "01",
+    title: "Application review",
+    description:
+      "We review product size, weight, packaging, throughput, factory layout, and safety requirements before recommending a robot platform.",
+  },
+  {
+    step: "02",
+    title: "Concept and quotation",
+    description:
+      "The proposal can cover robot selection, gripper concept, conveyor layout, pallet pattern logic, guarding, controls, and budget direction.",
+  },
+  {
+    step: "03",
+    title: "System build",
+    description:
+      "Mechanical, electrical, software, vision, and integration teams work around the complete production cell instead of only the robot body.",
+  },
+  {
+    step: "04",
+    title: "Delivery support",
+    description:
+      "Projects can be supported with English communication, technical documentation, remote troubleshooting, and commissioning planning.",
+  },
+];
+
+const buyerAssurance = [
+  "Robot payload, reach, repeatability, and working envelope are checked against the real product and line layout.",
+  "System scope can include grippers, conveyors, safety guarding, PLC/HMI, vision, and non-standard fixtures.",
+  "Technical proposals are written for overseas B2B buyers who need internal review, approval, and budget justification.",
+  "Inquiry routing is configured for direct email delivery and WhatsApp follow-up, reducing missed sales opportunities.",
+];
+
+const quoteInputs = [
+  "Product size, unit weight, and packaging form",
+  "Target throughput, cycle time, and shift schedule",
+  "Pallet size, stacking pattern, and maximum stack height",
+  "Infeed/outfeed direction, factory layout, and destination country",
+];
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: companyProfile.name,
-  url: "https://www.scr-robotics.com",
+  url: "https://www.scr-robot.com",
   logo: "/images/SCR.jpg",
   foundingDate: "2017-06-13",
   description: companyProfile.description,
@@ -262,6 +303,78 @@ export default function Home() {
                 </p>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="border-y border-white/10 bg-[#0f1318]">
+          <div className="section-shell">
+            <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
+              <SectionHeading
+                eyebrow="Project delivery"
+                title="A practical process for overseas automation buyers."
+                description="International factory buyers need more than a product list. They need a supplier who can turn production data into a credible robot cell proposal, then support the project through delivery."
+              />
+              <div className="grid gap-4 md:grid-cols-2">
+                {projectWorkflow.map((item) => (
+                  <div key={item.step} className="steel-panel p-6">
+                    <p className="font-mono text-sm font-bold text-[#f5b41b]">
+                      {item.step}
+                    </p>
+                    <h3 className="mt-4 text-xl font-semibold text-white">
+                      {item.title}
+                    </h3>
+                    <p className="mt-4 leading-7 text-white/62">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section-shell">
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+            <div>
+              <SectionHeading
+                eyebrow="Buyer confidence"
+                title="Built to reduce uncertainty before a purchase decision."
+                description="A serious robot project needs technical clarity, responsive communication, and enough detail for the buyer's engineering and purchasing teams to move forward."
+              />
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {buyerAssurance.map((item) => (
+                  <div key={item} className="rounded-lg border border-white/10 bg-white/[0.045] p-5">
+                    <div className="mb-4 h-1 w-12 bg-[#d71920]" />
+                    <p className="leading-7 text-white/68">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <IndustrialCard className="p-6 md:p-8">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f5b41b]">
+                Faster quotation
+              </p>
+              <h3 className="mt-4 text-2xl font-semibold text-white">
+                Send the key project data and get a more useful response.
+              </h3>
+              <div className="mt-6 grid gap-3">
+                {quoteInputs.map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-md border border-white/10 bg-black/24 px-4 py-4 text-white/70"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <CtaLink href="/contact">Send Inquiry</CtaLink>
+                <CtaLink href={whatsappUrl} variant="secondary">
+                  WhatsApp
+                </CtaLink>
+              </div>
+            </IndustrialCard>
           </div>
         </section>
 

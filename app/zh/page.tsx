@@ -28,6 +28,47 @@ const trustPoints = [
   "支持海外客户技术方案、英文资料、远程沟通与项目化定制。",
 ];
 
+const projectWorkflow = [
+  {
+    step: "01",
+    title: "工况评估",
+    description:
+      "先确认产品尺寸、重量、包装形式、节拍、现场布局和安全要求，再推荐合适的机器人平台。",
+  },
+  {
+    step: "02",
+    title: "方案与报价",
+    description:
+      "方案可覆盖机器人选型、夹具概念、输送布局、垛型逻辑、安全防护、控制系统和预算方向。",
+  },
+  {
+    step: "03",
+    title: "系统制造",
+    description:
+      "机械、电气、软件、视觉和集成团队围绕完整生产单元推进，而不是只提供机器人本体。",
+  },
+  {
+    step: "04",
+    title: "交付支持",
+    description:
+      "可提供英文沟通、技术资料、远程故障支持和调试计划，降低海外项目沟通成本。",
+  },
+];
+
+const buyerAssurance = [
+  "根据真实产品和现场布局核对机器人负载、臂展、重复定位精度和工作范围。",
+  "系统范围可包含夹具、输送线、安全围栏、PLC/HMI、视觉和非标工装。",
+  "技术方案面向海外 B2B 买家，便于内部工程评审、采购审批和预算论证。",
+  "询盘已配置邮件直达与 WhatsApp 跟进，降低销售机会遗漏。",
+];
+
+const quoteInputs = [
+  "产品尺寸、单件重量和包装形式",
+  "目标产能、节拍和班次安排",
+  "托盘尺寸、垛型和最大堆垛高度",
+  "进出料方向、现场布局和目的国家",
+];
+
 export const metadata = {
   title: "SCR Robot | 工业机器人与自动化系统",
   description:
@@ -193,6 +234,78 @@ export default function ZhHomePage() {
                 <p className="mt-4 leading-7 text-white/58">{solution.description}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="border-y border-white/10 bg-[#0f1318]">
+          <div className="section-shell">
+            <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
+              <SectionHeading
+                eyebrow="项目交付"
+                title="面向海外自动化买家的清晰推进流程。"
+                description="国际工厂客户需要的不只是产品列表，而是能把生产数据转化成可信方案，并持续支持交付的供应商。"
+              />
+              <div className="grid gap-4 md:grid-cols-2">
+                {projectWorkflow.map((item) => (
+                  <div key={item.step} className="steel-panel p-6">
+                    <p className="font-mono text-sm font-bold text-[#f5b41b]">
+                      {item.step}
+                    </p>
+                    <h3 className="mt-4 text-xl font-semibold text-white">
+                      {item.title}
+                    </h3>
+                    <p className="mt-4 leading-7 text-white/62">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section-shell">
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+            <div>
+              <SectionHeading
+                eyebrow="采购信任"
+                title="在采购决策前降低项目不确定性。"
+                description="严肃的机器人项目需要清晰的技术判断、及时沟通，以及足够支撑工程和采购团队推进的信息。"
+              />
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {buyerAssurance.map((item) => (
+                  <div key={item} className="rounded-lg border border-white/10 bg-white/[0.045] p-5">
+                    <div className="mb-4 h-1 w-12 bg-[#d71920]" />
+                    <p className="leading-7 text-white/68">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <IndustrialCard className="p-6 md:p-8">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f5b41b]">
+                更快报价
+              </p>
+              <h3 className="mt-4 text-2xl font-semibold text-white">
+                提供关键项目数据，获得更有价值的工程回复。
+              </h3>
+              <div className="mt-6 grid gap-3">
+                {quoteInputs.map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-md border border-white/10 bg-black/24 px-4 py-4 text-white/70"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <CtaLink href="/zh/contact">发送询盘</CtaLink>
+                <CtaLink href={whatsappUrl} variant="secondary">
+                  WhatsApp
+                </CtaLink>
+              </div>
+            </IndustrialCard>
           </div>
         </section>
 
