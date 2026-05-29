@@ -3,6 +3,7 @@ import { CtaLink } from "@/components/cta-link";
 import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
+import { salesEmail, whatsappUrl } from "@/lib/contact";
 import { productSeries } from "@/lib/catalog";
 
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ const quoteChecklist = [
 export default function ContactPage() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader alternateHref="/zh/contact" />
       <main className="min-h-screen bg-[#080a0d] pt-40 text-white sm:pt-32 lg:pt-28">
         <section className="section-shell pb-12">
           <SectionHeading
@@ -50,10 +51,10 @@ export default function ContactPage() {
                   and budgetary direction.
                 </p>
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                  <CtaLink href="mailto:sales@scr-robot.com?subject=Industrial%20Robot%20Project%20Inquiry">
+                  <CtaLink href={`mailto:${salesEmail}?subject=Industrial%20Robot%20Project%20Inquiry`}>
                     Email Sales
                   </CtaLink>
-                  <CtaLink href="https://wa.me/8613800000000" variant="secondary">
+                  <CtaLink href={whatsappUrl} variant="secondary">
                     WhatsApp
                   </CtaLink>
                 </div>
@@ -79,7 +80,7 @@ export default function ContactPage() {
 
             <IndustrialCard className="p-6 md:p-8">
               <form
-                action="mailto:sales@scr-robot.com"
+                action={`mailto:${salesEmail}`}
                 method="post"
                 encType="text/plain"
                 className="grid gap-5"

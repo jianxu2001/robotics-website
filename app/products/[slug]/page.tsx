@@ -43,7 +43,7 @@ export default async function ProductDetailPage({
 
   return (
     <>
-      <SiteHeader />
+      <SiteHeader alternateHref={`/zh/products/${series.slug}`} />
       <main className="min-h-screen bg-[#080a0d] pt-40 text-white sm:pt-32 lg:pt-28">
         <section className="relative border-b border-white/10">
           <div className="absolute inset-0">

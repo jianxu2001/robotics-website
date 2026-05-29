@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function ProductsPage() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader alternateHref="/zh/products" />
       <main className="min-h-screen bg-[#080a0d] pt-40 text-white sm:pt-32 lg:pt-28">
         <section className="section-shell pb-12">
           <SectionHeading

@@ -5,9 +5,26 @@ import type { ProductSeries } from "@/lib/catalog";
 type SeriesCardProps = {
   series: ProductSeries;
   compact?: boolean;
+  hrefPrefix?: string;
+  labels?: {
+    payload: string;
+    reach: string;
+    axes: string;
+    viewSeries: string;
+  };
 };
 
-export function SeriesCard({ series, compact = false }: SeriesCardProps) {
+export function SeriesCard({
+  series,
+  compact = false,
+  hrefPrefix = "/products",
+  labels = {
+    payload: "Payload",
+    reach: "Reach",
+    axes: "Axes",
+    viewSeries: "View Series",
+  },
+}: SeriesCardProps) {
   return (
     <article className="group overflow-hidden rounded-lg border border-white/10 bg-[#11161b] shadow-[0_22px_60px_rgba(0,0,0,0.24)] transition hover:-translate-y-1 hover:border-[#f5b41b]/40">
       <div className="relative aspect-[16/10] overflow-hidden">
@@ -33,9 +50,9 @@ export function SeriesCard({ series, compact = false }: SeriesCardProps) {
         <p className="mt-4 leading-7 text-white/62">{series.summary}</p>
         <div className="mt-6 grid grid-cols-3 gap-px overflow-hidden rounded-md border border-white/10 bg-white/10 text-sm">
           {[
-            ["Payload", series.payloadRange],
-            ["Reach", series.reachRange],
-            ["Axes", series.axes],
+            [labels.payload, series.payloadRange],
+            [labels.reach, series.reachRange],
+            [labels.axes, series.axes],
           ].map(([label, value]) => (
             <div key={label} className="bg-[#0b0f13] p-3">
               <p className="text-[11px] uppercase tracking-[0.12em] text-white/38">
@@ -58,8 +75,8 @@ export function SeriesCard({ series, compact = false }: SeriesCardProps) {
           </div>
         ) : null}
         <div className="mt-7">
-          <CtaLink href={`/products/${series.slug}`} variant="secondary">
-            View Series
+          <CtaLink href={`${hrefPrefix}/${series.slug}`} variant="secondary">
+            {labels.viewSeries}
           </CtaLink>
         </div>
       </div>

@@ -31,7 +31,7 @@ const capabilities = [
 export default function AboutPage() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader alternateHref="/zh/about" />
       <main className="min-h-screen bg-[#080a0d] pt-40 text-white sm:pt-32 lg:pt-28">
         <section className="relative border-b border-white/10">
           <Image

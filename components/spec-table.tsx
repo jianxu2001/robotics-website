@@ -2,22 +2,32 @@ import type { ProductSeries } from "@/lib/catalog";
 
 type SpecTableProps = {
   series: ProductSeries;
+  headings?: string[];
 };
 
-export function SpecTable({ series }: SpecTableProps) {
+export function SpecTable({
+  series,
+  headings = [
+    "Model",
+    "Axes",
+    "Payload",
+    "Reach",
+    "Repeatability",
+    "Body Weight",
+    "Power",
+  ],
+}: SpecTableProps) {
   return (
     <div className="overflow-hidden rounded-lg border border-white/10">
       <div className="overflow-x-auto">
         <table className="min-w-[760px] w-full border-collapse text-left text-sm">
           <thead className="bg-[#151b21] text-xs uppercase tracking-[0.14em] text-white/50">
             <tr>
-              {["Model", "Axes", "Payload", "Reach", "Repeatability", "Body Weight", "Power"].map(
-                (heading) => (
-                  <th key={heading} className="border-b border-white/10 px-4 py-4">
-                    {heading}
-                  </th>
-                ),
-              )}
+              {headings.map((heading) => (
+                <th key={heading} className="border-b border-white/10 px-4 py-4">
+                  {heading}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody className="divide-y divide-white/8 bg-[#0c1014] text-white/72">

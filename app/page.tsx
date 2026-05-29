@@ -12,6 +12,7 @@ import {
   productCategories,
   productSeries,
 } from "@/lib/catalog";
+import { whatsappUrl } from "@/lib/contact";
 
 const stats = [
   { value: "2017", label: "Founded in Guangzhou" },
@@ -57,7 +58,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <SiteHeader />
+      <SiteHeader alternateHref="/zh" />
 
       <main id="top" className="min-h-screen overflow-hidden bg-[#080a0d] text-white">
         <section className="relative min-h-[92vh] border-b border-white/10 pt-40 sm:pt-32 lg:pt-24">
@@ -287,7 +288,7 @@ export default function Home() {
               </div>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <CtaLink href="/contact">Contact Sales</CtaLink>
-                <CtaLink href="https://wa.me/8613800000000" variant="secondary">
+                <CtaLink href={whatsappUrl} variant="secondary">
                   WhatsApp
                 </CtaLink>
               </div>
