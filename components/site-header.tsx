@@ -11,12 +11,14 @@ const navItems = {
   en: [
     { label: "Products", href: "/products" },
     { label: "Applications", href: "/industries" },
+    { label: "Cases", href: "/case-studies" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ],
   zh: [
     { label: "产品", href: "/zh/products" },
     { label: "应用", href: "/zh/industries" },
+    { label: "案例", href: "/zh/case-studies" },
     { label: "关于我们", href: "/zh/about" },
     { label: "联系我们", href: "/zh/contact" },
   ],

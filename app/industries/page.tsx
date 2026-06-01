@@ -93,6 +93,9 @@ export default function IndustriesPage() {
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
                 <CtaLink href="/contact">Request Proposal</CtaLink>
+                <CtaLink href="/case-studies" variant="ghost">
+                  View Case Concepts
+                </CtaLink>
                 <CtaLink href={whatsappUrl} variant="secondary">
                   WhatsApp
                 </CtaLink>

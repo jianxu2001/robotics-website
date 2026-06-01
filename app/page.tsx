@@ -242,9 +242,12 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="mt-10 text-center">
+          <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
             <CtaLink href="/industries" variant="secondary">
               View Industry Solutions
+            </CtaLink>
+            <CtaLink href="/case-studies" variant="ghost">
+              View Case Concepts
             </CtaLink>
           </div>
         </section>
@@ -427,6 +430,9 @@ export default function Home() {
             </Link>
             <Link href="/industries" className="hover:text-white">
               Applications
+            </Link>
+            <Link href="/case-studies" className="hover:text-white">
+              Cases
             </Link>
             <Link href="/about" className="hover:text-white">
               About

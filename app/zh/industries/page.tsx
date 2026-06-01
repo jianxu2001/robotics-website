@@ -102,6 +102,9 @@ export default function ZhIndustriesPage() {
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
                 <CtaLink href="/zh/contact">获取方案</CtaLink>
+                <CtaLink href="/zh/case-studies" variant="ghost">
+                  查看案例方案
+                </CtaLink>
                 <CtaLink href={whatsappUrl} variant="secondary">
                   WhatsApp
                 </CtaLink>

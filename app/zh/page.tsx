@@ -194,9 +194,12 @@ export default function ZhHomePage() {
               </div>
             ))}
           </div>
-          <div className="mt-10 text-center">
+          <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
             <CtaLink href="/zh/industries" variant="secondary">
               查看行业方案
+            </CtaLink>
+            <CtaLink href="/zh/case-studies" variant="ghost">
+              查看案例方案
             </CtaLink>
           </div>
         </section>
@@ -345,6 +348,7 @@ export default function ZhHomePage() {
           <div className="flex flex-wrap gap-5">
             <Link href="/zh/products" className="hover:text-white">产品</Link>
             <Link href="/zh/industries" className="hover:text-white">应用</Link>
+            <Link href="/zh/case-studies" className="hover:text-white">案例</Link>
             <Link href="/zh/about" className="hover:text-white">关于我们</Link>
             <Link href="/zh/contact" className="hover:text-white">联系我们</Link>
           </div>
