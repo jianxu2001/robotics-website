@@ -90,39 +90,50 @@ export function ProductModelDetail({
         </div>
       </section>
 
-      <section className="bg-[#f5f6f8] text-[#10151b]">
-        <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
-          <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#009da5]">
+      <section className="relative overflow-hidden border-b border-white/10 bg-[#080a0d]">
+        <div className="absolute inset-0 industrial-grid opacity-30" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_22%,rgba(245,180,27,0.16),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.06),transparent_42%)]" />
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-14 lg:grid-cols-[0.76fr_1.24fr] lg:items-center lg:px-8 lg:py-20">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#f5b41b]">
               {category}
             </p>
-            <h1 className="mt-5 text-4xl font-semibold tracking-normal text-[#111820] md:text-6xl">
+            <h1 className="mt-5 text-4xl font-semibold tracking-normal text-white md:text-6xl">
               {model.name}
             </h1>
-            <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-[#48525d]">
+            <p className="mt-5 max-w-2xl text-base leading-7 text-white/64">
               {title}
             </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <CtaLink href={contactHref}>{t.request}</CtaLink>
+              <CtaLink href={seriesHref} variant="secondary">
+                {t.back}
+              </CtaLink>
+            </div>
           </div>
 
-          <div className="relative mx-auto mt-10 h-[320px] max-w-4xl sm:h-[420px] lg:h-[500px]">
+          <div className="relative min-h-[320px] overflow-hidden rounded-lg border border-white/10 bg-[radial-gradient(circle_at_50%_34%,rgba(255,255,255,0.18),transparent_36%),linear-gradient(135deg,#252d35_0%,#111820_46%,#05070a_100%)] shadow-[0_30px_90px_rgba(0,0,0,0.42)] sm:min-h-[430px] lg:min-h-[540px]">
+            <div className="absolute inset-0 industrial-grid opacity-25" />
+            <div className="absolute inset-x-8 bottom-7 h-10 rounded-full bg-black/45 blur-2xl" />
             <Image
               src={model.image}
               alt={`${model.name} robot`}
               fill
               priority
-              sizes="(min-width: 1024px) 720px, 92vw"
-              className="object-contain"
+              unoptimized
+              sizes="(min-width: 1024px) 760px, 92vw"
+              className="object-contain p-6 drop-shadow-[0_24px_30px_rgba(0,0,0,0.45)] sm:p-8"
             />
           </div>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">
             {specCards.map(([label, value]) => (
               <div
                 key={label}
-                className="rounded-md border border-[#d9dee4] bg-white p-5 shadow-[0_18px_48px_rgba(11,18,26,0.08)]"
+                className="rounded-md border border-white/10 bg-white/[0.055] p-5 shadow-[0_18px_48px_rgba(0,0,0,0.18)]"
               >
-                <p className="text-sm text-[#697480]">{label}</p>
-                <p className="mt-2 text-2xl font-semibold text-[#10151b]">
+                <p className="text-sm text-white/46">{label}</p>
+                <p className="mt-2 text-2xl font-semibold text-white">
                   {value}
                 </p>
               </div>

@@ -25,15 +25,17 @@ export function ProductGroupCard({
   return (
     <div id={group.slug} className="scroll-mt-36">
       <IndustrialCard className="group overflow-hidden">
-        <div className="relative min-h-52 overflow-hidden border-b border-white/10">
+        <div className="relative min-h-52 overflow-hidden border-b border-white/10 bg-[radial-gradient(circle_at_50%_34%,rgba(255,255,255,0.18),transparent_40%),linear-gradient(135deg,#252d35_0%,#111820_48%,#05070a_100%)]">
+          <div className="absolute inset-0 industrial-grid opacity-20" />
           <Image
             src={group.image}
             alt={group.title}
             fill
+            unoptimized
             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-            className="bg-[#f5f6f8] object-contain p-5 transition duration-500 group-hover:scale-105"
+            className="object-contain p-5 drop-shadow-[0_16px_24px_rgba(0,0,0,0.45)] transition duration-500 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,13,0.1),rgba(8,10,13,0.86))]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,13,0.02),rgba(8,10,13,0.78))]" />
           <div className="absolute bottom-0 left-0 right-0 p-6">
             <p className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-[#f5b41b]">
               {labels.productLines}

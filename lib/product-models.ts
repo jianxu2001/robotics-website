@@ -28,7 +28,7 @@ export type ProductModel = {
   jointParameters: JointParameter[];
 };
 
-const productImage = (fileName: string) => `/products/${fileName}`;
+const productImage = (fileName: string) => `/product-renders/${fileName}`;
 
 export function slugifyModelName(name: string) {
   return name
@@ -108,9 +108,9 @@ const modelAssets: Record<string, { image: string; catalogPage: string; joint: s
   "ECR50-1850": { image: productImage("ecr50-1850.png"), catalogPage: "/products/catalog-page-03.png", joint: ["±165°", "-110°, +30°", "-30°, +105°", "±360°", "/", "/"] },
   "ECR100-1850": { image: productImage("ecr100-1850.png"), catalogPage: "/products/catalog-page-03.png", joint: ["±165°", "-110°, +30°", "-30°, +105°", "±360°", "/", "/"] },
   "SCH03AE-200-110": { image: productImage("sch03ae-200-110.png"), catalogPage: "/products/catalog-page-03.png", joint: ["±155°", "110 mm", "±115°", "±360°", "/", "/"] },
-  "SCH05AE-400-200": { image: "/products/catalog-page-03.png", catalogPage: "/products/catalog-page-03.png", joint: ["±160°", "200 mm", "±140°", "±360°", "/", "/"] },
-  "SCH05AE-600-200": { image: "/products/catalog-page-03.png", catalogPage: "/products/catalog-page-03.png", joint: ["±160°", "200 mm", "±140°", "±360°", "/", "/"] },
-  "SCH05A-600-200": { image: "/products/catalog-page-03.png", catalogPage: "/products/catalog-page-03.png", joint: ["±165°", "200 mm", "±150°", "±360°", "/", "/"] },
+  "SCH05AE-400-200": { image: productImage("sch03ae-200-110.png"), catalogPage: "/products/catalog-page-03.png", joint: ["±160°", "200 mm", "±140°", "±360°", "/", "/"] },
+  "SCH05AE-600-200": { image: productImage("sch03ae-200-110.png"), catalogPage: "/products/catalog-page-03.png", joint: ["±160°", "200 mm", "±140°", "±360°", "/", "/"] },
+  "SCH05A-600-200": { image: productImage("sch03ae-200-110.png"), catalogPage: "/products/catalog-page-03.png", joint: ["±165°", "200 mm", "±150°", "±360°", "/", "/"] },
   "SCH10AE-1300-450": { image: productImage("sch10ae-1300-450.png"), catalogPage: "/products/catalog-page-03.png", joint: ["±160°", "450 mm", "±150°", "±360°", "/", "/"] },
   "SCH10AE-800-450": { image: productImage("sch10ae-1300-450.png"), catalogPage: "/products/catalog-page-03.png", joint: ["±165°", "450 mm", "±150°", "±360°", "/", "/"] },
   "SCH10D-800-400": { image: productImage("sch10d-800-400.png"), catalogPage: "/products/catalog-page-04.png", joint: ["-100°, +140°", "400 mm", "±150°", "±360°", "/", "/"] },

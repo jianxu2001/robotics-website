@@ -28,13 +28,15 @@ export function CaseStudyCard({
       className="scroll-mt-36 overflow-hidden rounded-lg border border-white/10 bg-[#11161b] shadow-[0_22px_60px_rgba(0,0,0,0.24)]"
     >
       <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="relative min-h-72 overflow-hidden">
+        <div className="relative min-h-72 overflow-hidden bg-[radial-gradient(circle_at_50%_34%,rgba(255,255,255,0.18),transparent_40%),linear-gradient(135deg,#252d35_0%,#111820_48%,#05070a_100%)]">
+          <div className="absolute inset-0 industrial-grid opacity-20" />
           <Image
             src={study.image}
             alt={`${study.title} representative automation case`}
             fill
+            unoptimized
             sizes="(min-width: 1024px) 42vw, 100vw"
-            className="bg-[#f5f6f8] object-contain p-5"
+            className="object-contain p-6 drop-shadow-[0_18px_26px_rgba(0,0,0,0.45)]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#080a0d] via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6">
