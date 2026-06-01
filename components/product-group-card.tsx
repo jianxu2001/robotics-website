@@ -31,7 +31,7 @@ export function ProductGroupCard({
             alt={group.title}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-            className="object-cover opacity-82 transition duration-500 group-hover:scale-105"
+            className="bg-[#f5f6f8] object-contain p-5 transition duration-500 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,13,0.1),rgba(8,10,13,0.86))]" />
           <div className="absolute bottom-0 left-0 right-0 p-6">

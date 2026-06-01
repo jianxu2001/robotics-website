@@ -99,7 +99,7 @@ export default function ZhProductsPage() {
                     </div>
                     <CtaLink href={`/zh/products/${series.slug}`} variant="ghost">详情页</CtaLink>
                   </div>
-                  <SpecTable series={series} headings={zhSpecHeadings} />
+                  <SpecTable series={series} headings={zhSpecHeadings} locale="zh" />
                 </section>
               ))}
             </div>

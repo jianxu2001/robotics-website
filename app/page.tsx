@@ -186,7 +186,7 @@ export default function Home() {
                       alt={category.title}
                       fill
                       sizes="(min-width: 768px) 50vw, 100vw"
-                      className="object-cover transition duration-500 group-hover:scale-105"
+                      className="bg-[#f5f6f8] object-contain p-5 transition duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#080a0d] via-transparent to-transparent" />
                   </div>

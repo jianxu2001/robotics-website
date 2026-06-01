@@ -96,7 +96,7 @@ export default async function ZhProductDetailPage({ params }: ProductDetailPageP
             description="以下为产品画册参数整理，适合用于初步选型和方案沟通。"
           />
           <div className="mt-10">
-            <SpecTable series={series} headings={zhSpecHeadings} />
+            <SpecTable series={series} headings={zhSpecHeadings} locale="zh" />
           </div>
         </section>
 

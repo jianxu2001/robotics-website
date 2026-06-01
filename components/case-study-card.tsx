@@ -34,7 +34,7 @@ export function CaseStudyCard({
             alt={`${study.title} representative automation case`}
             fill
             sizes="(min-width: 1024px) 42vw, 100vw"
-            className="object-cover opacity-82"
+            className="bg-[#f5f6f8] object-contain p-5"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#080a0d] via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6">

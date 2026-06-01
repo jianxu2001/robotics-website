@@ -33,7 +33,7 @@ export function SeriesCard({
           alt={`${series.series} industrial robot application`}
           fill
           sizes="(min-width: 1024px) 33vw, 100vw"
-          className="object-cover opacity-80 transition duration-500 group-hover:scale-105"
+          className="bg-[#f5f6f8] object-contain p-5 transition duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#080a0d] via-transparent to-transparent" />
         <div className="absolute left-4 top-4 rounded-md border border-[#f5b41b]/40 bg-black/54 px-3 py-2 font-mono text-xs font-bold uppercase tracking-[0.12em] text-[#f5b41b]">

@@ -16,7 +16,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "bag-palletizing-line",
     title: "Bag Palletizing Cell for Powder and Granular Materials",
     industry: "Chemicals, feed, minerals, building materials",
-    image: "/images/bejing1%20(2).jpg",
+    image: "/products/scr180-3200.png",
     summary:
       "A representative end-of-line palletizing solution for 20-50 kg bags where factories need stable stacking, fewer manual lifts, and cleaner product flow.",
     challenge: [
@@ -41,7 +41,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "carton-case-palletizing",
     title: "Carton and Case Palletizing for Packaging Lines",
     industry: "Food, beverage, consumer goods, logistics",
-    image: "/images/bejing1%20(1).jpg",
+    image: "/products/sch210e-2350-1650.png",
     summary:
       "A compact robotic palletizing concept for cartons, cases, and boxes where SKU changes and pallet patterns must be handled cleanly.",
     challenge: [
@@ -66,7 +66,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "press-transfer-automation",
     title: "Press Transfer Automation for Stamping Lines",
     industry: "Metal parts, automotive components, hardware manufacturing",
-    image: "/images/bejing1%20(3).jpg",
+    image: "/products/stc10-1450-400.png",
     summary:
       "A press-side automation concept for loading, unloading, and transferring repetitive parts between stamping or forging processes.",
     challenge: [
@@ -91,7 +91,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "machine-tending-cell",
     title: "Compact Machine Tending Cell",
     industry: "CNC machining, processing equipment, assembly cells",
-    image: "/images/bejing1%20(1).jpg",
+    image: "/products/srl20-1500-1000.png",
     summary:
       "A compact tending cell for machine loading, unloading, and part transfer where factories need repeatable operation without a large footprint.",
     challenge: [
@@ -116,7 +116,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "vision-bag-feeding",
     title: "3D Vision Bag Picking and Feeding",
     industry: "Powder handling, ingredients, chemicals, food processing",
-    image: "/images/SCR.jpg",
+    image: "/products/er20-1700.png",
     summary:
       "A representative vision-guided concept for bag picking, bag breaking, and feeding when product position changes too much for fixed pickup.",
     challenge: [
@@ -144,7 +144,7 @@ export const caseStudiesZh: CaseStudy[] = [
     slug: "bag-palletizing-line",
     title: "粉体与颗粒物料袋装码垛单元",
     industry: "化工、饲料、矿粉、建材",
-    image: "/images/bejing1%20(2).jpg",
+    image: "/products/scr180-3200.png",
     summary: "面向 20-50 kg 袋装物料的代表性末端码垛方案，适合需要稳定堆垛、减少人工搬运和改善物流节拍的工厂。",
     challenge: ["袋体在输送中会变形，需要可靠抓取且不损坏包装。", "人工码垛劳动强度高，垛型一致性难以保持。", "粉尘环境需要同步考虑输送、防护和操作通道。"],
     solution: ["采用高负载四轴码垛机器人，结合袋装夹具和稳定进料姿态。", "把托盘位置、垛型逻辑、输送交接、安全围栏和 PLC/HMI 一起规划。", "报价前确认袋体表面、单袋重量、堆垛高度和目标托盘要求。"],
@@ -156,7 +156,7 @@ export const caseStudiesZh: CaseStudy[] = [
     slug: "carton-case-palletizing",
     title: "包装线纸箱与箱装码垛",
     industry: "食品饮料、日化、消费品、物流",
-    image: "/images/bejing1%20(1).jpg",
+    image: "/products/sch210e-2350-1650.png",
     summary: "面向纸箱、箱装和包装线末端的紧凑型机器人码垛方案，适合 SKU 和垛型变化较多的生产现场。",
     challenge: ["不同纸箱尺寸和垛型会让人工码垛效率与一致性下降。", "机器人抓取前需要稳定的产品间距和缓存。", "买家需要评估完整系统范围，而不仅是机器人本体。"],
     solution: ["根据负载、臂展、纸箱尺寸、一次抓取数量和堆垛高度选择机器人。", "组合进料输送、产品分距、夹具、托盘位置和安全防护。", "围绕真实 SKU 数据形成便于工程和采购评估的方案。"],
@@ -168,7 +168,7 @@ export const caseStudiesZh: CaseStudy[] = [
     slug: "press-transfer-automation",
     title: "冲压线转运自动化",
     industry: "金属零件、汽车零部件、五金制造",
-    image: "/images/bejing1%20(3).jpg",
+    image: "/products/stc10-1450-400.png",
     summary: "面向冲压或锻压工序的上下料与零件转运方案，减少重复人工并提升设备旁作业安全性。",
     challenge: ["压力机旁作业节拍敏感，且需要安全的运动路径。", "零件形状、设备间距、夹具位置和节拍会共同影响选型。", "人工转运会限制一致性，并增加操作风险。"],
     solution: ["确认压力机布局、零件重量、姿态、转运方向和联锁要求。", "根据臂展、运动路径和工装需求选择冲压转运或六轴机器人。", "把夹具、安全围栏、联锁和产线同步作为完整单元规划。"],
@@ -180,7 +180,7 @@ export const caseStudiesZh: CaseStudy[] = [
     slug: "machine-tending-cell",
     title: "紧凑型机床上下料单元",
     industry: "CNC 加工、加工设备、装配单元",
-    image: "/images/bejing1%20(1).jpg",
+    image: "/products/srl20-1500-1000.png",
     summary: "面向机床上下料和零件转运的紧凑型自动化单元，适合希望减少重复操作但场地有限的工厂。",
     challenge: ["操作员大量时间花在重复上下料。", "机床入口、开门空间、夹具位置和零件姿态可能比较紧凑。", "中小批量生产需要更灵活的自动化规划。"],
     solution: ["确认机床入口、零件形状、夹具位置、开门节拍和目标节拍。", "根据臂展与姿态需求选择紧凑四轴或六轴机器人。", "围绕机床规划进出料、安全防护、操作通道和单元占地。"],
@@ -192,7 +192,7 @@ export const caseStudiesZh: CaseStudy[] = [
     slug: "vision-bag-feeding",
     title: "3D视觉袋装抓取与上料",
     industry: "粉体投料、原料处理、化工、食品加工",
-    image: "/images/SCR.jpg",
+    image: "/products/er20-1700.png",
     summary: "面向袋装抓取、破包和投料的视觉引导方案，适合袋体位置变化较大、固定点抓取不稳定的现场。",
     challenge: ["袋体存放和输送后容易偏移、变形和堆叠不齐。", "当袋体位置和表面状态变化较大时，固定点抓取容易失败。", "粉体处理还需要考虑粉尘、密封和下游上料接口。"],
     solution: ["评估 3D 视觉、视觉引导抓取或机械定位哪种更适合。", "围绕袋体材质、重量和变形程度设计夹具与破包方式。", "规划向料仓、混合机或输送线的交接，同时考虑除尘和维护通道。"],
