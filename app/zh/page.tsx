@@ -132,9 +132,21 @@ export default function ZhHomePage() {
         <section className="section-shell">
           <SectionHeading
             eyebrow="产品类别"
-            title="围绕真实工厂工况构建机器人平台与自动化系统。"
-            description="产品覆盖工业机器人本体、专用自动化单元、工装夹具、输送线和非标自动化集成。"
+            title="围绕真实工厂任务构建六大机器人类别。"
+            description="产品框架按应用任务整理：码垛/拆垛、桌面自动化、通用搬运、冲压专用、机床上下料和便携式协作场景。"
           />
+          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            {[
+              ["负载覆盖", "3-800 kg"],
+              ["产品结构", "六大类别"],
+              ["产品线", "11 个机器人产品线"],
+            ].map(([label, value]) => (
+              <div key={label} className="steel-panel p-5">
+                <p className="text-xs uppercase tracking-[0.16em] text-white/42">{label}</p>
+                <p className="mt-2 text-xl font-semibold text-white">{value}</p>
+              </div>
+            ))}
+          </div>
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {productCategoriesZh.map((category) => (
               <IndustrialCard key={category.title} className="group overflow-hidden">
@@ -152,6 +164,16 @@ export default function ZhHomePage() {
                   <div className="p-6">
                     <h3 className="text-2xl font-semibold text-white">{category.title}</h3>
                     <p className="mt-4 leading-7 text-white/62">{category.description}</p>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {category.series.map((series) => (
+                        <span
+                          key={series}
+                          className="rounded-md border border-[#f5b41b]/25 bg-[#f5b41b]/8 px-3 py-1.5 text-xs font-semibold text-[#ffd36b]"
+                        >
+                          {series}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </IndustrialCard>

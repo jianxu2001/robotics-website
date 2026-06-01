@@ -5,7 +5,7 @@ import { InquiryForm } from "@/components/inquiry-form";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { salesEmail, whatsappUrl } from "@/lib/contact";
-import { productSeriesZh } from "@/lib/catalog-zh";
+import { productGroupsZh, productInquiryOptionsZh } from "@/lib/catalog-zh";
 
 export const metadata: Metadata = {
   title: "联系 SCR Robot | 获取工业机器人项目报价",
@@ -73,13 +73,13 @@ export default function ZhContactPage() {
                   机器人系列
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {productSeriesZh.map((series) => (
+                  {productGroupsZh.flatMap((group) => group.productLines).map((line) => (
                     <a
-                      key={series.slug}
-                      href={`/zh/products/${series.slug}`}
+                      key={line.name}
+                      href={line.href}
                       className="rounded-md border border-white/10 bg-black/24 px-3 py-2 text-sm text-white/70 transition hover:border-[#f5b41b]/50 hover:text-white"
                     >
-                      {series.series}
+                      {line.name}
                     </a>
                   ))}
                 </div>
@@ -90,7 +90,7 @@ export default function ZhContactPage() {
               <InquiryForm
                 locale="zh"
                 applicationOptions={applicationOptions}
-                seriesOptions={productSeriesZh.map((series) => series.series)}
+                seriesOptions={productInquiryOptionsZh}
               />
             </IndustrialCard>
           </div>

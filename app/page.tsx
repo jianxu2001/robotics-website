@@ -155,15 +155,15 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
             <SectionHeading
               eyebrow="Product categories"
-              title="Robot platforms and automation systems built around factory work."
-              description="The catalog covers industrial robot bodies, dedicated application cells, tooling, conveyors, and non-standard automation for production lines."
+              title="Six robot categories built around real factory work."
+              description="The product framework is now organized by production task: palletizing and depalletizing, desktop automation, general-purpose handling, stamping, machine loading, and portable collaborative work."
             />
             <div className="steel-panel p-5">
               <div className="grid gap-3 sm:grid-cols-3">
                 {[
                   ["Payload coverage", "3-800 kg"],
-                  ["Robot families", "7 core series"],
-                  ["System scope", "Robot + tooling + line"],
+                  ["Product structure", "6 categories"],
+                  ["Product lines", "11 robot lines"],
                 ].map(([label, value]) => (
                   <div key={label} className="border-l border-[#f5b41b]/60 pl-4">
                     <p className="text-xs uppercase tracking-[0.16em] text-white/42">
@@ -197,6 +197,16 @@ export default function Home() {
                     <p className="mt-4 leading-7 text-white/62">
                       {category.description}
                     </p>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {category.series.map((series) => (
+                        <span
+                          key={series}
+                          className="rounded-md border border-[#f5b41b]/25 bg-[#f5b41b]/8 px-3 py-1.5 text-xs font-semibold text-[#ffd36b]"
+                        >
+                          {series}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </IndustrialCard>

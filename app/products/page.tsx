@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
+import { ProductGroupCard } from "@/components/product-group-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SeriesCard } from "@/components/series-card";
 import { SiteHeader } from "@/components/site-header";
@@ -7,13 +8,14 @@ import { SpecTable } from "@/components/spec-table";
 import {
   commonEnvironment,
   industries,
+  productGroups,
   productSeries,
 } from "@/lib/catalog";
 
 export const metadata: Metadata = {
-  title: "Robot Products | ECR, SCH, SAR, SCR, SRL, STC, ER Series",
+  title: "Robot Products | Palletizing, Desktop, General, Stamping, Tending, Collaborative Robots",
   description:
-    "Explore SCR Robot industrial robot series including ECR, SCH, SAR, SCR, SRL, STC, and ER robots for palletizing, stamping, machine tending, and conveyor automation.",
+    "Explore SCR Robot product categories including palletizing and depalletizing robots, desktop robots, general-purpose robots, stamping robots, machine loading robots, and portable collaborative robots.",
 };
 
 export default function ProductsPage() {
@@ -24,16 +26,16 @@ export default function ProductsPage() {
         <section className="section-shell pb-12">
           <SectionHeading
             eyebrow="Product portfolio"
-            title="Industrial robot series for material handling, palletizing, press automation, and flexible production."
-            description="Content is rewritten from the South China Robotics product catalog for overseas B2B buyers. Payload ranges span from compact 3 kg handling robots to heavy-duty 800 kg systems."
+            title="Six robot categories for palletizing, tending, stamping, desktop automation, and flexible production."
+            description="The SCR Robot product framework is organized for overseas B2B buyers: six major robot categories, eleven product lines, and detailed series data from the catalog."
             level={1}
           />
           <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              ["Robot series", "ECR / SCH / SAR / SCR / SRL / STC / ER"],
+              ["Product categories", "6 major categories"],
+              ["Product lines", "11 robot lines"],
               ["Payload range", "3-800 kg"],
-              ["Reach range", "200-3,500 mm"],
-              ["Applications", "Palletizing, stamping, tending, conveyors"],
+              ["Applications", "Palletizing, stamping, tending, collaboration"],
             ].map(([label, value]) => (
               <div key={label} className="steel-panel p-5">
                 <p className="text-xs uppercase tracking-[0.16em] text-white/42">
@@ -47,8 +49,26 @@ export default function ProductsPage() {
           </div>
         </section>
 
+        <section className="section-shell pt-8">
+          <SectionHeading
+            eyebrow="Product framework"
+            title="Find the right robot family by production task."
+            description="Each category below groups the relevant robot lines around the way overseas factories normally evaluate automation projects: pallet flow, machine loading, press automation, general handling, or flexible collaborative work."
+          />
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {productGroups.map((group) => (
+              <ProductGroupCard key={group.slug} group={group} />
+            ))}
+          </div>
+        </section>
+
         <section id="robot-series" className="section-shell pt-8">
-          <div className="grid gap-6 lg:grid-cols-3">
+          <SectionHeading
+            eyebrow="Detailed catalog series"
+            title="Representative robot series and catalog specifications."
+            description="The detailed cards below summarize the main catalog series with payload, reach, applications, and specification tables for project-level comparison."
+          />
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {productSeries.map((series) => (
               <SeriesCard key={series.slug} series={series} />
             ))}
@@ -62,9 +82,9 @@ export default function ProductsPage() {
               title="Representative model data from the catalog."
               description="The tables below summarize catalog model data including axes, maximum payload, reach, repeatability, body weight, and power capacity. Final selection depends on product dimensions, duty cycle, gripper design, and plant layout."
             />
-            <div className="mt-12 grid gap-12">
+            <div className="mt-12 grid min-w-0 gap-12">
               {productSeries.map((series) => (
-                <section key={series.slug} id={series.slug} className="scroll-mt-36">
+                <section key={series.slug} id={series.slug} className="min-w-0 scroll-mt-36">
                   <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                     <div>
                       <p className="font-mono text-sm font-bold uppercase tracking-[0.14em] text-[#f5b41b]">

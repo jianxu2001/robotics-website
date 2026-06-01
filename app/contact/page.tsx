@@ -5,7 +5,7 @@ import { InquiryForm } from "@/components/inquiry-form";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { salesEmail, whatsappUrl } from "@/lib/contact";
-import { productSeries } from "@/lib/catalog";
+import { productGroups, productInquiryOptions } from "@/lib/catalog";
 
 export const metadata: Metadata = {
   title: "Contact SCR Robot | Request Industrial Robot Quotation",
@@ -75,13 +75,13 @@ export default function ContactPage() {
                   Robot series
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {productSeries.map((series) => (
+                  {productGroups.flatMap((group) => group.productLines).map((line) => (
                     <a
-                      key={series.slug}
-                      href={`/products/${series.slug}`}
+                      key={line.name}
+                      href={line.href}
                       className="rounded-md border border-white/10 bg-black/24 px-3 py-2 text-sm text-white/70 transition hover:border-[#f5b41b]/50 hover:text-white"
                     >
-                      {series.series}
+                      {line.name}
                     </a>
                   ))}
                 </div>
@@ -91,7 +91,7 @@ export default function ContactPage() {
             <IndustrialCard className="p-6 md:p-8">
               <InquiryForm
                 applicationOptions={applicationOptions}
-                seriesOptions={productSeries.map((series) => series.series)}
+                seriesOptions={productInquiryOptions}
               />
             </IndustrialCard>
           </div>

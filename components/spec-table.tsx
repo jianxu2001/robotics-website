@@ -18,8 +18,8 @@ export function SpecTable({
   ],
 }: SpecTableProps) {
   return (
-    <div className="overflow-hidden rounded-lg border border-white/10">
-      <div className="overflow-x-auto">
+    <div className="min-w-0 max-w-full overflow-hidden rounded-lg border border-white/10">
+      <div className="min-w-0 max-w-full overflow-x-auto">
         <table className="min-w-[760px] w-full border-collapse text-left text-sm">
           <thead className="bg-[#151b21] text-xs uppercase tracking-[0.14em] text-white/50">
             <tr>

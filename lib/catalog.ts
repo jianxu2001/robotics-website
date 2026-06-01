@@ -22,6 +22,24 @@ export type ProductSeries = {
   }[];
 };
 
+export type ProductCategory = {
+  slug: string;
+  title: string;
+  description: string;
+  image: string;
+  series: string[];
+};
+
+export type ProductLine = {
+  name: string;
+  description: string;
+  href: string;
+};
+
+export type ProductGroup = ProductCategory & {
+  productLines: ProductLine[];
+};
+
 export const companyProfile = {
   name: "South China Robotics Technology (Guangzhou) Co., Ltd.",
   shortName: "SCR Robot",
@@ -35,32 +53,148 @@ export const companyProfile = {
     "South China Robotics Technology (Guangzhou) Co., Ltd. is an intelligent factory solution provider focused on industrial robot manufacturing, equipment service, robot sales, and one-stop automation systems for demanding production environments.",
 };
 
-export const productCategories = [
+export const productCategories: ProductCategory[] = [
   {
-    title: "Palletizing & Depalletizing",
+    slug: "palletizing-depalletizing-robots",
+    title: "Palletizing / Depalletizing Robots",
     description:
-      "High-payload four-axis robots, end-of-line palletizing cells, depalletizing stations, pallet flow, conveyors, and safety systems.",
+      "Four-axis robot platforms for end-of-line palletizing, depalletizing, bag stacking, carton handling, pallet flow, and complete robot cells.",
     image: "/images/bejing1%20(2).jpg",
+    series: ["ECR Series", "SCH Series", "SAR Series", "SCR Series"],
   },
   {
-    title: "Stamping & Forging Automation",
+    slug: "desktop-robots",
+    title: "Desktop Robots",
     description:
-      "Dedicated multi-joint robots and transfer units for press loading, forging lines, stamping transfer, and hot-work handling.",
-    image: "/images/bejing1%20(3).jpg",
-  },
-  {
-    title: "Machine Tending",
-    description:
-      "Compact robot platforms for machine loading and unloading, part transfer, production fixtures, and non-standard automation.",
+      "Compact desktop-class robot configurations for light handling, small work cells, laboratory-style automation, and limited-space production lines.",
     image: "/images/bejing1%20(1).jpg",
+    series: ["SCH-AE Series"],
   },
   {
-    title: "Vision & Conveyor Systems",
+    slug: "general-purpose-robots",
+    title: "General-Purpose Robots",
     description:
-      "3D vision bag breaking, material feeding, roller conveyors, powered turns, grippers, suction tooling, and custom line integration.",
+      "Flexible six-axis robot platforms for handling, machine tending, assembly support, part transfer, and general factory automation.",
+    image: "/images/bejing1%20(1).jpg",
+    series: ["ER Series"],
+  },
+  {
+    slug: "stamping-dedicated-robots",
+    title: "Stamping Dedicated Robots",
+    description:
+      "Dedicated robot platforms for press loading, stamping transfer, forging support, repetitive part movement, and line-specific tooling.",
+    image: "/images/bejing1%20(3).jpg",
+    series: ["STC Series", "SAR12 Series"],
+  },
+  {
+    slug: "machine-loading-unloading-robots",
+    title: "Machine Loading / Unloading Robots",
+    description:
+      "Compact robot systems for machine loading, unloading, part transfer, fixtures, repetitive handling, and line-side production cells.",
+    image: "/images/bejing1%20(3).jpg",
+    series: ["SRL Series"],
+  },
+  {
+    slug: "portable-collaborative-robots",
+    title: "Portable Collaborative Robots",
+    description:
+      "Portable collaborative robot options for flexible production assistance, mobile handling cells, and applications that require fast redeployment.",
     image: "/images/SCR.jpg",
+    series: ["30 kg Robot", "50 kg Robot"],
   },
 ];
+
+export const productGroups: ProductGroup[] = [
+  {
+    ...productCategories[0],
+    productLines: [
+      {
+        name: "ECR Series",
+        description: "Compact four-axis handling robots for light palletizing, transfer, packaging, and cost-sensitive automation.",
+        href: "/products/ecr-series",
+      },
+      {
+        name: "SCH Series",
+        description: "Heavy-duty four-axis palletizing and depalletizing robots with broad payload coverage up to 800 kg.",
+        href: "/products/sch-series",
+      },
+      {
+        name: "SAR Series",
+        description: "Long-reach industrial transfer robots for wide work areas, palletizing layouts, and heavy material movement.",
+        href: "/products/sar-series",
+      },
+      {
+        name: "SCR Series",
+        description: "Dedicated high-payload palletizing robot platform for large cartons, bags, and end-of-line stacking.",
+        href: "/products/scr-series",
+      },
+    ],
+  },
+  {
+    ...productCategories[1],
+    productLines: [
+      {
+        name: "SCH-AE Series",
+        description: "Compact SCH-AE models for desktop-class handling, small fixtures, and limited-space automation cells.",
+        href: "/products/sch-series",
+      },
+    ],
+  },
+  {
+    ...productCategories[2],
+    productLines: [
+      {
+        name: "ER Series",
+        description: "Six-axis industrial robots for flexible handling, tending, assembly support, and general production tasks.",
+        href: "/products/er-series",
+      },
+    ],
+  },
+  {
+    ...productCategories[3],
+    productLines: [
+      {
+        name: "STC Series",
+        description: "Dedicated stamping transfer robots for press-side automation and repetitive part movement.",
+        href: "/products/stc-series",
+      },
+      {
+        name: "SAR12 Series",
+        description: "Compact SAR12 long-arm robot option for stamping transfer, tending, and line-side material handling.",
+        href: "/products/sar-series",
+      },
+    ],
+  },
+  {
+    ...productCategories[4],
+    productLines: [
+      {
+        name: "SRL Series",
+        description: "Lightweight four-axis robots for machine loading, unloading, compact transfer, and production support.",
+        href: "/products/srl-series",
+      },
+    ],
+  },
+  {
+    ...productCategories[5],
+    productLines: [
+      {
+        name: "30 kg Robot",
+        description: "Portable collaborative robot option for flexible medium-payload handling and mobile workstation concepts.",
+        href: "/contact",
+      },
+      {
+        name: "50 kg Robot",
+        description: "Higher-payload portable collaborative option for heavier handling tasks that still require flexible deployment.",
+        href: "/contact",
+      },
+    ],
+  },
+];
+
+export const productInquiryOptions = productGroups.flatMap((group) =>
+  group.productLines.map((line) => line.name),
+);
 
 export const industries = [
   "Palletizing",
@@ -78,7 +212,7 @@ export const productSeries: ProductSeries[] = [
     slug: "ecr-series",
     series: "ECR Series",
     title: "Compact Four-Axis Handling Robots",
-    category: "General handling and light palletizing",
+    category: "Palletizing / depalletizing and compact handling",
     summary:
       "The ECR range covers compact four-axis robots for fast, repeatable handling where payload, reach, and cost efficiency need to stay balanced.",
     image: "/images/bejing1%20(1).jpg",
@@ -104,7 +238,7 @@ export const productSeries: ProductSeries[] = [
     slug: "sch-series",
     series: "SCH Series",
     title: "Heavy-Duty Four-Axis Palletizing Robots",
-    category: "Palletizing, depalletizing, and heavy handling",
+    category: "Palletizing / depalletizing robots",
     summary:
       "SCH robots are designed for industrial palletizing and heavy material handling, with payload options extending up to 800 kg for demanding factory lines.",
     image: "/images/bejing1%20(2).jpg",
@@ -131,7 +265,7 @@ export const productSeries: ProductSeries[] = [
     slug: "sar-series",
     series: "SAR Series",
     title: "Long-Reach Industrial Transfer Robots",
-    category: "Long-reach palletizing and transfer automation",
+    category: "Palletizing / depalletizing and long-reach transfer",
     summary:
       "The SAR range supports large working envelopes and heavy payloads for industrial transfer, palletizing, and line-side handling.",
     image: "/images/bejing1%20(1).jpg",
@@ -157,7 +291,7 @@ export const productSeries: ProductSeries[] = [
     slug: "scr-series",
     series: "SCR Series",
     title: "High-Payload Palletizing Robot",
-    category: "Dedicated robotic palletizing",
+    category: "Palletizing / depalletizing robots",
     summary:
       "The SCR180-3200 is a dedicated high-payload four-axis robot for end-of-line palletizing, large cartons, bags, and heavy factory loads.",
     image: "/images/bejing1%20(2).jpg",
@@ -179,7 +313,7 @@ export const productSeries: ProductSeries[] = [
     slug: "srl-series",
     series: "SRL Series",
     title: "Lightweight Four-Axis Handling Robots",
-    category: "Compact handling and transfer",
+    category: "Machine loading / unloading robots",
     summary:
       "SRL robots provide lightweight four-axis automation for compact production cells, small handling tasks, and line-side transfer.",
     image: "/images/bejing1%20(3).jpg",
@@ -202,7 +336,7 @@ export const productSeries: ProductSeries[] = [
     slug: "stc-series",
     series: "STC Series",
     title: "Stamping Transfer Robots",
-    category: "Stamping and press automation",
+    category: "Stamping dedicated robots",
     summary:
       "The STC range is built for stamping transfer and press automation, helping factories reduce manual handling around repetitive press operations.",
     image: "/images/bejing1%20(3).jpg",
@@ -225,7 +359,7 @@ export const productSeries: ProductSeries[] = [
     slug: "er-series",
     series: "ER Series",
     title: "Six-Axis Industrial Robots",
-    category: "Flexible six-axis automation",
+    category: "General-purpose robots",
     summary:
       "ER six-axis robots support flexible motion for handling, tending, and general automation tasks requiring articulated reach.",
     image: "/images/bejing1%20(1).jpg",

@@ -1,4 +1,9 @@
-import { productSeries, type ProductSeries } from "@/lib/catalog";
+import {
+  productSeries,
+  type ProductCategory,
+  type ProductGroup,
+  type ProductSeries,
+} from "@/lib/catalog";
 
 const zhSeriesCopy: Record<
   string,
@@ -108,32 +113,148 @@ export const companyProfileZh = {
     "华南机器人科技（广州）有限公司是一家智能工厂解决方案提供商，业务涵盖工业机器人生产制造、设备维修、销售以及行业一站式自动化解决方案。",
 };
 
-export const productCategoriesZh = [
+export const productCategoriesZh: ProductCategory[] = [
   {
-    title: "码垛与拆垛自动化",
+    slug: "palletizing-depalletizing-robots",
+    title: "码垛/拆垛机器人",
     description:
-      "覆盖高负载四轴机器人、末端码垛单元、拆垛站、托盘流转、输送线和安全防护系统。",
+      "面向终端码垛、拆垛、袋装堆垛、纸箱搬运、托盘流转和完整机器人工作站的四轴机器人平台。",
     image: "/images/bejing1%20(2).jpg",
+    series: ["ECR系列", "SCH系列", "SAR系列", "SCR系列"],
   },
   {
-    title: "冲压与锻压自动化",
+    slug: "desktop-robots",
+    title: "桌面型机器人",
     description:
-      "面向压力机上下料、锻压线、冲压转运和高重复性热加工搬运的专用机器人系统。",
-    image: "/images/bejing1%20(3).jpg",
-  },
-  {
-    title: "机床上下料",
-    description:
-      "紧凑型机器人平台可用于机床上下料、工件转运、夹具配套和非标自动化单元。",
+      "适用于轻量搬运、小型工装、桌面自动化和空间受限生产单元的紧凑型机器人配置。",
     image: "/images/bejing1%20(1).jpg",
+    series: ["SCH-AE系列"],
   },
   {
-    title: "视觉与输送系统",
+    slug: "general-purpose-robots",
+    title: "通用型机器人",
     description:
-      "支持 3D 视觉拆垛破包投料、滚筒线、动力转弯、吸盘夹具和整线集成。",
+      "面向搬运、机床上下料、装配辅助、工件转运和通用工厂自动化的柔性六轴机器人平台。",
+    image: "/images/bejing1%20(1).jpg",
+    series: ["ER系列"],
+  },
+  {
+    slug: "stamping-dedicated-robots",
+    title: "冲压专用机器人",
+    description:
+      "用于压力机上下料、冲压转运、锻压辅助、重复零件搬运和专用工装集成的机器人平台。",
+    image: "/images/bejing1%20(3).jpg",
+    series: ["STC系列", "SAR12系列"],
+  },
+  {
+    slug: "machine-loading-unloading-robots",
+    title: "机床上料/下料机器人",
+    description:
+      "适用于机床上料、下料、工件转运、夹具配套、重复搬运和产线侧紧凑自动化单元。",
+    image: "/images/bejing1%20(3).jpg",
+    series: ["SRL系列"],
+  },
+  {
+    slug: "portable-collaborative-robots",
+    title: "便携式协作机器人",
+    description:
+      "面向柔性生产辅助、移动式搬运单元和需要快速调整工位的工厂场景，提供便携协作机器人选项。",
     image: "/images/SCR.jpg",
+    series: ["30KG机器人", "50KG机器人"],
   },
 ];
+
+export const productGroupsZh: ProductGroup[] = [
+  {
+    ...productCategoriesZh[0],
+    productLines: [
+      {
+        name: "ECR系列",
+        description: "紧凑四轴搬运机器人，适用于轻型码垛、转运、包装和高性价比自动化。",
+        href: "/zh/products/ecr-series",
+      },
+      {
+        name: "SCH系列",
+        description: "重载四轴码垛/拆垛机器人，负载范围覆盖广，可支持 800 kg 级应用。",
+        href: "/zh/products/sch-series",
+      },
+      {
+        name: "SAR系列",
+        description: "长臂展工业转运机器人，适用于大范围码垛布局和重载物料搬运。",
+        href: "/zh/products/sar-series",
+      },
+      {
+        name: "SCR系列",
+        description: "高负载专用码垛机器人平台，适用于大型纸箱、袋装物料和末端堆垛。",
+        href: "/zh/products/scr-series",
+      },
+    ],
+  },
+  {
+    ...productCategoriesZh[1],
+    productLines: [
+      {
+        name: "SCH-AE系列",
+        description: "紧凑型 SCH-AE 机型，适合桌面级搬运、小型工装和有限空间自动化单元。",
+        href: "/zh/products/sch-series",
+      },
+    ],
+  },
+  {
+    ...productCategoriesZh[2],
+    productLines: [
+      {
+        name: "ER系列",
+        description: "六轴工业机器人，适用于柔性搬运、上下料、装配辅助和通用生产任务。",
+        href: "/zh/products/er-series",
+      },
+    ],
+  },
+  {
+    ...productCategoriesZh[3],
+    productLines: [
+      {
+        name: "STC系列",
+        description: "冲压转运专用机器人，面向压力机侧自动化和重复零件搬运。",
+        href: "/zh/products/stc-series",
+      },
+      {
+        name: "SAR12系列",
+        description: "紧凑型 SAR12 长臂机器人，可用于冲压转运、上下料和产线侧物料搬运。",
+        href: "/zh/products/sar-series",
+      },
+    ],
+  },
+  {
+    ...productCategoriesZh[4],
+    productLines: [
+      {
+        name: "SRL系列",
+        description: "轻量四轴机器人，适用于机床上料、下料、紧凑转运和产线辅助。",
+        href: "/zh/products/srl-series",
+      },
+    ],
+  },
+  {
+    ...productCategoriesZh[5],
+    productLines: [
+      {
+        name: "30KG机器人",
+        description: "便携式协作机器人选项，适用于中等负载柔性搬运和移动工位方案。",
+        href: "/zh/contact",
+      },
+      {
+        name: "50KG机器人",
+        description: "更高负载的便携协作机器人选项，适合需要柔性部署的较重搬运任务。",
+        href: "/zh/contact",
+      },
+    ],
+  },
+];
+
+export const productInquiryOptionsZh = productGroupsZh.flatMap((group) =>
+  group.productLines.map((line) => line.name),
+);
 
 export const industriesZh = [
   "码垛",

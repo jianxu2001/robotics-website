@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
+import { ProductGroupCard } from "@/components/product-group-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SeriesCard } from "@/components/series-card";
 import { SiteHeader } from "@/components/site-header";
 import { SpecTable } from "@/components/spec-table";
-import { commonEnvironmentZh, industriesZh, productSeriesZh } from "@/lib/catalog-zh";
+import {
+  commonEnvironmentZh,
+  industriesZh,
+  productGroupsZh,
+  productSeriesZh,
+} from "@/lib/catalog-zh";
 
 export const metadata: Metadata = {
-  title: "机器人产品 | ECR、SCH、SAR、SCR、SRL、STC、ER 系列",
+  title: "机器人产品 | 码垛、桌面、通用、冲压、上下料、协作机器人",
   description:
-    "查看 SCR Robot 工业机器人系列，覆盖码垛、拆垛、冲压、机床上下料、3D视觉破包投料和输送自动化。",
+    "查看 SCR Robot 六大机器人产品类别：码垛/拆垛机器人、桌面型机器人、通用型机器人、冲压专用机器人、机床上下料机器人和便携式协作机器人。",
 };
 
 const zhSpecHeadings = ["型号", "轴数", "最大负载", "臂展", "重复定位精度", "本体重量", "电源容量"];
@@ -22,16 +28,16 @@ export default function ZhProductsPage() {
         <section className="section-shell pb-12">
           <SectionHeading
             eyebrow="产品中心"
-            title="面向搬运、码垛、冲压和柔性生产的工业机器人系列。"
-            description="产品内容基于华南机器人画册整理，覆盖 3-800 kg 负载范围，适用于海外工业客户选型与项目沟通。"
+            title="六大机器人类别，覆盖码垛、上下料、冲压、桌面自动化和柔性生产。"
+            description="SCR Robot 产品框架面向海外工业客户整理：六大产品类别、十一个机器人产品线，并保留画册中的核心系列参数。"
             level={1}
           />
           <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              ["机器人系列", "ECR / SCH / SAR / SCR / SRL / STC / ER"],
+              ["产品类别", "六大类别"],
+              ["产品线", "11 个机器人产品线"],
               ["负载范围", "3-800 kg"],
-              ["臂展范围", "200-3,500 mm"],
-              ["应用场景", "码垛、冲压、上下料、输送"],
+              ["应用场景", "码垛、冲压、上下料、协作"],
             ].map(([label, value]) => (
               <div key={label} className="steel-panel p-5">
                 <p className="text-xs uppercase tracking-[0.16em] text-white/42">{label}</p>
@@ -41,8 +47,30 @@ export default function ZhProductsPage() {
           </div>
         </section>
 
+        <section className="section-shell pt-8">
+          <SectionHeading
+            eyebrow="产品框架"
+            title="按真实工厂任务快速选择机器人系列。"
+            description="以下结构按照海外工厂评估自动化项目的方式组织：托盘物流、机床上下料、冲压自动化、通用搬运、桌面自动化和柔性协作场景。"
+          />
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {productGroupsZh.map((group) => (
+              <ProductGroupCard
+                key={group.slug}
+                group={group}
+                labels={{ productLines: "产品线", view: "查看" }}
+              />
+            ))}
+          </div>
+        </section>
+
         <section id="robot-series" className="section-shell pt-8">
-          <div className="grid gap-6 lg:grid-cols-3">
+          <SectionHeading
+            eyebrow="详细系列"
+            title="主要机器人系列与画册规格。"
+            description="下方卡片整理主要画册系列，包含负载、臂展、应用场景和参数表，便于项目初步选型对比。"
+          />
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {productSeriesZh.map((series) => (
               <SeriesCard
                 key={series.slug}
@@ -61,9 +89,9 @@ export default function ZhProductsPage() {
               title="画册型号参数整理。"
               description="以下表格汇总轴数、最大负载、臂展、重复定位精度、本体重量和电源容量。最终选型需结合产品尺寸、节拍、夹具和现场布局确认。"
             />
-            <div className="mt-12 grid gap-12">
+            <div className="mt-12 grid min-w-0 gap-12">
               {productSeriesZh.map((series) => (
-                <section key={series.slug} id={series.slug} className="scroll-mt-36">
+                <section key={series.slug} id={series.slug} className="min-w-0 scroll-mt-36">
                   <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                     <div>
                       <p className="font-mono text-sm font-bold uppercase tracking-[0.14em] text-[#f5b41b]">{series.series}</p>
