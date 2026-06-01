@@ -10,13 +10,13 @@ type SiteHeaderProps = {
 const navItems = {
   en: [
     { label: "Products", href: "/products" },
-    { label: "Applications", href: "/#applications" },
+    { label: "Applications", href: "/industries" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ],
   zh: [
     { label: "产品", href: "/zh/products" },
-    { label: "应用", href: "/zh/#applications" },
+    { label: "应用", href: "/zh/industries" },
     { label: "关于我们", href: "/zh/about" },
     { label: "联系我们", href: "/zh/contact" },
   ],

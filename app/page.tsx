@@ -242,6 +242,11 @@ export default function Home() {
               </div>
             ))}
           </div>
+          <div className="mt-10 text-center">
+            <CtaLink href="/industries" variant="secondary">
+              View Industry Solutions
+            </CtaLink>
+          </div>
         </section>
 
         <section className="border-y border-white/10 bg-[#10151a]">
@@ -419,6 +424,9 @@ export default function Home() {
           <div className="flex flex-wrap gap-5">
             <Link href="/products" className="hover:text-white">
               Products
+            </Link>
+            <Link href="/industries" className="hover:text-white">
+              Applications
             </Link>
             <Link href="/about" className="hover:text-white">
               About
