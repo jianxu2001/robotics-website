@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CtaLink } from "@/components/cta-link";
+import { ProductMegaMenu } from "@/components/product-mega-menu";
 import { whatsappUrl } from "@/lib/contact";
 
 type SiteHeaderProps = {
@@ -9,14 +10,12 @@ type SiteHeaderProps = {
 
 const navItems = {
   en: [
-    { label: "Products", href: "/products" },
     { label: "Applications", href: "/industries" },
     { label: "Cases", href: "/case-studies" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ],
   zh: [
-    { label: "产品", href: "/zh/products" },
     { label: "应用", href: "/zh/industries" },
     { label: "案例", href: "/zh/case-studies" },
     { label: "关于我们", href: "/zh/about" },
@@ -55,6 +54,7 @@ export function SiteHeader({
         </Link>
 
         <div className="hidden items-center gap-7 lg:flex">
+          <ProductMegaMenu locale={locale} />
           {items.map((item) => (
             <Link
               key={item.href}
@@ -86,6 +86,12 @@ export function SiteHeader({
       </nav>
       <div className="border-t border-white/8 px-4 pb-3 lg:hidden">
         <div className="mx-auto grid max-w-7xl grid-cols-3 gap-2 pt-3 text-xs font-semibold uppercase tracking-[0.06em] text-white/60 sm:flex sm:overflow-x-auto sm:tracking-[0.08em]">
+          <Link
+            href={isZh ? "/zh/products" : "/products"}
+            className="rounded-md border border-white/10 bg-white/5 px-2 py-2 text-center transition hover:border-[#f5b41b]/60 hover:text-white sm:shrink-0 sm:px-3"
+          >
+            {isZh ? "产品" : "Products"}
+          </Link>
           {items.map((item) => (
             <Link
               key={item.href}
