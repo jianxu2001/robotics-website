@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CtaLink } from "@/components/cta-link";
+import { ProductParameterTabs } from "@/components/product-parameter-tabs";
 import type { ProductModel } from "@/lib/product-models";
 
 type ProductModelDetailProps = {
@@ -112,9 +113,7 @@ export function ProductModelDetail({
             </div>
           </div>
 
-          <div className="relative min-h-[320px] overflow-hidden rounded-lg border border-white/10 bg-[radial-gradient(circle_at_50%_34%,rgba(255,255,255,0.18),transparent_36%),linear-gradient(135deg,#252d35_0%,#111820_46%,#05070a_100%)] shadow-[0_30px_90px_rgba(0,0,0,0.42)] sm:min-h-[430px] lg:min-h-[540px]">
-            <div className="absolute inset-0 industrial-grid opacity-25" />
-            <div className="absolute inset-x-8 bottom-7 h-10 rounded-full bg-black/45 blur-2xl" />
+          <div className="relative min-h-[320px] overflow-hidden rounded-lg border border-white/10 bg-white shadow-[0_30px_90px_rgba(0,0,0,0.42)] sm:min-h-[430px] lg:min-h-[540px]">
             <Image
               src={model.image}
               alt={`${model.name} robot`}
@@ -122,7 +121,7 @@ export function ProductModelDetail({
               priority
               unoptimized
               sizes="(min-width: 1024px) 760px, 92vw"
-              className="object-contain p-6 drop-shadow-[0_24px_30px_rgba(0,0,0,0.45)] sm:p-8"
+              className="object-contain p-6 sm:p-8"
             />
           </div>
 
@@ -142,95 +141,33 @@ export function ProductModelDetail({
         </div>
       </section>
 
-      <section className="bg-white text-[#10151b]">
-        <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
-          <div className="border-b border-[#d9dee4]">
-            <div className="flex flex-wrap items-end justify-center gap-8">
-              <div className="border-b-2 border-[#009da5] px-4 pb-5 text-2xl font-medium text-[#009da5]">
-                {t.detail}
-              </div>
-            </div>
-          </div>
+      <ProductParameterTabs
+        robotRows={robotRows}
+        jointRows={model.jointParameters}
+        isZh={isZh}
+        labels={{
+          detail: t.detail,
+          robot: t.robot,
+          joints: t.joints,
+          item: t.item,
+          value: t.value,
+          axis: t.axis,
+          range: t.range,
+        }}
+      />
 
-          <div className="mt-8 flex flex-wrap justify-center gap-8 text-lg">
-            <span className="border-b-2 border-[#009da5] pb-2 font-semibold">
-              {t.robot}
-            </span>
-            <span className="pb-2 text-[#4c5661]">{t.joints}</span>
-          </div>
-
-          <div className="mt-8 grid min-w-0 gap-10">
-            <section className="min-w-0">
-              <h2 className="mb-5 text-2xl font-semibold">{t.robot}</h2>
-              <div className="min-w-0 max-w-full overflow-hidden rounded-md border border-[#d9dee4]">
-                <div className="overflow-x-auto">
-                  <table className="w-full min-w-[520px] border-collapse text-left text-base">
-                    <thead className="bg-[#f2f4f6]">
-                      <tr>
-                        <th className="border-b border-r border-[#d9dee4] px-5 py-4">
-                          {t.item}
-                        </th>
-                        <th className="border-b border-[#d9dee4] px-5 py-4">
-                          {t.value}
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {robotRows.map((row) => (
-                        <tr key={row.label} className="odd:bg-white even:bg-[#f6f7f8]">
-                          <td className="border-r border-[#d9dee4] px-5 py-4 font-medium">
-                            {isZh ? row.labelZh : row.label}
-                          </td>
-                          <td className="px-5 py-4">{row.value}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </section>
-
-            <section className="min-w-0">
-              <h2 className="mb-5 text-2xl font-semibold">{t.joints}</h2>
-              <div className="min-w-0 max-w-full overflow-hidden rounded-md border border-[#d9dee4]">
-                <div className="overflow-x-auto">
-                  <table className="w-full min-w-[420px] border-collapse text-left text-base">
-                    <thead className="bg-[#f2f4f6]">
-                      <tr>
-                        <th className="border-b border-r border-[#d9dee4] px-5 py-4">
-                          {t.axis}
-                        </th>
-                        <th className="border-b border-[#d9dee4] px-5 py-4">
-                          {t.range}
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {model.jointParameters.map((joint) => (
-                        <tr key={joint.axis} className="odd:bg-white even:bg-[#f6f7f8]">
-                          <td className="border-r border-[#d9dee4] px-5 py-4 font-medium">
-                            {joint.axis}
-                          </td>
-                          <td className="px-5 py-4">{joint.range}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </section>
-          </div>
-
-          <div className="mt-10 grid gap-4 rounded-md border border-[#d9dee4] bg-[#f5f6f8] p-5 md:grid-cols-[1fr_auto] md:items-center">
+      <section className="border-t border-white/10 bg-[#080a0d]">
+        <div className="mx-auto max-w-7xl px-5 py-10 lg:px-8">
+          <div className="grid gap-4 rounded-lg border border-white/10 bg-white/[0.045] p-5 md:grid-cols-[1fr_auto] md:items-center">
             <div>
-              <p className="font-semibold text-[#10151b]">{t.catalog}</p>
-              <p className="mt-2 text-sm leading-6 text-[#5a6570]">{t.note}</p>
+              <p className="font-semibold text-white">{t.catalog}</p>
+              <p className="mt-2 text-sm leading-6 text-white/56">{t.note}</p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <CtaLink href={contactHref}>{t.request}</CtaLink>
               <Link
                 href={model.catalogPage}
-                className="inline-flex items-center justify-center rounded-md border border-[#cfd6dd] bg-white px-5 py-3 text-sm font-bold text-[#10151b] transition hover:border-[#009da5] hover:text-[#009da5]"
+                className="inline-flex items-center justify-center rounded-md border border-white/12 bg-white/5 px-5 py-3 text-sm font-bold text-white/72 transition hover:border-[#f5b41b]/55 hover:text-white"
               >
                 {t.catalogText}
               </Link>
