@@ -94,13 +94,13 @@ export function ProductModelDetail({ model }: ProductModelDetailProps) {
               {model.category}
             </p>
             <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight md:text-6xl">
-              {model.name} Industrial Robot
+              {model.name} {model.category}
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-white/70">
               {model.positioning}
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <CtaLink href="/contact">Request Quote</CtaLink>
+              <CtaLink href="/contact">Request Model Review</CtaLink>
               <CtaLink href={`/products/${model.seriesSlug}`} variant="secondary">
                 View Series
               </CtaLink>
@@ -216,8 +216,8 @@ export function ProductModelDetail({ model }: ProductModelDetailProps) {
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
           <SectionHeading
             eyebrow="Applications"
-            title="Built for industrial buying scenarios."
-            description="SCR Robot helps overseas buyers match robot payload, reach, tooling, conveyors, safety layout, and cycle-time targets before quotation."
+            title="Match this model to your payload, product, and layout."
+            description="SCR Robot helps overseas buyers confirm robot payload, reach, tooling, conveyors, safety layout, and cycle-time targets before quotation."
           />
           <div className="grid gap-4 sm:grid-cols-2">
             {[...model.applications, ...model.industries].map((item) => (
@@ -258,7 +258,7 @@ export function ProductModelDetail({ model }: ProductModelDetailProps) {
                   Project evaluation
                 </p>
                 <h2 className="mt-3 text-3xl font-semibold text-white">
-                  Send your material photos and receive a robot selection proposal.
+                  Send product photos and receive a model selection proposal.
                 </h2>
                 <p className="mt-4 max-w-3xl leading-7 text-white/64">
                   Include product weight, dimensions, packaging type, target output,

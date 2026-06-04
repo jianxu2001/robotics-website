@@ -20,13 +20,13 @@ export const industryPages: IndustryPage[] = [
   {
     slug: "plastics",
     title: "Plastic Manufacturers",
-    seoTitle: "Industrial Automation for Plastic Manufacturers | Palletizing & Depalletizing Robots",
+    seoTitle: "Plastic Factory Automation | Palletizing Robots",
     description:
-      "South China Robotics helps plastic manufacturers automate palletizing, depalletizing, bag feeding, carton handling, and conveyor transfer to reduce labor cost and improve production stability.",
+      "Automate plastic bag, carton, resin, and molded-part handling with SCR Robot palletizing, depalletizing, conveyors, and gripper integration.",
     eyebrow: "Automation for plastic manufacturers",
-    heroTitle: "Robot automation for plastic bags, cartons, bins, and end-of-line handling.",
+    heroTitle: "Robot automation for plastic bags, cartons, resin, and end-of-line handling.",
     heroDescription:
-      "Plastic manufacturers often handle bags of resin, cartons, molded parts, film rolls, containers, and mixed SKUs. South China Robotics helps replace repetitive manual lifting with palletizing robots, depalletizing robots, bag feeding automation, and conveyor integration.",
+      "Plastic manufacturers handle resin bags, cartons, molded parts, film rolls, containers, and mixed SKUs. SCR Robot helps review product data, gripper needs, conveyors, and pallet patterns before quoting the cell.",
     image: "/images/bejing1%20(2).jpg",
     buyerProblem: [
       "Manual palletizing of plastic bags, cartons, and molded products creates fatigue and inconsistent output across shifts.",
@@ -109,13 +109,13 @@ export const industryPages: IndustryPage[] = [
   {
     slug: "chemical",
     title: "Chemical Plants",
-    seoTitle: "Automation for Chemical Plants | Bag Palletizing, Depalletizing & Feeding Robots",
+    seoTitle: "Chemical Bag Handling Automation | SCR Robot",
     description:
-      "Robotic palletizing, depalletizing, bag feeding, and conveyor automation for chemical plants handling bags, cartons, drums, powders, and granular materials.",
+      "Plan robotic palletizing, depalletizing, bag feeding, and conveyor automation for chemical bags, cartons, drums, powders, and granular materials.",
     eyebrow: "Automation for chemical plants",
-    heroTitle: "Safer robot automation for bags, cartons, drums, and chemical material handling.",
+    heroTitle: "Safer robot automation for chemical bags, cartons, drums, and feeding lines.",
     heroDescription:
-      "Chemical plants often need to reduce manual exposure, improve safety, and stabilize handling of bags, cartons, drums, powders, and granular materials. South China Robotics supports palletizing, depalletizing, bag feeding, and conveyor-based automation projects.",
+      "Chemical plants need to reduce manual exposure, improve safety, and stabilize handling of bags, drums, powders, and granular materials. SCR Robot reviews material data, dust conditions, tooling, and conveyor flow before proposal.",
     image: "/images/SCR.jpg",
     buyerProblem: [
       "Manual handling of chemical bags or containers can expose workers to dust, repetitive lifting, and safety risk.",
@@ -198,13 +198,13 @@ export const industryPages: IndustryPage[] = [
   {
     slug: "building-materials",
     title: "Building Material Factories",
-    seoTitle: "Robot Automation for Building Material Factories | Palletizing & Heavy Handling",
+    seoTitle: "Building Material Palletizing Robots | SCR Robot",
     description:
-      "Palletizing robots, depalletizing robots, and conveyor automation for building material factories handling bags, boards, cartons, tiles, and heavy industrial products.",
+      "Use SCR Robot palletizing, depalletizing, and conveyor automation for heavy building material bags, boards, cartons, tiles, and pallet flow.",
     eyebrow: "Automation for building material factories",
-    heroTitle: "Heavy-duty robot automation for bags, boards, cartons, tiles, and pallet flow.",
+    heroTitle: "Heavy-duty robot automation for building material bags, boards, cartons, and tiles.",
     heroDescription:
-      "Building material factories often handle heavy products, dusty environments, tall stacks, and repetitive palletizing work. South China Robotics helps factories automate heavy handling with palletizing robots, depalletizing robots, conveyors, grippers, and safety systems.",
+      "Building material factories handle heavy products, dusty environments, tall stacks, and repetitive palletizing work. SCR Robot helps evaluate payload, stack height, gripper design, conveyors, and safety scope before quotation.",
     image: "/images/bejing1%20(3).jpg",
     buyerProblem: [
       "Heavy products create high labor intensity and higher risk of fatigue-related handling errors.",
@@ -287,13 +287,13 @@ export const industryPages: IndustryPage[] = [
   {
     slug: "food-processing",
     title: "Food Processing Factories",
-    seoTitle: "Food Processing Automation | Palletizing Robots & Packaging Line Automation",
+    seoTitle: "Food Packaging Line Automation | Palletizing Robots",
     description:
-      "Robot palletizing, depalletizing, conveyor transfer, and packaging line automation for food processing factories handling cartons, bags, cases, boxes, and ingredients.",
+      "Automate food cartons, bags, cases, boxes, ingredient feeding, conveyor transfer, and palletizing with SCR Robot packaging line solutions.",
     eyebrow: "Automation for food processing factories",
     heroTitle: "Reliable robot automation for food cartons, bags, cases, and packaging lines.",
     heroDescription:
-      "Food processing factories need stable output, safer repetitive handling, and smooth packaging-line flow. South China Robotics supports palletizing robots, depalletizing robots, bag feeding automation, and conveyor integration for cartons, bags, cases, boxes, and ingredient handling.",
+      "Food processing factories need stable output, safer repetitive handling, and smooth packaging-line flow. SCR Robot reviews package sizes, throughput, pallet pattern, conveyors, and site constraints before recommending a cell.",
     image: "/images/bejing1%20(1).jpg",
     buyerProblem: [
       "Manual palletizing and packaging transfer can become a bottleneck during peak production.",

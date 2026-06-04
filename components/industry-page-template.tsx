@@ -212,20 +212,20 @@ export function IndustryPageTemplate({ page }: IndustryPageTemplateProps) {
             <IndustrialCard className="p-6 md:p-8">
               <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f5b41b]">
-                    Contact CTA
-                  </p>
-                  <h2 className="mt-4 text-3xl font-semibold text-white">
-                    Send your {page.title.toLowerCase()} automation requirement.
-                  </h2>
-                  <p className="mt-4 max-w-3xl leading-7 text-white/62">
-                    Share product photos, weight, dimensions, target output,
-                    pallet pattern, factory layout, and destination country.
-                    We will help map the right robot and system scope.
-                  </p>
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f5b41b]">
+                  Project review
+                </p>
+                <h2 className="mt-4 text-3xl font-semibold text-white">
+                  Send product data for your {page.title.toLowerCase()} automation proposal.
+                </h2>
+                <p className="mt-4 max-w-3xl leading-7 text-white/62">
+                  Share product photos, weight, dimensions, target output,
+                  pallet pattern, factory layout, and destination country.
+                  We will help map the right robot and system scope.
+                </p>
                 </div>
                 <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-                  <CtaLink href="/contact">Get a Robot Automation Quote</CtaLink>
+                  <CtaLink href="/contact">Request Engineering Review</CtaLink>
                   <CtaLink href={whatsappUrl} variant="secondary">
                     WhatsApp
                   </CtaLink>

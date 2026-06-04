@@ -7,7 +7,11 @@ import { SiteHeader } from "@/components/site-header";
 import { SpecTable } from "@/components/spec-table";
 import { productSeries } from "@/lib/catalog";
 import { getProductModelsBySeries } from "@/lib/product-models";
-import { localizedAlternates } from "@/lib/seo";
+import {
+  getProductSeriesMetaDescription,
+  getProductSeriesMetaTitle,
+  localizedAlternates,
+} from "@/lib/seo";
 
 type ProductDetailPageProps = {
   params: Promise<{ slug: string }>;
@@ -28,8 +32,8 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${series.series} | ${series.title}`,
-    description: `${series.summary} Payload range: ${series.payloadRange}. Reach range: ${series.reachRange}.`,
+    title: getProductSeriesMetaTitle(series),
+    description: getProductSeriesMetaDescription(series),
     alternates: localizedAlternates(
       `/products/${series.slug}`,
       `/products/${series.slug}`,
@@ -76,7 +80,7 @@ export default async function ProductDetailPage({
               {series.summary}
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <CtaLink href="/contact">Request Specification</CtaLink>
+              <CtaLink href="/contact">Request Model Selection</CtaLink>
               <CtaLink href="/products" variant="secondary">
                 Back to Products
               </CtaLink>
@@ -148,7 +152,7 @@ export default async function ProductDetailPage({
               <SectionHeading
                 eyebrow="Applications"
                 title="Where this series fits."
-                description="Robot selection depends on product dimensions, payload, reach, gripper type, required cycle time, safety layout, and upstream/downstream equipment."
+                description="Send product dimensions, payload, gripper needs, cycle time, safety layout, and upstream/downstream equipment so engineering can confirm model fit."
               />
               <div className="grid gap-3 sm:grid-cols-2">
                 {series.applications.map((application) => (

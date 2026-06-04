@@ -8,9 +8,9 @@ import { automationSolutions, companyProfile } from "@/lib/catalog";
 import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "About South China Robotics | Industrial Robot Manufacturer",
+  title: "About SCR Robot | Industrial Robot Manufacturer",
   description:
-    "Learn about South China Robotics Technology (Guangzhou) Co., Ltd., an industrial robot manufacturer and intelligent factory solution provider founded in 2017.",
+    "Learn about SCR Robot, a Guangzhou industrial robot manufacturer for palletizing, depalletizing, stamping, tending, conveyors, and automation cells.",
   alternates: localizedAlternates("/about", "/about", "/zh/about"),
 };
 
@@ -51,7 +51,7 @@ export default function AboutPage() {
               Company profile
             </p>
             <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight md:text-6xl">
-              South China Robotics Technology (Guangzhou) Co., Ltd.
+              Industrial robot manufacturer for factory automation projects.
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-white/72">
               {companyProfile.description}
@@ -123,7 +123,7 @@ export default function AboutPage() {
             ))}
           </div>
           <div className="mt-10">
-            <CtaLink href="/contact">Discuss an Automation Project</CtaLink>
+            <CtaLink href="/contact">Discuss Your Factory Project</CtaLink>
           </div>
         </section>
       </main>

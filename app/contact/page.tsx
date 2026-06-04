@@ -9,9 +9,9 @@ import { productGroups, productInquiryOptions } from "@/lib/catalog";
 import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Contact SCR Robot | Request Industrial Robot Quotation",
+  title: "Contact SCR Robot | Request a Robot Automation Quote",
   description:
-    "Contact SCR Robot for palletizing robots, depalletizing robots, stamping automation, machine tending, 3D vision bag breaking, and conveyor automation projects.",
+    "Send product photos, payload, throughput, pallet pattern, layout, and destination country to request an SCR Robot automation proposal.",
   alternates: localizedAlternates("/contact", "/contact", "/zh/contact"),
 };
 
@@ -41,8 +41,8 @@ export default function ContactPage() {
         <section className="section-shell pb-12">
           <SectionHeading
             eyebrow="Contact sales engineering"
-            title="Request a robot or automation system proposal."
-            description="Tell us about your product, process, payload, reach, and factory layout. We will help identify the right robot series and automation cell structure for your overseas project."
+            title="Request a robot automation quote with your project data."
+            description="Tell us your product, payload, reach, cycle time, pallet pattern, layout, and destination country so engineering can recommend a robot series and cell scope."
             level={1}
           />
         </section>
@@ -55,16 +55,16 @@ export default function ContactPage() {
                   Direct inquiry
                 </p>
                 <h2 className="mt-4 text-2xl font-semibold text-white">
-                  Send project details for quotation.
+                  Send photos, dimensions, throughput, and layout notes.
                 </h2>
                 <p className="mt-4 leading-7 text-white/62">
                   The more technical information you provide, the faster the team
                   can recommend a robot family, tooling concept, conveyor layout,
-                  and budgetary direction.
+                  and budgetary direction for your line.
                 </p>
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                   <CtaLink href={`mailto:${salesEmail}?subject=Industrial%20Robot%20Project%20Inquiry`}>
-                    Email Sales
+                    Email Project Data
                   </CtaLink>
                   <CtaLink href={whatsappUrl} variant="secondary">
                     WhatsApp
@@ -104,7 +104,7 @@ export default function ContactPage() {
             <SectionHeading
               eyebrow="Quotation checklist"
               title="Information that helps engineering respond faster."
-              description="For robot automation, the best quotation starts with clear production data."
+              description="For robot automation, the best quotation starts with product photos, dimensions, weight, output target, pallet data, and factory layout."
             />
             <div className="mt-10 grid gap-3 md:grid-cols-2">
               {quoteChecklist.map((item) => (

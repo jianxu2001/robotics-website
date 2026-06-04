@@ -9,9 +9,9 @@ import { whatsappUrl } from "@/lib/contact";
 import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Representative Automation Case Studies | SCR Robot",
+  title: "Robot Automation Case Concepts | SCR Robot",
   description:
-    "Review representative SCR Robot automation case concepts for bag palletizing, carton palletizing, press transfer, machine tending, and 3D vision bag feeding.",
+    "Review robot automation concepts for bag palletizing, carton palletizing, press transfer, machine tending, and 3D vision bag feeding.",
   alternates: localizedAlternates(
     "/case-studies",
     "/case-studies",
@@ -36,8 +36,8 @@ export default function CaseStudiesPage() {
           <div className="relative section-shell pb-14">
             <SectionHeading
               eyebrow="Representative cases"
-              title="Application-based case concepts that help buyers picture the real project."
-              description="These are representative solution scenarios, not inflated customer claims. They show how SCR Robot thinks through product handling, robot selection, tooling, conveyors, safety, and the data needed for quotation."
+              title="Robot cell concepts for real palletizing, tending, and transfer projects."
+              description="Use these scenarios to see how product data, payload, tooling, conveyors, safety, and cycle time shape a usable automation proposal."
               level={1}
             />
             <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
@@ -93,14 +93,14 @@ export default function CaseStudiesPage() {
                   Need a similar solution?
                 </p>
                 <h2 className="mt-4 text-3xl font-semibold text-white">
-                  Send your product data and factory layout for a project-specific proposal.
+                  Send product photos and layout notes for a project-specific proposal.
                 </h2>
                 <p className="mt-4 max-w-3xl leading-7 text-white/62">
-                  We can help adapt these representative concepts to your payload, reach, cycle time, pallet pattern, machine layout, and destination market.
+                  We can adapt these concepts to your payload, reach, cycle time, pallet pattern, machine layout, and destination market.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-                <CtaLink href="/contact">Request Quote</CtaLink>
+                <CtaLink href="/contact">Request Similar Proposal</CtaLink>
                 <CtaLink href={whatsappUrl} variant="secondary">
                   WhatsApp
                 </CtaLink>

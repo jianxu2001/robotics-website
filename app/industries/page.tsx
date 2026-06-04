@@ -10,9 +10,9 @@ import { whatsappUrl } from "@/lib/contact";
 import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Industrial Robot Applications | Palletizing, Depalletizing & Factory Automation",
+  title: "Robot Automation Applications | Palletizing & Tending",
   description:
-    "Explore SCR Robot industrial automation applications including palletizing, depalletizing, 3D vision bag handling, stamping automation, machine tending, and conveyor integration.",
+    "Explore SCR Robot automation for palletizing, depalletizing, bag handling, stamping, machine tending, conveyors, and factory integration projects.",
   alternates: localizedAlternates("/industries", "/industries", "/zh/industries"),
 };
 
@@ -33,8 +33,8 @@ export default function IndustriesPage() {
           <div className="relative section-shell pb-14">
             <SectionHeading
               eyebrow="Industry applications"
-              title="Automation solutions mapped to real factory buying scenarios."
-              description="Overseas buyers usually arrive with a production problem, not a robot model number. These application pages connect the problem, system scope, recommended robot series, and information needed for quotation."
+              title="Robot automation by factory application, product type, and line layout."
+              description="Start from the production problem, then connect the product, payload, throughput, robot series, gripper, conveyors, and quotation data."
               level={1}
             />
             <div className="mt-10">
@@ -106,17 +106,17 @@ export default function IndustriesPage() {
             <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f5b41b]">
-                  Start with your application
+                  Start with your factory data
                 </p>
                 <h2 className="mt-4 text-3xl font-semibold text-white">
-                  Send the product and factory data behind your automation project.
+                  Send product photos, throughput, and layout for a practical proposal.
                 </h2>
                 <p className="mt-4 max-w-3xl leading-7 text-white/62">
-                  We can help map the right robot platform, tooling concept, conveyor layout, and technical proposal for your production line.
+                  We can help map the robot platform, end-of-arm tooling, conveyor layout, and engineering scope for your production line.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-                <CtaLink href="/contact">Request Proposal</CtaLink>
+                <CtaLink href="/contact">Request Application Review</CtaLink>
                 <CtaLink href="/case-studies" variant="ghost">
                   View Case Concepts
                 </CtaLink>

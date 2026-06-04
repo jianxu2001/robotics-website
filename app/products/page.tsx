@@ -15,9 +15,9 @@ import { getProductModelsBySeries } from "@/lib/product-models";
 import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Robot Products | Palletizing, Desktop, General, Stamping, Tending, Collaborative Robots",
+  title: "Industrial Robot Products | Palletizing & Tending Robots",
   description:
-    "Explore SCR Robot product categories including palletizing and depalletizing robots, desktop robots, general-purpose robots, stamping robots, machine loading robots, and portable collaborative robots.",
+    "Compare SCR Robot palletizing, depalletizing, stamping, machine tending, six-axis, desktop, and collaborative robot series for factory automation.",
   alternates: localizedAlternates("/products", "/products", "/zh/products"),
 };
 
@@ -29,8 +29,8 @@ export default function ProductsPage() {
         <section className="section-shell pb-12">
           <SectionHeading
             eyebrow="Product portfolio"
-            title="Six robot categories for palletizing, tending, stamping, desktop automation, and flexible production."
-            description="The SCR Robot product framework is organized for overseas B2B buyers: six major robot categories, eleven product lines, and detailed series data from the catalog."
+            title="Industrial robot series for palletizing, tending, stamping, and transfer."
+            description="Compare payload, reach, robot family, and application fit before sending your project data for model selection."
             level={1}
           />
           <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -98,7 +98,7 @@ export default function ProductsPage() {
                       </h2>
                     </div>
                     <CtaLink href={`/products/${series.slug}`} variant="ghost">
-                      Detail Page
+                      View Series Specs
                     </CtaLink>
                   </div>
                   <SpecTable

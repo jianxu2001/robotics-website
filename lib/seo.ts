@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { companyProfile } from "@/lib/catalog";
+import { companyProfile, type ProductSeries } from "@/lib/catalog";
 import type { ProductModel } from "@/lib/product-models";
 
 export const siteUrl = "https://www.scr-robot.com";
@@ -42,8 +42,26 @@ export function serializeJsonLd(value: unknown) {
   return JSON.stringify(value).replace(/</g, "\\u003c");
 }
 
+export function getProductSeriesMetaTitle(series: ProductSeries) {
+  return `${series.series} Robots | ${series.payloadRange} Payload | SCR Robot`;
+}
+
+export function getProductSeriesMetaDescription(series: ProductSeries) {
+  return `Review ${series.series} robot specs, payload ${series.payloadRange}, reach ${series.reachRange}, applications, and model data for factory automation projects.`;
+}
+
+export function getProductModelMetaTitle(model: ProductModel) {
+  const title = `${model.name} Robot | ${model.payload}, ${model.reach} | SCR Robot`;
+
+  if ([...title].length <= 70) {
+    return title;
+  }
+
+  return `${model.name} Robot | ${model.payload} Payload | SCR Robot`;
+}
+
 export function getProductModelMetaDescription(model: ProductModel) {
-  return `${model.name} ${model.category} from SCR Robot. Payload ${model.payload}, reach ${model.reach}, repeatability ${model.repeatability}. Built for ${model.applications.join(", ").toLowerCase()}.`;
+  return `${model.name}: ${model.payload} payload, ${model.reach} reach, ${model.repeatability} repeatability. Request SCR Robot selection help for ${model.applications[0].toLowerCase()} projects.`;
 }
 
 export function getProductModelFaqs(model: ProductModel): FaqItem[] {

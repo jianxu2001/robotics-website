@@ -13,6 +13,7 @@ import {
   getProductModelFaqs,
   getProductModelJsonLd,
   getProductModelMetaDescription,
+  getProductModelMetaTitle,
   serializeJsonLd,
 } from "@/lib/seo";
 
@@ -40,7 +41,7 @@ export async function generateMetadata({
   const description = getProductModelMetaDescription(productModel);
 
   return {
-    title: `${productModel.name} Industrial Robot | ${productModel.payload} Payload | SCR Robot`,
+    title: getProductModelMetaTitle(productModel),
     description,
     keywords: getProductModelSeoKeywords(productModel),
     alternates: canonicalAlternates(

@@ -17,6 +17,9 @@ import { whatsappUrl } from "@/lib/contact";
 import { absoluteUrl, localizedAlternates, serializeJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
+  title: "SCR Robot | Palletizing Robots & Factory Automation",
+  description:
+    "SCR Robot builds palletizing robots, depalletizing systems, stamping automation, machine tending cells, and conveyor automation for overseas factories.",
   alternates: localizedAlternates("/", "/", "/zh"),
 };
 
@@ -127,17 +130,18 @@ export default function Home() {
                 Intelligent factory solutions from South China Robotics
               </p>
               <h1 className="max-w-5xl text-4xl font-semibold leading-[1.05] text-white md:text-6xl lg:text-7xl">
-                Industrial robotics and automation systems for global factories.
+                Palletizing robots and automation cells for factory production lines.
               </h1>
               <p className="mt-7 max-w-3xl text-lg leading-8 text-white/72 md:text-xl">
                 {companyProfile.name} builds robotic palletizing, depalletizing,
                 stamping, forging, machine tending, 3D vision bag breaking, and
-                conveyor automation solutions for overseas B2B manufacturers.
+                conveyor automation cells for overseas manufacturers that need
+                practical proposals, payload checks, and integration support.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <CtaLink href="/contact">Get Quote</CtaLink>
+                <CtaLink href="/contact">Request Project Proposal</CtaLink>
                 <CtaLink href="/products" variant="secondary">
-                  View Robot Series
+                  Compare Robot Series
                 </CtaLink>
               </div>
 
@@ -380,7 +384,7 @@ export default function Home() {
                 Faster quotation
               </p>
               <h3 className="mt-4 text-2xl font-semibold text-white">
-                Send the key project data and get a more useful response.
+                Send the key project data for a faster robot recommendation.
               </h3>
               <div className="mt-6 grid gap-3">
                 {quoteInputs.map((item) => (
@@ -393,7 +397,7 @@ export default function Home() {
                 ))}
               </div>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <CtaLink href="/contact">Send Inquiry</CtaLink>
+                <CtaLink href="/contact">Send Project Details</CtaLink>
                 <CtaLink href={whatsappUrl} variant="secondary">
                   WhatsApp
                 </CtaLink>
@@ -408,7 +412,7 @@ export default function Home() {
             <SectionHeading
               eyebrow="Start a project"
               title="Send your product, payload, reach, and cycle-time requirements."
-              description="We will help map the right robot series, application cell, conveyor layout, gripper concept, and technical proposal for your factory."
+              description="Share product photos, payload, reach, cycle time, pallet pattern, and layout. We will map the robot series, gripper, conveyor flow, and proposal scope."
             />
             <IndustrialCard className="p-6 md:p-8">
               <div className="grid gap-4 sm:grid-cols-2">
@@ -424,7 +428,7 @@ export default function Home() {
                 )}
               </div>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <CtaLink href="/contact">Contact Sales</CtaLink>
+                <CtaLink href="/contact">Get Engineering Review</CtaLink>
                 <CtaLink href={whatsappUrl} variant="secondary">
                   WhatsApp
                 </CtaLink>

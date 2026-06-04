@@ -27,10 +27,10 @@ const copy = {
     notSure: "Not sure",
     details: "Project Details",
     detailsPlaceholder:
-      "Product type, payload, reach, cycle time, pallet size, factory layout, destination country...",
-    submit: "Send Inquiry",
+      "Product photos, dimensions, weight, target output, pallet pattern, conveyor direction, layout, destination country...",
+    submit: "Request Engineering Review",
     submitting: "Sending...",
-    success: "Inquiry sent. We will reply by email as soon as possible.",
+    success: "Inquiry sent. We will review the project data and reply by email as soon as possible.",
     error:
       "Automatic submission is not available right now. Please email us directly or contact us on WhatsApp.",
     emailSales: "Email Sales",

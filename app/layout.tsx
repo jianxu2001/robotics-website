@@ -3,9 +3,9 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.scr-robot.com"),
-  title: "SCR Robot | Palletizing Robots & Industrial Automation Systems",
+  title: "SCR Robot | Industrial Robot Automation Supplier",
   description:
-    "South China Robotics Technology (Guangzhou) Co., Ltd. builds industrial robots, palletizing robots, depalletizing systems, stamping automation, and conveyor automation lines for overseas manufacturers.",
+    "SCR Robot supplies palletizing robots, depalletizing systems, stamping automation, machine tending cells, and conveyor automation for factories worldwide.",
   keywords: [
     "South China Robotics Technology Guangzhou",
     "SCR Robot",
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
     "factory automation",
   ],
   openGraph: {
-    title: "SCR Robot | Industrial Automation Systems",
+    title: "SCR Robot | Industrial Robot Automation Supplier",
     description:
-      "Turnkey palletizing, depalletizing, conveyor, and robotic automation systems for global factories.",
+      "Palletizing, depalletizing, stamping, tending, and conveyor automation systems for factory projects worldwide.",
     images: ["/images/bejing1%20(1).jpg"],
     type: "website",
   },
