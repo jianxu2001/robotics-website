@@ -5,6 +5,7 @@ import { IndustrySolutionCard } from "@/components/industry-solution-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { industrySolutions } from "@/lib/industry-solutions";
+import { industryPages } from "@/lib/industry-pages";
 import { whatsappUrl } from "@/lib/contact";
 
 export const metadata: Metadata = {
@@ -34,6 +35,27 @@ export default function IndustriesPage() {
               description="Overseas buyers usually arrive with a production problem, not a robot model number. These application pages connect the problem, system scope, recommended robot series, and information needed for quotation."
               level={1}
             />
+            <div className="mt-10">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f5b41b]">
+                Target industries
+              </p>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {industryPages.map((page) => (
+                  <a
+                    key={page.slug}
+                    href={`/industries/${page.slug}`}
+                    className="rounded-lg border border-white/10 bg-white/[0.055] p-5 transition hover:border-[#f5b41b]/50 hover:bg-white/[0.08]"
+                  >
+                    <h2 className="text-lg font-semibold text-white">
+                      {page.title}
+                    </h2>
+                    <p className="mt-3 text-sm leading-6 text-white/58">
+                      {page.description}
+                    </p>
+                  </a>
+                ))}
+              </div>
+            </div>
             <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {industrySolutions.map((solution) => (
                 <a

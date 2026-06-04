@@ -9,10 +9,6 @@ import {
   type ProductSeries,
 } from "@/lib/catalog";
 import { productGroupsZh, productSeriesZh } from "@/lib/catalog-zh";
-import {
-  findProductModelByName,
-  getProductModelHref,
-} from "@/lib/product-models";
 
 type ProductMegaMenuProps = {
   locale?: "en" | "zh";
@@ -43,44 +39,13 @@ function getSeriesForLine(lineHref: string, seriesList: ProductSeries[]) {
   return seriesList.find((series) => lineHref.endsWith(`/${series.slug}`));
 }
 
-function getPortableModelName(lineName: string) {
-  if (lineName.includes("30")) return "30KG Robot";
-  if (lineName.includes("50")) return "50KG Robot";
-  return null;
-}
-
-function getModelGroups(
-  group: ProductGroup,
-  seriesList: ProductSeries[],
-  fallback: string,
-  locale: "en" | "zh",
-) {
+function getModelGroups(group: ProductGroup, seriesList: ProductSeries[], fallback: string) {
   return group.productLines.map((line) => {
     const series = getSeriesForLine(line.href, seriesList);
-    const portableModelName = getPortableModelName(line.name);
-    const portableModel = portableModelName
-      ? findProductModelByName(portableModelName)
-      : null;
 
     return {
       line,
-      models:
-        series?.models.map((model) => {
-          const detail = findProductModelByName(model.name, series.slug);
-
-          return {
-            name: model.name,
-            href: detail ? getProductModelHref(detail, locale) : line.href,
-          };
-        }) ??
-        (portableModel
-          ? [
-              {
-                name: line.name,
-                href: getProductModelHref(portableModel, locale),
-              },
-            ]
-          : [{ name: fallback, href: line.href }]),
+      models: series?.models.map((model) => model.name) ?? [fallback],
     };
   });
 }
@@ -96,8 +61,8 @@ export function ProductMegaMenu({ locale = "en" }: ProductMegaMenuProps) {
 
   const activeGroup = groups[activeIndex] ?? groups[0];
   const modelGroups = useMemo(
-    () => getModelGroups(activeGroup, seriesList, t.noModels, locale),
-    [activeGroup, seriesList, t.noModels, locale],
+    () => getModelGroups(activeGroup, seriesList, t.noModels),
+    [activeGroup, seriesList, t.noModels],
   );
 
   return (
@@ -191,11 +156,11 @@ export function ProductMegaMenu({ locale = "en" }: ProductMegaMenuProps) {
                     <div className="mt-3 grid gap-2 sm:grid-cols-2">
                       {modelGroup.models.map((model) => (
                         <Link
-                          key={`${modelGroup.line.name}-${model.name}`}
-                          href={model.href}
+                          key={`${modelGroup.line.name}-${model}`}
+                          href={modelGroup.line.href}
                           className="rounded-md border border-white/8 bg-black/22 px-3 py-2 text-sm text-white/70 transition hover:border-[#f5b41b]/45 hover:text-white"
                         >
-                          {model.name}
+                          {model}
                         </Link>
                       ))}
                     </div>

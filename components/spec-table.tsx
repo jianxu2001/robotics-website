@@ -1,19 +1,12 @@
-import Link from "next/link";
 import type { ProductSeries } from "@/lib/catalog";
-import {
-  findProductModelByName,
-  getProductModelHref,
-} from "@/lib/product-models";
 
 type SpecTableProps = {
   series: ProductSeries;
   headings?: string[];
-  locale?: "en" | "zh";
 };
 
 export function SpecTable({
   series,
-  locale = "en",
   headings = [
     "Model",
     "Axes",
@@ -38,32 +31,19 @@ export function SpecTable({
             </tr>
           </thead>
           <tbody className="divide-y divide-white/8 bg-[#0c1014] text-white/72">
-            {series.models.map((model) => {
-              const detail = findProductModelByName(model.name, series.slug);
-
-              return (
-                <tr key={model.name} className="transition hover:bg-white/[0.04]">
-                  <td className="px-4 py-4 font-mono font-semibold text-[#f5b41b]">
-                    {detail ? (
-                      <Link
-                        href={getProductModelHref(detail, locale)}
-                        className="underline-offset-4 transition hover:text-[#ffd36b] hover:underline"
-                      >
-                        {model.name}
-                      </Link>
-                    ) : (
-                      model.name
-                    )}
-                  </td>
-                  <td className="px-4 py-4">{model.axes}</td>
-                  <td className="px-4 py-4">{model.payload}</td>
-                  <td className="px-4 py-4">{model.reach}</td>
-                  <td className="px-4 py-4">{model.repeatability}</td>
-                  <td className="px-4 py-4">{model.bodyWeight}</td>
-                  <td className="px-4 py-4">{model.power}</td>
-                </tr>
-              );
-            })}
+            {series.models.map((model) => (
+              <tr key={model.name} className="transition hover:bg-white/[0.04]">
+                <td className="px-4 py-4 font-mono font-semibold text-[#f5b41b]">
+                  {model.name}
+                </td>
+                <td className="px-4 py-4">{model.axes}</td>
+                <td className="px-4 py-4">{model.payload}</td>
+                <td className="px-4 py-4">{model.reach}</td>
+                <td className="px-4 py-4">{model.repeatability}</td>
+                <td className="px-4 py-4">{model.bodyWeight}</td>
+                <td className="px-4 py-4">{model.power}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

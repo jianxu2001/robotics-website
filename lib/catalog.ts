@@ -1,4 +1,4 @@
-﻿export type ProductSeries = {
+export type ProductSeries = {
   slug: string;
   series: string;
   title: string;
@@ -59,7 +59,7 @@ export const productCategories: ProductCategory[] = [
     title: "Palletizing / Depalletizing Robots",
     description:
       "Four-axis robot platforms for end-of-line palletizing, depalletizing, bag stacking, carton handling, pallet flow, and complete robot cells.",
-    image: "/product-renders/scr180-3200.png",
+    image: "/images/bejing1%20(2).jpg",
     series: ["ECR Series", "SCH Series", "SAR Series", "SCR Series"],
   },
   {
@@ -67,7 +67,7 @@ export const productCategories: ProductCategory[] = [
     title: "Desktop Robots",
     description:
       "Compact desktop-class robot configurations for light handling, small work cells, laboratory-style automation, and limited-space production lines.",
-    image: "/product-renders/sch03ae-200-110.png",
+    image: "/images/bejing1%20(1).jpg",
     series: ["SCH-AE Series"],
   },
   {
@@ -75,7 +75,7 @@ export const productCategories: ProductCategory[] = [
     title: "General-Purpose Robots",
     description:
       "Flexible six-axis robot platforms for handling, machine tending, assembly support, part transfer, and general factory automation.",
-    image: "/product-renders/er20-1700.png",
+    image: "/images/bejing1%20(1).jpg",
     series: ["ER Series"],
   },
   {
@@ -83,7 +83,7 @@ export const productCategories: ProductCategory[] = [
     title: "Stamping Dedicated Robots",
     description:
       "Dedicated robot platforms for press loading, stamping transfer, forging support, repetitive part movement, and line-specific tooling.",
-    image: "/product-renders/stc10-1450-400.png",
+    image: "/images/bejing1%20(3).jpg",
     series: ["STC Series", "SAR12 Series"],
   },
   {
@@ -91,7 +91,7 @@ export const productCategories: ProductCategory[] = [
     title: "Machine Loading / Unloading Robots",
     description:
       "Compact robot systems for machine loading, unloading, part transfer, fixtures, repetitive handling, and line-side production cells.",
-    image: "/product-renders/srl20-1500-1000.png",
+    image: "/images/bejing1%20(3).jpg",
     series: ["SRL Series"],
   },
   {
@@ -99,7 +99,7 @@ export const productCategories: ProductCategory[] = [
     title: "Portable Collaborative Robots",
     description:
       "Portable collaborative robot options for flexible production assistance, mobile handling cells, and applications that require fast redeployment.",
-    image: "/product-renders/portable-50kg-robot.png",
+    image: "/images/SCR.jpg",
     series: ["30 kg Robot", "50 kg Robot"],
   },
 ];
@@ -181,12 +181,12 @@ export const productGroups: ProductGroup[] = [
       {
         name: "30 kg Robot",
         description: "Portable collaborative robot option for flexible medium-payload handling and mobile workstation concepts.",
-        href: "/products/portable-collaborative-robots/portable-30kg-robot",
+        href: "/contact",
       },
       {
         name: "50 kg Robot",
         description: "Higher-payload portable collaborative option for heavier handling tasks that still require flexible deployment.",
-        href: "/products/portable-collaborative-robots/portable-50kg-robot",
+        href: "/contact",
       },
     ],
   },
@@ -215,11 +215,11 @@ export const productSeries: ProductSeries[] = [
     category: "Palletizing / depalletizing and compact handling",
     summary:
       "The ECR range covers compact four-axis robots for fast, repeatable handling where payload, reach, and cost efficiency need to stay balanced.",
-    image: "/product-renders/ecr50-1850.png",
+    image: "/images/bejing1%20(1).jpg",
     payloadRange: "3-100 kg",
     reachRange: "200-2,050 mm",
     axes: "4-axis",
-    repeatability: "卤0.02-卤0.10 mm",
+    repeatability: "±0.02-±0.10 mm",
     applications: ["Machine tending", "Small-part handling", "Light palletizing", "Packaging"],
     highlights: [
       "Compact footprint for production cells with limited space.",
@@ -227,11 +227,11 @@ export const productSeries: ProductSeries[] = [
       "Suitable for cost-sensitive automation and repeatable transfer tasks.",
     ],
     models: [
-      { name: "ECR8-1200", axes: "4", payload: "8 kg", reach: "1,173 mm", repeatability: "卤0.06 mm", bodyWeight: "60 kg", power: "2.45 kVA" },
-      { name: "ECR10-1400", axes: "4", payload: "10 kg", reach: "1,430 mm", repeatability: "卤0.06 mm", bodyWeight: "90 kg", power: "2.9 kVA" },
-      { name: "ECR30-1850", axes: "4", payload: "30 kg", reach: "2,050 mm", repeatability: "卤0.10 mm", bodyWeight: "211 kg", power: "3.4 kVA" },
-      { name: "ECR50-1850", axes: "4", payload: "50 kg", reach: "2,050 mm", repeatability: "卤0.10 mm", bodyWeight: "370 kg", power: "6.8 kVA" },
-      { name: "ECR100-1850", axes: "4", payload: "100 kg", reach: "2,050 mm", repeatability: "卤0.10 mm", bodyWeight: "440 kg", power: "8.55 kVA" },
+      { name: "ECR8-1200", axes: "4", payload: "8 kg", reach: "1,173 mm", repeatability: "±0.06 mm", bodyWeight: "60 kg", power: "2.45 kVA" },
+      { name: "ECR10-1400", axes: "4", payload: "10 kg", reach: "1,430 mm", repeatability: "±0.06 mm", bodyWeight: "90 kg", power: "2.9 kVA" },
+      { name: "ECR30-1850", axes: "4", payload: "30 kg", reach: "2,050 mm", repeatability: "±0.10 mm", bodyWeight: "211 kg", power: "3.4 kVA" },
+      { name: "ECR50-1850", axes: "4", payload: "50 kg", reach: "2,050 mm", repeatability: "±0.10 mm", bodyWeight: "370 kg", power: "6.8 kVA" },
+      { name: "ECR100-1850", axes: "4", payload: "100 kg", reach: "2,050 mm", repeatability: "±0.10 mm", bodyWeight: "440 kg", power: "8.55 kVA" },
     ],
   },
   {
@@ -241,11 +241,11 @@ export const productSeries: ProductSeries[] = [
     category: "Palletizing / depalletizing robots",
     summary:
       "SCH robots are designed for industrial palletizing and heavy material handling, with payload options extending up to 800 kg for demanding factory lines.",
-    image: "/product-renders/sch210e-2350-1650.png",
+    image: "/images/bejing1%20(2).jpg",
     payloadRange: "3-800 kg",
     reachRange: "200-3,500 mm",
     axes: "4-axis, optional 5th/6th axis on selected models",
-    repeatability: "卤0.04-卤1.50 mm",
+    repeatability: "±0.04-±1.50 mm",
     applications: ["Palletizing", "Depalletizing", "Heavy workpiece handling", "Packaging lines"],
     highlights: [
       "Broad model range from compact handling robots to heavy palletizing platforms.",
@@ -253,24 +253,12 @@ export const productSeries: ProductSeries[] = [
       "Built for repeatable stacking, loading, and industrial transfer applications.",
     ],
     models: [
-      { name: "SCH03AE-200-110", axes: "4", payload: "3 kg", reach: "200 mm", repeatability: "卤0.02 mm", bodyWeight: "16 kg", power: "0.7 kVA" },
-      { name: "SCH05AE-400-200", axes: "4", payload: "5 kg", reach: "400 mm", repeatability: "卤0.04 mm", bodyWeight: "28 kg", power: "1.1 kVA" },
-      { name: "SCH05AE-600-200", axes: "4", payload: "5 kg", reach: "600 mm", repeatability: "卤0.08 mm", bodyWeight: "32 kg", power: "1.1 kVA" },
-      { name: "SCH05A-600-200", axes: "4", payload: "5 kg", reach: "600 mm", repeatability: "卤0.08 mm", bodyWeight: "36 kg", power: "1.1 kVA" },
-      { name: "SCH10AE-1300-450", axes: "4", payload: "10 kg", reach: "1,300 mm", repeatability: "卤0.08 mm", bodyWeight: "100 kg", power: "2.1 kVA" },
-      { name: "SCH10AE-800-450", axes: "4", payload: "10 kg", reach: "800 mm", repeatability: "卤0.08 mm", bodyWeight: "60 kg", power: "2.1 kVA" },
-      { name: "SCH10D-800-400", axes: "4", payload: "10 kg", reach: "800 mm", repeatability: "卤0.15 mm", bodyWeight: "60 kg", power: "1.5 kVA" },
-      { name: "SCH20D-1300-400", axes: "4", payload: "20 kg", reach: "1,300 mm", repeatability: "卤0.15 mm", bodyWeight: "158 kg", power: "1.5 kVA" },
-      { name: "SCH20D-1950-1850", axes: "4", payload: "20 kg", reach: "1,950 mm", repeatability: "卤0.50 mm", bodyWeight: "250 kg", power: "3.0 kVA" },
-      { name: "SCH30D-1950-1800", axes: "4", payload: "30 kg", reach: "1,950 mm", repeatability: "卤0.50 mm", bodyWeight: "290 kg", power: "3.0 kVA" },
-      { name: "SCH50-1950-1800", axes: "4", payload: "50 kg", reach: "1,950 mm", repeatability: "卤0.50 mm", bodyWeight: "580 kg", power: "5.75 kVA" },
-      { name: "SCH80-1950-1800", axes: "4", payload: "80 kg", reach: "1,950 mm", repeatability: "卤0.50 mm", bodyWeight: "580 kg", power: "5.75 kVA" },
-      { name: "SCH100-1950-1800", axes: "4", payload: "100 kg", reach: "1,950 mm", repeatability: "卤0.50 mm", bodyWeight: "680 kg", power: "5.75 kVA" },
-      { name: "SCH100S-1950-1800", axes: "4", payload: "100 kg", reach: "1,950 mm", repeatability: "卤0.50 mm", bodyWeight: "550 kg", power: "4.4 kVA" },
-      { name: "SCH130E-1950-1800", axes: "4", payload: "130 kg", reach: "1,950 mm", repeatability: "卤0.50 mm", bodyWeight: "450 kg", power: "5.3 kVA" },
-      { name: "SCH210E-2350-1650", axes: "4", payload: "210 kg", reach: "2,350 mm", repeatability: "卤0.50 mm", bodyWeight: "1,200 kg", power: "7.5 kVA" },
-      { name: "SCH300E-2350-1650", axes: "4", payload: "300 kg", reach: "2,350 mm", repeatability: "卤0.50 mm", bodyWeight: "2,600 kg", power: "19.0 kVA" },
-      { name: "SCH500~800E-3200-1650", axes: "4", payload: "500/600/800 kg", reach: "3,200/2,800 mm", repeatability: "卤0.50 mm", bodyWeight: "2,800/3,300 kg", power: "21.0/23.0 kVA" },
+      { name: "SCH03AE-200-110", axes: "4", payload: "3 kg", reach: "200 mm", repeatability: "±0.02 mm", bodyWeight: "16 kg", power: "0.7 kVA" },
+      { name: "SCH10AE-1300-450", axes: "4", payload: "10 kg", reach: "1,300 mm", repeatability: "±0.08 mm", bodyWeight: "100 kg", power: "2.1 kVA" },
+      { name: "SCH50-1950-1800", axes: "4", payload: "50 kg", reach: "1,950 mm", repeatability: "±0.50 mm", bodyWeight: "580 kg", power: "5.75 kVA" },
+      { name: "SCH100-1950-1800", axes: "4", payload: "100 kg", reach: "1,950 mm", repeatability: "±0.50 mm", bodyWeight: "680 kg", power: "5.75 kVA" },
+      { name: "SCH210E-2350-1650", axes: "4", payload: "210 kg", reach: "2,350 mm", repeatability: "±0.50 mm", bodyWeight: "1,200 kg", power: "7.5 kVA" },
+      { name: "SCH500-800E", axes: "4", payload: "500/600/800 kg", reach: "2,800-3,200 mm", repeatability: "±0.50 mm", bodyWeight: "2,800/3,300 kg", power: "21.0/23.0 kVA" },
     ],
   },
   {
@@ -280,11 +268,11 @@ export const productSeries: ProductSeries[] = [
     category: "Palletizing / depalletizing and long-reach transfer",
     summary:
       "The SAR range supports large working envelopes and heavy payloads for industrial transfer, palletizing, and line-side handling.",
-    image: "/product-renders/sar500-800-3500-3100.png",
+    image: "/images/bejing1%20(1).jpg",
     payloadRange: "12-800 kg",
     reachRange: "1,454-3,500 mm",
     axes: "4-axis",
-    repeatability: "卤0.15-卤1.50 mm",
+    repeatability: "±0.15-±1.50 mm",
     applications: ["Palletizing", "Material transfer", "Forging handling", "Large workpiece movement"],
     highlights: [
       "Long-reach four-axis structure for wide work areas.",
@@ -292,11 +280,11 @@ export const productSeries: ProductSeries[] = [
       "Configurable robot colors and selected optional axis configurations.",
     ],
     models: [
-      { name: "SAR12-1400", axes: "4", payload: "12 kg", reach: "1,454 mm", repeatability: "卤0.15 mm", bodyWeight: "135 kg", power: "3.0 kVA" },
-      { name: "SAR80-2450-2300", axes: "4", payload: "80 kg", reach: "2,450 mm", repeatability: "卤1.00 mm", bodyWeight: "450 kg", power: "3.5 kVA" },
-      { name: "SAR130-2550-2400", axes: "4", payload: "130 kg", reach: "2,550 mm", repeatability: "卤1.00 mm", bodyWeight: "780 kg", power: "5.5 kVA" },
-      { name: "SAR210/300-2650-2300", axes: "4", payload: "210/300 kg", reach: "2,650 mm", repeatability: "卤1.00 mm", bodyWeight: "1,150/1,250 kg", power: "7.0/7.5 kVA" },
-      { name: "SAR500/800-3500-3100", axes: "4", payload: "500/800 kg", reach: "3,500 mm", repeatability: "卤1.50 mm", bodyWeight: "1,850/2,100 kg", power: "11.0/13.0 kVA" },
+      { name: "SAR12-1400", axes: "4", payload: "12 kg", reach: "1,454 mm", repeatability: "±0.15 mm", bodyWeight: "135 kg", power: "3.0 kVA" },
+      { name: "SAR80-2450-2300", axes: "4", payload: "80 kg", reach: "2,450 mm", repeatability: "±1.00 mm", bodyWeight: "450 kg", power: "3.5 kVA" },
+      { name: "SAR130-2550-2400", axes: "4", payload: "130 kg", reach: "2,550 mm", repeatability: "±1.00 mm", bodyWeight: "780 kg", power: "5.5 kVA" },
+      { name: "SAR210/300-2650", axes: "4", payload: "210/300 kg", reach: "2,650 mm", repeatability: "±1.00 mm", bodyWeight: "1,150/1,250 kg", power: "7.0/7.5 kVA" },
+      { name: "SAR500/800-3500", axes: "4", payload: "500/800 kg", reach: "3,500 mm", repeatability: "±1.50 mm", bodyWeight: "1,850/2,100 kg", power: "11.0/13.0 kVA" },
     ],
   },
   {
@@ -306,11 +294,11 @@ export const productSeries: ProductSeries[] = [
     category: "Palletizing / depalletizing robots",
     summary:
       "The SCR180-3200 is a dedicated high-payload four-axis robot for end-of-line palletizing, large cartons, bags, and heavy factory loads.",
-    image: "/product-renders/scr180-3200.png",
+    image: "/images/bejing1%20(2).jpg",
     payloadRange: "180 kg",
     reachRange: "3,200 mm",
     axes: "4-axis, optional 5th axis",
-    repeatability: "卤0.50 mm",
+    repeatability: "±0.50 mm",
     applications: ["Palletizing", "Heavy carton handling", "Bag stacking", "End-of-line automation"],
     highlights: [
       "180 kg payload with 3,200 mm reach for large palletizing layouts.",
@@ -318,7 +306,7 @@ export const productSeries: ProductSeries[] = [
       "Optional fifth-axis configuration available for selected applications.",
     ],
     models: [
-      { name: "SCR180-3200", axes: "4", payload: "180 kg", reach: "3,200 mm", repeatability: "卤0.50 mm", bodyWeight: "1,450 kg", power: "18.0 kVA" },
+      { name: "SCR180-3200", axes: "4", payload: "180 kg", reach: "3,200 mm", repeatability: "±0.50 mm", bodyWeight: "1,450 kg", power: "18.0 kVA" },
     ],
   },
   {
@@ -328,11 +316,11 @@ export const productSeries: ProductSeries[] = [
     category: "Machine loading / unloading robots",
     summary:
       "SRL robots provide lightweight four-axis automation for compact production cells, small handling tasks, and line-side transfer.",
-    image: "/product-renders/srl20-1500-1000.png",
+    image: "/images/bejing1%20(3).jpg",
     payloadRange: "10-20 kg",
     reachRange: "900-1,500 mm",
     axes: "4-axis",
-    repeatability: "卤0.15-卤0.20 mm",
+    repeatability: "±0.15-±0.20 mm",
     applications: ["Machine tending", "Light transfer", "Assembly support", "Packaging"],
     highlights: [
       "Compact aluminum-color body for lightweight automation cells.",
@@ -340,8 +328,8 @@ export const productSeries: ProductSeries[] = [
       "Good fit where payload requirements are moderate and speed matters.",
     ],
     models: [
-      { name: "SRL10-900-650", axes: "4", payload: "10 kg", reach: "900 mm", repeatability: "卤0.15 mm", bodyWeight: "60 kg", power: "2.3 kVA" },
-      { name: "SRL20-1500-1000", axes: "4", payload: "20 kg", reach: "1,500 mm", repeatability: "卤0.20 mm", bodyWeight: "80 kg", power: "2.3 kVA" },
+      { name: "SRL10-900-650", axes: "4", payload: "10 kg", reach: "900 mm", repeatability: "±0.15 mm", bodyWeight: "60 kg", power: "2.3 kVA" },
+      { name: "SRL20-1500-1000", axes: "4", payload: "20 kg", reach: "1,500 mm", repeatability: "±0.20 mm", bodyWeight: "80 kg", power: "2.3 kVA" },
     ],
   },
   {
@@ -351,11 +339,11 @@ export const productSeries: ProductSeries[] = [
     category: "Stamping dedicated robots",
     summary:
       "The STC range is built for stamping transfer and press automation, helping factories reduce manual handling around repetitive press operations.",
-    image: "/product-renders/stc10-1450-400.png",
+    image: "/images/bejing1%20(3).jpg",
     payloadRange: "5-10 kg",
     reachRange: "1,250-1,450 mm",
     axes: "4-axis",
-    repeatability: "卤0.15 mm",
+    repeatability: "±0.15 mm",
     applications: ["Stamping", "Press transfer", "Forging support", "Part loading"],
     highlights: [
       "Dedicated structure for press-side transfer and stamping automation.",
@@ -363,8 +351,8 @@ export const productSeries: ProductSeries[] = [
       "Supports non-standard fixtures and line-specific tooling.",
     ],
     models: [
-      { name: "STC5-1250-400", axes: "4", payload: "5 kg", reach: "1,250 mm", repeatability: "卤0.15 mm", bodyWeight: "220 kg", power: "2.0 kVA" },
-      { name: "STC10-1450-400", axes: "4", payload: "10 kg", reach: "1,450 mm", repeatability: "卤0.15 mm", bodyWeight: "230 kg", power: "2.3 kVA" },
+      { name: "STC5-1250-400", axes: "4", payload: "5 kg", reach: "1,250 mm", repeatability: "±0.15 mm", bodyWeight: "220 kg", power: "2.0 kVA" },
+      { name: "STC10-1450-400", axes: "4", payload: "10 kg", reach: "1,450 mm", repeatability: "±0.15 mm", bodyWeight: "230 kg", power: "2.3 kVA" },
     ],
   },
   {
@@ -374,20 +362,20 @@ export const productSeries: ProductSeries[] = [
     category: "General-purpose robots",
     summary:
       "ER six-axis robots support flexible motion for handling, tending, and general automation tasks requiring articulated reach.",
-    image: "/product-renders/er20-1700.png",
+    image: "/images/bejing1%20(1).jpg",
     payloadRange: "10-20 kg",
     reachRange: "1,400-1,717 mm",
     axes: "6-axis",
-    repeatability: "卤0.06 mm",
+    repeatability: "±0.06 mm",
     applications: ["Machine tending", "Flexible handling", "Assembly", "General automation"],
     highlights: [
       "Six-axis flexibility for complex approach angles and part orientation.",
-      "Repeatability of 卤0.06 mm for precise handling tasks.",
+      "Repeatability of ±0.06 mm for precise handling tasks.",
       "Useful for machine tending and compact automated workstations.",
     ],
     models: [
-      { name: "ER10-1400", axes: "6", payload: "10 kg", reach: "1,400 mm", repeatability: "卤0.06 mm", bodyWeight: "168 kg", power: "3.5 kVA" },
-      { name: "ER20-1700", axes: "6", payload: "20 kg", reach: "1,717 mm", repeatability: "卤0.06 mm", bodyWeight: "280 kg", power: "5.5 kVA" },
+      { name: "ER10-1400", axes: "6", payload: "10 kg", reach: "1,400 mm", repeatability: "±0.06 mm", bodyWeight: "168 kg", power: "3.5 kVA" },
+      { name: "ER20-1700", axes: "6", payload: "20 kg", reach: "1,717 mm", repeatability: "±0.06 mm", bodyWeight: "280 kg", power: "5.5 kVA" },
     ],
   },
 ];
@@ -422,4 +410,3 @@ export const commonEnvironment = [
   "No flammable or corrosive gas/liquid exposure",
   "Avoid water, oil, powder contamination, and strong electromagnetic sources",
 ];
-

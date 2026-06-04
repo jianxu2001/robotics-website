@@ -180,15 +180,13 @@ export default function Home() {
             {productCategories.map((category) => (
               <IndustrialCard key={category.title} className="group overflow-hidden">
                 <div className="grid min-h-full lg:grid-cols-[0.9fr_1.1fr]">
-                  <div className="relative min-h-56 overflow-hidden bg-[radial-gradient(circle_at_50%_34%,rgba(255,255,255,0.18),transparent_40%),linear-gradient(135deg,#252d35_0%,#111820_48%,#05070a_100%)]">
-                    <div className="absolute inset-0 industrial-grid opacity-20" />
+                  <div className="relative min-h-56 overflow-hidden">
                     <Image
                       src={category.image}
                       alt={category.title}
                       fill
-                      unoptimized
                       sizes="(min-width: 768px) 50vw, 100vw"
-                      className="object-contain p-5 drop-shadow-[0_16px_24px_rgba(0,0,0,0.45)] transition duration-500 group-hover:scale-105"
+                      className="object-cover transition duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#080a0d] via-transparent to-transparent" />
                   </div>
