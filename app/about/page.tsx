@@ -5,11 +5,13 @@ import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { automationSolutions, companyProfile } from "@/lib/catalog";
+import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "About South China Robotics | Industrial Robot Manufacturer",
   description:
     "Learn about South China Robotics Technology (Guangzhou) Co., Ltd., an industrial robot manufacturer and intelligent factory solution provider founded in 2017.",
+  alternates: localizedAlternates("/about", "/about", "/zh/about"),
 };
 
 const profileStats = [

@@ -7,6 +7,14 @@ import {
   getProductModelSeoKeywords,
   productModels,
 } from "@/lib/product-models";
+import {
+  canonicalAlternates,
+  getFaqJsonLd,
+  getProductModelFaqs,
+  getProductModelJsonLd,
+  getProductModelMetaDescription,
+  serializeJsonLd,
+} from "@/lib/seo";
 
 type ProductModelPageProps = {
   params: Promise<{ slug: string; model: string }>;
@@ -29,12 +37,15 @@ export async function generateMetadata({
     return {};
   }
 
-  const description = `${productModel.name} ${productModel.category} from SCR Robot. Payload ${productModel.payload}, reach ${productModel.reach}, repeatability ${productModel.repeatability}. Built for ${productModel.applications.join(", ").toLowerCase()}.`;
+  const description = getProductModelMetaDescription(productModel);
 
   return {
     title: `${productModel.name} Industrial Robot | ${productModel.payload} Payload | SCR Robot`,
     description,
     keywords: getProductModelSeoKeywords(productModel),
+    alternates: canonicalAlternates(
+      `/products/${productModel.seriesSlug}/${productModel.slug}`,
+    ),
     openGraph: {
       title: `${productModel.name} Industrial Robot`,
       description,
@@ -52,8 +63,19 @@ export default async function ProductModelPage({ params }: ProductModelPageProps
     notFound();
   }
 
+  const productJsonLd = getProductModelJsonLd(productModel);
+  const faqJsonLd = getFaqJsonLd(getProductModelFaqs(productModel));
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }}
+      />
       <SiteHeader alternateHref={`/products/${productModel.seriesSlug}`} />
       <ProductModelDetail model={productModel} />
     </>

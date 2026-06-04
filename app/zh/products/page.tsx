@@ -11,11 +11,13 @@ import {
   productGroupsZh,
   productSeriesZh,
 } from "@/lib/catalog-zh";
+import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "机器人产品 | 码垛、桌面、通用、冲压、上下料、协作机器人",
   description:
     "查看 SCR Robot 六大机器人产品类别：码垛/拆垛机器人、桌面型机器人、通用型机器人、冲压专用机器人、机床上下料机器人和便携式协作机器人。",
+  alternates: localizedAlternates("/zh/products", "/products", "/zh/products"),
 };
 
 const zhSpecHeadings = ["型号", "轴数", "最大负载", "臂展", "重复定位精度", "本体重量", "电源容量"];

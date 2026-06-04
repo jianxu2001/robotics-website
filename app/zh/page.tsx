@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
 import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
@@ -13,6 +14,7 @@ import {
   productSeriesZh,
 } from "@/lib/catalog-zh";
 import { whatsappUrl } from "@/lib/contact";
+import { localizedAlternates } from "@/lib/seo";
 
 const stats = [
   { value: "2017", label: "公司成立" },
@@ -69,10 +71,11 @@ const quoteInputs = [
   "进出料方向、现场布局和目的国家",
 ];
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "SCR Robot | 工业机器人与自动化系统",
   description:
     "华南机器人科技（广州）有限公司提供码垛机器人、拆垛系统、冲压自动化、机床上下料、3D视觉破包投料与输送自动化解决方案。",
+  alternates: localizedAlternates("/zh", "/", "/zh"),
 };
 
 export default function ZhHomePage() {

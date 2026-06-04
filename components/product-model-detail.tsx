@@ -7,6 +7,7 @@ import {
   productModelEnvironment,
   type ProductModel,
 } from "@/lib/product-models";
+import { getProductModelFaqs } from "@/lib/seo";
 
 type ProductModelDetailProps = {
   model: ProductModel;
@@ -41,31 +42,6 @@ function getProblem(model: ProductModel) {
 
 function getSolution(model: ProductModel) {
   return `${model.name} uses a ${model.axes}-axis industrial robot structure with ${model.payload} payload and ${model.reach} reach to automate repetitive handling tasks. SCR Robot can integrate the robot with end-of-arm tooling, conveyors, safety guarding, controls, and production-line layout support.`;
-}
-
-function getFaqs(model: ProductModel) {
-  return [
-    {
-      question: `Is ${model.name} suitable for my product?`,
-      answer:
-        "Selection depends on product weight, dimensions, cycle time, pallet pattern, gripper type, reach, and site layout. Send product photos, dimensions, and target throughput for a model recommendation.",
-    },
-    {
-      question: "Can SCR Robot provide the complete automation cell?",
-      answer:
-        "Yes. The robot can be supplied as part of a complete automation solution including gripper, conveyor, pallet handling, guarding, PLC/HMI, and on-site layout planning.",
-    },
-    {
-      question: "Are the technical parameters final for every project?",
-      answer:
-        "The listed values come from the catalog model data. Final configuration should be confirmed against the exact tooling, payload center, working envelope, and production environment.",
-    },
-    {
-      question: "What information is needed for a quotation?",
-      answer:
-        "Please provide product photos, weight, size, packaging type, hourly output, pallet size if applicable, factory layout, voltage requirements, and destination country.",
-    },
-  ];
 }
 
 export function ProductModelDetail({ model }: ProductModelDetailProps) {
@@ -266,7 +242,7 @@ export function ProductModelDetail({ model }: ProductModelDetailProps) {
               description="These questions help overseas purchasing managers prepare the basic information needed for model selection and quotation."
             />
             <div className="grid gap-4">
-              {getFaqs(model).map((faq) => (
+              {getProductModelFaqs(model).map((faq) => (
                 <IndustrialCard key={faq.question} className="p-6">
                   <h3 className="font-semibold text-white">{faq.question}</h3>
                   <p className="mt-3 leading-7 text-white/64">{faq.answer}</p>

@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { SpecTable } from "@/components/spec-table";
 import { productSeriesZh } from "@/lib/catalog-zh";
+import { localizedAlternates } from "@/lib/seo";
 
 type ProductDetailPageProps = {
   params: Promise<{ slug: string }>;
@@ -24,6 +25,11 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
   return {
     title: `${series.series} | ${series.title}`,
     description: `${series.summary} 负载范围：${series.payloadRange}，臂展范围：${series.reachRange}。`,
+    alternates: localizedAlternates(
+      `/zh/products/${series.slug}`,
+      `/products/${series.slug}`,
+      `/zh/products/${series.slug}`,
+    ),
   };
 }
 

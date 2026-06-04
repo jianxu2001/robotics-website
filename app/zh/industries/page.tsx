@@ -6,11 +6,17 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { industrySolutionsZh } from "@/lib/industry-solutions";
 import { whatsappUrl } from "@/lib/contact";
+import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "工业机器人应用场景 | 码垛、拆垛、冲压与工厂自动化",
   description:
     "查看 SCR Robot 工业自动化应用场景，包括码垛、拆垛、3D视觉袋装处理、冲压自动化、机床上下料和输送线集成。",
+  alternates: localizedAlternates(
+    "/zh/industries",
+    "/industries",
+    "/zh/industries",
+  ),
 };
 
 const decisionFactors = [

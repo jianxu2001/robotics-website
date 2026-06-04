@@ -12,11 +12,13 @@ import {
   productSeries,
 } from "@/lib/catalog";
 import { getProductModelsBySeries } from "@/lib/product-models";
+import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Robot Products | Palletizing, Desktop, General, Stamping, Tending, Collaborative Robots",
   description:
     "Explore SCR Robot product categories including palletizing and depalletizing robots, desktop robots, general-purpose robots, stamping robots, machine loading robots, and portable collaborative robots.",
+  alternates: localizedAlternates("/products", "/products", "/zh/products"),
 };
 
 export default function ProductsPage() {

@@ -7,11 +7,13 @@ import { SiteHeader } from "@/components/site-header";
 import { industrySolutions } from "@/lib/industry-solutions";
 import { industryPages } from "@/lib/industry-pages";
 import { whatsappUrl } from "@/lib/contact";
+import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Industrial Robot Applications | Palletizing, Depalletizing & Factory Automation",
   description:
     "Explore SCR Robot industrial automation applications including palletizing, depalletizing, 3D vision bag handling, stamping automation, machine tending, and conveyor integration.",
+  alternates: localizedAlternates("/industries", "/industries", "/zh/industries"),
 };
 
 const decisionFactors = [

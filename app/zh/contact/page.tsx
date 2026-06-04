@@ -6,11 +6,13 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { salesEmail, whatsappUrl } from "@/lib/contact";
 import { productGroupsZh, productInquiryOptionsZh } from "@/lib/catalog-zh";
+import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "联系 SCR Robot | 获取工业机器人项目报价",
   description:
     "联系 SCR Robot，咨询码垛、拆垛、冲压锻压、机床上下料、3D视觉破包投料和输送自动化项目方案。",
+  alternates: localizedAlternates("/zh/contact", "/contact", "/zh/contact"),
 };
 
 const quoteChecklist = [

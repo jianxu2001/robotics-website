@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SpecTable } from "@/components/spec-table";
 import { productSeries } from "@/lib/catalog";
 import { getProductModelsBySeries } from "@/lib/product-models";
+import { localizedAlternates } from "@/lib/seo";
 
 type ProductDetailPageProps = {
   params: Promise<{ slug: string }>;
@@ -29,6 +30,11 @@ export async function generateMetadata({
   return {
     title: `${series.series} | ${series.title}`,
     description: `${series.summary} Payload range: ${series.payloadRange}. Reach range: ${series.reachRange}.`,
+    alternates: localizedAlternates(
+      `/products/${series.slug}`,
+      `/products/${series.slug}`,
+      `/zh/products/${series.slug}`,
+    ),
   };
 }
 

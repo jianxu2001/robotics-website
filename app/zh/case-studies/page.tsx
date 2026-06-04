@@ -6,11 +6,17 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { caseStudiesZh } from "@/lib/case-studies";
 import { whatsappUrl } from "@/lib/contact";
+import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "代表性自动化案例方案 | SCR Robot",
   description:
     "查看 SCR Robot 代表性自动化案例方案，覆盖袋装码垛、纸箱码垛、冲压转运、机床上下料和 3D 视觉袋装上料。",
+  alternates: localizedAlternates(
+    "/zh/case-studies",
+    "/case-studies",
+    "/zh/case-studies",
+  ),
 };
 
 const reviewQuestions = [

@@ -6,11 +6,17 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { caseStudies } from "@/lib/case-studies";
 import { whatsappUrl } from "@/lib/contact";
+import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Representative Automation Case Studies | SCR Robot",
   description:
     "Review representative SCR Robot automation case concepts for bag palletizing, carton palletizing, press transfer, machine tending, and 3D vision bag feeding.",
+  alternates: localizedAlternates(
+    "/case-studies",
+    "/case-studies",
+    "/zh/case-studies",
+  ),
 };
 
 const reviewQuestions = [

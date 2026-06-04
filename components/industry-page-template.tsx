@@ -6,14 +6,21 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import type { IndustryPage } from "@/lib/industry-pages";
 import { whatsappUrl } from "@/lib/contact";
+import { getFaqJsonLd, serializeJsonLd } from "@/lib/seo";
 
 type IndustryPageTemplateProps = {
   page: IndustryPage;
 };
 
 export function IndustryPageTemplate({ page }: IndustryPageTemplateProps) {
+  const faqJsonLd = getFaqJsonLd(page.faq);
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }}
+      />
       <SiteHeader alternateHref="/zh/industries" />
       <main className="min-h-screen bg-[#080a0d] pt-40 text-white sm:pt-32 lg:pt-28">
         <section className="relative overflow-hidden border-b border-white/10">

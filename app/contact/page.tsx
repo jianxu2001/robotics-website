@@ -6,11 +6,13 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { salesEmail, whatsappUrl } from "@/lib/contact";
 import { productGroups, productInquiryOptions } from "@/lib/catalog";
+import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Contact SCR Robot | Request Industrial Robot Quotation",
   description:
     "Contact SCR Robot for palletizing robots, depalletizing robots, stamping automation, machine tending, 3D vision bag breaking, and conveyor automation projects.",
+  alternates: localizedAlternates("/contact", "/contact", "/zh/contact"),
 };
 
 const quoteChecklist = [

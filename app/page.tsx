@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
 import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
@@ -13,6 +14,11 @@ import {
   productSeries,
 } from "@/lib/catalog";
 import { whatsappUrl } from "@/lib/contact";
+import { absoluteUrl, localizedAlternates, serializeJsonLd } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  alternates: localizedAlternates("/", "/", "/zh"),
+};
 
 const stats = [
   { value: "2017", label: "Founded in Guangzhou" },
@@ -74,7 +80,7 @@ const jsonLd = {
   "@type": "Organization",
   name: companyProfile.name,
   url: "https://www.scr-robot.com",
-  logo: "/images/SCR.jpg",
+  logo: absoluteUrl("/images/SCR.jpg"),
   foundingDate: "2017-06-13",
   description: companyProfile.description,
   areaServed: "Worldwide",
@@ -97,7 +103,7 @@ export default function Home() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <SiteHeader alternateHref="/zh" />
 

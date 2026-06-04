@@ -5,11 +5,13 @@ import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { automationSolutionsZh, companyProfileZh } from "@/lib/catalog-zh";
+import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "关于华南机器人 | 工业机器人制造商",
   description:
     "了解华南机器人科技（广州）有限公司，一家成立于2017年的工业机器人制造商与智能工厂解决方案提供商。",
+  alternates: localizedAlternates("/zh/about", "/about", "/zh/about"),
 };
 
 const profileStats = [
