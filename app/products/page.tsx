@@ -11,6 +11,7 @@ import {
   productGroups,
   productSeries,
 } from "@/lib/catalog";
+import { getProductModelsBySeries } from "@/lib/product-models";
 
 export const metadata: Metadata = {
   title: "Robot Products | Palletizing, Desktop, General, Stamping, Tending, Collaborative Robots",
@@ -98,7 +99,11 @@ export default function ProductsPage() {
                       Detail Page
                     </CtaLink>
                   </div>
-                  <SpecTable series={series} />
+                  <SpecTable
+                    series={series}
+                    models={getProductModelsBySeries(series.slug)}
+                    enableModelLinks
+                  />
                 </section>
               ))}
             </div>

@@ -1,8 +1,15 @@
+import Link from "next/link";
 import type { ProductSeries } from "@/lib/catalog";
+
+type SpecTableModel = ProductSeries["models"][number] & {
+  slug?: string;
+};
 
 type SpecTableProps = {
   series: ProductSeries;
   headings?: string[];
+  models?: SpecTableModel[];
+  enableModelLinks?: boolean;
 };
 
 export function SpecTable({
@@ -16,6 +23,8 @@ export function SpecTable({
     "Body Weight",
     "Power",
   ],
+  models = series.models,
+  enableModelLinks = false,
 }: SpecTableProps) {
   return (
     <div className="min-w-0 max-w-full overflow-hidden rounded-lg border border-white/10">
@@ -31,10 +40,19 @@ export function SpecTable({
             </tr>
           </thead>
           <tbody className="divide-y divide-white/8 bg-[#0c1014] text-white/72">
-            {series.models.map((model) => (
+            {models.map((model) => (
               <tr key={model.name} className="transition hover:bg-white/[0.04]">
                 <td className="px-4 py-4 font-mono font-semibold text-[#f5b41b]">
-                  {model.name}
+                  {enableModelLinks ? (
+                    <Link
+                      href={`/products/${series.slug}/${model.slug ?? model.name.toLowerCase()}`}
+                      className="transition hover:text-[#ffd36b]"
+                    >
+                      {model.name}
+                    </Link>
+                  ) : (
+                    model.name
+                  )}
                 </td>
                 <td className="px-4 py-4">{model.axes}</td>
                 <td className="px-4 py-4">{model.payload}</td>

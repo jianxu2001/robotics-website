@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { SpecTable } from "@/components/spec-table";
 import { productSeries } from "@/lib/catalog";
+import { getProductModelsBySeries } from "@/lib/product-models";
 
 type ProductDetailPageProps = {
   params: Promise<{ slug: string }>;
@@ -127,7 +128,11 @@ export default async function ProductDetailPage({
             description="Representative technical data extracted from the product catalog and rewritten for international buyers."
           />
           <div className="mt-10">
-            <SpecTable series={series} />
+            <SpecTable
+              series={series}
+              models={getProductModelsBySeries(series.slug)}
+              enableModelLinks
+            />
           </div>
         </section>
 
