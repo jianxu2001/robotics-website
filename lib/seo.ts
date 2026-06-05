@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { companyProfile, type ProductSeries } from "@/lib/catalog";
-import type { ProductModel } from "@/lib/product-models";
+import { getProductModelsBySeries, type ProductModel } from "@/lib/product-models";
 
 export const siteUrl = "https://www.scr-robot.com";
 
@@ -40,6 +40,122 @@ export function localizedAlternates(
 
 export function serializeJsonLd(value: unknown) {
   return JSON.stringify(value).replace(/</g, "\\u003c");
+}
+
+export function getOrganizationJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
+    name: companyProfile.name,
+    alternateName: companyProfile.shortName,
+    url: siteUrl,
+    description: companyProfile.description,
+    foundingDate: companyProfile.founded,
+    address: companyProfile.headquarters,
+  };
+}
+
+export function getBreadcrumbJsonLd(
+  pageUrl: string,
+  items: { name: string; url: string }[],
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${pageUrl}#breadcrumb`,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
+}
+
+export function getWebPageJsonLd(input: {
+  url: string;
+  name: string;
+  description: string;
+  image?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${input.url}#webpage`,
+    url: input.url,
+    name: input.name,
+    description: input.description,
+    image: input.image,
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: companyProfile.shortName,
+      url: siteUrl,
+    },
+    publisher: {
+      "@id": `${siteUrl}/#organization`,
+    },
+    breadcrumb: {
+      "@id": `${input.url}#breadcrumb`,
+    },
+  };
+}
+
+export function getProductSeriesStructuredData(series: ProductSeries) {
+  const seriesUrl = absoluteUrl(`/products/${series.slug}`);
+  const models = getProductModelsBySeries(series.slug);
+
+  return [
+    getOrganizationJsonLd(),
+    getBreadcrumbJsonLd(seriesUrl, [
+      { name: "Home", url: siteUrl },
+      { name: "Products", url: absoluteUrl("/products") },
+      { name: series.series, url: seriesUrl },
+    ]),
+    getWebPageJsonLd({
+      url: seriesUrl,
+      name: getProductSeriesMetaTitle(series),
+      description: getProductSeriesMetaDescription(series),
+      image: absoluteUrl(series.image),
+    }),
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "@id": `${seriesUrl}#models`,
+      name: `${series.series} robot models`,
+      description: `Catalog model list for ${series.series} industrial robots.`,
+      url: seriesUrl,
+      numberOfItems: models.length,
+      itemListElement: models.map((model, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: model.name,
+        url: absoluteUrl(`/products/${model.seriesSlug}/${model.slug}`),
+      })),
+    },
+  ];
+}
+
+export function getProductModelStructuredData(model: ProductModel) {
+  const modelUrl = absoluteUrl(`/products/${model.seriesSlug}/${model.slug}`);
+  const seriesUrl = absoluteUrl(`/products/${model.seriesSlug}`);
+
+  return [
+    getOrganizationJsonLd(),
+    getBreadcrumbJsonLd(modelUrl, [
+      { name: "Home", url: siteUrl },
+      { name: "Products", url: absoluteUrl("/products") },
+      { name: model.series, url: seriesUrl },
+      { name: model.name, url: modelUrl },
+    ]),
+    getWebPageJsonLd({
+      url: modelUrl,
+      name: getProductModelMetaTitle(model),
+      description: getProductModelMetaDescription(model),
+      image: absoluteUrl(model.image),
+    }),
+  ];
 }
 
 export function getProductSeriesMetaTitle(series: ProductSeries) {
@@ -87,48 +203,6 @@ export function getProductModelFaqs(model: ProductModel): FaqItem[] {
         "Please provide product photos, weight, size, packaging type, hourly output, pallet size if applicable, factory layout, voltage requirements, and destination country.",
     },
   ];
-}
-
-export function getProductModelJsonLd(model: ProductModel) {
-  const modelUrl = absoluteUrl(`/products/${model.seriesSlug}/${model.slug}`);
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: model.name,
-    sku: model.name,
-    mpn: model.name,
-    url: modelUrl,
-    image: absoluteUrl(model.image),
-    description: getProductModelMetaDescription(model),
-    category: model.category,
-    brand: {
-      "@type": "Brand",
-      name: "SCR Robot",
-    },
-    manufacturer: {
-      "@type": "Organization",
-      name: companyProfile.name,
-      url: siteUrl,
-    },
-    additionalProperty: [
-      { "@type": "PropertyValue", name: "Series", value: model.series },
-      { "@type": "PropertyValue", name: "Axes", value: model.axes },
-      { "@type": "PropertyValue", name: "Payload", value: model.payload },
-      { "@type": "PropertyValue", name: "Reach", value: model.reach },
-      {
-        "@type": "PropertyValue",
-        name: "Repeatability",
-        value: model.repeatability,
-      },
-      {
-        "@type": "PropertyValue",
-        name: "Body weight",
-        value: model.bodyWeight,
-      },
-      { "@type": "PropertyValue", name: "Power", value: model.power },
-    ],
-  };
 }
 
 export function getFaqJsonLd(faqs: FaqItem[]) {

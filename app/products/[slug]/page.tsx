@@ -10,7 +10,9 @@ import { getProductModelsBySeries } from "@/lib/product-models";
 import {
   getProductSeriesMetaDescription,
   getProductSeriesMetaTitle,
+  getProductSeriesStructuredData,
   localizedAlternates,
+  serializeJsonLd,
 } from "@/lib/seo";
 
 type ProductDetailPageProps = {
@@ -52,8 +54,17 @@ export default async function ProductDetailPage({
     notFound();
   }
 
+  const structuredData = getProductSeriesStructuredData(series);
+
   return (
     <>
+      {structuredData.map((jsonLd, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+        />
+      ))}
       <SiteHeader alternateHref={`/zh/products/${series.slug}`} />
       <main className="min-h-screen bg-[#080a0d] pt-40 text-white sm:pt-32 lg:pt-28">
         <section className="relative border-b border-white/10">

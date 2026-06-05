@@ -11,9 +11,9 @@ import {
   canonicalAlternates,
   getFaqJsonLd,
   getProductModelFaqs,
-  getProductModelJsonLd,
   getProductModelMetaDescription,
   getProductModelMetaTitle,
+  getProductModelStructuredData,
   serializeJsonLd,
 } from "@/lib/seo";
 
@@ -64,15 +64,18 @@ export default async function ProductModelPage({ params }: ProductModelPageProps
     notFound();
   }
 
-  const productJsonLd = getProductModelJsonLd(productModel);
+  const structuredData = getProductModelStructuredData(productModel);
   const faqJsonLd = getFaqJsonLd(getProductModelFaqs(productModel));
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(productJsonLd) }}
-      />
+      {structuredData.map((jsonLd, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+        />
+      ))}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }}

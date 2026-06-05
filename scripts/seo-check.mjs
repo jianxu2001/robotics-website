@@ -162,20 +162,49 @@ check("paired English and Chinese pages have hreflang links", () => {
   }
 });
 
-check("product model pages include Product and FAQ JSON-LD", () => {
+check("product model pages use non-Product structured data with FAQ", () => {
   const html = readGeneratedHtml("/products/ecr-series/ecr8-1200");
   const scripts = jsonLdScripts(html);
   const product = scripts.find((script) => script["@type"] === "Product");
+  const webPage = scripts.find((script) => script["@type"] === "WebPage");
+  const breadcrumb = scripts.find((script) => script["@type"] === "BreadcrumbList");
+  const organization = scripts.find((script) => script["@type"] === "Organization");
   const faq = scripts.find((script) => script["@type"] === "FAQPage");
 
-  assert(product, "model page missing Product JSON-LD");
-  assert(product.name === "ECR8-1200", "Product JSON-LD must use model name");
-  assert(product.image?.startsWith(expectedHost), "Product image must be absolute");
-  assert(product.brand?.name === "SCR Robot", "Product brand must be SCR Robot");
+  assert(!product, "model page must not include Product JSON-LD");
+  assert(webPage, "model page missing WebPage JSON-LD");
+  assert(webPage.name.includes("ECR8-1200"), "WebPage JSON-LD must use model name");
+  assert(webPage.url === `${expectedHost}/products/ecr-series/ecr8-1200`, "WebPage URL must be canonical");
+  assert(breadcrumb, "model page missing BreadcrumbList JSON-LD");
+  assert(organization, "model page missing Organization JSON-LD");
 
   assert(faq, "model page missing FAQ JSON-LD");
   assert(Array.isArray(faq.mainEntity), "FAQ JSON-LD must include questions");
   assert(faq.mainEntity.length >= 4, "FAQ JSON-LD must include the visible FAQs");
+});
+
+check("robot series pages use non-Product structured data", () => {
+  const seriesRoutes = [
+    "/products/ecr-series",
+    "/products/sch-series",
+    "/products/sar-series",
+    "/products/scr-series",
+    "/products/srl-series",
+    "/products/stc-series",
+    "/products/er-series",
+  ];
+
+  for (const route of seriesRoutes) {
+    const scripts = jsonLdScripts(readGeneratedHtml(route));
+    const types = scripts.map((script) => script["@type"]);
+
+    assert(!types.includes("Product"), `${route} must not include Product JSON-LD`);
+    assert(!types.includes("ProductGroup"), `${route} must not include ProductGroup JSON-LD`);
+    assert(types.includes("WebPage"), `${route} missing WebPage JSON-LD`);
+    assert(types.includes("ItemList"), `${route} missing model ItemList JSON-LD`);
+    assert(types.includes("BreadcrumbList"), `${route} missing BreadcrumbList JSON-LD`);
+    assert(types.includes("Organization"), `${route} missing Organization JSON-LD`);
+  }
 });
 
 let failures = 0;
