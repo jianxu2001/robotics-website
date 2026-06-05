@@ -33,6 +33,14 @@ function readGeneratedBody(name) {
   return fs.readFileSync(file, "utf8");
 }
 
+function tagValue(xml, tagName) {
+  return xml.match(new RegExp(`<${tagName}>(.*?)</${tagName}>`, "s"))?.[1];
+}
+
+function sitemapUrlBlocks(xml) {
+  return [...xml.matchAll(/<url>(.*?)<\/url>/gs)].map((match) => match[1]);
+}
+
 function canonicalFor(html) {
   return html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
 }
@@ -62,6 +70,33 @@ check("robots.txt is generated and points to the sitemap", () => {
 
 check("sitemap.xml includes English, Chinese, product, and model URLs", () => {
   const sitemap = readGeneratedBody("sitemap.xml");
+  assert(
+    sitemap.startsWith('<?xml version="1.0" encoding="UTF-8"?>'),
+    "sitemap must start with an XML declaration",
+  );
+  assert(
+    /<urlset\b[^>]*xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9"/.test(
+      sitemap,
+    ),
+    "sitemap must use the standard sitemap urlset namespace",
+  );
+
+  const urlBlocks = sitemapUrlBlocks(sitemap);
+  assert(urlBlocks.length > 0, "sitemap must include at least one <url> entry");
+
+  for (const block of urlBlocks) {
+    const loc = tagValue(block, "loc");
+    const lastmod = tagValue(block, "lastmod");
+    const changefreq = tagValue(block, "changefreq");
+    const priority = tagValue(block, "priority");
+
+    assert(loc?.startsWith(expectedHost), "each sitemap URL must include an absolute loc");
+    assert(lastmod, `sitemap entry ${loc} missing lastmod`);
+    assert(changefreq, `sitemap entry ${loc} missing changefreq`);
+    assert(priority, `sitemap entry ${loc} missing priority`);
+    assert(!Number.isNaN(Number(priority)), `sitemap entry ${loc} priority must be numeric`);
+  }
+
   for (const url of [
     expectedHost,
     `${expectedHost}/zh`,

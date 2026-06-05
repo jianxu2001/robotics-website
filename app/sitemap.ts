@@ -4,7 +4,7 @@ import { productSeries } from "@/lib/catalog";
 import { productModels } from "@/lib/product-models";
 import { absoluteUrl } from "@/lib/seo";
 
-const lastModified = new Date("2026-06-04T00:00:00.000Z");
+const lastModified = "2026-06-05T00:00:00.000Z";
 
 const pairedRoutes = [
   { en: "/", zh: "/zh", priority: 1 },
