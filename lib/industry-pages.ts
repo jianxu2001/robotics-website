@@ -7,372 +7,632 @@ export type IndustryPage = {
   heroTitle: string;
   heroDescription: string;
   image: string;
-  buyerProblem: string[];
-  solution: string[];
+  materials: string[];
+  packages: string[];
+  productionContext: string;
+  buyerProblem: { title: string; text: string }[];
+  depalletizing: {
+    intro: string;
+    steps: string[];
+    equipment: string[];
+  };
+  feeding: {
+    intro: string;
+    steps: string[];
+    equipment: string[];
+  };
+  palletizing: {
+    intro: string;
+    steps: string[];
+    equipment: string[];
+  };
   benefits: { title: string; text: string }[];
   recommendedProducts: { title: string; href: string; text: string }[];
-  applications: string[];
+  internalLinks: { title: string; href: string; text: string }[];
   quoteInputs: string[];
   faq: { question: string; answer: string }[];
 };
 
-export const industryPages: IndustryPage[] = [
-  {
-    slug: "plastics",
-    title: "Plastic Manufacturers",
-    seoTitle: "Plastic Factory Automation | Palletizing Robots",
-    description:
-      "Automate plastic bag, carton, resin, and molded-part handling with SCR Robot palletizing, depalletizing, conveyors, and gripper integration.",
-    eyebrow: "Automation for plastic manufacturers",
-    heroTitle: "Robot automation for plastic bags, cartons, resin, and end-of-line handling.",
-    heroDescription:
-      "Plastic manufacturers handle resin bags, cartons, molded parts, film rolls, containers, and mixed SKUs. SCR Robot helps review product data, gripper needs, conveyors, and pallet patterns before quoting the cell.",
-    image: "/images/bejing1%20(2).jpg",
+type IndustryInput = {
+  slug: string;
+  title: string;
+  seoTitle: string;
+  description: string;
+  eyebrow: string;
+  heroTitle: string;
+  heroDescription: string;
+  image: string;
+  materials: string[];
+  packages: string[];
+  productionContext: string;
+  painFocus: string[];
+  depalletizingFocus: string;
+  feedingFocus: string;
+  palletizingFocus: string;
+  preferredRobots: { title: string; href: string; text: string }[];
+  internalLinks?: { title: string; href: string; text: string }[];
+};
+
+function industry(input: IndustryInput): IndustryPage {
+  const materialList = input.materials.join(", ");
+  const packageList = input.packages.join(", ");
+
+  return {
+    ...input,
     buyerProblem: [
-      "Manual palletizing of plastic bags, cartons, and molded products creates fatigue and inconsistent output across shifts.",
-      "Different product weights, package surfaces, bag deformation, and pallet patterns make automation selection difficult.",
-      "Production lines often need stable infeed, conveyors, grippers, and robot selection as one complete system.",
+      {
+        title: "High manual handling pressure",
+        text: `${input.title} plants often move ${packageList} for many hours per shift. Operators must lift, turn, align, and stack products that may be heavy, dusty, unstable, or hard to grip. This creates fatigue, inconsistent output, and greater risk when the production plan requires stable loading, depalletizing, or palletizing during peak periods.`,
+      },
+      {
+        title: "Variable material behavior",
+        text: `${materialList} do not behave like uniform ecommerce cartons. Bags can deform, powders can settle, cartons can crush, sacks can slide, and pallets from suppliers can arrive with uneven stack quality. Robot selection therefore has to consider payload, reach, center of gravity, gripper contact area, product detection, and the actual condition of the load.`,
+      },
+      {
+        title: "Dust, layout, and downstream constraints",
+        text: `${input.productionContext} A useful automation proposal has to review conveyors, pallet position, bag opening height, hopper access, guarding, maintenance space, operator access, and the communication between robot, PLC, sensors, and downstream equipment.`,
+      },
+      {
+        title: "Quotation uncertainty",
+        text: "Many overseas buyers know they need automation, but they do not know whether to start with a palletizing robot, a depalletizing robot, a bag feeding cell, or a complete robot line. SCR Robot uses product photos, package data, throughput, pallet pattern, and factory layout to turn the inquiry into a practical engineering direction.",
+      },
+      {
+        title: input.painFocus[0],
+        text: input.painFocus[1],
+      },
     ],
-    solution: [
-      "Use palletizing robots for repetitive end-of-line stacking of bags, cartons, and cases.",
-      "Use depalletizing robots and bag feeding automation where resin bags or stacked products must be unloaded and transferred to downstream equipment.",
-      "Integrate robot, gripper, conveyor, pallet position, safety guarding, and PLC/HMI logic around the actual factory layout.",
-    ],
+    depalletizing: {
+      intro: input.depalletizingFocus,
+      steps: [
+        "Confirm pallet size, stack height, layer pattern, package deformation, and whether slip sheets, straps, or damaged packages appear in the incoming load.",
+        "Select the robot payload and reach so the arm can access the full pallet, discharge point, and any buffer conveyor without operating at the edge of its envelope.",
+        "Design grippers around the actual product surface, including vacuum, clamp, fork, fork-and-clamp, bag suction, or custom tooling when standard tooling is not reliable.",
+        "Add sensors, pallet presence checks, product detection, and safe operator access so the cell can recover from shifted loads without long downtime.",
+      ],
+      equipment: [
+        "Depalletizing robot",
+        "Layer or product detection",
+        "Pallet conveyor or pallet station",
+        "Outfeed conveyor",
+        "Safety guarding",
+        "PLC/HMI control",
+      ],
+    },
+    feeding: {
+      intro: input.feedingFocus,
+      steps: [
+        "Define whether the line needs automatic bag feeding, carton feeding, ingredient transfer, hopper loading, mixer loading, or machine-side loading.",
+        "Check product dust, moisture, packaging strength, bag mouth position, and discharge height before choosing the feeding method.",
+        "Coordinate the robot cell with conveyors, bag breaker, screw conveyor, bucket elevator, buffer hopper, weighing station, or upstream packaging machine.",
+        "Use interlocks and production logic so feeding only occurs when the downstream machine is ready and the operator can safely intervene.",
+      ],
+      equipment: [
+        "Robot loading cell",
+        "Bag feeding or carton feeding conveyor",
+        "Product detection",
+        "Hopper or machine interface",
+        "Dust-aware enclosure when required",
+        "Control integration",
+      ],
+    },
+    palletizing: {
+      intro: input.palletizingFocus,
+      steps: [
+        "Calculate payload margin from product weight, gripper weight, acceleration, reach, and desired cycle time instead of selecting a robot only from catalog payload.",
+        "Confirm pallet pattern, stack height, label direction, bag orientation, and whether the factory needs one line to one pallet or multiple lines to multiple pallets.",
+        "Plan infeed conveyors, pallet magazine, empty pallet handling, pallet discharge, guarding, and operator access around the robot footprint.",
+        "Use a repeatable stacking strategy so the final pallet is stable for forklift movement, warehouse storage, and shipping.",
+      ],
+      equipment: [
+        "Palletizing robot",
+        "Infeed conveyor",
+        "End-of-arm tooling",
+        "Pallet station",
+        "Finished pallet conveyor",
+        "Safety fence and sensors",
+      ],
+    },
     benefits: [
       {
-        title: "Labor Saving",
-        text: "Reduce repetitive manual lifting, stacking, and feeding work in high-volume plastic production areas.",
+        title: "Labor saving",
+        text: "Reduce repetitive lifting, bending, turning, and stacking work so operators can move toward supervision, quality checks, material preparation, and maintenance support.",
       },
       {
-        title: "Cost Reduction",
-        text: "Lower dependence on manual handling labor and reduce downtime caused by inconsistent production flow.",
+        title: "Stable output",
+        text: "Keep depalletizing, feeding, and palletizing aligned with the production rhythm instead of relying on manual speed that changes by shift, operator, and fatigue level.",
       },
       {
-        title: "Productivity Improvement",
-        text: "Stabilize palletizing patterns, line feeding, and material transfer so output is easier to manage across shifts.",
+        title: "Safer handling",
+        text: "Move workers away from heavy packages, dusty zones, unstable pallets, high stacking positions, and repetitive manual tasks that are difficult to sustain safely.",
       },
       {
-        title: "Safety",
-        text: "Move workers away from heavy bags, repetitive bending, and high-risk material handling positions.",
+        title: "Engineering clarity",
+        text: "Turn an uncertain automation idea into a practical scope covering robot model, tooling, conveyors, safety, layout, and quotation information.",
       },
     ],
-    recommendedProducts: [
+    recommendedProducts: input.preferredRobots,
+    internalLinks: input.internalLinks ?? [
       {
-        title: "Palletizing Robot",
+        title: "Palletizing robot series",
         href: "/products/sch-series",
-        text: "For cartons, bags, cases, and end-of-line stacking in plastic production.",
+        text: "Review four-axis robot options for bag, carton, and case palletizing.",
       },
       {
-        title: "Depalletizing Robot",
-        href: "/products/sar-series",
-        text: "For unloading stacked materials and transferring products to downstream equipment.",
+        title: "High-payload palletizing",
+        href: "/products/scr-series",
+        text: "Consider high-payload robots for heavier bags, larger patterns, and end-of-line cells.",
       },
       {
-        title: "Bag Feeding Automation",
-        href: "/industries",
-        text: "For resin bags, powder bags, material feeding, and bag handling workflows.",
+        title: "Contact engineering",
+        href: "/contact",
+        text: "Send product data, photos, throughput, and layout for a project review.",
       },
-    ],
-    applications: [
-      "Plastic resin bag palletizing",
-      "Molded plastic product handling",
-      "Carton and case palletizing",
-      "Bag depalletizing and feeding",
-      "Conveyor infeed and outfeed automation",
-      "Packaging line transfer",
     ],
     quoteInputs: [
-      "Bag, carton, or product weight and dimensions",
-      "Pallet size, stack height, and pallet pattern",
-      "Target output per hour or cycle time",
-      "Infeed direction, conveyor layout, and available floor space",
-      "Photos or video of the current manual process",
+      "Product or package photos and short process video",
+      "Unit weight, dimensions, surface condition, and package material",
+      "Pallet size, stack height, pallet pattern, and layer count",
+      "Target throughput per hour, shift schedule, and current bottleneck",
+      "Infeed direction, outfeed direction, available floor area, and site layout",
+      "Dust, moisture, hygiene, safety, or environmental requirements",
+      "Destination country, voltage, factory standards, and installation expectations",
     ],
     faq: [
       {
-        question: "Can one robot handle different plastic product sizes?",
+        question: `Can SCR Robot automate ${input.title.toLowerCase()} lines with different package sizes?`,
         answer:
-          "Yes, but the gripper, payload margin, pallet pattern, and line control must be reviewed for each SKU. Send product dimensions, weight, and packaging photos for evaluation.",
+          "Yes, but each SKU should be reviewed for weight, dimensions, center of gravity, pallet pattern, and gripper compatibility. A project can use recipe-based settings when the mechanical range and tooling design support the product mix.",
       },
       {
-        question: "Can the system handle resin bags?",
+        question: "Should the project start with depalletizing, feeding, or palletizing?",
         answer:
-          "Resin bag projects usually require careful gripper design because bags deform and shift. South China Robotics can evaluate palletizing, depalletizing, and feeding layouts based on bag weight, material, and stack condition.",
+          "Start with the bottleneck that limits output or creates the highest manual handling risk. Many factories begin with palletizing because it is repetitive and labor intensive, then add depalletizing or automatic feeding when upstream material flow becomes the next constraint.",
+      },
+      {
+        question: "Can the system include conveyors, grippers, guarding, and PLC controls?",
+        answer:
+          "Yes. SCR Robot can discuss the robot platform together with end-of-arm tooling, conveyors, pallet stations, product detection, safety guarding, PLC/HMI logic, and the layout needed for a complete automation cell.",
       },
       {
         question: "What information is needed for a quotation?",
         answer:
-          "Provide product weight, dimensions, package type, pallet size, target throughput, factory layout, destination country, and any current process video.",
+          "Send product photos, dimensions, weight, package type, pallet size, stack height, target output, current layout, infeed and outfeed direction, and a short video of the manual process. This helps engineering recommend the right robot and system scope.",
       },
     ],
-  },
-  {
-    slug: "chemical",
-    title: "Chemical Plants",
-    seoTitle: "Chemical Bag Handling Automation | SCR Robot",
+  };
+}
+
+export const industryPages: IndustryPage[] = [
+  industry({
+    slug: "plastic-manufacturing",
+    title: "Plastic Manufacturing",
+    seoTitle: "Plastic Manufacturing Automation | Depalletizing & Palletizing Robots",
     description:
-      "Plan robotic palletizing, depalletizing, bag feeding, and conveyor automation for chemical bags, cartons, drums, powders, and granular materials.",
-    eyebrow: "Automation for chemical plants",
-    heroTitle: "Safer robot automation for chemical bags, cartons, drums, and feeding lines.",
+      "SCR Robot automation for plastic resin bags, molded parts, cartons, containers, film rolls, depalletizing, feeding, and end-of-line palletizing.",
+    eyebrow: "Industry solution for plastic manufacturing",
+    heroTitle: "Plastic Manufacturing Robot Automation for Depalletizing, Feeding, and Palletizing",
     heroDescription:
-      "Chemical plants need to reduce manual exposure, improve safety, and stabilize handling of bags, drums, powders, and granular materials. SCR Robot reviews material data, dust conditions, tooling, and conveyor flow before proposal.",
+      "Automate resin bags, molded plastic parts, cartons, containers, and packaging lines with robot cells planned around product weight, pallet pattern, conveyors, and factory layout.",
+    image: "/images/bejing1%20(2).jpg",
+    materials: ["plastic resin bags", "molded plastic parts", "containers", "cartons", "film rolls"],
+    packages: ["resin sacks", "cartons", "cases", "totes", "wrapped bundles"],
+    productionContext:
+      "Plastic production lines may include injection molding, extrusion, compounding, bagging, carton packing, and warehouse pallet flow in the same plant.",
+    painFocus: [
+      "Mixed SKU handling",
+      "Plastic factories often change product dimensions, carton sizes, and packaging formats. The automation cell must be designed so operators can switch recipes, adjust pallet patterns, and keep line flow stable without rebuilding the whole system.",
+    ],
+    depalletizingFocus:
+      "Automatic depalletizing is useful when resin bags, cartons, or containers arrive on pallets and must be unloaded to mixers, dryers, conveyors, or packaging areas.",
+    feedingFocus:
+      "Automatic feeding helps move resin bags, molded parts, or cartons into downstream equipment while reducing manual lifting around compounding, packing, or assembly areas.",
+    palletizingFocus:
+      "Automatic palletizing stabilizes end-of-line stacking for bags, cartons, molded products, and mixed plastic goods that need consistent pallet quality before warehousing.",
+    preferredRobots: [
+      {
+        title: "SCH Series palletizing robots",
+        href: "/products/sch-series",
+        text: "For cartons, resin bags, cases, and medium to heavy end-of-line palletizing.",
+      },
+      {
+        title: "ECR Series compact robots",
+        href: "/products/ecr-series",
+        text: "For compact cells, lighter molded plastic parts, and transfer tasks.",
+      },
+      {
+        title: "SAR Series long-reach robots",
+        href: "/products/sar-series",
+        text: "For larger layouts, depalletizing, and wide work envelopes.",
+      },
+    ],
+  }),
+  industry({
+    slug: "chemical-processing",
+    title: "Chemical Processing",
+    seoTitle: "Chemical Processing Automation | Bag Feeding & Palletizing Robots",
+    description:
+      "Robot automation for chemical bags, drums, cartons, powders, granular materials, depalletizing, automatic feeding, and palletizing.",
+    eyebrow: "Industry solution for chemical processing",
+    heroTitle: "Chemical Processing Robot Automation for Safer Bag Handling and Palletizing",
+    heroDescription:
+      "Plan robot cells for chemical bags, drums, cartons, powders, and granular materials with attention to dust, containment, payload, gripper design, and downstream equipment.",
     image: "/images/SCR.jpg",
-    buyerProblem: [
-      "Manual handling of chemical bags or containers can expose workers to dust, repetitive lifting, and safety risk.",
-      "Powder and granular materials require stable feeding, transfer, and containment planning.",
-      "Irregular bags, heavy loads, and different pallet patterns make simple equipment selection risky.",
+    materials: ["chemical powders", "granules", "additives", "drums", "bagged raw materials"],
+    packages: ["woven bags", "valve bags", "cartons", "drums", "pails"],
+    productionContext:
+      "Chemical processing lines often combine raw material receiving, batching, bag opening, mixing, packaging, and palletizing in dusty or controlled areas.",
+    painFocus: [
+      "Worker exposure reduction",
+      "Chemical plants often want automation because manual bag handling places workers near dust, repetitive lifting, and process equipment. The cell must reduce exposure while still allowing inspection, maintenance, and safe exception handling.",
     ],
-    solution: [
-      "Use heavy-duty palletizing robots for bag and carton stacking at the end of chemical production lines.",
-      "Use depalletizing and bag feeding automation to unload stacked materials and feed mixers, hoppers, or processing equipment.",
-      "Design the complete cell around gripper type, dust-aware layout, conveyors, guarding, and control integration.",
-    ],
-    benefits: [
+    depalletizingFocus:
+      "Automatic depalletizing can unload bagged raw materials, cartons, or drums and transfer them to feeding conveyors, weighing areas, or staging points.",
+    feedingFocus:
+      "Automatic feeding is often the core requirement in chemical processing because bags or containers must reach mixers, hoppers, or dosing equipment at the right time.",
+    palletizingFocus:
+      "Automatic palletizing helps packaged chemical products leave the line with stable stack quality and less manual contact with dusty or heavy packages.",
+    preferredRobots: [
       {
-        title: "Labor Saving",
-        text: "Reduce manual lifting and repetitive material transfer around packaging and feeding areas.",
-      },
-      {
-        title: "Cost Reduction",
-        text: "Improve labor allocation and reduce production interruptions caused by unstable manual handling.",
-      },
-      {
-        title: "Productivity Improvement",
-        text: "Keep packaging, palletizing, and material feeding more consistent across shifts.",
-      },
-      {
-        title: "Safety",
-        text: "Reduce worker exposure to heavy handling, dusty material zones, and repetitive high-risk tasks.",
-      },
-    ],
-    recommendedProducts: [
-      {
-        title: "Bag Feeding Automation",
-        href: "/industries",
-        text: "For bag picking, bag breaking, powder feeding, and downstream material transfer.",
-      },
-      {
-        title: "Palletizing Robot",
+        title: "SCR Series high-payload robot",
         href: "/products/scr-series",
-        text: "For heavy bags, cartons, and end-of-line palletizing in chemical packaging.",
+        text: "For heavy chemical bags and demanding palletizing layouts.",
       },
       {
-        title: "Depalletizing Robot",
+        title: "SCH Series palletizing robots",
         href: "/products/sch-series",
-        text: "For unloading stacked products and feeding material into the next production process.",
-      },
-    ],
-    applications: [
-      "Chemical bag palletizing",
-      "Powder and granular material feeding",
-      "Bag depalletizing",
-      "Carton and drum handling",
-      "Conveyor transfer",
-      "End-of-line packaging automation",
-    ],
-    quoteInputs: [
-      "Material type and package form",
-      "Bag, carton, or drum weight and dimensions",
-      "Dust, safety, or containment requirements",
-      "Target throughput and shift schedule",
-      "Pallet pattern, stack height, and factory layout",
-    ],
-    faq: [
-      {
-        question: "Can robots be used for chemical bag handling?",
-        answer:
-          "Yes. The key is to evaluate bag weight, surface condition, deformation, dust environment, pickup method, and downstream feeding requirements before selecting the robot and tooling.",
+        text: "For bags, cartons, drums, and end-of-line chemical packaging.",
       },
       {
-        question: "Can South China Robotics design the gripper and conveyor system?",
-        answer:
-          "Yes. Projects can include robot selection, gripper concept, conveyors, product detection, safety guarding, and PLC/HMI integration.",
-      },
-      {
-        question: "What should chemical plants send for quotation?",
-        answer:
-          "Send material type, package photos, weight, dimensions, pallet pattern, target capacity, dust or safety requirements, and current factory layout.",
+        title: "SAR Series depalletizing robots",
+        href: "/products/sar-series",
+        text: "For wide work cells and stacked incoming materials.",
       },
     ],
-  },
-  {
+  }),
+  industry({
     slug: "building-materials",
-    title: "Building Material Factories",
-    seoTitle: "Building Material Palletizing Robots | SCR Robot",
+    title: "Building Materials",
+    seoTitle: "Building Materials Automation | Heavy Bag Palletizing Robots",
     description:
-      "Use SCR Robot palletizing, depalletizing, and conveyor automation for heavy building material bags, boards, cartons, tiles, and pallet flow.",
-    eyebrow: "Automation for building material factories",
-    heroTitle: "Heavy-duty robot automation for building material bags, boards, cartons, and tiles.",
+      "Heavy-duty robot automation for building material bags, tiles, boards, cartons, depalletizing, feeding, and palletizing.",
+    eyebrow: "Industry solution for building materials",
+    heroTitle: "Building Materials Robot Automation for Heavy Bags, Boards, Tiles, and Pallets",
     heroDescription:
-      "Building material factories handle heavy products, dusty environments, tall stacks, and repetitive palletizing work. SCR Robot helps evaluate payload, stack height, gripper design, conveyors, and safety scope before quotation.",
+      "Use SCR Robot systems to handle heavy building material bags, boards, tiles, cartons, and pallet flow with robots, grippers, conveyors, and safety planning.",
     image: "/images/bejing1%20(3).jpg",
-    buyerProblem: [
-      "Heavy products create high labor intensity and higher risk of fatigue-related handling errors.",
-      "Manual palletizing can be unstable when products are heavy, dusty, or packed in bags and cartons.",
-      "Factories need durable robot cells that match product weight, pallet height, conveyor flow, and safety requirements.",
+    materials: ["dry mortar", "cement additives", "tiles", "boards", "construction chemicals"],
+    packages: ["heavy bags", "cartons", "bundles", "boards", "palletized stacks"],
+    productionContext:
+      "Building material factories often run heavy products, dusty packaging areas, tall pallets, and forklifts moving between bagging, curing, storage, and loading zones.",
+    painFocus: [
+      "Heavy and dusty work",
+      "Manual stacking of building material bags or boards is physically demanding and often happens in dusty environments. Robot automation must be strong enough for the load and simple enough for daily operators to maintain.",
     ],
-    solution: [
-      "Use heavy-duty palletizing robots for bags, cartons, boards, tiles, and other building material products.",
-      "Use depalletizing robots where incoming pallets or stacked materials must be unloaded and transferred.",
-      "Plan robot payload, reach, gripper, conveyors, pallet position, and guarding as one working automation cell.",
-    ],
-    benefits: [
+    depalletizingFocus:
+      "Automatic depalletizing supports incoming boards, cartons, bags, or palletized materials that need to move into cutting, mixing, packing, or transfer equipment.",
+    feedingFocus:
+      "Automatic feeding can load bags, boards, or cartons into production-side stations while reducing heavy lifting and improving line continuity.",
+    palletizingFocus:
+      "Automatic palletizing is especially valuable for heavy bags, cartons, boards, or tile products where consistent stacks reduce forklift and warehouse risk.",
+    preferredRobots: [
       {
-        title: "Labor Saving",
-        text: "Reduce the need for workers to lift, stack, and transfer heavy building material products manually.",
-      },
-      {
-        title: "Cost Reduction",
-        text: "Lower manual handling cost and reduce production interruptions caused by labor shortages or fatigue.",
-      },
-      {
-        title: "Productivity Improvement",
-        text: "Improve stack consistency, line stability, and handling repeatability for heavy products.",
-      },
-      {
-        title: "Safety",
-        text: "Reduce worker exposure to heavy loads, dust, repetitive lifting, and palletizing risk zones.",
-      },
-    ],
-    recommendedProducts: [
-      {
-        title: "Heavy-Duty Palletizing Robot",
+        title: "SCH Series heavy-duty robots",
         href: "/products/sch-series",
-        text: "For heavy bags, cartons, boards, and high-load end-of-line automation.",
+        text: "For heavy bags, cartons, and building material palletizing.",
       },
       {
-        title: "High-Payload Palletizing Robot",
+        title: "SCR Series high-payload robot",
         href: "/products/scr-series",
-        text: "For larger palletizing layouts and high-payload material handling.",
+        text: "For high-payload end-of-line stacking and large palletizing layouts.",
       },
       {
-        title: "Conveyor Automation",
-        href: "/industries/building-materials",
-        text: "For infeed, outfeed, pallet flow, turning, and material transfer around the robot cell.",
+        title: "SAR Series long-reach robots",
+        href: "/products/sar-series",
+        text: "For wide work envelopes and heavy material transfer.",
       },
     ],
-    applications: [
-      "Cement or mortar bag palletizing",
-      "Tile and board handling",
-      "Carton palletizing",
-      "Heavy bag depalletizing",
-      "Pallet flow and conveyor transfer",
-      "End-of-line stacking automation",
-    ],
-    quoteInputs: [
-      "Product weight, dimensions, and package type",
-      "Pallet size, target stack height, and pattern",
-      "Dust level and site safety requirements",
-      "Throughput target and line speed",
-      "Available floor area and conveyor direction",
-    ],
-    faq: [
-      {
-        question: "Can the system handle heavy building material bags?",
-        answer:
-          "Yes. Robot selection depends on bag weight, stack height, pallet pattern, gripper method, and safety layout. High-payload SCH, SCR, or SAR options can be evaluated from the catalog range.",
-      },
-      {
-        question: "Can the automation include conveyors?",
-        answer:
-          "Yes. Conveyor infeed, outfeed, turning, pallet flow, sensors, and PLC/HMI logic can be included in the system scope.",
-      },
-      {
-        question: "What project details are most important?",
-        answer:
-          "Product weight, dimensions, packaging, pallet size, stack height, target throughput, dust conditions, factory layout, and photos or video of the current process.",
-      },
-    ],
-  },
-  {
-    slug: "food-processing",
-    title: "Food Processing Factories",
-    seoTitle: "Food Packaging Line Automation | Palletizing Robots",
+  }),
+  industry({
+    slug: "food-ingredients",
+    title: "Food Ingredients",
+    seoTitle: "Food Ingredient Automation | Bag Feeding & Palletizing Robots",
     description:
-      "Automate food cartons, bags, cases, boxes, ingredient feeding, conveyor transfer, and palletizing with SCR Robot packaging line solutions.",
-    eyebrow: "Automation for food processing factories",
-    heroTitle: "Reliable robot automation for food cartons, bags, cases, and packaging lines.",
+      "Robot automation for food ingredient bags, cartons, sacks, depalletizing, automatic feeding, conveyor transfer, and palletizing.",
+    eyebrow: "Industry solution for food ingredients",
+    heroTitle: "Food Ingredients Robot Automation for Bag Feeding, Depalletizing, and Palletizing",
     heroDescription:
-      "Food processing factories need stable output, safer repetitive handling, and smooth packaging-line flow. SCR Robot reviews package sizes, throughput, pallet pattern, conveyors, and site constraints before recommending a cell.",
+      "Automate ingredient bags, cartons, and packaging lines with robot systems designed for stable feeding, repeatable palletizing, and safer material handling.",
     image: "/images/bejing1%20(1).jpg",
-    buyerProblem: [
-      "Manual palletizing and packaging transfer can become a bottleneck during peak production.",
-      "Food factories often manage multiple package sizes, cartons, bags, and case formats.",
-      "Labor shortages, repetitive lifting, and inconsistent stacking can affect daily output stability.",
+    materials: ["flour", "starch", "sugar", "seasoning powder", "food additives"],
+    packages: ["paper bags", "woven bags", "cartons", "cases", "ingredient sacks"],
+    productionContext:
+      "Food ingredient plants need material flow that supports batching, mixing, packaging, hygiene rules, and shift-to-shift output stability.",
+    painFocus: [
+      "Batching and packaging continuity",
+      "Ingredient handling often sits between warehouse receiving, recipe batching, and packaging. When manual feeding or palletizing is unstable, the whole line can lose rhythm even if the processing equipment is ready.",
     ],
-    solution: [
-      "Use palletizing robots for cartons, bags, boxes, and cases at the end of packaging lines.",
-      "Use depalletizing and bag feeding automation for ingredient handling or upstream material transfer.",
-      "Integrate robot selection with conveyors, grippers, safety guarding, and product flow requirements.",
-    ],
-    benefits: [
+    depalletizingFocus:
+      "Automatic depalletizing unloads ingredient bags or cartons from pallets and transfers them toward batching, staging, or feeding points.",
+    feedingFocus:
+      "Automatic feeding helps move ingredient bags to hoppers, mixers, or bag opening stations while reducing repetitive lifting near food processing equipment.",
+    palletizingFocus:
+      "Automatic palletizing improves final stack consistency for ingredient bags, cartons, and cases before warehouse transfer.",
+    preferredRobots: [
       {
-        title: "Labor Saving",
-        text: "Reduce repetitive lifting, stacking, and transfer work around packaging and material handling areas.",
+        title: "ECR Series compact robots",
+        href: "/products/ecr-series",
+        text: "For lighter ingredient packages and compact transfer cells.",
       },
       {
-        title: "Cost Reduction",
-        text: "Improve labor allocation and reduce output variation caused by manual handling limits.",
-      },
-      {
-        title: "Productivity Improvement",
-        text: "Support more stable packaging-line flow, palletizing consistency, and shift-to-shift output.",
-      },
-      {
-        title: "Safety",
-        text: "Reduce fatigue, repetitive motion, and heavy lifting risks for packaging-line operators.",
-      },
-    ],
-    recommendedProducts: [
-      {
-        title: "Palletizing Robot",
+        title: "SCH Series palletizing robots",
         href: "/products/sch-series",
-        text: "For cartons, cases, bags, and end-of-line packaging automation.",
+        text: "For bag and carton palletizing at the end of food ingredient lines.",
       },
       {
-        title: "Portable Collaborative Palletizer",
-        href: "/products",
-        text: "For flexible palletizing needs in smaller or changing production areas.",
-      },
-      {
-        title: "Bag Feeding Automation",
-        href: "/industries",
-        text: "For ingredient bags, material feeding, and upstream handling workflows.",
+        title: "ER Series six-axis robots",
+        href: "/products/er-series",
+        text: "For flexible loading, handling, and special approach angles.",
       },
     ],
-    applications: [
-      "Carton and case palletizing",
-      "Bag palletizing",
-      "Ingredient bag feeding",
-      "Packaging line transfer",
-      "Depalletizing and material feeding",
-      "Conveyor integration",
+  }),
+  industry({
+    slug: "animal-feed",
+    title: "Animal Feed",
+    seoTitle: "Animal Feed Automation | Feed Bag Palletizing Robots",
+    description:
+      "Robot automation for feed bags, additives, cartons, depalletizing, automatic loading, and palletizing in animal feed production.",
+    eyebrow: "Industry solution for animal feed",
+    heroTitle: "Animal Feed Robot Automation for Bag Handling, Feeding, and Palletizing",
+    heroDescription:
+      "Automate feed bags, additive sacks, cartons, and end-of-line palletizing with robot cells planned around bag deformation, dust, throughput, and pallet stability.",
+    image: "/images/bejing1%20(2).jpg",
+    materials: ["pellet feed", "powder feed", "premix", "additives", "bagged raw materials"],
+    packages: ["feed bags", "sacks", "cartons", "woven bags", "bulk ingredient bags"],
+    productionContext:
+      "Feed mills often move high volumes of bagged material from mixing and bagging to warehouse pallets while dust and bag deformation affect handling quality.",
+    painFocus: [
+      "High-volume bag flow",
+      "Animal feed lines can produce many bags per hour, and manual stacking becomes difficult when bag shape changes, operators rotate, or warehouse pallets must remain stable for transport.",
     ],
-    quoteInputs: [
-      "Food package type and product dimensions",
-      "Unit weight and target output per hour",
-      "Pallet size, stack height, and pallet pattern",
-      "Line layout, conveyor direction, and available floor area",
-      "Photos or videos of the current packaging line",
-    ],
-    faq: [
+    depalletizingFocus:
+      "Automatic depalletizing can unload premix, additives, or incoming bagged materials and send them toward dosing, staging, or feeding equipment.",
+    feedingFocus:
+      "Automatic feeding can move bags toward mixers, bag openers, or hoppers while keeping workers away from repetitive lifting and dusty areas.",
+    palletizingFocus:
+      "Automatic palletizing is a strong fit for feed bags because the work is repetitive, high volume, and sensitive to stack quality.",
+    preferredRobots: [
       {
-        question: "Can robots handle multiple carton or bag sizes?",
-        answer:
-          "Yes, but each SKU should be checked for weight, dimensions, pallet pattern, and gripper compatibility. Send the full product list for a practical recommendation.",
+        title: "SCH Series palletizing robots",
+        href: "/products/sch-series",
+        text: "For feed bag palletizing and warehouse-ready stacks.",
       },
       {
-        question: "Is a portable palletizer suitable for food processing lines?",
-        answer:
-          "It can be suitable when the line needs flexible deployment, moderate payload, and smaller footprint. Final selection depends on product weight, cycle time, and available space.",
+        title: "SCR Series high-payload robot",
+        href: "/products/scr-series",
+        text: "For heavier bag patterns and demanding end-of-line cells.",
       },
       {
-        question: "What information is needed to discuss a food processing automation project?",
-        answer:
-          "Provide package photos, dimensions, weight, target throughput, pallet pattern, line layout, hygiene or site requirements, and destination country.",
+        title: "SAR Series long-reach robots",
+        href: "/products/sar-series",
+        text: "For wider layouts and depalletizing tasks.",
       },
     ],
-  },
+  }),
+  industry({
+    slug: "fertilizer-production",
+    title: "Fertilizer Production",
+    seoTitle: "Fertilizer Production Automation | Bag Palletizing Robots",
+    description:
+      "Robot automation for fertilizer bags, granular products, additives, depalletizing, automatic feeding, and palletizing.",
+    eyebrow: "Industry solution for fertilizer production",
+    heroTitle: "Fertilizer Production Robot Automation for Bags, Feeding Lines, and Pallets",
+    heroDescription:
+      "Use robot automation to handle fertilizer bags, granular materials, additives, and palletizing cells with attention to dust, corrosion risk, payload, and stack quality.",
+    image: "/images/bejing1%20(3).jpg",
+    materials: ["compound fertilizer", "granular fertilizer", "powder additives", "soil amendments", "bagged raw materials"],
+    packages: ["fertilizer bags", "woven sacks", "cartons", "palletized bags", "bulk additive bags"],
+    productionContext:
+      "Fertilizer plants handle dusty or granular materials, heavy bagging output, pallet transfer, and demanding warehouse flow around packaging lines.",
+    painFocus: [
+      "Dusty high-load packaging",
+      "Manual fertilizer bag stacking can be exhausting because bags are heavy, surfaces are dusty, and output is continuous. Automation must consider product residue, bag deformation, and maintenance access.",
+    ],
+    depalletizingFocus:
+      "Automatic depalletizing can unload raw material bags or additive packages for transfer to feeding, mixing, or staging points.",
+    feedingFocus:
+      "Automatic feeding moves bags or additive packages toward hoppers, mixers, or bag opening stations while reducing manual exposure to dust.",
+    palletizingFocus:
+      "Automatic palletizing gives fertilizer producers consistent stacks and reduces the labor load at the end of high-volume packaging lines.",
+    preferredRobots: [
+      {
+        title: "SCR Series high-payload robot",
+        href: "/products/scr-series",
+        text: "For heavy fertilizer bag palletizing and high-load cells.",
+      },
+      {
+        title: "SCH Series palletizing robots",
+        href: "/products/sch-series",
+        text: "For end-of-line fertilizer bag handling and stack building.",
+      },
+      {
+        title: "SAR Series long-reach robots",
+        href: "/products/sar-series",
+        text: "For depalletizing and wide fertilizer plant layouts.",
+      },
+    ],
+  }),
+  industry({
+    slug: "mining-materials",
+    title: "Mining Materials",
+    seoTitle: "Mining Materials Automation | Heavy Bag Palletizing Robots",
+    description:
+      "Robot automation for mining materials, mineral powders, ore additives, heavy bags, depalletizing, feeding, and palletizing.",
+    eyebrow: "Industry solution for mining materials",
+    heroTitle: "Mining Materials Robot Automation for Heavy Bags, Powders, and Pallets",
+    heroDescription:
+      "Automate mineral powder bags, ore additives, cartons, and heavy material handling with robust robot cells for depalletizing, feeding, and palletizing.",
+    image: "/images/SCR.jpg",
+    materials: ["mineral powders", "ore additives", "abrasive materials", "processed minerals", "bagged compounds"],
+    packages: ["heavy bags", "woven sacks", "bulk cartons", "palletized materials", "drums"],
+    productionContext:
+      "Mining material processing often includes abrasive products, dusty packaging areas, heavy loads, and warehouse movement that demands stable pallets.",
+    painFocus: [
+      "Abrasive and heavy materials",
+      "Mining material packages can be heavy, dusty, and abrasive. The robot cell must protect tooling, allow cleaning, and give operators safe access while keeping output steady.",
+    ],
+    depalletizingFocus:
+      "Automatic depalletizing supports incoming raw material bags, cartons, or drums that must be unloaded before transfer to processing or blending equipment.",
+    feedingFocus:
+      "Automatic feeding can move bagged mineral materials to hoppers, crushers, mixers, or transfer points without relying on repetitive manual lifting.",
+    palletizingFocus:
+      "Automatic palletizing gives heavy mineral bags or cartons a consistent stack pattern for forklift movement and shipping.",
+    preferredRobots: [
+      {
+        title: "SCH Series heavy-duty robots",
+        href: "/products/sch-series",
+        text: "For heavy bags, cartons, and demanding mining material palletizing.",
+      },
+      {
+        title: "SAR Series long-reach robots",
+        href: "/products/sar-series",
+        text: "For large work cells and depalletizing heavy materials.",
+      },
+      {
+        title: "SCR Series high-payload robot",
+        href: "/products/scr-series",
+        text: "For high-load end-of-line stacking.",
+      },
+    ],
+  }),
+  industry({
+    slug: "refractory-materials",
+    title: "Refractory Materials",
+    seoTitle: "Refractory Materials Automation | Robot Palletizing & Feeding",
+    description:
+      "Robot automation for refractory bags, bricks, mixes, cartons, depalletizing, feeding, and palletizing in high-load material plants.",
+    eyebrow: "Industry solution for refractory materials",
+    heroTitle: "Refractory Materials Robot Automation for Bags, Bricks, Mixes, and Pallets",
+    heroDescription:
+      "Plan robot systems for refractory mixes, bricks, bags, cartons, depalletizing, automatic feeding, and palletizing in dusty, heavy-duty environments.",
+    image: "/images/bejing1%20(3).jpg",
+    materials: ["refractory mixes", "bricks", "castables", "powders", "ceramic raw materials"],
+    packages: ["bags", "cartons", "brick stacks", "bundles", "palletized loads"],
+    productionContext:
+      "Refractory material plants combine heavy product handling, dust, abrasive surfaces, and packaging or curing processes that require careful layout planning.",
+    painFocus: [
+      "Irregular product forms",
+      "Refractory products may include bags, cartons, bricks, and bundles. A single automation discussion must separate what can be vacuum handled, what needs clamping, and what requires a special mechanical gripper.",
+    ],
+    depalletizingFocus:
+      "Automatic depalletizing can unload incoming bricks, bags, cartons, or mixes and deliver them to transfer conveyors or process stations.",
+    feedingFocus:
+      "Automatic feeding moves bags or refractory materials toward mixers, presses, or staging areas while reducing repetitive manual contact.",
+    palletizingFocus:
+      "Automatic palletizing helps create repeatable stacks for refractory bags, cartons, or brick bundles before warehouse movement.",
+    preferredRobots: [
+      {
+        title: "SAR Series long-reach robots",
+        href: "/products/sar-series",
+        text: "For wide cells, heavy handling, and depalletizing applications.",
+      },
+      {
+        title: "SCH Series palletizing robots",
+        href: "/products/sch-series",
+        text: "For bag, carton, and bundle palletizing.",
+      },
+      {
+        title: "ER Series six-axis robots",
+        href: "/products/er-series",
+        text: "For flexible handling where approach angle matters.",
+      },
+    ],
+  }),
+  industry({
+    slug: "cement-products",
+    title: "Cement Products",
+    seoTitle: "Cement Product Automation | Cement Bag Palletizing Robots",
+    description:
+      "Robot automation for cement bags, mortar bags, blocks, cartons, depalletizing, feeding, and palletizing.",
+    eyebrow: "Industry solution for cement products",
+    heroTitle: "Cement Products Robot Automation for Heavy Bags, Blocks, and Pallets",
+    heroDescription:
+      "Automate cement bags, dry mortar bags, blocks, cartons, and pallet flow with heavy-duty robot systems designed for dust, payload, and stable stacking.",
+    image: "/images/bejing1%20(2).jpg",
+    materials: ["cement bags", "dry mortar", "blocks", "tile adhesive", "construction mixes"],
+    packages: ["paper bags", "woven bags", "blocks", "cartons", "palletized stacks"],
+    productionContext:
+      "Cement product plants often combine dusty bagging, heavy packages, warehouse pallets, forklifts, and continuous end-of-line movement.",
+    painFocus: [
+      "Heavy bag repetition",
+      "Cement and mortar bags are heavy and repetitive to stack. Manual palletizing can slow output, create unstable layers, and expose operators to dust and lifting fatigue.",
+    ],
+    depalletizingFocus:
+      "Automatic depalletizing can unload incoming bags, blocks, cartons, or pallets for transfer into production or rework areas.",
+    feedingFocus:
+      "Automatic feeding can move bags or blocks into conveyors, hoppers, or process-side stations while reducing manual lifting around dusty areas.",
+    palletizingFocus:
+      "Automatic palletizing is often the first automation step for cement products because it stabilizes heavy end-of-line stacking and reduces labor pressure.",
+    preferredRobots: [
+      {
+        title: "SCR Series high-payload robot",
+        href: "/products/scr-series",
+        text: "For heavy cement bag palletizing and large stack layouts.",
+      },
+      {
+        title: "SCH Series heavy-duty robots",
+        href: "/products/sch-series",
+        text: "For mortar bags, cartons, and heavy end-of-line handling.",
+      },
+      {
+        title: "SAR Series long-reach robots",
+        href: "/products/sar-series",
+        text: "For wide palletizing and depalletizing layouts.",
+      },
+    ],
+  }),
+  industry({
+    slug: "powder-handling",
+    title: "Powder Handling",
+    seoTitle: "Powder Handling Automation | Bag Feeding & Palletizing Robots",
+    description:
+      "Robot automation for powder bags, sacks, cartons, depalletizing, automatic feeding, bag opening, and palletizing.",
+    eyebrow: "Industry solution for powder handling",
+    heroTitle: "Powder Handling Robot Automation for Bags, Feeding, Depalletizing, and Palletizing",
+    heroDescription:
+      "Use robot automation to move powder bags, sacks, cartons, and packaged materials into feeding, bag opening, transfer, and palletizing workflows.",
+    image: "/images/SCR.jpg",
+    materials: ["powder ingredients", "mineral powder", "chemical powder", "food powder", "additives"],
+    packages: ["powder bags", "sacks", "cartons", "valve bags", "palletized bags"],
+    productionContext:
+      "Powder handling projects often connect receiving pallets, bag opening, feeding, dust control, mixing, packaging, and finished palletizing.",
+    painFocus: [
+      "Dust and bag deformation",
+      "Powder bags can sag, leak dust, or deform during pickup. The robot cell must evaluate bag strength, suction surface, clamping method, dust collection, and discharge accuracy before quotation.",
+    ],
+    depalletizingFocus:
+      "Automatic depalletizing unloads powder bags or cartons and moves them toward feeding, bag opening, or staging equipment.",
+    feedingFocus:
+      "Automatic feeding is central to powder handling because bags must reach hoppers, bag breakers, mixers, or dosing systems reliably.",
+    palletizingFocus:
+      "Automatic palletizing supports finished powder bags or cartons with repeatable stack quality and reduced manual exposure to dust.",
+    preferredRobots: [
+      {
+        title: "SAR Series depalletizing robots",
+        href: "/products/sar-series",
+        text: "For wide powder bag depalletizing and feeding layouts.",
+      },
+      {
+        title: "SCH Series palletizing robots",
+        href: "/products/sch-series",
+        text: "For finished powder bag and carton palletizing.",
+      },
+      {
+        title: "ER Series six-axis robots",
+        href: "/products/er-series",
+        text: "For flexible bag handling and machine-side loading tasks.",
+      },
+    ],
+  }),
 ];
 
 export function getIndustryPage(slug: string) {

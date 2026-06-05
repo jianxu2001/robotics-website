@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { companyProfile, type ProductSeries } from "@/lib/catalog";
+import type { IndustryPage } from "@/lib/industry-pages";
 import { getProductModelsBySeries, type ProductModel } from "@/lib/product-models";
 
 export const siteUrl = "https://www.scr-robot.com";
@@ -155,6 +156,26 @@ export function getProductModelStructuredData(model: ProductModel) {
       description: getProductModelMetaDescription(model),
       image: absoluteUrl(model.image),
     }),
+  ];
+}
+
+export function getIndustryPageStructuredData(page: IndustryPage) {
+  const pageUrl = absoluteUrl(`/industries/${page.slug}`);
+
+  return [
+    getOrganizationJsonLd(),
+    getBreadcrumbJsonLd(pageUrl, [
+      { name: "Home", url: siteUrl },
+      { name: "Industries", url: absoluteUrl("/industries") },
+      { name: page.title, url: pageUrl },
+    ]),
+    getWebPageJsonLd({
+      url: pageUrl,
+      name: page.seoTitle,
+      description: page.description,
+      image: absoluteUrl(page.image),
+    }),
+    getFaqJsonLd(page.faq),
   ];
 }
 

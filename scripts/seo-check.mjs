@@ -58,6 +58,20 @@ function jsonLdScripts(html) {
   );
 }
 
+function visibleText(html) {
+  return html
+    .replace(/<script\b[^>]*>.*?<\/script>/gs, " ")
+    .replace(/<style\b[^>]*>.*?<\/style>/gs, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;|&#x27;|&quot;|&amp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function wordCount(text) {
+  return text.match(/[A-Za-z]+(?:[-'][A-Za-z]+)*/g)?.length ?? 0;
+}
+
 check("robots.txt is generated and points to the sitemap", () => {
   const robots = readGeneratedBody("robots.txt");
   assert(robots.includes("User-Agent: *"), "robots.txt must target all crawlers");
@@ -204,6 +218,47 @@ check("robot series pages use non-Product structured data", () => {
     assert(types.includes("ItemList"), `${route} missing model ItemList JSON-LD`);
     assert(types.includes("BreadcrumbList"), `${route} missing BreadcrumbList JSON-LD`);
     assert(types.includes("Organization"), `${route} missing Organization JSON-LD`);
+  }
+});
+
+check("new industry solution pages are long-form static SEO pages", () => {
+  const requiredIndustryPages = [
+    ["plastic-manufacturing", "Plastic Manufacturing"],
+    ["chemical-processing", "Chemical Processing"],
+    ["building-materials", "Building Materials"],
+    ["food-ingredients", "Food Ingredients"],
+    ["animal-feed", "Animal Feed"],
+    ["fertilizer-production", "Fertilizer Production"],
+    ["mining-materials", "Mining Materials"],
+    ["refractory-materials", "Refractory Materials"],
+    ["cement-products", "Cement Products"],
+    ["powder-handling", "Powder Handling"],
+  ];
+
+  for (const [slug, title] of requiredIndustryPages) {
+    const route = `/industries/${slug}`;
+    const html = readGeneratedHtml(route);
+    const text = visibleText(html);
+    const scripts = jsonLdScripts(html);
+    const types = scripts.map((script) => script["@type"]);
+
+    assert(html.includes(`<h1`), `${route} must include an H1`);
+    assert(text.includes(title), `${route} must include the industry name`);
+    assert(text.includes("Industry pain points"), `${route} missing pain point section`);
+    assert(text.includes("Automatic depalletizing solution"), `${route} missing depalletizing section`);
+    assert(text.includes("Automatic feeding solution"), `${route} missing feeding section`);
+    assert(text.includes("Automatic palletizing solution"), `${route} missing palletizing section`);
+    assert(text.includes("FAQ"), `${route} missing FAQ section`);
+    assert(text.includes("Request Engineering Review"), `${route} missing CTA`);
+    assert(wordCount(text) >= 1500, `${route} must contain at least 1500 English words`);
+    assert(html.includes(`<loc>${expectedHost}${route}</loc>`) || readGeneratedBody("sitemap.xml").includes(`<loc>${expectedHost}${route}</loc>`), `${route} missing from sitemap`);
+    assert(html.includes('href="/products/') || html.includes('href="/products"'), `${route} missing product internal links`);
+    assert(html.includes('href="/contact"'), `${route} missing contact internal link`);
+    assert(types.includes("Organization"), `${route} missing Organization JSON-LD`);
+    assert(types.includes("BreadcrumbList"), `${route} missing BreadcrumbList JSON-LD`);
+    assert(types.includes("WebPage"), `${route} missing WebPage JSON-LD`);
+    assert(types.includes("FAQPage"), `${route} missing FAQPage JSON-LD`);
+    assert(canonicalFor(html) === `${expectedHost}${route}`, `${route} canonical must match route`);
   }
 });
 
