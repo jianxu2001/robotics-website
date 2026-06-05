@@ -17,8 +17,6 @@ const pairedRoutes = [
 
 function pairedEntry(
   url: string,
-  englishPath: string,
-  chinesePath: string,
   priority: number,
 ): MetadataRoute.Sitemap[number] {
   return {
@@ -26,13 +24,6 @@ function pairedEntry(
     lastModified,
     changeFrequency: "monthly",
     priority,
-    alternates: {
-      languages: {
-        en: absoluteUrl(englishPath),
-        "zh-CN": absoluteUrl(chinesePath),
-        "x-default": absoluteUrl(englishPath),
-      },
-    },
   };
 }
 
@@ -50,8 +41,8 @@ function canonicalEntry(
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries = pairedRoutes.flatMap((route) => [
-    pairedEntry(route.en, route.en, route.zh, route.priority),
-    pairedEntry(route.zh, route.en, route.zh, route.priority),
+    pairedEntry(route.en, route.priority),
+    pairedEntry(route.zh, route.priority),
   ]);
 
   const industryEntries = industryPages.map((page) =>
@@ -63,8 +54,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const chinesePath = `/zh/products/${series.slug}`;
 
     return [
-      pairedEntry(englishPath, englishPath, chinesePath, 0.86),
-      pairedEntry(chinesePath, englishPath, chinesePath, 0.82),
+      pairedEntry(englishPath, 0.86),
+      pairedEntry(chinesePath, 0.82),
     ];
   });
 

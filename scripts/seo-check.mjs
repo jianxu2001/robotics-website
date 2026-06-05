@@ -75,10 +75,12 @@ check("sitemap.xml includes English, Chinese, product, and model URLs", () => {
     "sitemap must start with an XML declaration",
   );
   assert(
-    /<urlset\b[^>]*xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9"/.test(
-      sitemap,
-    ),
-    "sitemap must use the standard sitemap urlset namespace",
+    sitemap.includes('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'),
+    "sitemap must use the standard sitemap urlset namespace without extra sitemap-level namespaces",
+  );
+  assert(
+    !sitemap.includes("xmlns:xhtml") && !sitemap.includes("<xhtml:link"),
+    "sitemap must avoid xhtml alternate links for Google Search Console compatibility",
   );
 
   const urlBlocks = sitemapUrlBlocks(sitemap);
@@ -108,10 +110,6 @@ check("sitemap.xml includes English, Chinese, product, and model URLs", () => {
   ]) {
     assert(sitemap.includes(`<loc>${url}</loc>`), `sitemap missing ${url}`);
   }
-  assert(
-    sitemap.includes('hreflang="zh-CN"') && sitemap.includes('hreflang="en"'),
-    "sitemap must include localized alternates",
-  );
 });
 
 check("product pages have canonical URLs", () => {
