@@ -4,6 +4,7 @@ import path from "node:path";
 const root = process.cwd();
 const appOutput = path.join(root, ".next", "server", "app");
 const expectedHost = "https://www.scr-robot.com";
+const unifiedProductDataFile = path.join(root, "lib", "product-data.ts");
 
 const checks = [];
 
@@ -176,25 +177,58 @@ check("paired English and Chinese pages have hreflang links", () => {
   }
 });
 
-check("product model pages use non-Product structured data with FAQ", () => {
-  const html = readGeneratedHtml("/products/ecr-series/ecr8-1200");
-  const scripts = jsonLdScripts(html);
-  const product = scripts.find((script) => script["@type"] === "Product");
-  const webPage = scripts.find((script) => script["@type"] === "WebPage");
-  const breadcrumb = scripts.find((script) => script["@type"] === "BreadcrumbList");
-  const organization = scripts.find((script) => script["@type"] === "Organization");
-  const faq = scripts.find((script) => script["@type"] === "FAQPage");
+check("all product model pages have TDK, specs, Product schema, and sitemap entries", () => {
+  assert(
+    fs.existsSync(unifiedProductDataFile),
+    "unified product data file must exist at lib/product-data.ts",
+  );
 
-  assert(!product, "model page must not include Product JSON-LD");
-  assert(webPage, "model page missing WebPage JSON-LD");
-  assert(webPage.name.includes("ECR8-1200"), "WebPage JSON-LD must use model name");
-  assert(webPage.url === `${expectedHost}/products/ecr-series/ecr8-1200`, "WebPage URL must be canonical");
-  assert(breadcrumb, "model page missing BreadcrumbList JSON-LD");
-  assert(organization, "model page missing Organization JSON-LD");
+  const sitemap = readGeneratedBody("sitemap.xml");
+  const modelRoutes = sitemapUrlBlocks(sitemap)
+    .map((block) => tagValue(block, "loc"))
+    .filter((loc) => loc?.startsWith(`${expectedHost}/products/`))
+    .map((loc) => loc.replace(expectedHost, ""))
+    .filter((route) => route.split("/").filter(Boolean).length === 3);
 
-  assert(faq, "model page missing FAQ JSON-LD");
-  assert(Array.isArray(faq.mainEntity), "FAQ JSON-LD must include questions");
-  assert(faq.mainEntity.length >= 4, "FAQ JSON-LD must include the visible FAQs");
+  assert(
+    modelRoutes.length >= 30,
+    `expected at least 30 product model URLs in sitemap, found ${modelRoutes.length}`,
+  );
+
+  for (const route of modelRoutes) {
+    const html = readGeneratedHtml(route);
+    const text = visibleText(html);
+    const scripts = jsonLdScripts(html);
+    const product = scripts.find((script) => script["@type"] === "Product");
+    const webPage = scripts.find((script) => script["@type"] === "WebPage");
+    const breadcrumb = scripts.find((script) => script["@type"] === "BreadcrumbList");
+    const organization = scripts.find((script) => script["@type"] === "Organization");
+    const faq = scripts.find((script) => script["@type"] === "FAQPage");
+
+    assert(canonicalFor(html) === `${expectedHost}${route}`, `${route} canonical must match route`);
+    assert(html.includes("<title>"), `${route} must include a title tag`);
+    assert(text.includes("Robot Parameters"), `${route} must include the parameter table`);
+    assert(text.includes("Joint Parameters"), `${route} must include the joint parameter table`);
+    assert(product, `${route} must include Product JSON-LD`);
+    assert(product.name, `${route} Product JSON-LD must include name`);
+    assert(product.url === `${expectedHost}${route}`, `${route} Product JSON-LD URL must be canonical`);
+    assert(product.brand?.name, `${route} Product JSON-LD must include brand`);
+    assert(product.model, `${route} Product JSON-LD must include model`);
+    assert(
+      product.additionalProperty?.some((property) => property.name === "Payload"),
+      `${route} Product JSON-LD must include payload property`,
+    );
+    assert(
+      product.additionalProperty?.some((property) => property.name === "Reach"),
+      `${route} Product JSON-LD must include reach property`,
+    );
+    assert(webPage, `${route} missing WebPage JSON-LD`);
+    assert(breadcrumb, `${route} missing BreadcrumbList JSON-LD`);
+    assert(organization, `${route} missing Organization JSON-LD`);
+    assert(faq, `${route} missing FAQ JSON-LD`);
+    assert(Array.isArray(faq.mainEntity), `${route} FAQ JSON-LD must include questions`);
+    assert(faq.mainEntity.length >= 4, `${route} FAQ JSON-LD must include the visible FAQs`);
+  }
 });
 
 check("robot series pages use non-Product structured data", () => {

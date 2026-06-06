@@ -15,9 +15,9 @@ type CaseStudyCardProps = {
 export function CaseStudyCard({
   study,
   labels = {
-    challenge: "Typical challenge",
-    solution: "Solution concept",
-    outcomes: "Buyer value",
+    challenge: "The Challenge",
+    solution: "The Solution",
+    outcomes: "The Results",
     series: "Recommended series",
     inquiryData: "Data to send",
   },

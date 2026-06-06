@@ -11,7 +11,7 @@ import {
   productGroups,
   productSeries,
 } from "@/lib/catalog";
-import { getProductModelsBySeries } from "@/lib/product-models";
+import { getProductModelsBySeries } from "@/lib/product-data";
 import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {

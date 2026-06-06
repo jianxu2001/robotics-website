@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { industryPages } from "@/lib/industry-pages";
 import { productSeries } from "@/lib/catalog";
-import { productModels } from "@/lib/product-models";
+import { productModels } from "@/lib/product-data";
 import { absoluteUrl } from "@/lib/seo";
 
 const lastModified = "2026-06-05T00:00:00.000Z";
@@ -9,6 +9,16 @@ const lastModified = "2026-06-05T00:00:00.000Z";
 const pairedRoutes = [
   { en: "/", zh: "/zh", priority: 1 },
   { en: "/products", zh: "/zh/products", priority: 0.95 },
+  {
+    en: "/products/sch-heavy-duty-palletizing-robots",
+    zh: "/zh/products/sch-series",
+    priority: 0.88,
+  },
+  {
+    en: "/products/desktop-robots",
+    zh: "/zh/products/sch-series",
+    priority: 0.84,
+  },
   { en: "/industries", zh: "/zh/industries", priority: 0.85 },
   { en: "/case-studies", zh: "/zh/case-studies", priority: 0.75 },
   { en: "/about", zh: "/zh/about", priority: 0.7 },

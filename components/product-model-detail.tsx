@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/section-heading";
 import {
   productModelEnvironment,
   type ProductModel,
-} from "@/lib/product-models";
+} from "@/lib/product-data";
 import { getProductModelFaqs } from "@/lib/seo";
 
 type ProductModelDetailProps = {

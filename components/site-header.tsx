@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { CtaLink } from "@/components/cta-link";
 import { ProductMegaMenu } from "@/components/product-mega-menu";
@@ -40,8 +41,15 @@ export function SiteHeader({
           href={isZh ? "/zh" : "/"}
           className="group flex min-w-0 items-center gap-3"
         >
-          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md border border-[#f5b41b]/50 bg-[#f5b41b] text-sm font-black text-black">
-            SCR
+          <span className="flex h-10 w-[6.5rem] shrink-0 items-center rounded-md border border-white/16 bg-white px-2 shadow-sm">
+            <Image
+              src="/images/scr-logo-wordmark.png"
+              alt="SCR Robot logo"
+              width={104}
+              height={28}
+              priority
+              className="h-auto w-full"
+            />
           </span>
           <span className="min-w-0">
             <span className="block truncate text-sm font-bold uppercase tracking-[0.12em] text-white sm:tracking-[0.16em]">

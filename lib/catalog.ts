@@ -136,7 +136,7 @@ export const productGroups: ProductGroup[] = [
       {
         name: "SCH-AE Series",
         description: "Compact SCH-AE models for desktop-class handling, small fixtures, and limited-space automation cells.",
-        href: "/products/sch-series",
+        href: "/products/desktop-robots",
       },
     ],
   },

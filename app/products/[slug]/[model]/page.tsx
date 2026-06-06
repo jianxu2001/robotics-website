@@ -6,7 +6,7 @@ import {
   getProductModel,
   getProductModelSeoKeywords,
   productModels,
-} from "@/lib/product-models";
+} from "@/lib/product-data";
 import {
   canonicalAlternates,
   getFaqJsonLd,

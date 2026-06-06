@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { companyProfile, type ProductSeries } from "@/lib/catalog";
 import type { IndustryPage } from "@/lib/industry-pages";
-import { getProductModelsBySeries, type ProductModel } from "@/lib/product-models";
+import { getProductModelsBySeries, type ProductModel } from "@/lib/product-data";
 
 export const siteUrl = "https://www.scr-robot.com";
 
@@ -142,7 +142,7 @@ export function getProductModelStructuredData(model: ProductModel) {
   const modelUrl = absoluteUrl(`/products/${model.seriesSlug}/${model.slug}`);
   const seriesUrl = absoluteUrl(`/products/${model.seriesSlug}`);
 
-  return [
+  const structuredData: unknown[] = [
     getOrganizationJsonLd(),
     getBreadcrumbJsonLd(modelUrl, [
       { name: "Home", url: siteUrl },
@@ -156,7 +156,64 @@ export function getProductModelStructuredData(model: ProductModel) {
       description: getProductModelMetaDescription(model),
       image: absoluteUrl(model.image),
     }),
+    getProductModelJsonLd(model, modelUrl),
   ];
+
+  return structuredData;
+}
+
+function getProductModelJsonLd(model: ProductModel, modelUrl: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": `${modelUrl}#product`,
+    name: `${model.name} ${model.category}`,
+    brand: {
+      "@type": "Brand",
+      name: companyProfile.shortName,
+    },
+    manufacturer: {
+      "@id": `${siteUrl}/#organization`,
+    },
+    sku: model.name,
+    model: model.name,
+    description: getProductModelMetaDescription(model),
+    category: `Industrial Robot / ${model.category}`,
+    url: modelUrl,
+    image: absoluteUrl(model.image),
+    additionalProperty: [
+      {
+        "@type": "PropertyValue",
+        name: "Payload",
+        value: model.payload,
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Reach",
+        value: model.reach,
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Axis Configuration",
+        value: `${model.axes}-axis`,
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Repeatability",
+        value: model.repeatability,
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Body Weight",
+        value: model.bodyWeight,
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Power Capacity",
+        value: model.power,
+      },
+    ],
+  };
 }
 
 export function getIndustryPageStructuredData(page: IndustryPage) {
@@ -179,11 +236,49 @@ export function getIndustryPageStructuredData(page: IndustryPage) {
   ];
 }
 
+const productSeriesMetadataOverrides: Record<
+  string,
+  { title: string; description: string }
+> = {
+  "ecr-series": {
+    title: "ECR Light-Duty Palletizing Robots | SCR Robot",
+    description:
+      "Mini 4-axis handling robots for light-duty palletizing, 8-100 kg payloads and up to 2050 mm reach for compact automation. Get Quote.",
+  },
+  "sar-series": {
+    title: "SAR Long-Reach Transfer Robots | SCR Robot",
+    description:
+      "Long-reach industrial transfer robots for wide work areas, 12-800 kg payloads and up to 3500 mm reach. Request Proposal.",
+  },
+  "sch-series": {
+    title: "SCH Heavy-Duty Palletizing Robots | SCR Robot",
+    description:
+      "Heavy-duty palletizing and high payload depalletizer robots, 3-800 kg payloads and up to 3200 mm reach. Request Proposal.",
+  },
+  "scr-series": {
+    title: "SCR High-Payload Palletizing Systems | SCR Robot",
+    description:
+      "High-capacity palletizing for large cartons and bags, 180 kg payload and 3200 mm reach end-of-line systems. Get Quote.",
+  },
+};
+
 export function getProductSeriesMetaTitle(series: ProductSeries) {
+  const override = productSeriesMetadataOverrides[series.slug];
+
+  if (override) {
+    return override.title;
+  }
+
   return `${series.series} Robots | ${series.payloadRange} Payload | SCR Robot`;
 }
 
 export function getProductSeriesMetaDescription(series: ProductSeries) {
+  const override = productSeriesMetadataOverrides[series.slug];
+
+  if (override) {
+    return override.description;
+  }
+
   return `Review ${series.series} robot specs, payload ${series.payloadRange}, reach ${series.reachRange}, applications, and model data for factory automation projects.`;
 }
 

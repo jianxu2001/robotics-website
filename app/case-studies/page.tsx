@@ -9,9 +9,9 @@ import { whatsappUrl } from "@/lib/contact";
 import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Robot Automation Case Concepts | SCR Robot",
+  title: "Robot Automation Case Studies | SCR Robot",
   description:
-    "Review robot automation concepts for bag palletizing, carton palletizing, press transfer, machine tending, and 3D vision bag feeding.",
+    "Review SCR Robot case studies for 3D vision bag breaking, chemical factory palletizing, carton handling, stamping automation, and machine tending.",
   alternates: localizedAlternates(
     "/case-studies",
     "/case-studies",
@@ -36,8 +36,8 @@ export default function CaseStudiesPage() {
           <div className="relative section-shell pb-14">
             <SectionHeading
               eyebrow="Representative cases"
-              title="Robot cell concepts for real palletizing, tending, and transfer projects."
-              description="Use these scenarios to see how product data, payload, tooling, conveyors, safety, and cycle time shape a usable automation proposal."
+              title="Robot automation case studies for palletizing, tending, and transfer projects."
+              description="Use these scenarios to see how product data, payload, tooling, conveyors, safety, and cycle time shape a usable automation proposal for engineering and purchasing review."
               level={1}
             />
             <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">

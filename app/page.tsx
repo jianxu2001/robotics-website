@@ -17,9 +17,9 @@ import { whatsappUrl } from "@/lib/contact";
 import { absoluteUrl, localizedAlternates, serializeJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "SCR Robot | Palletizing Robots & Factory Automation",
+  title: "Factory Automation & Industrial Robots | SCR Robot",
   description:
-    "SCR Robot builds palletizing robots, depalletizing systems, stamping automation, machine tending cells, and conveyor automation for overseas factories.",
+    "Full-range robot system integration for palletizing, tending and transfer, 3-800 kg payloads and 200-3500 mm reach. Request Proposal.",
   alternates: localizedAlternates("/", "/", "/zh"),
 };
 

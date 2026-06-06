@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { SpecTable } from "@/components/spec-table";
 import { productSeries } from "@/lib/catalog";
-import { getProductModelsBySeries } from "@/lib/product-models";
+import { getProductModelsBySeries } from "@/lib/product-data";
 import {
   getProductSeriesMetaDescription,
   getProductSeriesMetaTitle,
