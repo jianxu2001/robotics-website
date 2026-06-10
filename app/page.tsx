@@ -17,9 +17,9 @@ import { whatsappUrl } from "@/lib/contact";
 import { absoluteUrl, localizedAlternates, serializeJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Factory Automation & Industrial Robots | SCR Robot",
+  title: "Robotic Palletizing, Depalletizing & Bag Feeding Systems | SCR Robot",
   description:
-    "Full-range robot system integration for palletizing, tending and transfer, 3-800 kg payloads and 200-3500 mm reach. Request Proposal.",
+    "SCR Robot builds turnkey automation cells for 20–50 kg bags, cartons, powder materials, and end-of-line palletizing. Send your product photo for a practical robot proposal.",
   alternates: localizedAlternates("/", "/", "/zh"),
 };
 
@@ -31,10 +31,10 @@ const stats = [
 ];
 
 const trustPoints = [
-  "Industrial robot manufacturing, equipment service, sales, and turnkey automation in one team.",
-  "Engineering coverage across mechanical design, electrical controls, software, vision, and integration.",
-  "Portfolio spans four-axis palletizing robots, six-axis robots, stamping transfer systems, and conveyor automation.",
-  "Overseas buyer support with technical proposals, documentation, remote communication, and project-based customization.",
+  "Founded in 2017 with a 6,000 m² engineering and manufacturing base in Guangzhou — robot manufacturing and system integration under one roof.",
+  "Custom grippers, conveyors, PLC/HMI programming, safety guarding, and non-standard tooling designed and built in-house.",
+  "Multidisciplinary engineering team covering mechanical design, electrical controls, software, vision, and factory integration.",
+  "Remote technical support for overseas buyers: English proposals, documentation, video review, and project-based commissioning planning.",
 ];
 
 const projectWorkflow = [
@@ -130,16 +130,16 @@ export default function Home() {
                 Intelligent factory solutions from South China Robotics
               </p>
               <h1 className="max-w-5xl text-4xl font-semibold leading-[1.05] text-white md:text-6xl lg:text-7xl">
-                Palletizing robots and automation cells for factory production lines.
+                Robotic Palletizing, Depalletizing &amp; Bag Feeding Systems for Heavy Factory Work
               </h1>
               <p className="mt-7 max-w-3xl text-lg leading-8 text-white/72 md:text-xl">
-                {companyProfile.name} builds robotic palletizing, depalletizing,
-                stamping, forging, machine tending, 3D vision bag breaking, and
-                conveyor automation cells for overseas manufacturers that need
-                practical proposals, payload checks, and integration support.
+                SCR Robot builds turnkey automation cells for 20–50 kg bags, cartons,
+                powder materials, chemical plants, plastic factories, building materials,
+                and end-of-line palletizing lines. Send your product photo and layout to
+                get a practical robot proposal.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <CtaLink href="/contact">Request Project Proposal</CtaLink>
+                <CtaLink href="/contact">Send Product Photos for Robot Selection</CtaLink>
                 <CtaLink href="/products" variant="secondary">
                   Compare Robot Series
                 </CtaLink>
@@ -157,6 +157,46 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Send Your Product Photos and Layout */}
+        <section className="border-y border-white/10 bg-[#0f1318]">
+          <div className="section-shell text-center">
+            <SectionHeading
+              eyebrow="Start with your product"
+              title="Send Your Product Photos and Layout"
+              description="Our engineering team maps the right robot, gripper, conveyor, and cell layout to your production data."
+              align="center"
+            />
+            <div className="mt-10 grid gap-5 md:grid-cols-3">
+              {[
+                {
+                  title: "Not sure which model?",
+                  description:
+                    "Share your product photos, bag or carton size, unit weight, and target throughput. We will narrow the robot family and payload for you.",
+                },
+                {
+                  title: "Engineering recommendation",
+                  description:
+                    "After reviewing your data, our team proposes a practical palletizing, depalletizing, bag feeding, or powder handling solution matched to your line.",
+                },
+                {
+                  title: "No commitment needed",
+                  description:
+                    "The first engineering review is technical guidance. You get a clear proposal direction before any purchase decision.",
+                },
+              ].map((item) => (
+                <div key={item.title} className="steel-panel p-6 text-left">
+                  <div className="mb-4 h-1 w-12 bg-[#f5b41b]" />
+                  <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                  <p className="mt-3 leading-7 text-white/62">{item.description}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-10">
+              <CtaLink href="/contact">Request Engineering Review</CtaLink>
             </div>
           </div>
         </section>
@@ -329,6 +369,60 @@ export default function Home() {
                 <p className="mt-4 leading-7 text-white/58">
                   {solution.description}
                 </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Watch the Robot in Action */}
+        <section className="section-shell">
+          <SectionHeading
+            eyebrow="See the robots"
+            title="Watch the Robot in Action"
+            description="Representative applications from the SCR Robot catalog. Request a video walkthrough or a layout review for your specific product and line."
+            align="center"
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                title: "Bag Depalletizing and Feeding",
+                image: "/images/bejing1%20(1).jpg",
+                description:
+                  "Robot depalletizing cells that pick bags from inbound pallets and feed them into downstream conveyors, hoppers, or processing stations.",
+              },
+              {
+                title: "Robotic Bag Palletizing",
+                image: "/images/bejing1%20(2).jpg",
+                description:
+                  "End-of-line palletizing systems that stack filled bags, cartons, or boxes onto pallets with configured patterns and layer heights.",
+              },
+              {
+                title: "Automatic Bag Breaking System",
+                image: "/images/bejing1%20(3).jpg",
+                description:
+                  "Integrated bag breaking and powder feeding stations with 3D vision guidance, dust control, and automated empty-bag handling.",
+              },
+            ].map((card) => (
+              <div key={card.title} className="group overflow-hidden rounded-lg border border-white/10 bg-[#0d1116]">
+                <div className="relative h-56 overflow-hidden">
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d1116] via-transparent to-transparent" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-white">{card.title}</h3>
+                  <p className="mt-3 leading-7 text-white/62">{card.description}</p>
+                  <div className="mt-5">
+                    <CtaLink href="/contact" variant="secondary">
+                      Request Video or Layout Review
+                    </CtaLink>
+                  </div>
+                </div>
               </div>
             ))}
           </div>

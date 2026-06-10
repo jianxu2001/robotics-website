@@ -9,19 +9,19 @@ import { productGroups, productInquiryOptions } from "@/lib/catalog";
 import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Contact SCR Robot | Request a Robot Automation Quote",
+  title: "Contact SCR Robot | Send Product Photo for Robot Recommendation",
   description:
-    "Send product photos, payload, throughput, pallet pattern, layout, and destination country to request an SCR Robot automation proposal.",
+    "Not sure which robot model fits your line? Send product photos, bag/carton size, weight, throughput, and layout. Our engineering team will recommend a practical solution.",
   alternates: localizedAlternates("/contact", "/contact", "/zh/contact"),
 };
 
 const quoteChecklist = [
-  "Product dimensions, unit weight, and packaging type",
-  "Target throughput, cycle time, and shift schedule",
-  "Robot payload, reach, and preferred product series if known",
-  "Pallet size, stack height, and pallet pattern",
-  "Factory layout, infeed/outfeed direction, and available floor area",
-  "Destination country, safety requirements, and installation timeline",
+  "Product photos or short video showing your current line and the product to handle",
+  "Bag or carton size, unit weight, and packaging type",
+  "Required bags or cartons per hour (target throughput and shift schedule)",
+  "Pallet size, pallet pattern, and maximum stack height",
+  "Existing line layout with infeed/outfeed direction and available floor area",
+  "Destination country, voltage requirements, and project timeline",
 ];
 
 const applicationOptions = [
@@ -42,7 +42,7 @@ export default function ContactPage() {
           <SectionHeading
             eyebrow="Contact sales engineering"
             title="Request a robot automation quote with your project data."
-            description="Tell us your product, payload, reach, cycle time, pallet pattern, layout, and destination country so engineering can recommend a robot series and cell scope."
+            description="Not sure about the robot model? Send your product photo first and our engineering team will recommend a practical solution. Tell us your product, payload, reach, cycle time, pallet pattern, layout, and destination country."
             level={1}
           />
         </section>
@@ -52,15 +52,15 @@ export default function ContactPage() {
             <div className="grid gap-5">
               <IndustrialCard className="p-6">
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f5b41b]">
-                  Direct inquiry
+                  Not sure about the robot model?
                 </p>
                 <h2 className="mt-4 text-2xl font-semibold text-white">
-                  Send photos, dimensions, throughput, and layout notes.
+                  Send your product photo first. Our engineering team will recommend a practical solution.
                 </h2>
                 <p className="mt-4 leading-7 text-white/62">
-                  The more technical information you provide, the faster the team
-                  can recommend a robot family, tooling concept, conveyor layout,
-                  and budgetary direction for your line.
+                  You do not need to know which robot series fits your line. Share product photos,
+                  bag or carton dimensions, unit weight, target throughput, and factory layout.
+                  We will map the right robot, gripper, conveyor, and cell layout for your production.
                 </p>
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                   <CtaLink href={`mailto:${salesEmail}?subject=Industrial%20Robot%20Project%20Inquiry`}>
@@ -102,9 +102,9 @@ export default function ContactPage() {
         <section className="border-t border-white/10 bg-[#0f1318]">
           <div className="section-shell">
             <SectionHeading
-              eyebrow="Quotation checklist"
-              title="Information that helps engineering respond faster."
-              description="For robot automation, the best quotation starts with product photos, dimensions, weight, output target, pallet data, and factory layout."
+              eyebrow="What to send for faster quotation"
+              title="Send these details and get a practical robot recommendation sooner."
+              description="For robot automation, the best quotation starts with product photos, dimensions, weight, output target, pallet data, and factory layout. The more data you share, the more specific the proposal."
             />
             <div className="mt-10 grid gap-3 md:grid-cols-2">
               {quoteChecklist.map((item) => (
