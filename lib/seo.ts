@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { companyProfile, type ProductSeries } from "@/lib/catalog";
 import type { IndustryPage } from "@/lib/industry-pages";
 import { getProductModelsBySeries, type ProductModel } from "@/lib/product-data";
+import type { SolutionPage } from "@/lib/solution-pages";
 
 export const siteUrl = "https://www.scr-robot.com";
 
@@ -224,6 +225,26 @@ export function getIndustryPageStructuredData(page: IndustryPage) {
     getBreadcrumbJsonLd(pageUrl, [
       { name: "Home", url: siteUrl },
       { name: "Industries", url: absoluteUrl("/industries") },
+      { name: page.title, url: pageUrl },
+    ]),
+    getWebPageJsonLd({
+      url: pageUrl,
+      name: page.seoTitle,
+      description: page.description,
+      image: absoluteUrl(page.image),
+    }),
+    getFaqJsonLd(page.faq),
+  ];
+}
+
+export function getSolutionPageStructuredData(page: SolutionPage) {
+  const pageUrl = absoluteUrl(`/solutions/${page.slug}`);
+
+  return [
+    getOrganizationJsonLd(),
+    getBreadcrumbJsonLd(pageUrl, [
+      { name: "Home", url: siteUrl },
+      { name: "Solutions", url: absoluteUrl("/solutions") },
       { name: page.title, url: pageUrl },
     ]),
     getWebPageJsonLd({
