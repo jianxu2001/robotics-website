@@ -201,6 +201,58 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Core Automation Solutions */}
+        <section className="section-shell">
+          <SectionHeading
+            eyebrow="Core automation solutions"
+            title="Core Automation Solutions"
+            description="Explore practical robot automation systems for heavy bags, powder materials, and end-of-line palletizing. Send your product photos and layout for an engineering review."
+            align="center"
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                title: "Bag Depalletizing Robot System",
+                description:
+                  "Automate unloading and feeding of 20–50 kg bags from pallets to conveyors, hoppers, mixers, or downstream equipment.",
+                href: "/solutions/bag-depalletizing-system",
+              },
+              {
+                title: "Automatic Bag Breaking and Feeding System",
+                description:
+                  "Reduce manual bag cutting, dust exposure, and unstable powder feeding with a project-based bag opening and discharge system.",
+                href: "/solutions/automatic-bag-breaking-feeding-system",
+              },
+              {
+                title: "Robotic Bag Palletizing System",
+                description:
+                  "Automate end-of-line stacking for 20–50 kg bags with robot arms, custom grippers, conveyors, and pallet pattern programs.",
+                href: "/solutions/robotic-bag-palletizing-system",
+              },
+            ].map((card) => (
+              <Link
+                key={card.title}
+                href={card.href}
+                className="group rounded-lg border border-white/10 bg-[#0d1116] p-6 transition hover:border-[#f5b41b]/50 hover:bg-white/[0.055]"
+              >
+                <div className="mb-4 h-1 w-12 bg-[#f5b41b]" />
+                <h3 className="text-xl font-semibold text-white transition-colors group-hover:text-[#f5b41b]">
+                  {card.title}
+                </h3>
+                <p className="mt-3 leading-7 text-white/62">{card.description}</p>
+                <div className="mt-5">
+                  <span className="text-sm font-bold uppercase tracking-[0.08em] text-[#f5b41b]">
+                    View Solution →
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <CtaLink href="/contact">Request Engineering Review</CtaLink>
+          </div>
+        </section>
+
         <section id="products" className="section-shell">
           <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
             <SectionHeading
