@@ -83,6 +83,7 @@ export function HomepageHeroMedia() {
           alt=""
           fill
           preload={index === 0}
+          quality={60}
           sizes="100vw"
           className={`homepage-hero-slide ${
             index === displayedActiveIndex
