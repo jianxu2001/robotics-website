@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
+import { DeferredPromoVideo } from "@/components/deferred-promo-video";
 import { HomepageHeroMedia } from "@/components/homepage-hero-media";
 import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
@@ -425,52 +426,21 @@ export default function Home() {
           <SectionHeading
             eyebrow="See the robots"
             title="Watch the Robot in Action"
-            description="Representative applications from the SCR Robot catalog. Request a video walkthrough or a layout review for your specific product and line."
+            description="Watch a 60-second bilingual overview of SCR Robot powder handling, depalletizing, feeding, and palletizing capabilities."
             align="center"
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                title: "Bag Depalletizing and Feeding",
-                image: "/images/bejing1%20(1).jpg",
-                description:
-                  "Robot depalletizing cells that pick bags from inbound pallets and feed them into downstream conveyors, hoppers, or processing stations.",
-              },
-              {
-                title: "Robotic Bag Palletizing",
-                image: "/images/bejing1%20(2).jpg",
-                description:
-                  "End-of-line palletizing systems that stack filled bags, cartons, or boxes onto pallets with configured patterns and layer heights.",
-              },
-              {
-                title: "Automatic Bag Breaking System",
-                image: "/images/bejing1%20(3).jpg",
-                description:
-                  "Integrated bag breaking and powder feeding stations with 3D vision guidance, dust control, and automated empty-bag handling.",
-              },
-            ].map((card) => (
-              <div key={card.title} className="group overflow-hidden rounded-lg border border-white/10 bg-[#0d1116]">
-                <div className="relative h-56 overflow-hidden">
-                  <Image
-                    src={card.image}
-                    alt={card.title}
-                    fill
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    className="object-cover transition duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d1116] via-transparent to-transparent" />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-white">{card.title}</h3>
-                  <p className="mt-3 leading-7 text-white/62">{card.description}</p>
-                  <div className="mt-5">
-                    <CtaLink href="/contact" variant="secondary">
-                      Request Video or Layout Review
-                    </CtaLink>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="mx-auto mt-12 max-w-5xl overflow-hidden rounded-lg border border-white/10 bg-[#0d1116]">
+            <DeferredPromoVideo />
+            <div className="grid gap-6 p-6 md:grid-cols-[1fr_auto] md:items-center">
+              <p className="leading-7 text-white/62">
+                See how SCR combines robotics, 3D vision, custom tooling,
+                conveyors, guarding, and PLC control into a complete powder
+                handling automation cell.
+              </p>
+              <CtaLink href="/contact" variant="secondary">
+                Request a Layout Review
+              </CtaLink>
+            </div>
           </div>
         </section>
 
