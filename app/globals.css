@@ -74,6 +74,28 @@ html {
   opacity: 0.78;
 }
 
+.homepage-hero-slide {
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  transition:
+    opacity 1.5s ease,
+    transform 5.5s ease;
+  will-change: opacity, transform;
+}
+
+.homepage-hero-slide-active {
+  opacity: 0.48;
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .homepage-hero-slide {
+    transition: none;
+    transform: none;
+  }
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;

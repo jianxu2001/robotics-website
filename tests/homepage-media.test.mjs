@@ -4,7 +4,7 @@ import {
   getDeferredVideoSource,
   getHeroRotationDelay,
   getNextHeroSlideIndex,
-} from "../lib/homepage-media.mts";
+} from "../lib/homepage-media.ts";
 
 test("hero rotation advances and wraps to the first slide", () => {
   assert.equal(getNextHeroSlideIndex(0, 3), 1);

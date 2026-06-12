@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
+import { HomepageHeroMedia } from "@/components/homepage-hero-media";
 import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SeriesCard } from "@/components/series-card";
@@ -112,14 +113,7 @@ export default function Home() {
 
       <main id="top" className="min-h-screen overflow-hidden bg-[#080a0d] text-white">
         <section className="relative min-h-[92vh] border-b border-white/10 pt-40 sm:pt-32 lg:pt-24">
-          <Image
-            src="/images/bejing1%20(1).jpg"
-            alt="Industrial robotic palletizing cell in a modern factory"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover opacity-48"
-          />
+          <HomepageHeroMedia />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,10,13,0.97)_0%,rgba(8,10,13,0.78)_46%,rgba(8,10,13,0.36)_100%)]" />
           <div className="absolute inset-0 industrial-grid opacity-50" />
           <div className="absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,transparent,rgba(8,10,13,0.98))]" />
