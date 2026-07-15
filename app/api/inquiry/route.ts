@@ -1,29 +1,13 @@
 import { NextResponse } from "next/server";
 import { salesEmail } from "@/lib/contact";
-
-type InquiryPayload = {
-  locale?: string;
-  name?: string;
-  email?: string;
-  company?: string;
-  application?: string;
-  series?: string;
-  message?: string;
-  website?: string;
-};
-
-type Inquiry = Required<Omit<InquiryPayload, "website">> & {
-  submittedAt: string;
-};
-
-const maxLength = {
-  name: 120,
-  email: 160,
-  company: 180,
-  application: 120,
-  series: 120,
-  message: 3000,
-};
+import {
+  buildHtml,
+  buildPlainText,
+  normalizeInquiry,
+  validateInquiry,
+  type Inquiry,
+  type InquiryPayload,
+} from "@/lib/inquiry";
 
 export async function POST(request: Request) {
   let body: InquiryPayload;
@@ -57,55 +41,6 @@ export async function POST(request: Request) {
   }
 
   return NextResponse.json({ ok: true });
-}
-
-function normalizeInquiry(body: InquiryPayload): Inquiry {
-  return {
-    locale: clean(body.locale, 8) || "en",
-    name: clean(body.name, maxLength.name),
-    email: clean(body.email, maxLength.email),
-    company: clean(body.company, maxLength.company),
-    application: clean(body.application, maxLength.application),
-    series: clean(body.series, maxLength.series),
-    message: cleanMessage(body.message, maxLength.message),
-    submittedAt: new Date().toISOString(),
-  };
-}
-
-function clean(value: unknown, max: number) {
-  if (typeof value !== "string") {
-    return "";
-  }
-
-  return value.replace(/\s+/g, " ").trim().slice(0, max);
-}
-
-function cleanMessage(value: unknown, max: number) {
-  if (typeof value !== "string") {
-    return "";
-  }
-
-  return value
-    .replace(/\r\n/g, "\n")
-    .replace(/[ \t]+\n/g, "\n")
-    .trim()
-    .slice(0, max);
-}
-
-function validateInquiry(inquiry: Inquiry) {
-  if (!inquiry.name) {
-    return "Please enter your name.";
-  }
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inquiry.email)) {
-    return "Please enter a valid company email.";
-  }
-
-  if (inquiry.message.length < 10) {
-    return "Please add project details.";
-  }
-
-  return "";
 }
 
 async function deliverInquiry(inquiry: Inquiry) {
@@ -203,62 +138,4 @@ function splitEmails(value: string) {
     .split(",")
     .map((email) => email.trim())
     .filter(Boolean);
-}
-
-function buildPlainText(inquiry: Inquiry) {
-  return [
-    "New SCR Robot website inquiry",
-    "",
-    `Name: ${inquiry.name}`,
-    `Email: ${inquiry.email}`,
-    `Company: ${inquiry.company || "-"}`,
-    `Application: ${inquiry.application || "-"}`,
-    `Preferred series: ${inquiry.series || "-"}`,
-    `Language: ${inquiry.locale}`,
-    `Submitted at: ${inquiry.submittedAt}`,
-    "",
-    "Project details:",
-    inquiry.message,
-  ].join("\n");
-}
-
-function buildHtml(inquiry: Inquiry) {
-  const rows = [
-    ["Name", inquiry.name],
-    ["Email", inquiry.email],
-    ["Company", inquiry.company || "-"],
-    ["Application", inquiry.application || "-"],
-    ["Preferred series", inquiry.series || "-"],
-    ["Language", inquiry.locale],
-    ["Submitted at", inquiry.submittedAt],
-  ];
-
-  return `
-    <div style="font-family:Arial,sans-serif;color:#111827;line-height:1.6">
-      <h2 style="margin:0 0 16px">New SCR Robot website inquiry</h2>
-      <table style="border-collapse:collapse;width:100%;max-width:680px">
-        ${rows
-          .map(
-            ([label, value]) => `
-              <tr>
-                <td style="border:1px solid #e5e7eb;padding:10px 12px;font-weight:700;background:#f9fafb;width:180px">${escapeHtml(label)}</td>
-                <td style="border:1px solid #e5e7eb;padding:10px 12px">${escapeHtml(value)}</td>
-              </tr>
-            `,
-          )
-          .join("")}
-      </table>
-      <h3 style="margin:24px 0 8px">Project details</h3>
-      <div style="white-space:pre-wrap;border:1px solid #e5e7eb;padding:14px 16px;max-width:680px">${escapeHtml(inquiry.message)}</div>
-    </div>
-  `;
-}
-
-function escapeHtml(value: string) {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
 }

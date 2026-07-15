@@ -27,6 +27,7 @@ const quoteChecklist = [
 const applicationOptions = [
   "码垛",
   "拆垛",
+  "经销商 / 系统集成商合作",
   "冲压 / 锻压",
   "机床上下料",
   "3D视觉破包投料",

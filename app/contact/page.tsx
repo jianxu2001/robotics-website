@@ -27,6 +27,7 @@ const quoteChecklist = [
 const applicationOptions = [
   "Palletizing",
   "Depalletizing",
+  "Distributor / integrator partnership",
   "Stamping / forging",
   "Machine tending",
   "3D vision bag breaking",
