@@ -4,9 +4,34 @@ import {
   buildHtml,
   buildPlainText,
   normalizeInquiry,
+  validateInquiry,
 } from "../lib/inquiry.ts";
 
 const submittedAt = "2026-07-15T08:00:00.000Z";
+
+test("Chinese inquiries require phone while English inquiries keep it optional", () => {
+  const payload = {
+    name: "Test buyer",
+    email: "buyer@example.com",
+    message: "Please review our palletizing requirements.",
+  };
+  assert.equal(validateInquiry(normalizeInquiry(payload)), "");
+  assert.match(validateInquiry(normalizeInquiry({ ...payload, locale: "zh", phone: "  " })), /手机号码/);
+  const inquiry = normalizeInquiry({ ...payload, locale: "zh", phone: "13800138000" });
+  assert.equal(validateInquiry(inquiry), "");
+  assert.equal(inquiry.whatsapp, "");
+  assert.match(buildPlainText(inquiry), /Phone \/ 手机号码: 13800138000/);
+  assert.match(buildHtml(inquiry), /13800138000/);
+});
+
+test("phone numbers remain independent from WhatsApp and are escaped in emails", () => {
+  const inquiry = normalizeInquiry({ phone: " +44  20 7946 0958 ", whatsapp: "+86 13800000000" });
+  assert.equal(inquiry.phone, "+44 20 7946 0958");
+  assert.equal(inquiry.whatsapp, "+86 13800000000");
+  assert.equal(normalizeInquiry({ phone: 123 }).phone, "");
+  assert.equal(normalizeInquiry({ phone: "1".repeat(100) }).phone.length, 80);
+  assert.match(buildHtml(normalizeInquiry({ phone: "<script>" })), /&lt;script&gt;/);
+});
 
 test("inquiry normalization keeps every engineering field", () => {
   const inquiry = normalizeInquiry(
@@ -14,6 +39,7 @@ test("inquiry normalization keeps every engineering field", () => {
       locale: " zh ",
       name: "  Ada   Chen  ",
       email: " sales@example.com ",
+      phone: " 13800138000 ",
       whatsapp: " +86  13800000000 ",
       company: " SCR   Automation ",
       application: " Palletizing ",
@@ -33,6 +59,7 @@ test("inquiry normalization keeps every engineering field", () => {
     locale: "zh",
     name: "Ada Chen",
     email: "sales@example.com",
+    phone: "13800138000",
     whatsapp: "+86 13800000000",
     company: "SCR Automation",
     application: "Palletizing",

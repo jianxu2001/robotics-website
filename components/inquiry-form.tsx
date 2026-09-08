@@ -21,7 +21,10 @@ const copy = {
     namePlaceholder: "Your name",
     email: "Company Email",
     emailPlaceholder: "name@company.com",
-    whatsapp: "WhatsApp",
+    phone: "Phone / Mobile Number (optional)",
+    phonePlaceholder: "+Country code and phone number",
+    phoneHint: "Please include your country code so our engineers can contact you.",
+    whatsapp: "WhatsApp (optional)",
     whatsappPlaceholder: "+Country code and number",
     company: "Company / Website",
     companyPlaceholder: "Company name or website",
@@ -46,7 +49,7 @@ const copy = {
     destinationCountryPlaceholder: "Country and port",
     submit: "Request Engineering Review",
     submitting: "Sending...",
-    success: "Inquiry sent. We will review the project data and reply by email as soon as possible.",
+    success: "Inquiry sent. We will review the project data and contact you as soon as possible.",
     error:
       "Automatic submission is not available right now. Please email us directly or contact us on WhatsApp.",
     emailSales: "Email Sales",
@@ -58,7 +61,10 @@ const copy = {
     namePlaceholder: "您的姓名",
     email: "公司邮箱",
     emailPlaceholder: "name@company.com",
-    whatsapp: "WhatsApp",
+    phone: "手机号码（必填）",
+    phonePlaceholder: "请输入您的常用手机号码",
+    phoneHint: "方便工程师电话沟通您的需求，无需开通 WhatsApp。",
+    whatsapp: "WhatsApp（选填）",
     whatsappPlaceholder: "国家代码和号码",
     company: "公司 / 网站",
     companyPlaceholder: "公司名称或官网",
@@ -83,7 +89,7 @@ const copy = {
     destinationCountryPlaceholder: "国家和港口",
     submit: "发送询盘",
     submitting: "发送中...",
-    success: "询盘已提交，我们会尽快通过邮件回复您。",
+    success: "询盘已提交，我们会尽快通过您留下的电话或邮箱联系您。",
     error: "自动提交暂时不可用，请直接发送邮件或通过 WhatsApp 联系我们。",
     emailSales: "邮件联系",
     whatsappCta: "WhatsApp",
@@ -155,6 +161,24 @@ export function InquiryForm({
           />
         </label>
         <label className="grid gap-2 text-sm text-white/72">
+          {t.phone}
+          <input
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            required={locale === "zh"}
+            pattern={locale === "zh" ? ".*\\S.*" : undefined}
+            maxLength={80}
+            aria-describedby="inquiry-phone-hint"
+            className="h-12 rounded-md border border-white/12 bg-black/24 px-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#f5b41b]"
+            placeholder={t.phonePlaceholder}
+          />
+          <span id="inquiry-phone-hint" className="text-xs text-white/60">{t.phoneHint}</span>
+        </label>
+      </div>
+
+      <div className="grid gap-5 md:grid-cols-2">
+        <label className="grid gap-2 text-sm text-white/72">
           {t.email}
           <input
             name="email"
@@ -164,17 +188,18 @@ export function InquiryForm({
             placeholder={t.emailPlaceholder}
           />
         </label>
-      </div>
-
-      <div className="grid gap-5 md:grid-cols-2">
         <label className="grid gap-2 text-sm text-white/72">
           {t.whatsapp}
           <input
             name="whatsapp"
+            type="tel"
             className="h-12 rounded-md border border-white/12 bg-black/24 px-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#f5b41b]"
             placeholder={t.whatsappPlaceholder}
           />
         </label>
+      </div>
+
+      <div className="grid gap-5">
         <label className="grid gap-2 text-sm text-white/72">
           {t.company}
           <input

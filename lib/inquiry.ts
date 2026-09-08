@@ -2,6 +2,7 @@ export type InquiryPayload = {
   locale?: string;
   name?: string;
   email?: string;
+  phone?: string;
   whatsapp?: string;
   company?: string;
   application?: string;
@@ -23,6 +24,7 @@ export type Inquiry = Required<Omit<InquiryPayload, "website">> & {
 const maxLength = {
   name: 120,
   email: 160,
+  phone: 80,
   whatsapp: 80,
   company: 180,
   application: 120,
@@ -44,6 +46,7 @@ export function normalizeInquiry(
     locale: clean(body.locale, 8) || "en",
     name: clean(body.name, maxLength.name),
     email: clean(body.email, maxLength.email),
+    phone: clean(body.phone, maxLength.phone),
     whatsapp: clean(body.whatsapp, maxLength.whatsapp),
     company: clean(body.company, maxLength.company),
     application: clean(body.application, maxLength.application),
@@ -63,6 +66,10 @@ export function normalizeInquiry(
 }
 
 export function validateInquiry(inquiry: Inquiry) {
+  if (inquiry.locale === "zh" && !inquiry.phone) {
+    return "请填写手机号码，方便工程师联系您。";
+  }
+
   if (!inquiry.name) {
     return "Please enter your name.";
   }
@@ -83,6 +90,7 @@ export function buildPlainText(inquiry: Inquiry) {
     "New SCR Robot website inquiry",
     "",
     `Name: ${inquiry.name}`,
+    `Phone / 手机号码: ${inquiry.phone || "-"}`,
     `Email: ${inquiry.email}`,
     `WhatsApp: ${inquiry.whatsapp || "-"}`,
     `Company: ${inquiry.company || "-"}`,
@@ -105,6 +113,7 @@ export function buildPlainText(inquiry: Inquiry) {
 export function buildHtml(inquiry: Inquiry) {
   const rows = [
     ["Name", inquiry.name],
+    ["Phone / 手机号码", inquiry.phone || "-"],
     ["Email", inquiry.email],
     ["WhatsApp", inquiry.whatsapp || "-"],
     ["Company", inquiry.company || "-"],
