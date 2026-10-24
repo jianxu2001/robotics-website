@@ -37,7 +37,7 @@ export type ProductModel = {
 const standardEnvironment = [
   { name: "Operating temperature", value: "0-45°C" },
   { name: "Relative humidity", value: "20-80% RH, non-condensing" },
-  { name: "Vibration", value: "Below 4.9 m/s²" },
+  { name: "Vibration", value: "≤4.9 m/s²" },
   {
     name: "Environmental limits",
     value:
@@ -75,6 +75,7 @@ function joints(values: string[]) {
 function model(input: Omit<ProductModel, "slug"> & { slug?: string }): ProductModel {
   return {
     ...input,
+    optionNote: input.optionNote ?? (input.series === "SCH-AE Series" ? "Optional A5;" : input.name === "SCH100S-1950-1800" ? "Optional A5/A6; standard body/base color: yellow/yellow." : undefined),
     slug: input.slug ?? slugifyModel(input.name),
   };
 }

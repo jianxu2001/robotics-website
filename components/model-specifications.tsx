@@ -38,6 +38,21 @@ export function ProductModelDetail({ model, locale = "en" }: { model: ProductMod
     { name: "Body weight", value: model.bodyWeight }, { name: "Power capacity", value: model.power },
   ];
   const environment: ProductModelSpec[] = model.environment ?? productModelEnvironment;
+  const optionNote = zh ? model.optionNote
+    ?.replace("Optional A5/A6;", "可选装第五、第六轴；")
+    .replace("Optional A5;", "可选装第五轴；")
+    .replace("standard body/base color:", "本体/基座标准色：")
+    .replace("Standard body/base color:", "本体/基座标准色：")
+    .replace("standard body color:", "本体标准色：")
+    .replace("Standard body:", "本体标准色：")
+    .replace("base color:", "基座标准色：")
+    .replace("base:", "基座：")
+    .replace("Standard body/base:", "本体/基座标准色：")
+    .replace("Catalog note: customizable reach.", "画册说明：臂展可定制。")
+    .replace("catalog color:", "画册颜色：")
+    .replaceAll("natural aluminum", "铝本色").replaceAll("yellow", "黄色")
+    .replaceAll("black", "黑色").replaceAll("gray-white", "灰白色").replaceAll("white", "白色").replaceAll("blue", "蓝色")
+    : model.optionNote;
   const metrics = model.seriesSlug === "br-series"
     ? [[zh ? "负载" : "Payload", model.payload], [zh ? "最大行程" : "Maximum travel", model.reach], [zh ? "装箱节拍" : "Packing rate", model.specifications?.find((s) => s.name === "Packing rate")?.value ?? "—"], [zh ? "总功率" : "Total power", model.power]]
     : [[zh ? "最大负载" : "Maximum payload", model.payload], [zh ? "臂展" : "Reach", model.reach], [zh ? "轴数" : "Axes", model.axes], [zh ? "重复定位精度" : "Repeatability", model.repeatability]];
@@ -62,6 +77,7 @@ export function ProductModelDetail({ model, locale = "en" }: { model: ProductMod
         <div className="grid min-w-0 items-start gap-8 lg:grid-cols-2">
           <Parameters rows={specifications} zh={zh} caption={zh ? "产品参数" : "Product parameters"} />
           <div className="grid min-w-0 gap-8">
+            {optionNote ? <p className="rounded-lg border border-white/10 p-5 text-sm leading-7 text-white/70">{optionNote}</p> : null}
             {model.drawing ? <figure className="overflow-hidden rounded-lg border border-white/10 bg-white"><Image src={model.drawing} alt={`${model.name} ${zh ? "尺寸与工作范围图" : "dimensions and operating range drawing"}`} width={1200} height={800} className="max-h-[480px] w-full object-contain" /><figcaption className="bg-[#151b21] px-5 py-4 text-sm text-white/70">{zh ? "画册尺寸与工作范围示意" : "Catalog dimensions and operating range"}</figcaption></figure> : null}
             {model.jointParameters.length ? <Parameters rows={model.jointParameters} zh={zh} caption={zh ? "各轴动作范围" : "Joint motion ranges"} /> : null}
             {model.technicalNote ? <p className="rounded-lg border border-[#f5b41b]/25 bg-[#f5b41b]/5 p-5 text-sm leading-7 text-[#ffe1a0]">{zh ? model.technicalNoteZh : model.technicalNote}</p> : null}
