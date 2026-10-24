@@ -47,6 +47,21 @@ html {
   mask-image: linear-gradient(to bottom, black, transparent 82%);
 }
 
+.product-stage {
+  background: #0c0f13;
+}
+
+.product-image {
+  object-fit: contain;
+  padding: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .product-image {
+    padding: 1.75rem;
+  }
+}
+
 .steel-panel {
   position: relative;
   overflow: hidden;

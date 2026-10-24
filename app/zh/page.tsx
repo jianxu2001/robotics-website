@@ -154,13 +154,13 @@ export default function ZhHomePage() {
             {productCategoriesZh.map((category) => (
               <IndustrialCard key={category.title} className="group overflow-hidden">
                 <div className="grid min-h-full lg:grid-cols-[0.9fr_1.1fr]">
-                  <div className="relative min-h-56 overflow-hidden">
+                  <div className={`relative min-h-56 overflow-hidden ${category.image.includes("-dark-") ? "product-stage" : ""}`}>
                     <Image
                       src={category.image}
                       alt={category.title}
                       fill
                       sizes="(min-width: 768px) 50vw, 100vw"
-                      className="object-cover transition duration-500 group-hover:scale-105"
+                      className={`${category.image.includes("-dark-") ? "product-image" : "object-cover"} transition duration-500 group-hover:scale-105`}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#080a0d] via-transparent to-transparent" />
                   </div>

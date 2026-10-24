@@ -163,10 +163,10 @@ export const productCategoriesZh: ProductCategory[] = [
     title: "协作码垛工作站",
     description:
       "CR30、CR30L、CR50、CR50L，臂展均为 1,900 mm，覆盖不带升降和带升降配置。",
-    image: "/images/products/cr30l-1900.webp",
+    image: "/images/products/cr-palletizer-dark-v1.png",
     series: ["CR系列"],
   },
-  { slug: "collaborative-case-packing", title: "协作装箱工作站", description: "BR-30、BR-50 协作装箱机器人，衔接进料定位、真空抓取和自动装箱。", image: "/images/products/br-30.webp", series: ["BR系列"] },
+  { slug: "collaborative-case-packing", title: "协作装箱工作站", description: "BR-30、BR-50 协作装箱机器人，衔接进料定位、真空抓取和自动装箱。", image: "/images/products/br-case-packer-dark-v1.png", series: ["BR系列"] },
 ];
 
 export const productGroupsZh: ProductGroup[] = [

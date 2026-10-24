@@ -101,13 +101,13 @@ export const productCategories: ProductCategory[] = [
     title: "Collaborative Palletizing Workstations",
     description:
       "CR30, CR30L, CR50 and CR50L workstations with 1,900 mm reach, fixed-base and lifting configurations.",
-    image: "/images/products/cr30l-1900.webp",
+    image: "/images/products/cr-palletizer-dark-v1.png",
     series: ["CR Series"],
   },
   {
     slug: "collaborative-case-packing", title: "Collaborative Case Packing",
     description: "BR-30 and BR-50 workstations for product infeed, vacuum handling and automatic carton packing.",
-    image: "/images/products/br-30.webp", series: ["BR Series"],
+    image: "/images/products/br-case-packer-dark-v1.png", series: ["BR Series"],
   },
 
 ];
@@ -378,7 +378,7 @@ const productSeriesDefinitions: Omit<ProductSeries, "models">[] = [
   "title": "Collaborative Palletizing Workstations",
   "category": "Collaborative palletizing",
   "summary": "Compare CR30, CR30L, CR50 and CR50L: 30 kg or 50 kg payload, 1,900 mm reach, and fixed-base or 500 mm lifting configurations.",
-  "image": "/images/products/cr30l-1900.webp",
+  "image": "/images/products/cr-palletizer-dark-v1.png",
   "payloadRange": "30-50 kg",
   "reachRange": "1,900 mm",
   "axes": "5/6-axis",
@@ -399,7 +399,7 @@ const productSeriesDefinitions: Omit<ProductSeries, "models">[] = [
   "title": "Collaborative Case Packing Workstations",
   "category": "Carton packing automation",
   "summary": "BR-30 and BR-50 combine product infeed, vacuum handling and automatic carton packing with 1,900 mm maximum robot travel.",
-  "image": "/images/products/br-30.webp",
+  "image": "/images/products/br-case-packer-dark-v1.png",
   "payloadRange": "30-50 kg",
   "reachRange": "1,900 mm",
   "axes": "—",

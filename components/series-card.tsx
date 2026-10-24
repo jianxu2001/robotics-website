@@ -27,13 +27,13 @@ export function SeriesCard({
 }: SeriesCardProps) {
   return (
     <article className="group overflow-hidden rounded-lg border border-white/10 bg-[#11161b] shadow-[0_22px_60px_rgba(0,0,0,0.24)] transition hover:-translate-y-1 hover:border-[#f5b41b]/40">
-      <div className="relative aspect-[16/10] overflow-hidden">
+      <div className={`relative aspect-[16/10] overflow-hidden ${series.image.includes("-dark-") ? "product-stage" : ""}`}>
         <Image
           src={series.image}
           alt={`${series.series} industrial robot application`}
           fill
           sizes="(min-width: 1024px) 33vw, 100vw"
-          className="object-cover opacity-80 transition duration-500 group-hover:scale-105"
+          className={`${series.image.includes("-dark-") ? "product-image" : "object-cover opacity-80"} transition duration-500 group-hover:scale-105`}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#080a0d] via-transparent to-transparent" />
         <div className="absolute left-4 top-4 rounded-md border border-[#f5b41b]/40 bg-black/54 px-3 py-2 font-mono text-xs font-bold uppercase tracking-[0.12em] text-[#f5b41b]">
