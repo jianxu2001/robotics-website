@@ -11,7 +11,7 @@ import { getProductModelsBySeries } from "@/lib/product-data";
 import { canonicalAlternates } from "@/lib/seo";
 
 const desktopModels = getProductModelsBySeries("sch-series").filter((model) =>
-  model.name.includes("AE"),
+  model.series === "SCH-AE Series",
 );
 
 const schSeries = productSeries.find((series) => series.slug === "sch-series");

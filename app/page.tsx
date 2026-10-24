@@ -28,8 +28,8 @@ export const metadata: Metadata = {
 const stats = [
   { value: "2017", label: "Founded in Guangzhou" },
   { value: "6,000 m2", label: "Manufacturing and engineering base" },
-  { value: "50+", label: "Employees across production and support" },
-  { value: "20+", label: "Engineering and technical specialists" },
+  { value: "83", label: "Insured employees as of 2025" },
+  { value: "30+", label: "Engineering and technical specialists" },
 ];
 
 const trustPoints = [
@@ -252,15 +252,15 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
             <SectionHeading
               eyebrow="Product categories"
-              title="Six robot categories built around real factory work."
+              title="Robot platforms and workstations for real factory work."
               description="The product framework is now organized by production task: palletizing and depalletizing, desktop automation, general-purpose handling, stamping, machine loading, and portable collaborative work."
             />
             <div className="steel-panel p-5">
               <div className="grid gap-3 sm:grid-cols-3">
                 {[
                   ["Payload coverage", "3-800 kg"],
-                  ["Product structure", "6 categories"],
-                  ["Product lines", "11 robot lines"],
+                  ["Product structure", "7 categories"],
+                  ["Product lines", "12 product lines"],
                 ].map(([label, value]) => (
                   <div key={label} className="border-l border-[#f5b41b]/60 pl-4">
                     <p className="text-xs uppercase tracking-[0.16em] text-white/42">
@@ -335,7 +335,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Industry applications"
             title="Automation for repetitive, heavy, and precision-driven production work."
-            description="The catalog positions South China Robotics as a smart factory solution provider serving robot applications across material handling, press automation, vision feeding, and conveyor-based production."
+            description="South China Robotics supplies robot platforms and integrated systems for material handling, press automation, vision feeding, and conveyor-based production."
             align="center"
           />
           <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

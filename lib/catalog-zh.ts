@@ -4,11 +4,15 @@ import {
   type ProductGroup,
   type ProductSeries,
 } from "@/lib/catalog";
+import { productModels } from "@/lib/product-data";
 
 const zhSeriesCopy: Record<
   string,
   Pick<ProductSeries, "title" | "category" | "summary" | "applications" | "highlights">
 > = {
+  "cr-series": { title: "CR 系列协作码垛工作站", category: "协作码垛", summary: "CR30、CR30L、CR50、CR50L 覆盖 30 kg 与 50 kg 负载，臂展均为 1,900 mm，可选不带升降或标配 500 mm 升降的配置。", applications: ["纸箱码垛", "末端自动化"], highlights: ["四款机型臂展均为 1,900 mm，重复定位精度 ±0.1 mm。", "CR30/CR50：5 轴，不带升降，码垛高度 ≤1,800 mm（含托盘）。", "CR30L/CR50L：6 轴，标准升降 500 mm，可定制，码垛高度 ≤2,300 mm（含托盘）。"] },
+  "br-series": { title: "BR 系列协作装箱工作站", category: "协作装箱", summary: "BR-30、BR-50 衔接进料定位、真空抓取和自动装箱，机器人最大行程均为 1,900 mm。", applications: ["进料定位", "真空抓取", "自动装箱"], highlights: ["BR-30：负载 30 kg，画册装箱节拍 ≤15 pcs/min。", "BR-50：负载 50 kg，画册装箱节拍 ≤8 pcs/min。", "适用纸箱长 ≤600 mm、宽 ≤500 mm、高 ≤450 mm。"] },
+  "scd-series": { title: "SCD 系列冲压专用机器人", category: "冲压自动化", summary: "SCD30-1850-400 提供 30/50/80 kg 负载配置，适用于冲压转运，臂展可定制。", applications: ["冲压转运", "压力机上下料"], highlights: ["画册负载配置：30/50/80 kg。", "臂展配置：1,850/2,150/2,700 mm，可定制。", "第二轴行程 400 mm。"] },
   "ecr-series": {
     title: "紧凑型四轴搬运机器人",
     category: "通用搬运与轻型码垛",
@@ -17,7 +21,7 @@ const zhSeriesCopy: Record<
     applications: ["机床上下料", "小件搬运", "轻型码垛", "包装线"],
     highlights: [
       "紧凑占地，适合空间有限的自动化单元。",
-      "负载范围覆盖 3-100 kg，可满足轻中型搬运需求。",
+      "负载范围覆盖 8-100 kg，可满足轻中型搬运需求。",
       "适用于重视投资回报与重复稳定性的生产线。",
     ],
   },
@@ -101,16 +105,16 @@ export const productSeriesZh: ProductSeries[] = productSeries.map((series) => ({
 }));
 
 export const companyProfileZh = {
-  name: "华南机器人科技（广州）有限公司",
+  name: "华南机器人科技（广东）有限公司",
   shortName: "SCR Robot",
   founded: "2017",
   headquarters: "中国广州花都汽车城",
   facility: "约 6,000 平方米生产与工程基地",
-  team: "50+ 名员工，20+ 名工程技术人员",
+  team: "截至2025年社保人数83人，工程技术人员30余人",
   engineering:
     "团队覆盖机械、电子、电气、软件、视觉技术研发应用与系统集成能力，可为工业客户提供机器人本体、产线集成和非标自动化方案。",
   description:
-    "华南机器人科技（广州）有限公司是一家智能工厂解决方案提供商，业务涵盖工业机器人生产制造、设备维修、销售以及行业一站式自动化解决方案。",
+    "华南机器人科技（广东）有限公司是一家智能工厂解决方案提供商，业务涵盖工业机器人生产制造、设备维修、销售以及行业一站式自动化解决方案。",
 };
 
 export const productCategoriesZh: ProductCategory[] = [
@@ -156,12 +160,13 @@ export const productCategoriesZh: ProductCategory[] = [
   },
   {
     slug: "portable-collaborative-robots",
-    title: "便携式协作机器人",
+    title: "协作码垛工作站",
     description:
-      "面向柔性生产辅助、移动式搬运单元和需要快速调整工位的工厂场景，提供便携协作机器人选项。",
-    image: "/images/SCR.jpg",
-    series: ["30KG机器人", "50KG机器人"],
+      "CR30、CR30L、CR50、CR50L，臂展均为 1,900 mm，覆盖不带升降和带升降配置。",
+    image: "/images/products/cr30l-1900.webp",
+    series: ["CR系列"],
   },
+  { slug: "collaborative-case-packing", title: "协作装箱工作站", description: "BR-30、BR-50 协作装箱机器人，衔接进料定位、真空抓取和自动装箱。", image: "/images/products/br-30.webp", series: ["BR系列"] },
 ];
 
 export const productGroupsZh: ProductGroup[] = [
@@ -214,6 +219,8 @@ export const productGroupsZh: ProductGroup[] = [
     ...productCategoriesZh[3],
     productLines: [
       {
+        name: "SCD系列", description: "冲压专用机器人，30/50/80 kg 负载配置，臂展可定制。", href: "/zh/products/scd-series", },
+      {
         name: "STC系列",
         description: "冲压转运专用机器人，面向压力机侧自动化和重复零件搬运。",
         href: "/zh/products/stc-series",
@@ -239,22 +246,15 @@ export const productGroupsZh: ProductGroup[] = [
     ...productCategoriesZh[5],
     productLines: [
       {
-        name: "30KG机器人",
-        description: "便携式协作机器人选项，适用于中等负载柔性搬运和移动工位方案。",
-        href: "/zh/contact",
-      },
-      {
-        name: "50KG机器人",
-        description: "更高负载的便携协作机器人选项，适合需要柔性部署的较重搬运任务。",
-        href: "/zh/contact",
-      },
+        name: "CR系列", description: "30 kg 与 50 kg 协作码垛工作站，提供不带升降与带升降机型。", href: "/zh/products/cr-series", },
     ],
   },
+  { ...productCategoriesZh[6], productLines: [{ name: "BR系列", description: "30 kg 与 50 kg 协作装箱工作站，最大行程 1,900 mm。", href: "/zh/products/br-series" }] },
 ];
 
-export const productInquiryOptionsZh = productGroupsZh.flatMap((group) =>
+export const productInquiryOptionsZh = [...productGroupsZh.flatMap((group) =>
   group.productLines.map((line) => line.name),
-);
+), ...productModels.filter((model) => model.specifications).map((model) => model.name)];
 
 export const industriesZh = [
   "码垛",

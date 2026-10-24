@@ -5,7 +5,7 @@ import { productModels } from "@/lib/product-data";
 import { solutionPages } from "@/lib/solution-pages";
 import { absoluteUrl } from "@/lib/seo";
 
-const lastModified = "2026-06-05T00:00:00.000Z";
+const lastModified = "2026-10-24T00:00:00.000Z";
 
 const pairedRoutes = [
   { en: "/", zh: "/zh", priority: 1 },
@@ -70,9 +70,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ];
   });
 
-  const modelEntries = productModels.map((model) =>
+  const modelEntries = productModels.flatMap((model) => [
     canonicalEntry(`/products/${model.seriesSlug}/${model.slug}`, 0.78),
-  );
+    canonicalEntry(`/zh/products/${model.seriesSlug}/${model.slug}`, 0.76),
+  ]);
 
   const solutionEntries = solutionPages.map((page) =>
     canonicalEntry(`/solutions/${page.slug}`, 0.76),

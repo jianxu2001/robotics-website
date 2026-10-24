@@ -9,6 +9,7 @@ import {
   type ProductSeries,
 } from "@/lib/catalog";
 import { productGroupsZh, productSeriesZh } from "@/lib/catalog-zh";
+import { getProductModelsBySeries } from "@/lib/product-data";
 
 type ProductMegaMenuProps = {
   locale?: "en" | "zh";
@@ -45,7 +46,7 @@ function getModelGroups(group: ProductGroup, seriesList: ProductSeries[], fallba
 
     return {
       line,
-      models: series?.models.map((model) => model.name) ?? [fallback],
+      models: series ? getProductModelsBySeries(series.slug).map((model) => ({ name: model.name, href: `${line.href}/${model.slug}` })) : [{ name: fallback, href: line.href }],
     };
   });
 }
@@ -156,11 +157,11 @@ export function ProductMegaMenu({ locale = "en" }: ProductMegaMenuProps) {
                     <div className="mt-3 grid gap-2 sm:grid-cols-2">
                       {modelGroup.models.map((model) => (
                         <Link
-                          key={`${modelGroup.line.name}-${model}`}
-                          href={modelGroup.line.href}
+                          key={`${modelGroup.line.name}-${model.name}`}
+                          href={model.href}
                           className="rounded-md border border-white/8 bg-black/22 px-3 py-2 text-sm text-white/70 transition hover:border-[#f5b41b]/45 hover:text-white"
                         >
-                          {model}
+                          {model.name}
                         </Link>
                       ))}
                     </div>

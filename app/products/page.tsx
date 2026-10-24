@@ -35,8 +35,8 @@ export default function ProductsPage() {
           />
           <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              ["Product categories", "6 major categories"],
-              ["Product lines", "11 robot lines"],
+              ["Product categories", `${productGroups.length} categories`],
+              ["Product lines", "12 product lines"],
               ["Payload range", "3-800 kg"],
               ["Applications", "Palletizing, stamping, tending, collaboration"],
             ].map(([label, value]) => (

@@ -207,19 +207,23 @@ check("all product model pages have TDK, specs, Product schema, and sitemap entr
 
     assert(canonicalFor(html) === `${expectedHost}${route}`, `${route} canonical must match route`);
     assert(html.includes("<title>"), `${route} must include a title tag`);
-    assert(text.includes("Robot Parameters"), `${route} must include the parameter table`);
-    assert(text.includes("Joint Parameters"), `${route} must include the joint parameter table`);
+    assert(html.includes("<table") && text.includes("Product parameters"), `${route} must include a visible parameter table`);
+    if (/\/(cr|br)-series\//.test(route)) {
+      assert(text.includes("Catalog dimensions and operating range"), `${route} must include the catalog drawing`);
+    } else {
+      assert(text.includes("Joint motion ranges"), `${route} must include the joint parameter table`);
+    }
     assert(product, `${route} must include Product JSON-LD`);
     assert(product.name, `${route} Product JSON-LD must include name`);
     assert(product.url === `${expectedHost}${route}`, `${route} Product JSON-LD URL must be canonical`);
     assert(product.brand?.name, `${route} Product JSON-LD must include brand`);
     assert(product.model, `${route} Product JSON-LD must include model`);
     assert(
-      product.additionalProperty?.some((property) => property.name === "Payload"),
+      product.additionalProperty?.some((property) => ["Payload", "Maximum payload"].includes(property.name)),
       `${route} Product JSON-LD must include payload property`,
     );
     assert(
-      product.additionalProperty?.some((property) => property.name === "Reach"),
+      product.additionalProperty?.some((property) => ["Reach", "Maximum robot travel"].includes(property.name)),
       `${route} Product JSON-LD must include reach property`,
     );
     assert(webPage, `${route} missing WebPage JSON-LD`);

@@ -182,7 +182,7 @@ function getProductModelJsonLd(model: ProductModel, modelUrl: string) {
     category: `Industrial Robot / ${model.category}`,
     url: modelUrl,
     image: absoluteUrl(model.image),
-    additionalProperty: [
+    additionalProperty: model.specifications ? model.specifications.map((item) => ({ "@type": "PropertyValue", name: item.name, value: item.value })) : [
       {
         "@type": "PropertyValue",
         name: "Payload",
@@ -314,6 +314,7 @@ export function getProductModelMetaTitle(model: ProductModel) {
 }
 
 export function getProductModelMetaDescription(model: ProductModel) {
+  if (model.specifications) return model.positioning;
   return `${model.name}: ${model.payload} payload, ${model.reach} reach, ${model.repeatability} repeatability. Request SCR Robot selection help for ${model.applications[0].toLowerCase()} projects.`;
 }
 

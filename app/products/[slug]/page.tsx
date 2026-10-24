@@ -125,7 +125,7 @@ export default async function ProductDetailPage({
               <SectionHeading
                 eyebrow="Product highlights"
                 title="Engineered for factory-grade automation."
-                description="Use this section as a starting point for overseas product pages. Final specifications should be confirmed against the exact catalog model and project application."
+                description="Compare the model specifications below, then review tooling, payload and layout requirements with our engineering team."
               />
               <div className="grid gap-4">
                 {series.highlights.map((highlight) => (

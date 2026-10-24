@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProductModelDetail } from "@/components/product-model-detail";
-import { SiteHeader } from "@/components/site-header";
 import {
   getProductModel,
   getProductModelSeoKeywords,
   productModels,
 } from "@/lib/product-data";
 import {
-  canonicalAlternates,
+  localizedAlternates,
   getFaqJsonLd,
   getProductModelFaqs,
   getProductModelMetaDescription,
@@ -44,8 +43,10 @@ export async function generateMetadata({
     title: getProductModelMetaTitle(productModel),
     description,
     keywords: getProductModelSeoKeywords(productModel),
-    alternates: canonicalAlternates(
+    alternates: localizedAlternates(
       `/products/${productModel.seriesSlug}/${productModel.slug}`,
+      `/products/${productModel.seriesSlug}/${productModel.slug}`,
+      `/zh/products/${productModel.seriesSlug}/${productModel.slug}`,
     ),
     openGraph: {
       title: `${productModel.name} Industrial Robot`,
@@ -80,7 +81,6 @@ export default async function ProductModelPage({ params }: ProductModelPageProps
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }}
       />
-      <SiteHeader alternateHref={`/products/${productModel.seriesSlug}`} />
       <ProductModelDetail model={productModel} />
     </>
   );

@@ -16,7 +16,7 @@ import { localizedAlternates } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "机器人产品 | 码垛、桌面、通用、冲压、上下料、协作机器人",
   description:
-    "查看 SCR Robot 六大机器人产品类别：码垛/拆垛机器人、桌面型机器人、通用型机器人、冲压专用机器人、机床上下料机器人和便携式协作机器人。",
+    "查看 SCR Robot 工业机器人与工作站类别：码垛/拆垛机器人、桌面型机器人、通用型机器人、冲压专用机器人、机床上下料机器人和便携式协作机器人。",
   alternates: localizedAlternates("/zh/products", "/products", "/zh/products"),
 };
 
@@ -30,14 +30,14 @@ export default function ZhProductsPage() {
         <section className="section-shell pb-12">
           <SectionHeading
             eyebrow="产品中心"
-            title="六大机器人类别，覆盖码垛、上下料、冲压、桌面自动化和柔性生产。"
-            description="SCR Robot 产品框架面向海外工业客户整理：六大产品类别、十一个机器人产品线，并保留画册中的核心系列参数。"
+            title="机器人与工作站类别，覆盖码垛、上下料、冲压、桌面自动化和柔性生产。"
+            description="SCR Robot 产品框架面向海外工业客户整理：七大产品类别，并提供工业机器人、协作码垛与装箱工作站的完整参数，并保留画册中的核心系列参数。"
             level={1}
           />
           <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              ["产品类别", "六大类别"],
-              ["产品线", "11 个机器人产品线"],
+              ["产品类别", "七大类别"],
+              ["产品线", "12 个产品线"],
               ["负载范围", "3-800 kg"],
               ["应用场景", "码垛、冲压、上下料、协作"],
             ].map(([label, value]) => (
@@ -101,7 +101,7 @@ export default function ZhProductsPage() {
                     </div>
                     <CtaLink href={`/zh/products/${series.slug}`} variant="ghost">详情页</CtaLink>
                   </div>
-                  <SpecTable series={series} headings={zhSpecHeadings} />
+                  <SpecTable series={series} headings={zhSpecHeadings} enableModelLinks hrefPrefix="/zh/products" />
                 </section>
               ))}
             </div>

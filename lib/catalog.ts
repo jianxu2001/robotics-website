@@ -1,3 +1,5 @@
+import { getProductModelsBySeries, productModels } from "@/lib/product-data";
+
 export type ProductSeries = {
   slug: string;
   series: string;
@@ -41,16 +43,16 @@ export type ProductGroup = ProductCategory & {
 };
 
 export const companyProfile = {
-  name: "South China Robotics Technology (Guangzhou) Co., Ltd.",
+  name: "South China Robotics Technology (Guangdong) Co., Ltd.",
   shortName: "SCR Robot",
   founded: "2017",
   headquarters: "Huadu Auto City, Guangzhou, China",
   facility: "6,000 m2 manufacturing and engineering base",
-  team: "50+ employees with 20+ engineering and technical specialists",
+  team: "83 insured employees as of 2025, including 30+ engineering and technical specialists",
   engineering:
     "A multidisciplinary team covering mechanical design, electronics, electrical controls, software, vision technology, robot application engineering, and system integration.",
   description:
-    "South China Robotics Technology (Guangzhou) Co., Ltd. is an intelligent factory solution provider focused on industrial robot manufacturing, equipment service, robot sales, and one-stop automation systems for demanding production environments.",
+    "South China Robotics Technology (Guangdong) Co., Ltd. is an intelligent factory solution provider focused on industrial robot manufacturing, equipment service, robot sales, and one-stop automation systems for demanding production environments.",
 };
 
 export const productCategories: ProductCategory[] = [
@@ -96,12 +98,18 @@ export const productCategories: ProductCategory[] = [
   },
   {
     slug: "portable-collaborative-robots",
-    title: "Portable Collaborative Robots",
+    title: "Collaborative Palletizing Workstations",
     description:
-      "Portable collaborative robot options for flexible production assistance, mobile handling cells, and applications that require fast redeployment.",
-    image: "/images/SCR.jpg",
-    series: ["30 kg Robot", "50 kg Robot"],
+      "CR30, CR30L, CR50 and CR50L workstations with 1,900 mm reach, fixed-base and lifting configurations.",
+    image: "/images/products/cr30l-1900.webp",
+    series: ["CR Series"],
   },
+  {
+    slug: "collaborative-case-packing", title: "Collaborative Case Packing",
+    description: "BR-30 and BR-50 workstations for product infeed, vacuum handling and automatic carton packing.",
+    image: "/images/products/br-30.webp", series: ["BR Series"],
+  },
+
 ];
 
 export const productGroups: ProductGroup[] = [
@@ -154,6 +162,11 @@ export const productGroups: ProductGroup[] = [
     ...productCategories[3],
     productLines: [
       {
+        name: "SCD Series",
+        description: "Dedicated stamping robots with 30/50/80 kg payload configurations and customizable reach.",
+        href: "/products/scd-series",
+      },
+      {
         name: "STC Series",
         description: "Dedicated stamping transfer robots for press-side automation and repetitive part movement.",
         href: "/products/stc-series",
@@ -179,22 +192,18 @@ export const productGroups: ProductGroup[] = [
     ...productCategories[5],
     productLines: [
       {
-        name: "30 kg Robot",
-        description: "Portable collaborative robot option for flexible medium-payload handling and mobile workstation concepts.",
-        href: "/contact",
-      },
-      {
-        name: "50 kg Robot",
-        description: "Higher-payload portable collaborative option for heavier handling tasks that still require flexible deployment.",
-        href: "/contact",
+        name: "CR Series",
+        description: "30 kg and 50 kg collaborative palletizing workstations, with or without a lifting axis.",
+        href: "/products/cr-series",
       },
     ],
   },
+  { ...productCategories[6], productLines: [{ name: "BR Series", description: "30 kg and 50 kg collaborative case packing workstations with 1,900 mm maximum travel.", href: "/products/br-series" }] },
 ];
 
-export const productInquiryOptions = productGroups.flatMap((group) =>
+export const productInquiryOptions = [...productGroups.flatMap((group) =>
   group.productLines.map((line) => line.name),
-);
+), ...productModels.filter((model) => model.specifications).map((model) => model.name)];
 
 export const industries = [
   "Palletizing",
@@ -207,7 +216,7 @@ export const industries = [
   "Custom non-standard automation",
 ];
 
-export const productSeries: ProductSeries[] = [
+const productSeriesDefinitions: Omit<ProductSeries, "models">[] = [
   {
     slug: "ecr-series",
     series: "ECR Series",
@@ -223,15 +232,8 @@ export const productSeries: ProductSeries[] = [
     applications: ["Machine tending", "Small-part handling", "Light palletizing", "Packaging"],
     highlights: [
       "Compact footprint for production cells with limited space.",
-      "Wide payload coverage from light 3 kg handling to 100 kg duty.",
+      "Payload coverage from 8 kg to 100 kg for compact handling tasks.",
       "Suitable for cost-sensitive automation and repeatable transfer tasks.",
-    ],
-    models: [
-      { name: "ECR8-1200", axes: "4", payload: "8 kg", reach: "1,173 mm", repeatability: "±0.06 mm", bodyWeight: "60 kg", power: "2.45 kVA" },
-      { name: "ECR10-1400", axes: "4", payload: "10 kg", reach: "1,430 mm", repeatability: "±0.06 mm", bodyWeight: "90 kg", power: "2.9 kVA" },
-      { name: "ECR30-1850", axes: "4", payload: "30 kg", reach: "2,050 mm", repeatability: "±0.10 mm", bodyWeight: "211 kg", power: "3.4 kVA" },
-      { name: "ECR50-1850", axes: "4", payload: "50 kg", reach: "2,050 mm", repeatability: "±0.10 mm", bodyWeight: "370 kg", power: "6.8 kVA" },
-      { name: "ECR100-1850", axes: "4", payload: "100 kg", reach: "2,050 mm", repeatability: "±0.10 mm", bodyWeight: "440 kg", power: "8.55 kVA" },
     ],
   },
   {
@@ -252,14 +254,6 @@ export const productSeries: ProductSeries[] = [
       "Selected models support optional fifth and sixth axis expansion.",
       "Built for repeatable stacking, loading, and industrial transfer applications.",
     ],
-    models: [
-      { name: "SCH03AE-200-110", axes: "4", payload: "3 kg", reach: "200 mm", repeatability: "±0.02 mm", bodyWeight: "16 kg", power: "0.7 kVA" },
-      { name: "SCH10AE-1300-450", axes: "4", payload: "10 kg", reach: "1,300 mm", repeatability: "±0.08 mm", bodyWeight: "100 kg", power: "2.1 kVA" },
-      { name: "SCH50-1950-1800", axes: "4", payload: "50 kg", reach: "1,950 mm", repeatability: "±0.50 mm", bodyWeight: "580 kg", power: "5.75 kVA" },
-      { name: "SCH100-1950-1800", axes: "4", payload: "100 kg", reach: "1,950 mm", repeatability: "±0.50 mm", bodyWeight: "680 kg", power: "5.75 kVA" },
-      { name: "SCH210E-2350-1650", axes: "4", payload: "210 kg", reach: "2,350 mm", repeatability: "±0.50 mm", bodyWeight: "1,200 kg", power: "7.5 kVA" },
-      { name: "SCH500-800E", axes: "4", payload: "500/600/800 kg", reach: "2,800-3,200 mm", repeatability: "±0.50 mm", bodyWeight: "2,800/3,300 kg", power: "21.0/23.0 kVA" },
-    ],
   },
   {
     slug: "sar-series",
@@ -278,13 +272,6 @@ export const productSeries: ProductSeries[] = [
       "Long-reach four-axis structure for wide work areas.",
       "Heavy payload versions for demanding material handling.",
       "Configurable robot colors and selected optional axis configurations.",
-    ],
-    models: [
-      { name: "SAR12-1400", axes: "4", payload: "12 kg", reach: "1,454 mm", repeatability: "±0.15 mm", bodyWeight: "135 kg", power: "3.0 kVA" },
-      { name: "SAR80-2450-2300", axes: "4", payload: "80 kg", reach: "2,450 mm", repeatability: "±1.00 mm", bodyWeight: "450 kg", power: "3.5 kVA" },
-      { name: "SAR130-2550-2400", axes: "4", payload: "130 kg", reach: "2,550 mm", repeatability: "±1.00 mm", bodyWeight: "780 kg", power: "5.5 kVA" },
-      { name: "SAR210/300-2650", axes: "4", payload: "210/300 kg", reach: "2,650 mm", repeatability: "±1.00 mm", bodyWeight: "1,150/1,250 kg", power: "7.0/7.5 kVA" },
-      { name: "SAR500/800-3500", axes: "4", payload: "500/800 kg", reach: "3,500 mm", repeatability: "±1.50 mm", bodyWeight: "1,850/2,100 kg", power: "11.0/13.0 kVA" },
     ],
   },
   {
@@ -305,9 +292,6 @@ export const productSeries: ProductSeries[] = [
       "Designed for demanding stacking height and production throughput.",
       "Optional fifth-axis configuration available for selected applications.",
     ],
-    models: [
-      { name: "SCR180-3200", axes: "4", payload: "180 kg", reach: "3,200 mm", repeatability: "±0.50 mm", bodyWeight: "1,450 kg", power: "18.0 kVA" },
-    ],
   },
   {
     slug: "srl-series",
@@ -326,10 +310,6 @@ export const productSeries: ProductSeries[] = [
       "Compact aluminum-color body for lightweight automation cells.",
       "Designed for straightforward handling and transfer tasks.",
       "Good fit where payload requirements are moderate and speed matters.",
-    ],
-    models: [
-      { name: "SRL10-900-650", axes: "4", payload: "10 kg", reach: "900 mm", repeatability: "±0.15 mm", bodyWeight: "60 kg", power: "2.3 kVA" },
-      { name: "SRL20-1500-1000", axes: "4", payload: "20 kg", reach: "1,500 mm", repeatability: "±0.20 mm", bodyWeight: "80 kg", power: "2.3 kVA" },
     ],
   },
   {
@@ -350,10 +330,6 @@ export const productSeries: ProductSeries[] = [
       "Compact payload range for repeatable part movement.",
       "Supports non-standard fixtures and line-specific tooling.",
     ],
-    models: [
-      { name: "STC5-1250-400", axes: "4", payload: "5 kg", reach: "1,250 mm", repeatability: "±0.15 mm", bodyWeight: "220 kg", power: "2.0 kVA" },
-      { name: "STC10-1450-400", axes: "4", payload: "10 kg", reach: "1,450 mm", repeatability: "±0.15 mm", bodyWeight: "230 kg", power: "2.3 kVA" },
-    ],
   },
   {
     slug: "er-series",
@@ -373,12 +349,91 @@ export const productSeries: ProductSeries[] = [
       "Repeatability of ±0.06 mm for precise handling tasks.",
       "Useful for machine tending and compact automated workstations.",
     ],
-    models: [
-      { name: "ER10-1400", axes: "6", payload: "10 kg", reach: "1,400 mm", repeatability: "±0.06 mm", bodyWeight: "168 kg", power: "3.5 kVA" },
-      { name: "ER20-1700", axes: "6", payload: "20 kg", reach: "1,717 mm", repeatability: "±0.06 mm", bodyWeight: "280 kg", power: "5.5 kVA" },
-    ],
   },
+{
+  "slug": "scd-series",
+  "series": "SCD Series",
+  "title": "Dedicated Stamping Robots",
+  "category": "Stamping automation",
+  "summary": "SCD30-1850-400 supports 30/50/80 kg payload configurations and customizable reach for press-side transfer.",
+  "image": "/images/bejing1%20(3).jpg",
+  "payloadRange": "30-80 kg",
+  "reachRange": "1,850-2,700 mm",
+  "axes": "4-axis",
+  "repeatability": "±0.15 mm",
+  "applications": [
+    "Stamping transfer",
+    "Press loading",
+    "Part transfer"
+  ],
+  "highlights": [
+    "30/50/80 kg catalog payload configurations.",
+    "1,850/2,150/2,700 mm catalog reach options; custom reach available.",
+    "400 mm second-axis stroke."
+  ]
+},
+{
+  "slug": "cr-series",
+  "series": "CR Series",
+  "title": "Collaborative Palletizing Workstations",
+  "category": "Collaborative palletizing",
+  "summary": "Compare CR30, CR30L, CR50 and CR50L: 30 kg or 50 kg payload, 1,900 mm reach, and fixed-base or 500 mm lifting configurations.",
+  "image": "/images/products/cr30l-1900.webp",
+  "payloadRange": "30-50 kg",
+  "reachRange": "1,900 mm",
+  "axes": "5/6-axis",
+  "repeatability": "±0.1 mm",
+  "applications": [
+    "Carton palletizing",
+    "End-of-line automation"
+  ],
+  "highlights": [
+    "All four models have 1,900 mm reach and ±0.1 mm repeatability.",
+    "CR30/CR50: 5 axes, without lifting; palletizing height up to 1,800 mm including the pallet.",
+    "CR30L/CR50L: 6 axes, standard 500 mm lifting stroke; palletizing height up to 2,300 mm including the pallet."
+  ]
+},
+{
+  "slug": "br-series",
+  "series": "BR Series",
+  "title": "Collaborative Case Packing Workstations",
+  "category": "Carton packing automation",
+  "summary": "BR-30 and BR-50 combine product infeed, vacuum handling and automatic carton packing with 1,900 mm maximum robot travel.",
+  "image": "/images/products/br-30.webp",
+  "payloadRange": "30-50 kg",
+  "reachRange": "1,900 mm",
+  "axes": "—",
+  "repeatability": "—",
+  "applications": [
+    "Product infeed",
+    "Vacuum handling",
+    "Carton packing"
+  ],
+  "highlights": [
+    "BR-30: 30 kg payload and catalog packing rate up to 15 pcs/min.",
+    "BR-50: 50 kg payload and catalog packing rate up to 8 pcs/min.",
+    "Carton dimensions: length ≤600 mm, width ≤500 mm and height ≤450 mm."
+  ]
+},
+
 ];
+
+function parameterRange(values: string[], unit: string, signed = false) {
+  const numbers = values.flatMap((value) => (value.replaceAll(",", "").match(/\d+(?:\.\d+)?/g) ?? []).map(Number));
+  if (!numbers.length) return "—";
+  const min = Math.min(...numbers), max = Math.max(...numbers);
+  const format = (value: number) => `${signed ? "±" : ""}${value.toLocaleString("en-US", { maximumFractionDigits: 3 })}`;
+  return `${format(min)}${min === max ? "" : `–${format(max)}`} ${unit}`;
+}
+export const productSeries: ProductSeries[] = productSeriesDefinitions.map((series) => {
+  const models = getProductModelsBySeries(series.slug);
+  return {
+    ...series, models,
+    payloadRange: parameterRange(models.map((model) => model.payload), "kg"),
+    reachRange: parameterRange(models.map((model) => model.reach), "mm"),
+    repeatability: parameterRange(models.map((model) => model.repeatability), "mm", true),
+  };
+});
 
 export const automationSolutions = [
   {

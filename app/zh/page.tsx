@@ -19,8 +19,8 @@ import { localizedAlternates } from "@/lib/seo";
 const stats = [
   { value: "2017", label: "公司成立" },
   { value: "6,000 m2", label: "生产与工程基地" },
-  { value: "50+", label: "生产、工程与服务团队" },
-  { value: "20+", label: "工程技术人员" },
+  { value: "83", label: "截至2025年社保人数" },
+  { value: "30+", label: "工程技术人员" },
 ];
 
 const trustPoints = [
@@ -135,14 +135,14 @@ export default function ZhHomePage() {
         <section className="section-shell">
           <SectionHeading
             eyebrow="产品类别"
-            title="围绕真实工厂任务构建六大机器人类别。"
+            title="围绕真实工厂任务选择机器人与工作站。"
             description="产品框架按应用任务整理：码垛/拆垛、桌面自动化、通用搬运、冲压专用、机床上下料和便携式协作场景。"
           />
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {[
               ["负载覆盖", "3-800 kg"],
-              ["产品结构", "六大类别"],
-              ["产品线", "11 个机器人产品线"],
+              ["产品结构", "七大类别"],
+              ["产品线", "12 个产品线"],
             ].map(([label, value]) => (
               <div key={label} className="steel-panel p-5">
                 <p className="text-xs uppercase tracking-[0.16em] text-white/42">{label}</p>
