@@ -18,7 +18,8 @@ export const cr50lCaseProject: CustomerCaseProject = {
     width: 720,
     height: 1280,
     durationSeconds: 34.97,
-    publishedAt: "2026-10-27T08:18:12Z",
+    // First successful public deployment of this video on the SCR website.
+    publishedAt: "2026-10-27T08:26:19Z",
     subtitles: {
       en: "/videos/case-studies/cr50l-lifting-palletizing-v1.en.vtt",
       zh: "/videos/case-studies/cr50l-lifting-palletizing-v1.zh.vtt",
