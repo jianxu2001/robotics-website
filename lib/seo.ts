@@ -3,6 +3,7 @@ import { companyProfile, type ProductSeries } from "@/lib/catalog";
 import type { IndustryPage } from "@/lib/industry-pages";
 import { getProductModelsBySeries, type ProductModel } from "@/lib/product-data";
 import type { SolutionPage } from "@/lib/solution-pages";
+import { companyIdentity } from "@/lib/company-identity";
 
 export const siteUrl = "https://www.scr-robot.com";
 
@@ -50,11 +51,12 @@ export function getOrganizationJsonLd() {
     "@type": "Organization",
     "@id": `${siteUrl}/#organization`,
     name: companyProfile.name,
-    alternateName: companyProfile.shortName,
+    legalName: companyIdentity.nameEn,
+    alternateName: [companyProfile.shortName, companyIdentity.nameZh],
     url: siteUrl,
     description: companyProfile.description,
     foundingDate: companyProfile.founded,
-    address: companyProfile.headquarters,
+    address: companyIdentity.postalAddress,
   };
 }
 

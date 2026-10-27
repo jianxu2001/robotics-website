@@ -14,7 +14,7 @@ import {
   productSeriesZh,
 } from "@/lib/catalog-zh";
 import { whatsappUrl } from "@/lib/contact";
-import { localizedAlternates } from "@/lib/seo";
+import { getOrganizationJsonLd, localizedAlternates, serializeJsonLd } from "@/lib/seo";
 
 const stats = [
   { value: "2017", label: "公司成立" },
@@ -85,6 +85,7 @@ export default function ZhHomePage() {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(getOrganizationJsonLd()) }} />
       <SiteHeader locale="zh" alternateHref="/" />
       <main id="top" className="min-h-screen overflow-hidden bg-[#080a0d] text-white">
         <section className="relative min-h-[92vh] border-b border-white/10 pt-40 sm:pt-32 lg:pt-24">

@@ -5,7 +5,7 @@ import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { automationSolutionsZh, companyProfileZh } from "@/lib/catalog-zh";
-import { localizedAlternates } from "@/lib/seo";
+import { getOrganizationJsonLd, localizedAlternates, serializeJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "关于华南机器人 | 工业机器人制造商",
@@ -18,7 +18,7 @@ const profileStats = [
   ["成立时间", companyProfileZh.founded],
   ["生产基地", companyProfileZh.facility],
   ["团队规模", companyProfileZh.team],
-  ["总部位置", companyProfileZh.headquarters],
+  ["公司地址", companyProfileZh.headquarters],
 ];
 
 const capabilities = [
@@ -33,6 +33,7 @@ const capabilities = [
 export default function ZhAboutPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(getOrganizationJsonLd()) }} />
       <SiteHeader locale="zh" alternateHref="/about" />
       <main className="min-h-screen bg-[#080a0d] pt-40 text-white sm:pt-32 lg:pt-28">
         <section className="relative border-b border-white/10">

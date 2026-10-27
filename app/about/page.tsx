@@ -5,7 +5,7 @@ import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { automationSolutions, companyProfile } from "@/lib/catalog";
-import { localizedAlternates } from "@/lib/seo";
+import { getOrganizationJsonLd, localizedAlternates, serializeJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "About SCR Robot | Industrial Robot Manufacturer",
@@ -18,7 +18,7 @@ const profileStats = [
   ["Founded", companyProfile.founded],
   ["Facility", companyProfile.facility],
   ["Team", companyProfile.team],
-  ["Location", companyProfile.headquarters],
+  ["Address", companyProfile.headquarters],
 ];
 
 const capabilities = [
@@ -33,6 +33,7 @@ const capabilities = [
 export default function AboutPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(getOrganizationJsonLd()) }} />
       <SiteHeader alternateHref="/zh/about" />
       <main className="min-h-screen bg-[#080a0d] pt-40 text-white sm:pt-32 lg:pt-28">
         <section className="relative border-b border-white/10">

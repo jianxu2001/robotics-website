@@ -5,6 +5,7 @@ import {
   type ProductSeries,
 } from "@/lib/catalog";
 import { productModels } from "@/lib/product-data";
+import { companyIdentity } from "@/lib/company-identity";
 
 const zhSeriesCopy: Record<
   string,
@@ -105,16 +106,16 @@ export const productSeriesZh: ProductSeries[] = productSeries.map((series) => ({
 }));
 
 export const companyProfileZh = {
-  name: "华南机器人科技（广东）有限公司",
+  name: companyIdentity.nameZh,
   shortName: "SCR Robot",
   founded: "2017",
-  headquarters: "中国广州花都汽车城",
+  headquarters: companyIdentity.addressZh,
   facility: "约 6,000 平方米生产与工程基地",
   team: "截至2025年社保人数83人，工程技术人员30余人",
   engineering:
     "团队覆盖机械、电子、电气、软件、视觉技术研发应用与系统集成能力，可为工业客户提供机器人本体、产线集成和非标自动化方案。",
   description:
-    "华南机器人科技（广东）有限公司是一家智能工厂解决方案提供商，业务涵盖工业机器人生产制造、设备维修、销售以及行业一站式自动化解决方案。",
+    `${companyIdentity.nameZh}是一家智能工厂解决方案提供商，业务涵盖工业机器人生产制造、设备维修、销售以及行业一站式自动化解决方案。`,
 };
 
 export const productCategoriesZh: ProductCategory[] = [

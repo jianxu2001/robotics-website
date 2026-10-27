@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { salesEmail, whatsappNumber, whatsappUrl } from "@/lib/contact";
+import { companyIdentity } from "@/lib/company-identity";
 
-export function SiteFooter({ companyName, companyNameZh }: { companyName: string; companyNameZh: string }) {
+export function SiteFooter() {
   const pathname = usePathname();
   const zh = pathname === "/zh" || pathname.startsWith("/zh/");
   const prefix = zh ? "/zh" : "";
@@ -21,9 +22,12 @@ export function SiteFooter({ companyName, companyNameZh }: { companyName: string
     <footer lang={zh ? "zh-CN" : "en"} className="mt-auto border-t border-white/10 bg-[#080a0d] px-5 py-10 text-white/60 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-[1.2fr_0.7fr_1fr]">
         <div>
-          <p className="text-base font-semibold text-white">{zh ? companyNameZh : companyName}</p>
+          <p className="text-base font-semibold text-white">{zh ? companyIdentity.nameZh : companyIdentity.nameEn}</p>
           <p className="mt-3 max-w-md text-sm leading-7">{zh ? "工业机器人、码垛与拆垛、装箱及冲压上下料自动化。" : "Industrial robots for palletizing, depalletizing, case packing and press automation."}</p>
-          <p className="mt-3 text-sm">{zh ? "中国 · 广东广州" : "Guangzhou, Guangdong, China"}</p>
+          <address className="mt-3 max-w-md text-sm not-italic leading-7">
+            {zh && <p>{companyIdentity.addressZh}</p>}
+            <p lang="en" className={zh ? "mt-2 text-white/50" : ""}>{companyIdentity.addressEn}</p>
+          </address>
         </div>
         <nav aria-label={zh ? "页脚导航" : "Footer navigation"}>
           <p className="text-xs font-semibold uppercase tracking-widest text-[#f5b41b]">{zh ? "快速入口" : "Explore"}</p>

@@ -1,4 +1,5 @@
 import { getProductModelsBySeries, productModels } from "@/lib/product-data";
+import { companyIdentity } from "@/lib/company-identity";
 
 export type ProductSeries = {
   slug: string;
@@ -43,16 +44,16 @@ export type ProductGroup = ProductCategory & {
 };
 
 export const companyProfile = {
-  name: "South China Robotics Technology (Guangdong) Co., Ltd.",
+  name: companyIdentity.nameEn,
   shortName: "SCR Robot",
   founded: "2017",
-  headquarters: "Huadu Auto City, Guangzhou, China",
+  headquarters: companyIdentity.addressEn,
   facility: "6,000 m2 manufacturing and engineering base",
   team: "83 insured employees as of 2025, including 30+ engineering and technical specialists",
   engineering:
     "A multidisciplinary team covering mechanical design, electronics, electrical controls, software, vision technology, robot application engineering, and system integration.",
   description:
-    "South China Robotics Technology (Guangdong) Co., Ltd. is an intelligent factory solution provider focused on industrial robot manufacturing, equipment service, robot sales, and one-stop automation systems for demanding production environments.",
+    `${companyIdentity.nameEn} is an intelligent factory solution provider focused on industrial robot manufacturing, equipment service, robot sales, and one-stop automation systems for demanding production environments.`,
 };
 
 export const productCategories: ProductCategory[] = [

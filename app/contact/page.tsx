@@ -5,11 +5,12 @@ import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
 import { IndustrialCard } from "@/components/industrial-card";
 import { InquiryForm } from "@/components/inquiry-form";
+import { CompanyContactDetails } from "@/components/company-contact-details";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { salesEmail, whatsappNumber, whatsappUrl } from "@/lib/contact";
 import { productGroups, productInquiryOptions } from "@/lib/catalog";
-import { localizedAlternates } from "@/lib/seo";
+import { getOrganizationJsonLd, localizedAlternates, serializeJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Contact SCR Robot | Send Product Photo for Robot Recommendation",
@@ -40,6 +41,7 @@ const applicationOptions = [
 export default function ContactPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(getOrganizationJsonLd()) }} />
       <SiteHeader alternateHref="/zh/contact" />
       <main className="min-h-screen bg-[#080a0d] pt-40 text-white sm:pt-32 lg:pt-28">
         <section className="section-shell pb-12">
@@ -79,6 +81,8 @@ export default function ContactPage() {
                   <a href="tel:+8613266005525" className="hover:text-white">Phone: {whatsappNumber}</a>
                 </div>
               </IndustrialCard>
+
+              <CompanyContactDetails />
 
               <div className="steel-panel p-6">
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f5b41b]">

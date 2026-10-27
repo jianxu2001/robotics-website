@@ -16,7 +16,7 @@ import {
   productSeries,
 } from "@/lib/catalog";
 import { whatsappUrl } from "@/lib/contact";
-import { absoluteUrl, localizedAlternates, serializeJsonLd } from "@/lib/seo";
+import { absoluteUrl, getOrganizationJsonLd, localizedAlternates, serializeJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Robotic Palletizing, Depalletizing & Bag Feeding Systems | SCR Robot",
@@ -81,10 +81,7 @@ const quoteInputs = [
 ];
 
 const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: companyProfile.name,
-  url: "https://www.scr-robot.com",
+  ...getOrganizationJsonLd(),
   logo: absoluteUrl("/images/scr-factory-guangdong-v1.png"),
   foundingDate: "2017-06-13",
   description: companyProfile.description,

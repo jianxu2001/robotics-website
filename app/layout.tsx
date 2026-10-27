@@ -56,7 +56,7 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth" className="h-full antialiased">
       <body className="min-h-full flex flex-col">
         {children}
-        <SiteFooter companyName={companyProfile.name} companyNameZh="华南机器人科技（广东）有限公司" />
+        <SiteFooter />
       </body>
     </html>
   );
