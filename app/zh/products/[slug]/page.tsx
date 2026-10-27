@@ -1,5 +1,7 @@
 import { isProductRender } from "@/lib/product-media";
 import { RelatedSelectionGuides } from "@/components/selection-guide";
+import { FeaturedCustomerCase } from "@/components/customer-case-study";
+import { cr50lCaseProject } from "@/lib/cr50l-case";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -134,6 +136,7 @@ export default async function ZhProductDetailPage({ params }: ProductDetailPageP
           </div>
         </section>
         <RelatedSelectionGuides seriesSlug={series.slug} locale="zh" />
+        {series.slug === "cr-series" && <section className="section-shell border-t border-white/10"><h2 className="text-2xl font-semibold">CR50L 升降工作站应用视频</h2><FeaturedCustomerCase project={cr50lCaseProject} locale="zh" /></section>}
       </main>
     </>
   );

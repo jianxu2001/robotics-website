@@ -6,6 +6,7 @@ import { productModelEnvironment, type ProductModel, type ProductModelSpec } fro
 import { getProductModelFaqs } from "@/lib/seo";
 import { modelInquiryHref } from "@/lib/product-selection";
 import { stc10CasePaths } from "@/lib/stc10-case";
+import { cr50lCasePaths } from "@/lib/cr50l-case";
 import { isProductRender } from "@/lib/product-media";
 
 const labels: Record<string, string> = {
@@ -72,6 +73,7 @@ export function ProductModelDetail({ model, locale = "en" }: { model: ProductMod
           <p className="mt-6 text-lg leading-8 text-white/70">{zh ? (model.positioningZh ?? `${model.name}，最大负载 ${model.payload}，臂展 ${model.reach}。选型请结合夹具重量、产品尺寸、工作范围和目标节拍。`) : model.positioning}</p>
           <div className="mt-8 flex flex-wrap gap-3"><CtaLink href={modelInquiryHref(model, locale)}>{zh ? "咨询此型号与报价" : "Enquire About This Model"}</CtaLink><a href={catalog} className="inline-flex items-center rounded-md border border-white/20 px-5 py-3 text-sm font-semibold transition hover:border-[#f5b41b]">{zh ? "下载产品画册 PDF" : "Download Catalog PDF"}</a></div>
           {model.name === "STC10-1450-400" && <Link href={stc10CasePaths[locale]} className="mt-5 inline-flex text-sm font-semibold text-[#f5b41b] hover:text-[#ffd36b]">{zh ? "观看 STC10 冲压线应用案例与现场视频 →" : "Watch the STC10 press automation case and site video →"}</Link>}
+          {model.name === "CR50L-1900" && <Link href={cr50lCasePaths[locale]} className="mt-5 inline-flex text-sm font-semibold text-[#f5b41b] hover:text-[#ffd36b]">{zh ? "观看 CR50L 升降式纸箱码垛案例与视频 →" : "Watch the CR50L lifting carton palletizing case →"}</Link>}
           <div className="mt-8 grid grid-cols-2 gap-3">{metrics.map(([label, value]) => <div key={label} className="rounded-lg border border-white/10 bg-black/20 p-4"><p className="text-xs text-white/50">{label}</p><p className="mt-2 text-xl font-semibold text-[#ffd36b]">{value}</p></div>)}</div>
         </div>
         <div className={`relative min-h-80 overflow-hidden rounded-xl border border-white/[0.06] lg:min-h-[480px] ${isProductRender(model.image) ? "product-stage" : "bg-[#0c0f13]"}`}><Image src={model.image} alt={`${model.name} ${zh ? (model.categoryZh ?? "工业机器人") : model.category}`} fill priority sizes="(min-width: 1024px) 50vw, 100vw" className={isProductRender(model.image) ? "product-image" : model.specifications ? "object-contain" : "object-cover"} /></div>

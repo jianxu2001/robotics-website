@@ -70,6 +70,7 @@ export const selectionGuides: SelectionGuide[] = [
         sourceNote: "Model examples use SCR's 2026 catalog and the specifications on the linked product pages. Selection considerations are application review points; they are not a project throughput or savings guarantee.",
         related: [
           { title: "30 kg vs 50 kg CR palletizers", href: "/guides/30kg-vs-50kg-palletizer", text: "Compare the four CR configurations and understand the lifting variants." },
+          { title: "CR50L lifting palletizing video", href: "/case-studies/cr50l-lifting-carton-palletizing", text: "See the lifting workstation, carton pickup tooling and pallet-area handling in operation." },
           { title: "CR collaborative palletizing workstations", href: "/products/cr-series", text: "View catalog parameters, drawings and individual model pages." },
           { title: "Robotic bag palletizing", href: "/solutions/robotic-bag-palletizing-system", text: "Review bag presentation, gripping and end-of-line integration." },
           { title: "SCH industrial palletizing robots", href: "/products/sch-series", text: "Review industrial robot options for palletizing and handling." },
@@ -99,6 +100,7 @@ export const selectionGuides: SelectionGuide[] = [
         sourceNote: "型号示例依据 SCR 2026 画册及所链接产品页。选型内容用于梳理工程条件，不代表某个项目的产能或节省费用承诺。",
         related: [
           { title: "30 kg 与 50 kg CR 工作站怎么选", href: "/zh/guides/30kg-vs-50kg-palletizer", text: "对比四款 CR 配置，区分固定与升降版本。" },
+          { title: "CR50L 升降式纸箱码垛视频", href: "/zh/case-studies/cr50l-lifting-carton-palletizing", text: "观看升降工作站、纸箱吸取工装及托盘区域取放作业。" },
           { title: "CR 协作码垛工作站", href: "/zh/products/cr-series", text: "查看画册参数、尺寸图与具体型号。" },
           { title: "SCH 工业码垛机器人", href: "/zh/products/sch-series", text: "了解工业搬运与码垛平台。" },
         ],
@@ -126,6 +128,7 @@ export const selectionGuides: SelectionGuide[] = [
         related: [
           { title: "CR collaborative palletizing workstations", href: "/products/cr-series", text: "Review the complete CR range and model drawings." },
           { title: "Collaborative vs industrial palletizing", href: "/guides/collaborative-vs-industrial-palletizing", text: "Check whether a collaborative workstation is the right platform for the line." },
+          { title: "CR50L lifting palletizing video", href: "/case-studies/cr50l-lifting-carton-palletizing", text: "Watch the lifting configuration and carton handling around the pallet area." },
           { title: "BR robotic case packing", href: "/products/br-series", text: "If the task is packing products into cases, review the dedicated BR workstations." },
         ],
       },
@@ -144,6 +147,7 @@ export const selectionGuides: SelectionGuide[] = [
         related: [
           { title: "CR 协作码垛工作站", href: "/zh/products/cr-series", text: "查看完整系列、单型号参数与尺寸图。" },
           { title: "协作码垛与工业码垛怎么选", href: "/zh/guides/collaborative-vs-industrial-palletizing", text: "先确认产线适合哪一类机器人平台。" },
+          { title: "CR50L 升降式纸箱码垛视频", href: "/zh/case-studies/cr50l-lifting-carton-palletizing", text: "了解升降配置与托盘区域的纸箱取放动作。" },
           { title: "BR 机器人装箱工作站", href: "/zh/products/br-series", text: "如果任务是将产品装入箱内，可了解 BR 专用工作站。" },
         ],
       },

@@ -6,6 +6,7 @@ import { solutionPages } from "@/lib/solution-pages";
 import { absoluteUrl } from "@/lib/seo";
 import { sch100CasePaths } from "@/lib/sch100-case";
 import { stc10CasePaths } from "@/lib/stc10-case";
+import { cr50lCasePaths } from "@/lib/cr50l-case";
 import { selectionGuides, guidePath } from "@/lib/selection-guides";
 
 const lastModified = "2026-10-27T00:00:00.000Z";
@@ -28,6 +29,7 @@ const pairedRoutes = [
   { en: "/guides", zh: "/zh/guides", priority: 0.72 },
   { en: sch100CasePaths.en, zh: sch100CasePaths.zh, priority: 0.78 },
   { en: stc10CasePaths.en, zh: stc10CasePaths.zh, priority: 0.78 },
+  { en: cr50lCasePaths.en, zh: cr50lCasePaths.zh, priority: 0.78 },
   { en: "/about", zh: "/zh/about", priority: 0.7 },
   { en: "/contact", zh: "/zh/contact", priority: 0.8 },
 ];

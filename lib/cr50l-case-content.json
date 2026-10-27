@@ -1,0 +1,114 @@
+{
+  "zh": {
+    "eyebrow": "应用案例 · 纸箱码垛",
+    "title": "CR50L 升降式协作机器人纸箱码垛案例",
+    "subtitle": "带升降立柱的工作站，衔接纸箱取放与托盘堆垛",
+    "summary": "本视频展示 CR50L 带升降配置的纸箱码垛应用。机器人配合纸箱吸取工装，在输送设备和托盘作业区域之间完成取放与转运，现场可见多层纸箱垛、升降立柱和触摸操作屏。",
+    "configurationTitle": "本案例配置",
+    "configurationNote": "本案例采用 CR50L 带升降立柱配置，配合纸箱吸取工装、输送设备与托盘工位组成作业单元。完整型号参数与尺寸图可在 CR50L-1900 产品页查看。",
+    "backgroundTitle": "把纸箱搬运与托盘作业连接起来",
+    "background": "包装后的纸箱需要在输送与托盘区域之间反复抓取、移动和放置。该工作站把带升降立柱的协作机器人、纸箱吸取工装和工位控制设备布置在一起。视频记录了纸箱被吸起、抬升和转运，以及机械臂在多层纸箱垛附近进行取放的运行画面。",
+    "workflowTitle": "现场动作与工作站配置",
+    "steps": [
+      {
+        "title": "纸箱吸取与转运",
+        "text": "末端吸取工装接触纸箱顶部，将纸箱提起并转移至作业位置。",
+        "image": "01-carton-pickup.jpg",
+        "time": "00:03",
+        "alt": "CR50L 末端吸取工装从纸箱顶部抓取并抬升纸箱"
+      },
+      {
+        "title": "托盘区域纸箱取放",
+        "text": "机械臂将纸箱移至已有多层纸箱垛的托盘区域，衔接堆垛位置的取放动作。",
+        "image": "02-pallet-placement.jpg",
+        "time": "00:06",
+        "alt": "CR50L 吸取工装和纸箱位于多层托盘纸箱垛上方"
+      },
+      {
+        "title": "带升降立柱的工作站",
+        "text": "现场可见机械臂安装在升降立柱上，旁侧为工作站柜体，周围布置输送设备与托盘工位。",
+        "image": "03-lifting-workstation.jpg",
+        "time": "00:18",
+        "alt": "CR50L 升降立柱、工作站柜体、输送设备与托盘区域的现场布局"
+      },
+      {
+        "title": "操作屏与工位配套",
+        "text": "柜体侧设有触摸操作屏，顶部可见状态指示灯；机器人在相邻作业位置之间衔接纸箱取放。",
+        "image": "04-operator-panel.jpg",
+        "time": "00:30",
+        "alt": "CR50L 工作站的触摸操作屏、状态灯和相邻纸箱作业位置"
+      }
+    ],
+    "featuresTitle": "本应用的配置特点",
+    "features": [
+      "采用 CR50L 带升降立柱的协作码垛工作站配置。",
+      "末端吸取工装从纸箱顶部执行抓取。",
+      "输送设备与托盘区域相邻布置，衔接纸箱取放与转运。",
+      "工作站配有触摸操作屏和状态指示灯。"
+    ],
+    "ctaTitle": "计划采用升降式纸箱码垛工作站？",
+    "ctaText": "请提供纸箱尺寸与重量范围、目标小时产量、输送取料高度、托盘尺寸与垛型、目标堆垛高度和现场布局，用于核对升降配置、抓手与工位范围。",
+    "ctaLabel": "咨询 CR50L 应用选型",
+    "productLabel": "查看 CR50L-1900 参数与尺寸图",
+    "productHref": "https://www.scr-robot.com/zh/products/cr-series/cr50l-1900",
+    "contactHref": "https://www.scr-robot.com/zh/contact?model=cr-series%2Fcr50l-1900#inquiry",
+    "seoTitle": "CR50L 升降式协作机器人纸箱码垛案例与视频 | SCR Robot",
+    "seoDescription": "观看 CR50L 带升降立柱的纸箱码垛现场视频，了解纸箱吸取、转运、托盘作业及工作站配套，并查看 CR50L-1900 型号参数。"
+  },
+  "en": {
+    "eyebrow": "Application case · Carton palletizing",
+    "title": "CR50L Carton Palletizing with a Lifting Column",
+    "subtitle": "A lifting workstation for carton handling and pallet operations",
+    "summary": "This video shows a CR50L carton palletizing application with a lifting column. The robot uses carton pickup tooling for handling and transfer around the conveyor and pallet work areas. The footage also shows a multi-layer carton stack and a workstation touchscreen.",
+    "configurationTitle": "Configuration shown",
+    "configurationNote": "This application uses the CR50L lifting configuration, with carton pickup tooling, conveyor equipment and pallet positions. View the CR50L-1900 product page for catalog specifications and the dimensional drawing.",
+    "backgroundTitle": "Connecting carton handling with pallet operations",
+    "background": "Cartons require repeated pickup, movement and placement between conveying and pallet work areas. This workstation brings together a collaborative robot on a lifting column, carton pickup tooling and local operating equipment. The video records carton lifting and transfer, together with robot handling around a multi-layer pallet stack.",
+    "workflowTitle": "Movements and workstation configuration",
+    "steps": [
+      {
+        "title": "Carton pickup and transfer",
+        "text": "The end-of-arm pickup tooling contacts the top of a carton, lifts it and transfers it to an operating position.",
+        "image": "01-carton-pickup.jpg",
+        "time": "00:03",
+        "alt": "CR50L end-of-arm pickup tooling lifting a carton from its top surface"
+      },
+      {
+        "title": "Handling at the pallet stack",
+        "text": "The robot brings the carton to the pallet area, where multiple carton layers are already present, and connects the pickup and placement movements.",
+        "image": "02-pallet-placement.jpg",
+        "time": "00:06",
+        "alt": "CR50L carton pickup tooling above a multi-layer pallet stack"
+      },
+      {
+        "title": "Workstation with a lifting column",
+        "text": "The robot is mounted on a lifting column next to the workstation cabinet, with conveyor equipment and pallet positions arranged around the cell.",
+        "image": "03-lifting-workstation.jpg",
+        "time": "00:18",
+        "alt": "CR50L lifting column, workstation cabinet, conveyor and pallet-area layout"
+      },
+      {
+        "title": "Local operating equipment",
+        "text": "The cabinet has a touchscreen panel and visible status indicators. Robot movements connect the adjacent carton handling positions.",
+        "image": "04-operator-panel.jpg",
+        "time": "00:30",
+        "alt": "CR50L workstation touchscreen, status lights and adjacent carton handling area"
+      }
+    ],
+    "featuresTitle": "What this application combines",
+    "features": [
+      "A CR50L collaborative palletizing workstation with a lifting column.",
+      "End-of-arm carton pickup tooling engaging the carton top surface.",
+      "Conveyor equipment and pallet work areas arranged for carton handling and transfer.",
+      "A workstation touchscreen panel and status indicators."
+    ],
+    "ctaTitle": "Planning a lifting carton palletizing workstation?",
+    "ctaText": "Send carton dimensions and weight range, target hourly output, conveyor pickup height, pallet size and pattern, target stack height and a layout to review the lift configuration, tooling and working positions.",
+    "ctaLabel": "Discuss a CR50L Application",
+    "productLabel": "View CR50L-1900 Specifications",
+    "productHref": "https://www.scr-robot.com/products/cr-series/cr50l-1900",
+    "contactHref": "https://www.scr-robot.com/contact?model=cr-series%2Fcr50l-1900#inquiry",
+    "seoTitle": "CR50L Lifting Carton Palletizer Case Study & Video | SCR Robot",
+    "seoDescription": "Watch CR50L carton handling and palletizing with a lifting column, pickup tooling and conveyor equipment. Explore the video and CR50L-1900 specifications."
+  }
+}

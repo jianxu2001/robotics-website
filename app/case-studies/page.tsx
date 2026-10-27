@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 import { FeaturedSch100Case } from "@/components/sch100-case-study";
 import { FeaturedCustomerCase } from "@/components/customer-case-study";
 import { stc10CaseProject } from "@/lib/stc10-case";
+import { cr50lCaseProject } from "@/lib/cr50l-case";
 import { caseStudies } from "@/lib/case-studies";
 import { whatsappUrl } from "@/lib/contact";
 import { localizedAlternates } from "@/lib/seo";
@@ -14,7 +15,7 @@ import { localizedAlternates } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Robot Automation Case Studies | SCR Robot",
   description:
-    "Watch STC10 press loading, unloading and inter-press transfer, plus SCH100 bag-opening and feeding with a custom linear track. Explore real automation footage.",
+    "Watch CR50L lifting carton palletizing, STC10 press transfer and SCH100 bag-opening applications. Explore robot workstations through real operating footage.",
   alternates: localizedAlternates(
     "/case-studies",
     "/case-studies",
@@ -43,6 +44,7 @@ export default function CaseStudiesPage() {
               description="Watch customer-site footage and explore application concepts to understand how robot selection, tooling and site layout shape an automation cell."
               level={1}
             />
+            <FeaturedCustomerCase project={cr50lCaseProject} />
             <FeaturedCustomerCase project={stc10CaseProject} />
             <FeaturedSch100Case />
             <h2 className="mt-12 text-2xl font-semibold text-white">Explore application concepts</h2>
