@@ -5,6 +5,7 @@ import { productModels } from "@/lib/product-data";
 import { solutionPages } from "@/lib/solution-pages";
 import { absoluteUrl } from "@/lib/seo";
 import { sch100CasePaths } from "@/lib/sch100-case";
+import { stc10CasePaths } from "@/lib/stc10-case";
 
 const lastModified = "2026-10-27T00:00:00.000Z";
 
@@ -24,6 +25,7 @@ const pairedRoutes = [
   { en: "/industries", zh: "/zh/industries", priority: 0.85 },
   { en: "/case-studies", zh: "/zh/case-studies", priority: 0.75 },
   { en: sch100CasePaths.en, zh: sch100CasePaths.zh, priority: 0.78 },
+  { en: stc10CasePaths.en, zh: stc10CasePaths.zh, priority: 0.78 },
   { en: "/about", zh: "/zh/about", priority: 0.7 },
   { en: "/contact", zh: "/zh/contact", priority: 0.8 },
 ];

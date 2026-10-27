@@ -5,6 +5,8 @@ import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { FeaturedSch100Case } from "@/components/sch100-case-study";
+import { FeaturedCustomerCase } from "@/components/customer-case-study";
+import { stc10CaseProject } from "@/lib/stc10-case";
 import { caseStudiesZh } from "@/lib/case-studies";
 import { whatsappUrl } from "@/lib/contact";
 import { localizedAlternates } from "@/lib/seo";
@@ -12,7 +14,7 @@ import { localizedAlternates } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "机器人客户案例与应用方案 | SCR Robot",
   description:
-    "观看 SCH100 机器人拆包上料客户现场视频，了解定制地轨配置，并查看袋装码垛、纸箱码垛、冲压转运和机床上下料应用方案。",
+    "观看 STC10 冲压线自动上下料与工序转运，以及 SCH100 定制地轨拆包上料现场视频，了解机器人在实际生产线中的应用。",
   alternates: localizedAlternates(
     "/zh/case-studies",
     "/case-studies",
@@ -41,6 +43,7 @@ export default function ZhCaseStudiesPage() {
               description="通过客户现场视频与应用方案，了解机器人选型、夹具和现场布局如何组成一套自动化单元。"
               level={1}
             />
+            <FeaturedCustomerCase project={stc10CaseProject} locale="zh" />
             <FeaturedSch100Case locale="zh" />
             <h2 className="mt-12 text-2xl font-semibold text-white">更多应用方案</h2>
             <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">

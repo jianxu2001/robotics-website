@@ -1,0 +1,114 @@
+{
+  "zh": {
+    "eyebrow": "应用案例 · 冲压行业",
+    "title": "STC10 冲压线自动上下料与转运案例",
+    "subtitle": "多工位冲床之间的工件取放与工序衔接",
+    "summary": "本项目在多台冲床之间布置 STC10 冲压专用机器人，配合末端工装完成工件取放和工序间转运。机器人与冲床交替动作，将多道冲压工序的物料流转衔接起来。",
+    "configurationTitle": "现场配置",
+    "configurationNote": "视频可见多台顺线布置的冲床、机间转运机器人、专用末端工装及机台侧触摸操作屏。机器人行程、工装和取放路径需结合工件、模具与现场布局匹配。",
+    "backgroundTitle": "把多道冲压工序衔接成连续作业流程",
+    "background": "金属工件在不同冲压工序之间需要反复取出、转移并放入下一工位。该现场沿冲床布置转运机器人，由末端工装进入模具作业区域完成取放，并在冲床动作前退出。视频展示了多工位取放、转运与冲压循环相互衔接的运行画面。",
+    "workflowTitle": "现场工位与动作",
+    "steps": [
+      {
+        "title": "多工位顺线布置",
+        "text": "多台冲床沿生产线布置，机器人设置在机台之间，工位侧配有触摸操作屏。",
+        "image": "01-line-layout.jpg",
+        "time": "00:01.5",
+        "alt": "冲压生产线中的多台冲床、机间机器人和机台侧操作屏"
+      },
+      {
+        "title": "相邻工位转运",
+        "text": "机器人在相邻模具作业区域之间转移工件，衔接不同冲压工序。",
+        "image": "02-transfer.jpg",
+        "time": "00:02.5",
+        "alt": "冲压专用机器人在相邻冲床工位之间执行转运动作"
+      },
+      {
+        "title": "模具区域取放",
+        "text": "末端工装伸入模具作业区域执行工件取放，机器人运动路径围绕模具位置组织。",
+        "image": "03-die-handling.jpg",
+        "time": "00:05.5",
+        "alt": "冲压机器人末端工装进入开模后的模具作业区域"
+      },
+      {
+        "title": "取放与冲压循环衔接",
+        "text": "工装退出模具作业区域后，冲床执行后续动作；开模后再衔接下一轮取放与转运。",
+        "image": "04-cycle-coordination.jpg",
+        "time": "00:08.5",
+        "alt": "冲床开合模与机间转运机器人交替作业的现场画面"
+      }
+    ],
+    "featuresTitle": "本项目的应用特点",
+    "features": [
+      "由机器人承担冲压工位之间的重复取放与搬运。",
+      "围绕顺线布置的多台冲床组织工件转运路径。",
+      "专用末端工装与模具取放位置配合，完成工序间交接。",
+      "机台侧设置触摸操作屏，便于现场操作。"
+    ],
+    "ctaTitle": "正在规划冲压线自动上下料？",
+    "ctaText": "请提供工件图纸或照片、单件重量、工艺顺序、模具开模高度、冲床间距、现场布局及目标节拍。我们可据此评估机器人行程、末端工装和工位衔接方案。",
+    "ctaLabel": "咨询冲压自动化方案",
+    "productLabel": "查看 STC10 产品参数",
+    "productHref": "https://www.scr-robot.com/zh/products/stc-series/stc10-1450-400",
+    "contactHref": "https://www.scr-robot.com/zh/contact",
+    "seoTitle": "STC10 冲压机器人上下料案例｜工序间转运 | SCR Robot",
+    "seoDescription": "观看 STC10 冲压线自动上下料现场视频，了解多台冲床之间的工件取放、工序间转运和动作衔接，评估适合现场布局的冲压自动化方案。"
+  },
+  "en": {
+    "eyebrow": "Application case · Metal stamping",
+    "title": "STC10 Robotic Press Loading, Unloading and Transfer",
+    "subtitle": "Part handling and transfer across a multi-press stamping line",
+    "summary": "This project places STC10 stamping robots between presses to handle parts and transfer them between operations. Robot movements alternate with press cycles, connecting material flow across multiple stamping stages.",
+    "configurationTitle": "On-site configuration",
+    "configurationNote": "The footage shows presses arranged along a production line, inter-press transfer robots, dedicated end-of-arm tooling and press-side touchscreen panels. Robot travel, tooling and handling paths are matched to the parts, dies and site layout.",
+    "backgroundTitle": "Connecting successive stamping operations",
+    "background": "Parts moving through successive stamping operations must be removed, transferred and placed at the next station. At this site, robots positioned along the press line move their tooling into the die areas for part handling and withdraw before subsequent press movements. The video shows handling, transfer and press cycles working in sequence across the line.",
+    "workflowTitle": "Stations and movements on site",
+    "steps": [
+      {
+        "title": "A multi-press layout",
+        "text": "Presses are arranged along the line, with transfer robots between stations and touchscreen panels beside the equipment.",
+        "image": "01-line-layout.jpg",
+        "time": "00:01.5",
+        "alt": "Multiple stamping presses, inter-press robots and touchscreen panels on a production line"
+      },
+      {
+        "title": "Inter-press transfer",
+        "text": "The robots move parts between adjacent die areas to connect successive stamping operations.",
+        "image": "02-transfer.jpg",
+        "time": "00:02.5",
+        "alt": "A dedicated stamping robot executing a transfer movement between adjacent press stations"
+      },
+      {
+        "title": "Handling in the die area",
+        "text": "End-of-arm tooling enters the die working area to handle parts, following a path planned around the die positions.",
+        "image": "03-die-handling.jpg",
+        "time": "00:05.5",
+        "alt": "Stamping robot tooling entering the working area of an open press die"
+      },
+      {
+        "title": "Alternating with press cycles",
+        "text": "After the tooling withdraws from the die area, the press performs its subsequent movement. The next handling and transfer sequence follows die opening.",
+        "image": "04-cycle-coordination.jpg",
+        "time": "00:08.5",
+        "alt": "Press movements alternating with inter-press robot handling on the stamping line"
+      }
+    ],
+    "featuresTitle": "What this application brings together",
+    "features": [
+      "Robots performing repetitive part handling and transfer between stamping stations.",
+      "Transfer paths planned around multiple presses arranged along the production line.",
+      "Dedicated end-of-arm tooling matched to the die pickup and placement positions.",
+      "Press-side touchscreen panels for local operation."
+    ],
+    "ctaTitle": "Planning automated press loading and unloading?",
+    "ctaText": "Send part drawings or photos, unit weight, operation sequence, die opening clearance, press spacing, site layout and target cycle time. These inputs support review of robot travel, tooling and station-to-station transfer.",
+    "ctaLabel": "Discuss Press Automation",
+    "productLabel": "View STC10 Specifications",
+    "productHref": "https://www.scr-robot.com/products/stc-series/stc10-1450-400",
+    "contactHref": "https://www.scr-robot.com/contact",
+    "seoTitle": "STC10 Press Loading & Unloading Case Study | SCR Robot",
+    "seoDescription": "Watch STC10 robots handling parts and transferring them between presses. Explore tooling, die access and layout inputs for a multi-stage stamping line."
+  }
+}

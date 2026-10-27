@@ -5,6 +5,8 @@ import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { FeaturedSch100Case } from "@/components/sch100-case-study";
+import { FeaturedCustomerCase } from "@/components/customer-case-study";
+import { stc10CaseProject } from "@/lib/stc10-case";
 import { caseStudies } from "@/lib/case-studies";
 import { whatsappUrl } from "@/lib/contact";
 import { localizedAlternates } from "@/lib/seo";
@@ -12,7 +14,7 @@ import { localizedAlternates } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Robot Automation Case Studies | SCR Robot",
   description:
-    "Watch the SCH100 bag-opening and feeding customer project with a custom linear track, and explore robot automation concepts for palletizing, transfer and tending.",
+    "Watch STC10 press loading, unloading and inter-press transfer, plus SCH100 bag-opening and feeding with a custom linear track. Explore real automation footage.",
   alternates: localizedAlternates(
     "/case-studies",
     "/case-studies",
@@ -41,6 +43,7 @@ export default function CaseStudiesPage() {
               description="Watch customer-site footage and explore application concepts to understand how robot selection, tooling and site layout shape an automation cell."
               level={1}
             />
+            <FeaturedCustomerCase project={stc10CaseProject} />
             <FeaturedSch100Case />
             <h2 className="mt-12 text-2xl font-semibold text-white">Explore application concepts</h2>
             <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
