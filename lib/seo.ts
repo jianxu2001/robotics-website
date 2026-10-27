@@ -261,6 +261,11 @@ const productSeriesMetadataOverrides: Record<
   string,
   { title: string; description: string }
 > = {
+  "stc-series": {
+    title: "Press Loading & Unloading Robots | STC Series | SCR Robot",
+    description:
+      "Explore the STC10 press transfer robot: 10 kg payload and 1,450 mm reach. Review catalog specifications and a real multi-press loading and unloading video.",
+  },
   "cr-series": {
     title: "Collaborative Palletizing Robots | 30-50 kg | SCR Robot",
     description:
@@ -314,6 +319,9 @@ export function getProductSeriesMetaDescription(series: ProductSeries) {
 }
 
 export function getProductModelMetaTitle(model: ProductModel) {
+  if (model.seriesSlug === "stc-series") {
+    return `${model.name} Press Transfer Robot | ${model.payload} | SCR Robot`;
+  }
   if (model.seriesSlug === "cr-series") {
     return `${model.name} Collaborative Palletizer | ${model.payload} | SCR Robot`;
   }

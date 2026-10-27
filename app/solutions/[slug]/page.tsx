@@ -8,6 +8,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { whatsappUrl } from "@/lib/contact";
 import { solutionPages } from "@/lib/solution-pages";
+import { solutionEngineering } from "@/lib/solution-engineering";
 import {
   canonicalAlternates,
   getSolutionPageStructuredData,
@@ -91,6 +92,7 @@ export default async function SolutionDetailPage({
   }
 
   const structuredData = getSolutionPageStructuredData(page);
+  const engineering = solutionEngineering[page.slug];
 
   return (
     <>
@@ -117,7 +119,7 @@ export default async function SolutionDetailPage({
           <div className="absolute inset-0 industrial-grid opacity-45" />
           <div className="relative mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
             <div className="text-sm text-white/58">
-              <Link href="/products" className="transition hover:text-white">
+              <Link href="/industries" className="transition hover:text-white">
                 Solutions
               </Link>
               <span className="mx-2 text-white/28">/</span>
@@ -141,11 +143,19 @@ export default async function SolutionDetailPage({
           </div>
         </section>
 
+        {engineering && <section className="section-shell">
+          <SectionHeading eyebrow="Process and selection" title="Define the complete handling task." description="Use the actual product, incoming condition and downstream interface to compare configurations." />
+          <ol className="mt-8 grid gap-4 md:grid-cols-3">{engineering.workflow.map((step, index) => <li key={step.title} className="rounded-lg border border-white/10 bg-white/[0.035] p-6"><p className="font-mono text-sm text-[#f5b41b]">0{index + 1}</p><h2 className="mt-3 text-xl font-semibold">{step.title}</h2><p className="mt-4 leading-7 text-white/65">{step.text}</p></li>)}</ol>
+          <h2 className="mt-12 text-2xl font-semibold">What changes the equipment selection?</h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">{engineering.selectionChecks.map((check) => <article key={check.item} className="border-l-2 border-[#f5b41b]/60 pl-5"><h3 className="text-lg font-semibold">{check.item}</h3><p className="mt-3 leading-7 text-white/65">{check.why}</p></article>)}</div>
+          {engineering.siteExample && <article className="mt-10 grid overflow-hidden rounded-lg border border-[#f5b41b]/30 bg-[#11161b] sm:grid-cols-[0.45fr_1fr]"><Link href={engineering.siteExample.href} className="bg-black"><Image src={engineering.siteExample.image} alt="SCH100 customer installation for bag pickup and feeding with a custom linear track" width={720} height={1280} sizes="(min-width:640px) 25vw, 100vw" className="h-64 w-full object-contain sm:h-80" /></Link><div className="self-center p-6 sm:p-8"><h2 className="text-2xl font-semibold">{engineering.siteExample.title}</h2><p className="mt-4 leading-8 text-white/65">{engineering.siteExample.text}</p><div className="mt-6"><CtaLink href={engineering.siteExample.href} variant="secondary">Watch the Site Video</CtaLink></div></div></article>}
+        </section>}
+
         {/* ── Pain Points ── */}
         <section className="section-shell">
           <SectionHeading
             eyebrow="Production pain points"
-            title={`Why manual ${page.slug.includes("palletizing") ? "palletizing" : page.slug.includes("breaking") ? "bag breaking and feeding" : "depalletizing"} needs automation.`}
+            title={`Reviewing manual ${page.slug.includes("depalletizing") ? "depalletizing" : page.slug.includes("breaking") ? "bag opening and feeding" : "palletizing"}.`}
             description="These are the recurring problems plant managers and engineers report when they first contact SCR Robot about automating their production line. Identifying the real bottleneck helps engineering design a system that solves the production problem, not just install a robot."
           />
           <div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -311,7 +321,7 @@ export default async function SolutionDetailPage({
             align="center"
           />
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
-            {page.internalLinks.map((link) => (
+            {[...page.internalLinks, ...(engineering?.related ?? [])].filter((link, index, links) => links.findIndex((item) => item.href === link.href) === index).map((link) => (
               <Link
                 key={link.title}
                 href={link.href}

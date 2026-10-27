@@ -1,4 +1,5 @@
 import { isProductRender } from "@/lib/product-media";
+import { RelatedSelectionGuides } from "@/components/selection-guide";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -186,6 +187,7 @@ export default async function ProductDetailPage({
             </div>
           </div>
         </section>
+        <RelatedSelectionGuides seriesSlug={series.slug} />
       </main>
     </>
   );

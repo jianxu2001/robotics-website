@@ -18,6 +18,12 @@ export const stc10CaseProject: CustomerCaseProject = {
     width: 1280,
     height: 720,
     durationSeconds: 20.09,
+    // First successful public deployment of this customer video.
+    publishedAt: "2026-10-27T04:32:56Z",
+    subtitles: {
+      en: "/videos/case-studies/stc10-stamping-v1.en.vtt",
+      zh: "/videos/case-studies/stc10-stamping-v1.zh.vtt",
+    },
     captions: {
       zh: "冲压线现场视频 · 约 20 秒",
       en: "Stamping-line footage · Approx. 20 seconds",

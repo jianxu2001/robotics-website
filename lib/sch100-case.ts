@@ -19,6 +19,12 @@ export const sch100CaseMedia = {
   width: 720,
   height: 1280,
   durationSeconds: 46.67,
+  // First successful public deployment of this customer video.
+  publishedAt: "2026-10-27T03:40:04Z",
+  subtitles: {
+    en: "/videos/case-studies/sch100-bag-feeding-v1.en.vtt",
+    zh: "/videos/case-studies/sch100-bag-feeding-v1.zh.vtt",
+  },
   captions: {
     zh: "客户现场视频 · 约 47 秒",
     en: "Customer-site footage · Approx. 47 seconds",

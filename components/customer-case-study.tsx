@@ -64,12 +64,14 @@ export function CustomerCaseStudy({ project, locale }: { project: CustomerCasePr
             <Link href={casesHref} className="text-sm text-white/55 transition hover:text-[#f5b41b]">
               ← {isZh ? "全部案例" : "All cases"}
             </Link>
+            <div className="mt-8 max-w-5xl">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#f5b41b]">{copy.eyebrow}</p>
+              <h1 className="mt-5 text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">{copy.title}</h1>
+              <p className="mt-5 text-xl font-semibold text-[#f5b41b] sm:text-2xl">{copy.subtitle}</p>
+            </div>
             <div className={`mt-8 grid items-center gap-10 lg:gap-16 ${isPortrait ? "lg:grid-cols-[1.3fr_0.7fr]" : "lg:grid-cols-2"}`}>
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#f5b41b]">{copy.eyebrow}</p>
-                <h1 className="mt-5 text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">{copy.title}</h1>
-                <p className="mt-5 text-xl font-semibold text-[#f5b41b] sm:text-2xl">{copy.subtitle}</p>
-                <p className="mt-6 text-lg leading-8 text-white/66">{copy.summary}</p>
+                <p className="text-lg leading-8 text-white/66">{copy.summary}</p>
                 <div className="mt-7 border-l-2 border-[#f5b41b] bg-white/[0.045] px-5 py-4">
                   <h2 className="text-xs font-bold uppercase tracking-[0.12em] text-[#f5b41b]">{copy.configurationTitle ?? (isZh ? "配置说明" : "Configuration")}</h2>
                   <p id={`${project.id}-configuration`} className="mt-2 text-sm leading-7 text-white/80">{copy.configurationNote}</p>
@@ -79,8 +81,9 @@ export function CustomerCaseStudy({ project, locale }: { project: CustomerCasePr
                   <CtaLink href={localPath(copy.productHref)} variant="secondary">{copy.productLabel}</CtaLink>
                 </div>
               </div>
-              <figure className={isPortrait ? "mx-auto w-full max-w-[21rem] lg:mr-0" : "w-full"}>
+              <figure className={`order-first lg:order-none ${isPortrait ? "mx-auto w-full max-w-[21rem] lg:mr-0" : "w-full"}`}>
                 <video
+                  id="site-video"
                   controls
                   playsInline
                   preload="none"
@@ -92,9 +95,11 @@ export function CustomerCaseStudy({ project, locale }: { project: CustomerCasePr
                   className={`h-auto w-full rounded-lg border border-white/15 bg-black object-contain ${isPortrait ? "aspect-[9/16] max-h-[37rem]" : "aspect-video"}`}
                 >
                   <source src={project.media.video} type="video/mp4" />
+                  <track kind="subtitles" src={project.media.subtitles.en} srcLang="en" label="English — workflow" default={!isZh} />
+                  <track kind="subtitles" src={project.media.subtitles.zh} srcLang="zh-CN" label="中文 · 工艺说明" default={isZh} />
                   <a href={project.media.video}>{isZh ? "打开现场视频" : "Open site video"}</a>
                 </video>
-                <figcaption className="mt-3 text-center text-xs text-white/45">{project.media.captions[locale]}</figcaption>
+                <figcaption className="mt-3 text-center text-xs leading-6 text-white/55">{project.media.captions[locale]}<br />{isZh ? "可在播放器中切换中英文工艺说明字幕。" : "English and Chinese workflow subtitles are available in the player."}</figcaption>
               </figure>
             </div>
           </div>

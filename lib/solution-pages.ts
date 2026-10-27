@@ -193,12 +193,12 @@ export const solutionPages: SolutionPage[] = [
     slug: "automatic-bag-breaking-feeding-system",
     title: "Automatic Bag Breaking and Feeding System",
     seoTitle:
-      "Automatic Bag Breaking and Feeding System for Powder Materials | SCR Robot",
+      "Automatic Bag Opening & Feeding Systems | SCR Robot",
     description:
-      "Automatic bag breaking and feeding systems for powder materials. Dust-controlled bag opening, cutting, discharge to mixer or silo, and empty bag handling. Request engineering review.",
+      "Plan robotic bag opening, breaking and material feeding with SCR Robot. Review the process, site requirements and a real SCH100 customer video with a custom track.",
     eyebrow: "Bag breaking and powder feeding automation",
     heroTitle:
-      "Automatic Bag Breaking and Feeding System for Powder Materials",
+      "Automatic Bag Opening and Feeding Systems for Powder Materials",
     heroDescription:
       "SCR Robot builds integrated bag breaking and powder feeding stations that cut, open, and discharge 20–50 kg bags into mixers, silos, hoppers, or conveyors. The system covers bag loading conveyor, automatic cutting or opening unit, discharge hopper with dust collection, empty bag waste handling, and PLC/HMI with safety guarding — designed to reduce manual powder contact and maintain consistent feed rates.",
     image: "/images/bejing1%20(3).jpg",
@@ -287,7 +287,7 @@ export const solutionPages: SolutionPage[] = [
       },
       {
         parameter: "Safety and compliance",
-        value: "Perimeter guarding, safety interlocks, emergency stop, dust control; ATEX/DSEAR review available for combustible dusts",
+        value: "Guarding, interlocks and emergency stops specified for the cell; dust-control and any hazardous-area requirements must be established for the actual material and site",
       },
     ],
     quoteInputs: [

@@ -12,6 +12,7 @@ export function SiteFooter({ companyName, companyNameZh }: { companyName: string
     [zh ? "产品选型" : "Product Finder", `${prefix}/products#model-finder`],
     [zh ? "应用方案" : "Applications", `${prefix}/industries`],
     [zh ? "现场案例" : "Case Studies", `${prefix}/case-studies`],
+    [zh ? "选型指南" : "Selection Guides", `${prefix}/guides`],
     [zh ? "关于我们" : "About", `${prefix}/about`],
     [zh ? "联系我们" : "Contact", `${prefix}/contact`],
   ];

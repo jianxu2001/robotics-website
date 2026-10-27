@@ -87,7 +87,7 @@ export function SiteHeader({
           >
             {isZh ? "EN" : "中文"}
           </Link>
-          <CtaLink href={isZh ? "/zh/contact#inquiry" : "/contact#inquiry"} className="px-4 py-2.5">
+          <CtaLink href={isZh ? "/zh/contact#inquiry" : "/contact#inquiry"} className="shrink-0 whitespace-nowrap px-4 py-2.5 max-sm:px-3 max-sm:text-xs">
             {isZh ? "获取报价" : "Get Quote"}
           </CtaLink>
         </div>

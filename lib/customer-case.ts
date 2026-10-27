@@ -43,6 +43,8 @@ export type CustomerCaseProject = {
     width: number;
     height: number;
     durationSeconds: number;
+    publishedAt: string;
+    subtitles: Record<CaseLocale, string>;
     captions: Record<CaseLocale, string>;
   };
 };
@@ -88,6 +90,23 @@ export function getCustomerCaseStructuredData(project: CustomerCaseProject, loca
         image: absoluteUrl(`${project.media.images}/${project.media.poster}`),
       }),
       inLanguage: isZh ? "zh-CN" : "en",
+      video: { "@id": `${url}#video` },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "@id": `${url}#video`,
+      name: copy.title,
+      description: `${copy.summary} ${copy.configurationNote}`,
+      thumbnailUrl: absoluteUrl(`${project.media.images}/${project.media.poster}`),
+      uploadDate: project.media.publishedAt,
+      duration: `PT${project.media.durationSeconds}S`,
+      contentUrl: absoluteUrl(project.media.video),
+      url: `${url}#site-video`,
+      inLanguage: isZh ? "zh-CN" : "en",
+      transcript: copy.steps.map((step) => `${step.time} — ${step.title}: ${step.text}`).join("\n"),
+      publisher: { "@id": `${absoluteUrl("/")}/#organization` },
+      isPartOf: { "@id": `${url}#webpage` },
     },
   ];
 }
