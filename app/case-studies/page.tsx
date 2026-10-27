@@ -4,6 +4,7 @@ import { CtaLink } from "@/components/cta-link";
 import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
+import { FeaturedSch100Case } from "@/components/sch100-case-study";
 import { caseStudies } from "@/lib/case-studies";
 import { whatsappUrl } from "@/lib/contact";
 import { localizedAlternates } from "@/lib/seo";
@@ -11,7 +12,7 @@ import { localizedAlternates } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Robot Automation Case Studies | SCR Robot",
   description:
-    "Review SCR Robot case studies for 3D vision bag breaking, chemical factory palletizing, carton handling, stamping automation, and machine tending.",
+    "Watch the SCH100 bag-opening and feeding customer project with a custom linear track, and explore robot automation concepts for palletizing, transfer and tending.",
   alternates: localizedAlternates(
     "/case-studies",
     "/case-studies",
@@ -35,11 +36,13 @@ export default function CaseStudiesPage() {
           <div className="absolute inset-0 industrial-grid opacity-40" />
           <div className="relative section-shell pb-14">
             <SectionHeading
-              eyebrow="Representative cases"
-              title="Robot automation case studies for palletizing, tending, and transfer projects."
-              description="Use these scenarios to see how product data, payload, tooling, conveyors, safety, and cycle time shape a usable automation proposal for engineering and purchasing review."
+              eyebrow="Customer projects and application concepts"
+              title="See robotic automation at work, from bag feeding to palletizing."
+              description="Watch customer-site footage and explore application concepts to understand how robot selection, tooling and site layout shape an automation cell."
               level={1}
             />
+            <FeaturedSch100Case />
+            <h2 className="mt-12 text-2xl font-semibold text-white">Explore application concepts</h2>
             <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
               {caseStudies.map((study) => (
                 <a

@@ -349,9 +349,9 @@ export const solutionPages: SolutionPage[] = [
         text: "Explore robot automation across chemical, food, feed, fertilizer, and powder handling industries.",
       },
       {
-        title: "Case Studies",
-        href: "/case-studies",
-        text: "Representative automation scenarios showing feeding, bag breaking, and powder handling system concepts.",
+        title: "SCH100 Bag Opening and Feeding Case",
+        href: "/case-studies/sch100-bag-opening-feeding-custom-linear-track",
+        text: "Watch bag pickup, transfer, feeding and packaging-bag handling in an SCH100 customer project with a custom linear track.",
       },
     ],
   },

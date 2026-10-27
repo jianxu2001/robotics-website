@@ -1,0 +1,112 @@
+{
+  "zh": {
+    "eyebrow": "客户项目 · 拆包上料",
+    "title": "SCH100 机器人拆包上料案例",
+    "subtitle": "客户定制地轨方案",
+    "summary": "本项目采用 SCH100 机器人，结合客户定制地轨、专用袋装夹具及拆包投料工位，将袋装原料的抓取、转运、拆包投料与包装袋移送衔接起来。",
+    "configurationNote": "视频展示的是客户定制地轨方案。SCH100 标准配置不带地轨；本项目地轨按客户现场需求配置。",
+    "backgroundTitle": "围绕袋装原料上料流程组织作业",
+    "background": "在该现场，原料袋堆放区与拆包投料工位沿设备布置。机器人从料垛上方取袋，将原料袋转运到投料工位，并在投料后移送包装袋。项目将机器人本体、移动地轨、专用夹具及投料工位组合为一套袋料处理单元。",
+    "workflowTitle": "现场作业流程",
+    "steps": [
+      {
+        "title": "从料垛取袋",
+        "text": "机器人移动至取料位置，末端夹具接触原料袋，并从堆放区域提起袋料。",
+        "image": "01-pickup.jpg",
+        "time": "00:08",
+        "alt": "SCH100 专用夹具在原料袋堆放区取袋"
+      },
+      {
+        "title": "转运至投料工位",
+        "text": "机器人通过升降、回转与地轨移动的配合，将原料袋送至拆包投料区域。",
+        "image": "02-transfer.jpg",
+        "time": "00:14",
+        "alt": "SCH100 抓持原料袋并转运至拆包投料区域"
+      },
+      {
+        "title": "拆包与投料",
+        "text": "原料袋在拆包投料工位完成开袋与排料，袋内物料进入下方接料单元。",
+        "image": "03-feeding.jpg",
+        "time": "00:25",
+        "alt": "SCH100 在接料单元上方执行袋装原料投料"
+      },
+      {
+        "title": "移送包装袋",
+        "text": "投料后，机器人将包装袋移至旁侧接收位置，衔接后续包装袋收集。",
+        "image": "04-bag-transfer.jpg",
+        "time": "00:40",
+        "alt": "SCH100 将投料后的包装袋移至旁侧接收位置"
+      }
+    ],
+    "featuresTitle": "本项目的配置特点",
+    "features": [
+      "SCH100 负责袋料的抓取、提升与工位间转运。",
+      "客户定制地轨与机器人配合，覆盖现场取袋与投料作业位置。",
+      "专用袋装夹具配合拆包投料工位，衔接袋料搬运与上料。",
+      "投料后继续移送包装袋，使原料上料与包装袋处理形成连续流程。"
+    ],
+    "ctaTitle": "需要类似的拆包上料方案？",
+    "ctaText": "请提供袋子尺寸、材质与单袋重量，料垛和投料口位置，目标处理量及现场布局。我们可据此评估 SCH100 的适配性，以及是否需要地轨等项目定制配置。",
+    "ctaLabel": "咨询拆包上料方案",
+    "productLabel": "查看 SCH 系列",
+    "productHref": "https://www.scr-robot.com/zh/products/sch-series",
+    "contactHref": "https://www.scr-robot.com/zh/contact",
+    "seoTitle": "SCH100 机器人拆包上料案例｜定制地轨方案 | SCR Robot",
+    "seoDescription": "查看 SCH100 机器人拆包上料现场案例：从料垛抓袋、转运、拆包投料到包装袋移送。视频为客户定制地轨配置，SCH100 标准配置不带地轨。"
+  },
+  "en": {
+    "eyebrow": "Customer project · Bag opening and feeding",
+    "title": "SCH100 Robotic Bag Opening and Feeding",
+    "subtitle": "A customer-specific linear track installation",
+    "summary": "This project combines an SCH100 robot with a custom linear track, dedicated bag-handling tooling and a bag-opening station. The cell connects bag pickup, transfer, material discharge and subsequent packaging-bag transfer.",
+    "configurationNote": "The video shows a customer-specific installation with a linear track. The standard SCH100 configuration does not include a linear track. The track shown here was configured for this customer's site requirements.",
+    "backgroundTitle": "Connecting bag storage with the feeding station",
+    "background": "At this site, stacked bags are positioned alongside the bag-opening and feeding equipment. The robot picks up a bag from the stack, transfers it to the feeding station, and then moves the packaging bag to a separate receiving position. The project brings the robot, linear track, dedicated tooling and feeding station together as one bag-handling cell.",
+    "workflowTitle": "The on-site workflow",
+    "steps": [
+      {
+        "title": "Pick up a bag",
+        "text": "The robot moves to the pickup position. Its end-of-arm tooling engages the bag and lifts it from the stack.",
+        "image": "01-pickup.jpg",
+        "time": "00:08",
+        "alt": "SCH100 tooling engaging a bag at the stacked-bag pickup area"
+      },
+      {
+        "title": "Transfer to the station",
+        "text": "Vertical motion, rotation and linear-track travel bring the bag to the opening and feeding area.",
+        "image": "02-transfer.jpg",
+        "time": "00:14",
+        "alt": "SCH100 transferring a bag toward the bag-opening and feeding station"
+      },
+      {
+        "title": "Open and discharge",
+        "text": "The bag is opened and its contents are discharged into the receiving unit below.",
+        "image": "03-feeding.jpg",
+        "time": "00:25",
+        "alt": "SCH100 holding a bag above the material receiving unit"
+      },
+      {
+        "title": "Transfer the packaging bag",
+        "text": "After discharge, the robot moves the packaging bag to an adjacent receiving position for subsequent collection.",
+        "image": "04-bag-transfer.jpg",
+        "time": "00:40",
+        "alt": "SCH100 moving the packaging bag to an adjacent receiving position"
+      }
+    ],
+    "featuresTitle": "What this project combines",
+    "features": [
+      "An SCH100 robot for bag pickup, lifting and transfer between operating positions.",
+      "A customer-specific linear track coordinated with the robot to cover the site's pickup and feeding positions.",
+      "Dedicated bag-handling tooling working with the bag-opening and feeding station.",
+      "Packaging-bag transfer after discharge, connecting material feeding with subsequent bag collection."
+    ],
+    "ctaTitle": "Planning a similar bag-opening and feeding cell?",
+    "ctaText": "Send bag dimensions, packaging material, unit weight, stack and inlet positions, target throughput and a site layout. These inputs help us assess SCH100 suitability and whether a linear track or other project-specific equipment is needed.",
+    "ctaLabel": "Discuss a Feeding Project",
+    "productLabel": "Explore the SCH Series",
+    "productHref": "https://www.scr-robot.com/products/sch-series",
+    "contactHref": "https://www.scr-robot.com/contact",
+    "seoTitle": "SCH100 Robotic Bag Opening & Feeding Case Study | SCR Robot",
+    "seoDescription": "See SCH100 bag pickup, transfer, opening and feeding in a customer-specific cell. The linear track is custom equipment, not part of standard SCH100 supply."
+  }
+}
