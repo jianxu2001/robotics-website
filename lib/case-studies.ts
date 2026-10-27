@@ -116,7 +116,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "vision-bag-feeding",
     title: "Automated 3D Vision Bag Breaking and Palletizing Solution for a Chemical Factory",
     industry: "Chemical manufacturing, powder handling, bag breaking, palletizing",
-    image: "/images/SCR.jpg",
+    image: "/images/scr-factory-guangdong-v1.png",
     summary:
       "A turnkey automated palletizing solution for chemical factory operations, combining 3D vision bag breaking, robotic handling, pallet supply, and conveyor automation for safer high-volume production.",
     challenge: [
@@ -196,7 +196,7 @@ export const caseStudiesZh: CaseStudy[] = [
     slug: "vision-bag-feeding",
     title: "3D视觉袋装抓取与上料",
     industry: "粉体投料、原料处理、化工、食品加工",
-    image: "/images/SCR.jpg",
+    image: "/images/scr-factory-guangdong-v1.png",
     summary: "面向袋装抓取、破包和投料的视觉引导方案，适合袋体位置变化较大、固定点抓取不稳定的现场。",
     challenge: ["袋体存放和输送后容易偏移、变形和堆叠不齐。", "当袋体位置和表面状态变化较大时，固定点抓取容易失败。", "粉体处理还需要考虑粉尘、密封和下游上料接口。"],
     solution: ["评估 3D 视觉、视觉引导抓取或机械定位哪种更适合。", "围绕袋体材质、重量和变形程度设计夹具与破包方式。", "规划向料仓、混合机或输送线的交接，同时考虑除尘和维护通道。"],

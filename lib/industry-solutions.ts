@@ -53,7 +53,7 @@ export const industrySolutions: IndustrySolution[] = [
     title: "3D Vision Bag Breaking & Powder Handling",
     summary:
       "Automation for bag picking, breaking, feeding, and dusty material processes where reliability depends on vision, tooling, and containment.",
-    image: "/images/SCR.jpg",
+    image: "/images/scr-factory-guangdong-v1.png",
     painPoints: [
       "Bags deform, shift, and stack unevenly, which makes fixed-position pickup unreliable.",
       "Powder and granular materials create dust, contamination, and operator exposure concerns.",
@@ -110,7 +110,7 @@ export const industrySolutions: IndustrySolution[] = [
     title: "Conveyor & Line Integration",
     summary:
       "Conveyor automation for product transport, turning, accumulation, pallet flow, robot infeed, and complete factory material handling systems.",
-    image: "/images/SCR.jpg",
+    image: "/images/scr-factory-guangdong-v1.png",
     painPoints: [
       "Robot performance depends on stable product presentation and downstream material flow.",
       "Conveyor speed, direction, spacing, and accumulation can limit the complete system.",
@@ -154,7 +154,7 @@ export const industrySolutionsZh: IndustrySolution[] = [
     title: "3D视觉破包与粉体上料",
     summary:
       "面向袋装抓取、破包、投料和粉体工况的自动化方案，可靠性取决于视觉、夹具和现场防尘布局。",
-    image: "/images/SCR.jpg",
+    image: "/images/scr-factory-guangdong-v1.png",
     painPoints: ["袋体容易变形、偏移和堆叠不齐，固定点抓取不稳定。", "粉体或颗粒物料带来粉尘、污染和人员暴露风险。", "工厂需要更稳定地向混合机、料仓或加工设备投料。"],
     approach: ["当袋体位置无法机械固定时，可采用 3D 视觉或视觉引导抓取概念。", "围绕袋重、表面材质、变形程度和破包方式设计末端工具。", "在方案早期考虑除尘、交接位置和下游设备接口。"],
     recommendedSeries: ["ER Series", "SCH Series", "SAR Series"],
@@ -187,7 +187,7 @@ export const industrySolutionsZh: IndustrySolution[] = [
     title: "输送线与产线集成",
     summary:
       "用于产品输送、转弯、缓存、托盘流转、机器人进料和工厂物料搬运系统的输送自动化方案。",
-    image: "/images/SCR.jpg",
+    image: "/images/scr-factory-guangdong-v1.png",
     painPoints: ["机器人效率取决于稳定的来料姿态和下游物料流。", "输送速度、方向、间距和缓存能力会限制整个系统。", "工厂通常需要把现有设备与新的机器人单元进行非标集成。"],
     approach: ["把输送布局与机器人臂展、夹具节拍、安全和线体控制一起设计。", "支持滚筒线、动力转弯、托盘流转、进出料和定制转接点。", "集成 PLC/HMI 逻辑，让机器人单元成为完整产线的一部分。"],
     recommendedSeries: ["SCH Series", "ECR Series", "ER Series"],

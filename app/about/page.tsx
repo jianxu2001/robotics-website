@@ -37,7 +37,7 @@ export default function AboutPage() {
       <main className="min-h-screen bg-[#080a0d] pt-40 text-white sm:pt-32 lg:pt-28">
         <section className="relative border-b border-white/10">
           <Image
-            src="/images/SCR.jpg"
+            src="/images/scr-factory-guangdong-v1.png"
             alt="South China Robotics facility"
             fill
             priority

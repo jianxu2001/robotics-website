@@ -10,7 +10,7 @@ import { localizedAlternates } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "关于华南机器人 | 工业机器人制造商",
   description:
-    "了解华南机器人科技（广州）有限公司，一家成立于2017年的工业机器人制造商与智能工厂解决方案提供商。",
+    `了解${companyProfileZh.name}，一家成立于2017年的工业机器人制造商与智能工厂解决方案提供商。`,
   alternates: localizedAlternates("/zh/about", "/about", "/zh/about"),
 };
 
@@ -36,13 +36,13 @@ export default function ZhAboutPage() {
       <SiteHeader locale="zh" alternateHref="/about" />
       <main className="min-h-screen bg-[#080a0d] pt-40 text-white sm:pt-32 lg:pt-28">
         <section className="relative border-b border-white/10">
-          <Image src="/images/SCR.jpg" alt="华南机器人厂房" fill priority sizes="100vw" className="object-cover opacity-42" />
+          <Image src="/images/scr-factory-guangdong-v1.png" alt="华南机器人厂房" fill priority sizes="100vw" className="object-cover opacity-42" />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,10,13,0.98),rgba(8,10,13,0.72),rgba(8,10,13,0.4))]" />
           <div className="absolute inset-0 industrial-grid opacity-30" />
           <div className="relative mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
             <p className="font-mono text-sm font-bold uppercase tracking-[0.18em] text-[#f5b41b]">公司简介</p>
-            <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight md:text-6xl">
-              华南机器人科技（广州）有限公司
+            <h1 className="mt-5 max-w-5xl text-balance text-4xl font-semibold leading-tight md:text-5xl xl:text-6xl">
+              {companyProfileZh.name}
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-white/72">{companyProfileZh.description}</p>
           </div>

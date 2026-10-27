@@ -85,7 +85,7 @@ const jsonLd = {
   "@type": "Organization",
   name: companyProfile.name,
   url: "https://www.scr-robot.com",
-  logo: absoluteUrl("/images/SCR.jpg"),
+  logo: absoluteUrl("/images/scr-factory-guangdong-v1.png"),
   foundingDate: "2017-06-13",
   description: companyProfile.description,
   areaServed: "Worldwide",
@@ -364,7 +364,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
             <div className="relative min-h-[420px] overflow-hidden rounded-lg border border-white/10">
               <Image
-                src="/images/SCR.jpg"
+                src="/images/scr-factory-guangdong-v1.png"
                 alt="South China Robotics manufacturing facility"
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"

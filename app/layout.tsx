@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { companyProfile } from "@/lib/catalog";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "SCR Robot supplies palletizing robots, depalletizing systems, stamping automation, machine tending cells, and conveyor automation for factories worldwide.",
   keywords: [
-    "South China Robotics Technology Guangzhou",
+    companyProfile.name,
     "SCR Robot",
     "ECR series robot",
     "SCH series robot",

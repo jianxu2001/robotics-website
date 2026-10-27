@@ -74,7 +74,7 @@ const quoteInputs = [
 export const metadata: Metadata = {
   title: "SCR Robot | 工业机器人与自动化系统",
   description:
-    "华南机器人科技（广州）有限公司提供码垛机器人、拆垛系统、冲压自动化、机床上下料、3D视觉破包投料与输送自动化解决方案。",
+    `${companyProfileZh.name}提供码垛机器人、拆垛系统、冲压自动化、机床上下料、3D视觉破包投料与输送自动化解决方案。`,
   alternates: localizedAlternates("/zh", "/", "/zh"),
 };
 
@@ -233,7 +233,7 @@ export default function ZhHomePage() {
         <section className="border-y border-white/10 bg-[#10151a]">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
             <div className="relative min-h-[420px] overflow-hidden rounded-lg border border-white/10">
-              <Image src="/images/SCR.jpg" alt="华南机器人制造基地" fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />
+              <Image src="/images/scr-factory-guangdong-v1.png" alt="华南机器人制造基地" fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#080a0d] via-transparent to-transparent" />
             </div>
             <div className="flex flex-col justify-center">

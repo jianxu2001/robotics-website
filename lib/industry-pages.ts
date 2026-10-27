@@ -256,7 +256,7 @@ export const industryPages: IndustryPage[] = [
     heroTitle: "Chemical Processing Robot Automation for Safer Bag Handling and Palletizing",
     heroDescription:
       "Plan robot cells for chemical bags, drums, cartons, powders, and granular materials with attention to dust, containment, payload, gripper design, and downstream equipment.",
-    image: "/images/SCR.jpg",
+    image: "/images/scr-factory-guangdong-v1.png",
     materials: ["chemical powders", "granules", "additives", "drums", "bagged raw materials"],
     packages: ["woven bags", "valve bags", "cartons", "drums", "pails"],
     productionContext:
@@ -471,7 +471,7 @@ export const industryPages: IndustryPage[] = [
     heroTitle: "Mining Materials Robot Automation for Heavy Bags, Powders, and Pallets",
     heroDescription:
       "Automate mineral powder bags, ore additives, cartons, and heavy material handling with robust robot cells for depalletizing, feeding, and palletizing.",
-    image: "/images/SCR.jpg",
+    image: "/images/scr-factory-guangdong-v1.png",
     materials: ["mineral powders", "ore additives", "abrasive materials", "processed minerals", "bagged compounds"],
     packages: ["heavy bags", "woven sacks", "bulk cartons", "palletized materials", "drums"],
     productionContext:
@@ -600,7 +600,7 @@ export const industryPages: IndustryPage[] = [
     heroTitle: "Powder Handling Robot Automation for Bags, Feeding, Depalletizing, and Palletizing",
     heroDescription:
       "Use robot automation to move powder bags, sacks, cartons, and packaged materials into feeding, bag opening, transfer, and palletizing workflows.",
-    image: "/images/SCR.jpg",
+    image: "/images/scr-factory-guangdong-v1.png",
     materials: ["powder ingredients", "mineral powder", "chemical powder", "food powder", "additives"],
     packages: ["powder bags", "sacks", "cartons", "valve bags", "palletized bags"],
     productionContext:
