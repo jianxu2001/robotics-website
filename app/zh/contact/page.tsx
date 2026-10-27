@@ -1,3 +1,6 @@
+import { getModelCategory } from "@/lib/product-selection";
+import { Suspense } from "react";
+import { productModels } from "@/lib/product-data";
 import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
 import { IndustrialCard } from "@/components/industrial-card";
@@ -89,13 +92,16 @@ export default function ZhContactPage() {
               </div>
             </div>
 
-            <IndustrialCard className="p-6 md:p-8">
+            <div id="inquiry" className="scroll-mt-44 lg:scroll-mt-24"><IndustrialCard className="p-6 md:p-8">
+              <Suspense fallback={<p className="text-sm text-white/60">正在加载询盘表单…</p>}>
               <InquiryForm
+                modelOptions={productModels.map((model) => ({ key: `${model.seriesSlug}/${model.slug}`, name: model.name, application: productGroupsZh.find((group) => group.slug === getModelCategory(model))?.title ?? "" }))}
                 locale="zh"
                 applicationOptions={applicationOptions}
                 seriesOptions={productInquiryOptionsZh}
               />
-            </IndustrialCard>
+              </Suspense>
+            </IndustrialCard></div>
           </div>
         </section>
 

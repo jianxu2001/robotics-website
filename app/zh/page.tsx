@@ -177,6 +177,7 @@ export default function ZhHomePage() {
                         </span>
                       ))}
                     </div>
+                    <Link href={`/zh/products#${category.slug}`} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#ffd36b] hover:underline">查看适用型号 <span aria-hidden="true">↗</span></Link>
                   </div>
                 </div>
               </IndustrialCard>

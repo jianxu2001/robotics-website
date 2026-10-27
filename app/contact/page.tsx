@@ -1,3 +1,6 @@
+import { getModelCategory } from "@/lib/product-selection";
+import { Suspense } from "react";
+import { productModels } from "@/lib/product-data";
 import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
 import { IndustrialCard } from "@/components/industrial-card";
@@ -91,12 +94,15 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <IndustrialCard className="p-6 md:p-8">
+            <div id="inquiry" className="scroll-mt-44 lg:scroll-mt-24"><IndustrialCard className="p-6 md:p-8">
+              <Suspense fallback={<p className="text-sm text-white/60">Loading inquiry form…</p>}>
               <InquiryForm
+                modelOptions={productModels.map((model) => ({ key: `${model.seriesSlug}/${model.slug}`, name: model.name, application: productGroups.find((group) => group.slug === getModelCategory(model))?.title ?? "" }))}
                 applicationOptions={applicationOptions}
                 seriesOptions={productInquiryOptions}
               />
-            </IndustrialCard>
+              </Suspense>
+            </IndustrialCard></div>
           </div>
         </section>
 

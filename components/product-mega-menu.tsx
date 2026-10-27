@@ -94,7 +94,7 @@ export function ProductMegaMenu({ locale = "en" }: ProductMegaMenuProps) {
               </div>
               <div className="grid gap-2">
                 {groups.map((group, index) => (
-                  <Link
+                  <a
                     key={group.slug}
                     href={`${productsHref}#${group.slug}`}
                     onMouseEnter={() => setActiveIndex(index)}
@@ -106,7 +106,7 @@ export function ProductMegaMenu({ locale = "en" }: ProductMegaMenuProps) {
                     }`}
                   >
                     {group.title}
-                  </Link>
+                  </a>
                 ))}
               </div>
             </div>

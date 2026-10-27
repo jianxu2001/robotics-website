@@ -1,12 +1,14 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { salesEmail, whatsappUrl } from "@/lib/contact";
 
 type InquiryFormProps = {
   locale?: "en" | "zh";
   seriesOptions: string[];
   applicationOptions: string[];
+  modelOptions: { key: string; name: string; application: string }[];
 };
 
 type SubmitState = {
@@ -29,7 +31,7 @@ const copy = {
     company: "Company / Website",
     companyPlaceholder: "Company name or website",
     productType: "Product Type",
-    series: "Preferred Series",
+    series: "Preferred series / model",
     notSure: "Not sure",
     details: "Message",
     detailsPlaceholder:
@@ -69,7 +71,7 @@ const copy = {
     company: "公司 / 网站",
     companyPlaceholder: "公司名称或官网",
     productType: "产品类型",
-    series: "倾向系列",
+    series: "倾向系列 / 型号",
     notSure: "暂不确定",
     details: "留言",
     detailsPlaceholder:
@@ -100,8 +102,13 @@ export function InquiryForm({
   locale = "en",
   seriesOptions,
   applicationOptions,
+  modelOptions,
 }: InquiryFormProps) {
   const t = copy[locale];
+  const modelKey = useSearchParams().get("model");
+  const inquiryModel = modelOptions.find((model) => model.key === modelKey);
+  const [choice, setChoice] = useState<{ key: string | null | undefined; value: string }>({ key: undefined, value: "" });
+  const selectedSeries = choice.key === modelKey ? choice.value : inquiryModel?.name ?? t.notSure;
   const [state, setState] = useState<SubmitState>({ status: "idle", message: "" });
 
   const mailtoHref = useMemo(
@@ -149,6 +156,7 @@ export function InquiryForm({
       <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f5b41b]">
         {t.quickInquiry}
       </p>
+      {inquiryModel && selectedSeries === inquiryModel.name ? <p className="rounded-lg border border-[#f5b41b]/30 bg-[#f5b41b]/8 px-4 py-3 text-sm text-white/75">{locale === "zh" ? "当前咨询型号：" : "Enquiring about: "}<strong className="font-semibold text-[#ffd36b]">{inquiryModel.name}</strong></p> : null}
 
       <div className="grid gap-5 md:grid-cols-2">
         <label className="grid gap-2 text-sm text-white/72">
@@ -214,10 +222,13 @@ export function InquiryForm({
         <label className="grid gap-2 text-sm text-white/72">
           {t.productType}
           <select
+            key={inquiryModel?.key ?? "no-application"}
             name="application"
             className="h-12 rounded-md border border-white/12 bg-black/24 px-4 text-white outline-none transition focus:border-[#f5b41b]"
-            defaultValue={applicationOptions[0]}
+            defaultValue={inquiryModel?.application ?? ""}
           >
+            <option value="">{locale === "zh" ? "请选择用途" : "Select an application"}</option>
+            {inquiryModel && !applicationOptions.includes(inquiryModel.application) ? <option>{inquiryModel.application}</option> : null}
             {applicationOptions.map((application) => (
               <option key={application}>{application}</option>
             ))}
@@ -226,11 +237,14 @@ export function InquiryForm({
         <label className="grid gap-2 text-sm text-white/72">
           {t.series}
           <select
+            key={inquiryModel?.key ?? "no-model"}
             name="series"
             className="h-12 rounded-md border border-white/12 bg-black/24 px-4 text-white outline-none transition focus:border-[#f5b41b]"
-            defaultValue={t.notSure}
+            value={selectedSeries}
+            onChange={(event) => setChoice({ key: modelKey, value: event.target.value })}
           >
             <option>{t.notSure}</option>
+            {inquiryModel && !seriesOptions.includes(inquiryModel.name) ? <option>{inquiryModel.name}</option> : null}
             {seriesOptions.map((series) => (
               <option key={series}>{series}</option>
             ))}
