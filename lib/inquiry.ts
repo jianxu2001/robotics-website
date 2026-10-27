@@ -66,20 +66,21 @@ export function normalizeInquiry(
 }
 
 export function validateInquiry(inquiry: Inquiry) {
+  const zh = inquiry.locale === "zh";
   if (inquiry.locale === "zh" && !inquiry.phone) {
     return "请填写手机号码，方便工程师联系您。";
   }
 
   if (!inquiry.name) {
-    return "Please enter your name.";
+    return zh ? "请填写姓名。" : "Please enter your name.";
   }
 
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inquiry.email)) {
-    return "Please enter a valid company email.";
+  if ((!zh || inquiry.email) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inquiry.email)) {
+    return zh ? "请填写有效邮箱，或留空后通过手机联系。" : "Please enter a valid company email.";
   }
 
   if (inquiry.message.length < 10) {
-    return "Please add project details.";
+    return zh ? "请填写至少 10 个字符的项目需求。" : "Please add project details.";
   }
 
   return "";

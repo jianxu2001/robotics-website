@@ -7,7 +7,7 @@ import { IndustrialCard } from "@/components/industrial-card";
 import { InquiryForm } from "@/components/inquiry-form";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
-import { salesEmail, whatsappUrl } from "@/lib/contact";
+import { salesEmail, whatsappNumber, whatsappUrl } from "@/lib/contact";
 import { productGroups, productInquiryOptions } from "@/lib/catalog";
 import { localizedAlternates } from "@/lib/seo";
 
@@ -73,6 +73,10 @@ export default function ContactPage() {
                   <CtaLink href={whatsappUrl} variant="secondary">
                     WhatsApp
                   </CtaLink>
+                </div>
+                <div className="mt-5 grid gap-2 text-sm text-white/70">
+                  <a href={`mailto:${salesEmail}`} className="break-all hover:text-white">{salesEmail}</a>
+                  <a href="tel:+8613266005525" className="hover:text-white">Phone: {whatsappNumber}</a>
                 </div>
               </IndustrialCard>
 

@@ -429,6 +429,16 @@ export const productSeries: ProductSeries[] = productSeriesDefinitions.map((seri
   const models = getProductModelsBySeries(series.slug);
   return {
     ...series, models,
+    image: models.find((model) => model.name === ({
+      "ecr-series": "ECR30-1850",
+      "sch-series": "SCH100-1950-1800",
+      "sar-series": "SAR130-2550-2400",
+      "scr-series": "SCR180-3200",
+      "srl-series": "SRL20-1500-1000",
+      "stc-series": "STC10-1450-400",
+      "scd-series": "SCD30-1850-400",
+      "er-series": "ER20-1700",
+    } as Record<string, string>)[series.slug])?.image ?? series.image,
     payloadRange: parameterRange(models.map((model) => model.payload), "kg"),
     reachRange: parameterRange(models.map((model) => model.reach), "mm"),
     repeatability: parameterRange(models.map((model) => model.repeatability), "mm", true),

@@ -8,7 +8,9 @@ export function generateStaticParams() { return productModels.map((item) => ({ s
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, model } = await params; const item = getProductModel(slug, model); if (!item) return {};
   const path = `/products/${slug}/${model}`;
-  return { title: `${item.name} | ${item.categoryZh ?? "工业机器人参数"}`, description: item.positioningZh ?? `${item.name}，负载 ${item.payload}，臂展 ${item.reach}，查看完整技术参数和原始产品画册。`, alternates: localizedAlternates(`/zh${path}`, path, `/zh${path}`) };
+  const title = `${item.name} | ${item.categoryZh ?? "工业机器人参数"}`;
+  const description = item.positioningZh ?? `${item.name}，负载 ${item.payload}，臂展 ${item.reach}，查看完整技术参数和原始产品画册。`;
+  return { title, description, alternates: localizedAlternates(`/zh${path}`, path, `/zh${path}`), openGraph: { title, description, images: [item.image], locale: "zh_CN", type: "website" } };
 }
 export default async function Page({ params }: Props) {
   const { slug, model } = await params; const item = getProductModel(slug, model); if (!item) notFound();

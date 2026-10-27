@@ -67,7 +67,7 @@ export default function CaseStudiesPage() {
         <section className="section-shell">
           <div className="grid gap-6">
             {caseStudies.map((study) => (
-              <CaseStudyCard key={study.slug} study={study} />
+              <CaseStudyCard key={study.slug} study={study} labels={{ challenge: "Typical challenges", solution: "Concept scope", outcomes: "Engineering value", series: "Suggested series", inquiryData: "Data to send" }} />
             ))}
           </div>
         </section>

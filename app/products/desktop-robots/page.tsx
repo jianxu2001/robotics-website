@@ -42,12 +42,12 @@ export default function DesktopRobotsPage() {
         <section className="relative border-b border-white/10">
           <div className="absolute inset-0">
             <Image
-              src="/images/bejing1%20(1).jpg"
+              src={desktopModels[0].image}
               alt="Tabletop industrial robot for compact automation"
               fill
               priority
               sizes="100vw"
-              className="object-cover opacity-34"
+              className="object-contain object-right p-6 opacity-34"
             />
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,10,13,0.98),rgba(8,10,13,0.76),rgba(8,10,13,0.45))]" />
             <div className="absolute inset-0 industrial-grid opacity-40" />

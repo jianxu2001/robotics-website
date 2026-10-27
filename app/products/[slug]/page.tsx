@@ -1,3 +1,4 @@
+import { isProductRender } from "@/lib/product-media";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -81,7 +82,7 @@ export default async function ProductDetailPage({
               fill
               priority
               sizes="100vw"
-              className={series.image.includes("-dark-") ? "object-contain object-right p-6 opacity-36" : "object-cover opacity-36"}
+              className={isProductRender(series.image) ? "object-contain object-right p-6 opacity-36" : "object-cover opacity-36"}
             />
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,10,13,0.98),rgba(8,10,13,0.7),rgba(8,10,13,0.42))]" />
             <div className="absolute inset-0 industrial-grid opacity-40" />
@@ -101,6 +102,7 @@ export default async function ProductDetailPage({
               <CtaLink href="/products" variant="secondary">
                 Back to Products
               </CtaLink>
+              {series.slug === "sch-series" ? <CtaLink href="/products/sch-heavy-duty-palletizing-robots" variant="ghost">Heavy-Duty Palletizing Guide</CtaLink> : null}
             </div>
           </div>
         </section>

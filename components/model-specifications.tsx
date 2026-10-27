@@ -6,6 +6,7 @@ import { productModelEnvironment, type ProductModel, type ProductModelSpec } fro
 import { getProductModelFaqs } from "@/lib/seo";
 import { modelInquiryHref } from "@/lib/product-selection";
 import { stc10CasePaths } from "@/lib/stc10-case";
+import { isProductRender } from "@/lib/product-media";
 
 const labels: Record<string, string> = {
   Model: "型号", Series: "系列", Axes: "轴数", "Maximum payload": "最大负载",
@@ -73,7 +74,7 @@ export function ProductModelDetail({ model, locale = "en" }: { model: ProductMod
           {model.name === "STC10-1450-400" && <Link href={stc10CasePaths[locale]} className="mt-5 inline-flex text-sm font-semibold text-[#f5b41b] hover:text-[#ffd36b]">{zh ? "观看 STC10 冲压线应用案例与现场视频 →" : "Watch the STC10 press automation case and site video →"}</Link>}
           <div className="mt-8 grid grid-cols-2 gap-3">{metrics.map(([label, value]) => <div key={label} className="rounded-lg border border-white/10 bg-black/20 p-4"><p className="text-xs text-white/50">{label}</p><p className="mt-2 text-xl font-semibold text-[#ffd36b]">{value}</p></div>)}</div>
         </div>
-        <div className={`relative min-h-80 overflow-hidden rounded-xl border border-white/[0.06] lg:min-h-[480px] ${model.image.includes("-dark-") ? "product-stage" : "bg-[#0c0f13]"}`}><Image src={model.image} alt={`${model.name} ${zh ? (model.categoryZh ?? "工业机器人应用") : model.category}`} fill priority sizes="(min-width: 1024px) 50vw, 100vw" className={model.image.includes("-dark-") ? "product-image" : model.specifications ? "object-contain" : "object-cover"} /></div>
+        <div className={`relative min-h-80 overflow-hidden rounded-xl border border-white/[0.06] lg:min-h-[480px] ${isProductRender(model.image) ? "product-stage" : "bg-[#0c0f13]"}`}><Image src={model.image} alt={`${model.name} ${zh ? (model.categoryZh ?? "工业机器人") : model.category}`} fill priority sizes="(min-width: 1024px) 50vw, 100vw" className={isProductRender(model.image) ? "product-image" : model.specifications ? "object-contain" : "object-cover"} /></div>
       </div></section>
       <section className="section-shell">
         <div className="mb-8 max-w-3xl"><p className="text-sm font-semibold uppercase tracking-widest text-[#f5b41b]">{zh ? "技术规格" : "Technical specifications"}</p><h2 className="mt-3 text-3xl font-semibold">{zh ? `${model.name} 产品参数` : `${model.name} specifications`}</h2><p className="mt-4 leading-7 text-white/60">{zh ? "参数用于初步选型。最终配置需结合产品、夹具负载、重心及产线布局确认。" : "Use these specifications for preliminary selection. Confirm the final configuration against product data, tooling load, center of gravity and line layout."}</p></div>

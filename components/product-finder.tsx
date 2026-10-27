@@ -1,5 +1,7 @@
 "use client";
 
+import { isProductRender } from "@/lib/product-media";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useSyncExternalStore } from "react";
@@ -71,9 +73,10 @@ export function ProductFinder({ models, categories, locale = "en" }: { models: C
       {results.slice(0, limit).map((model) => {
         const isSelected = comparison.includes(model.slug);
         const dark = model.image.includes("-dark-");
+        const render = isProductRender(model.image);
         const href = `${prefix}/products/${model.seriesSlug}/${model.slug}`;
         return <article key={model.slug} className={`group flex min-w-0 flex-col overflow-hidden rounded-xl border bg-[#10161c] transition ${isSelected ? "border-[#f5b41b]/70" : "border-white/10 hover:border-white/25"}`}>
-          <Link href={href} className="relative block aspect-[16/10] overflow-hidden bg-[#0c0f13]" aria-label={`${zh ? "查看" : "View"} ${model.name}`}><Image src={model.image} alt={`${model.name} ${dark ? (zh ? "工作站示意" : "workstation illustration") : (zh ? "系列应用场景" : "series application scene")}`} fill sizes="(min-width:1280px) 32vw, (min-width:768px) 50vw, 100vw" className={dark ? "object-contain p-4 transition duration-500 group-hover:scale-105" : "object-cover opacity-70 transition duration-500 group-hover:scale-105"} /><span className="absolute left-4 top-4 rounded-md border border-white/15 bg-black/65 px-2.5 py-1.5 text-[11px] font-semibold text-white/80">{model.series.replace(" Series", zh ? " 系列" : " Series")}</span><span className="absolute bottom-3 right-3 rounded bg-black/60 px-2 py-1 text-[10px] text-white/65">{dark ? (zh ? "工作站示意" : "Workstation illustration") : (zh ? "应用场景" : "Application scene")}</span></Link>
+          <Link href={href} className="relative block aspect-[16/10] overflow-hidden bg-[#0c0f13]" aria-label={`${zh ? "查看" : "View"} ${model.name}`}><Image src={model.image} alt={`${model.name} ${dark ? (zh ? "工作站示意" : "workstation illustration") : (zh ? "画册产品图" : "catalog product image")}`} fill sizes="(min-width:1280px) 32vw, (min-width:768px) 50vw, 100vw" className={render ? "object-contain p-4 transition duration-500 group-hover:scale-105" : "object-cover opacity-70 transition duration-500 group-hover:scale-105"} /><span className="absolute left-4 top-4 rounded-md border border-white/15 bg-black/65 px-2.5 py-1.5 text-[11px] font-semibold text-white/80">{model.series.replace(" Series", zh ? " 系列" : " Series")}</span><span className="absolute bottom-3 right-3 rounded bg-black/60 px-2 py-1 text-[10px] text-white/65">{dark ? (zh ? "工作站示意" : "Workstation illustration") : (zh ? "画册产品图" : "Catalog product image")}</span></Link>
           <div className="flex flex-1 flex-col p-5"><p className="text-xs text-white/45">{categoryName(model)}</p><h3 className="mt-2 break-words text-xl font-semibold tracking-tight"><Link href={href} className="hover:text-[#ffd36b]">{model.name}</Link></h3>
             <p className="mt-3 min-h-6 text-sm text-[#e1c68b]">{(zh ? model.configurationZh : model.configuration) || (model.axes !== "—" ? `${model.axes} ${zh ? "轴机器人" : "axes"}` : "")}</p>
             <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-4 border-y border-white/10 py-4"><div><dt className="text-xs text-white/45">{zh ? "最大负载" : "Payload"}</dt><dd className="mt-1 font-semibold text-white">{model.payload}</dd></div><div><dt className="text-xs text-white/45">{model.seriesSlug === "br-series" ? (zh ? "最大行程" : "Max. travel") : (zh ? "臂展" : "Reach")}</dt><dd className="mt-1 font-semibold text-white">{model.reach}</dd></div><div><dt className="text-xs text-white/45">{zh ? "重复定位精度" : "Repeatability"}</dt><dd className="mt-1 text-sm text-white/85">{model.repeatability}</dd></div><div><dt className="text-xs text-white/45">{zh ? "轴数" : "Axes"}</dt><dd className="mt-1 text-sm text-white/85">{model.axes}</dd></div></dl>

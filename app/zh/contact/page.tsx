@@ -7,7 +7,7 @@ import { IndustrialCard } from "@/components/industrial-card";
 import { InquiryForm } from "@/components/inquiry-form";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
-import { salesEmail, whatsappUrl } from "@/lib/contact";
+import { salesEmail, whatsappNumber, whatsappUrl } from "@/lib/contact";
 import { productGroupsZh, productInquiryOptionsZh } from "@/lib/catalog-zh";
 import { localizedAlternates } from "@/lib/seo";
 
@@ -65,12 +65,15 @@ export default function ZhContactPage() {
                   信息越完整，我们越能快速判断机器人系列、夹具方案、输送布局和预算方向。
                 </p>
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                  <CtaLink href={`mailto:${salesEmail}?subject=Industrial%20Robot%20Project%20Inquiry`}>
-                    邮件联系
-                  </CtaLink>
+                  <CtaLink href="tel:+8613266005525">电话咨询</CtaLink>
+                  <CtaLink href={`mailto:${salesEmail}?subject=Industrial%20Robot%20Project%20Inquiry`} variant="secondary">邮件联系</CtaLink>
                   <CtaLink href={whatsappUrl} variant="secondary">
                     WhatsApp
                   </CtaLink>
+                </div>
+                <div className="mt-5 grid gap-2 text-sm text-white/70">
+                  <a href="tel:+8613266005525" className="hover:text-white">{whatsappNumber}</a>
+                  <a href={`mailto:${salesEmail}`} className="break-all hover:text-white">{salesEmail}</a>
                 </div>
               </IndustrialCard>
 

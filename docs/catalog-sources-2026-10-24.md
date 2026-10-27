@@ -14,3 +14,7 @@ Corrections include SCH130E-2200-1800 (2,200 mm, 900 kg), SCH100S/SCH210E joint 
 The catalog labels SCH30E-1950-1850 with a second-axis value of 1,860 mm. This source value is retained rather than inferred from the model name. Slash-separated payload, reach, body-weight and power options are retained without inventing correspondence between options.
 
 BR-30/BR-50 air supply lists both 5 kgf/cm² and 0.6 MPa. These are not equivalent; both source entries are shown with an explicit configuration confirmation note. The malformed voltage tolerance text is not interpreted as a confirmed ±10%; single-phase 220 V and 50/60 Hz are displayed, with tolerance to be confirmed. No missing BR axis count or repeatability has been invented. CR power is in kVA; BR total power is in kW.
+
+## Product artwork audit 2026-10-27
+
+The 38 industrial model images now come from their corresponding model columns on physical PDF pages 3-8, replacing the three application-scene placeholders. Embedded artwork is exported without redrawing equipment, retaining the original PDF soft masks (37 images have transparency). SCR180CQ-3200 retains its original opaque background. Native sizes are 216-666 px wide; higher-resolution source renders or product photos remain desirable. Series covers use representative models from the same catalog; the six CR/BR workstation illustrations retain their existing assets.

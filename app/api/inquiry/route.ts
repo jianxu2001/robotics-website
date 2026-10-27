@@ -18,6 +18,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Invalid inquiry payload." }, { status: 400 });
   }
 
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ message: "Invalid inquiry payload." }, { status: 400 });
+  }
+
   if (body.website) {
     return NextResponse.json({ ok: true });
   }
@@ -82,7 +86,7 @@ async function sendWithResend(inquiry: Inquiry) {
         from,
         to,
         bcc: bcc.length ? bcc : undefined,
-        reply_to: inquiry.email,
+        ...(inquiry.email ? { reply_to: inquiry.email } : {}),
         subject: `[SCR Robot Inquiry] ${inquiry.application || "Project request"} - ${inquiry.name}`,
         text: buildPlainText(inquiry),
         html: buildHtml(inquiry),

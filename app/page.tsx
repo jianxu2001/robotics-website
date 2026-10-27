@@ -548,32 +548,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      <footer className="border-t border-white/10 bg-[#080a0d] px-5 py-8 text-white/54 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm md:flex-row md:items-center md:justify-between">
-          <p>
-            SCR Robot - Industrial robots, palletizing systems, stamping
-            automation, and smart factory solutions.
-          </p>
-          <div className="flex flex-wrap gap-5">
-            <Link href="/products" className="hover:text-white">
-              Products
-            </Link>
-            <Link href="/industries" className="hover:text-white">
-              Applications
-            </Link>
-            <Link href="/case-studies" className="hover:text-white">
-              Cases
-            </Link>
-            <Link href="/about" className="hover:text-white">
-              About
-            </Link>
-            <Link href="/contact" className="hover:text-white">
-              Contact
-            </Link>
-          </div>
-        </div>
-      </footer>
     </>
   );
 }

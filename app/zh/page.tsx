@@ -367,19 +367,6 @@ export default function ZhHomePage() {
           </div>
         </section>
       </main>
-
-      <footer className="border-t border-white/10 bg-[#080a0d] px-5 py-8 text-white/54 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm md:flex-row md:items-center md:justify-between">
-          <p>SCR Robot - 工业机器人、码垛系统、冲压自动化与智能工厂解决方案。</p>
-          <div className="flex flex-wrap gap-5">
-            <Link href="/zh/products" className="hover:text-white">产品</Link>
-            <Link href="/zh/industries" className="hover:text-white">应用</Link>
-            <Link href="/zh/case-studies" className="hover:text-white">案例</Link>
-            <Link href="/zh/about" className="hover:text-white">关于我们</Link>
-            <Link href="/zh/contact" className="hover:text-white">联系我们</Link>
-          </div>
-        </div>
-      </footer>
     </>
   );
 }

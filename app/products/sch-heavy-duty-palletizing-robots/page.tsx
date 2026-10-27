@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { getProductModelsBySeries } from "@/lib/product-data";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
@@ -19,44 +21,16 @@ const pageTitle =
 const pageDescription =
   "Explore SCH Series heavy-duty four-axis palletizing robots for 3-800 kg payloads, robotic bag stacking systems, high-payload depalletizing, and end-of-line automation.";
 
-const modelRows = [
-  {
-    model: "SCH03AE",
-    payload: "3",
-    reach: "200",
-    application: "Desktop handling, compact sorting, and fixture-side transfer",
-  },
-  {
-    model: "SCH10AE",
-    payload: "10",
-    reach: "1,300",
-    application: "Light palletizing, production-side transfer, and small cartons",
-  },
-  {
-    model: "SCH50",
-    payload: "50",
-    reach: "1,950",
-    application: "Robotic bag stacking system for bags, cartons, and cases",
-  },
-  {
-    model: "SCH100",
-    payload: "100",
-    reach: "1,950",
-    application: "Heavy carton palletizing, drums, bundles, and end-of-line loads",
-  },
-  {
-    model: "SCH210E",
-    payload: "210",
-    reach: "2,350",
-    application: "High payload robotic depalletizer and heavy palletizing cells",
-  },
-  {
-    model: "SCH500-800E",
-    payload: "500/600/800",
-    reach: "3,200/2,800",
-    application: "800kg heavy duty palletizing robot for large industrial loads",
-  },
-];
+const selectedModelNames = ["SCH03AE-200-110", "SCH10AE-1300-450", "SCH50-1950-1800", "SCH100-1950-1800", "SCH210E-2350-1650", "SCH500-800E"];
+const modelRows = getProductModelsBySeries("sch-series")
+  .filter((model) => selectedModelNames.includes(model.name))
+  .map((model) => ({
+    model: model.name,
+    payload: model.payload.replace(/ kg$/, ""),
+    reach: model.reach.replace(/ mm$/, ""),
+    application: model.positioning,
+    href: `/products/${model.seriesSlug}/${model.slug}`,
+  }));
 
 const fitPoints = [
   {
@@ -103,15 +77,15 @@ const jsonLd = [
   }),
   {
     "@context": "https://schema.org",
-    "@type": "Product",
-    name: "SCH Series Heavy-Duty Four-Axis Palletizing Robots",
-    brand: {
-      "@type": "Brand",
-      name: "SCR Robot",
-    },
-    description: pageDescription,
-    category: "Industrial palletizing robot",
-    url: pageUrl,
+    "@type": "ItemList",
+    name: "SCH Series catalog model comparison",
+    numberOfItems: modelRows.length,
+    itemListElement: modelRows.map((row, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: row.model,
+      url: absoluteUrl(row.href),
+    })),
   },
 ];
 
@@ -264,7 +238,7 @@ export default function SchHeavyDutyPalletizingRobotsPage() {
                         scope="row"
                         className="px-4 py-4 font-mono font-semibold text-[#f5b41b]"
                       >
-                        {row.model}
+                        <Link href={row.href} className="text-[#ffd36b] hover:underline">{row.model}</Link>
                       </th>
                       <td className="px-4 py-4">{row.payload}</td>
                       <td className="px-4 py-4">{row.reach}</td>

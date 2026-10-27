@@ -9,6 +9,15 @@ import {
 
 const submittedAt = "2026-07-15T08:00:00.000Z";
 
+test("Chinese buyers can submit phone-only contact while English email remains required", () => {
+  const payload = { locale: "zh", name: "陈先生", phone: "13800138000", message: "请评估我们生产线的冲压上下料项目。" };
+  assert.equal(validateInquiry(normalizeInquiry(payload)), "");
+  assert.match(validateInquiry(normalizeInquiry({ ...payload, email: "invalid" })), /有效邮箱/);
+  assert.match(validateInquiry(normalizeInquiry({ ...payload, locale: "en" })), /valid company email/);
+  assert.match(validateInquiry(normalizeInquiry({ ...payload, name: " " })), /姓名/);
+  assert.match(validateInquiry(normalizeInquiry({ ...payload, message: "短" })), /项目需求/);
+});
+
 test("Chinese inquiries require phone while English inquiries keep it optional", () => {
   const payload = {
     name: "Test buyer",

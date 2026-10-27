@@ -3,6 +3,7 @@
 import { FormEvent, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { salesEmail, whatsappUrl } from "@/lib/contact";
+import { buildPlainText, normalizeInquiry } from "@/lib/inquiry";
 
 type InquiryFormProps = {
   locale?: "en" | "zh";
@@ -14,6 +15,7 @@ type InquiryFormProps = {
 type SubmitState = {
   status: "idle" | "submitting" | "success" | "error";
   message: string;
+  showFallback?: boolean;
 };
 
 const copy = {
@@ -56,12 +58,18 @@ const copy = {
       "Automatic submission is not available right now. Please email us directly or contact us on WhatsApp.",
     emailSales: "Email Sales",
     whatsappCta: "WhatsApp",
+    phoneCta: "Call Sales",
+    invalid: "Please check your contact information and project details.",
+    copyDetails: "Copy Project Details",
+    copied: "Project details copied",
+    copyFailed: "Please copy the information from the form above.",
+    privacyNote: "We use the information you submit to contact you about this project.",
   },
   zh: {
     quickInquiry: "快速询盘",
     name: "姓名",
     namePlaceholder: "您的姓名",
-    email: "公司邮箱",
+    email: "公司邮箱（选填）",
     emailPlaceholder: "name@company.com",
     phone: "手机号码（必填）",
     phonePlaceholder: "请输入您的常用手机号码",
@@ -73,7 +81,7 @@ const copy = {
     productType: "产品类型",
     series: "倾向系列 / 型号",
     notSure: "暂不确定",
-    details: "留言",
+    details: "项目需求（至少 10 个字符）",
     detailsPlaceholder:
       "简要描述您的产品、包装形式、产线情况和自动化需求...",
     engineeringDetails: "工程参数（选填 — 帮我们更快回复）",
@@ -92,9 +100,15 @@ const copy = {
     submit: "发送询盘",
     submitting: "发送中...",
     success: "询盘已提交，我们会尽快通过您留下的电话或邮箱联系您。",
-    error: "自动提交暂时不可用，请直接发送邮件或通过 WhatsApp 联系我们。",
+    error: "本次暂未能提交，填写的资料已保留。您可以电话联系、发送邮件，或复制项目资料后联系我们。",
     emailSales: "邮件联系",
     whatsappCta: "WhatsApp",
+    phoneCta: "电话联系",
+    invalid: "请检查联系方式和项目需求。",
+    copyDetails: "复制项目资料",
+    copied: "项目资料已复制",
+    copyFailed: "请手动复制上方表单中的资料。",
+    privacyNote: "您提交的信息将用于联系您并评估本次项目需求。",
   },
 };
 
@@ -110,10 +124,12 @@ export function InquiryForm({
   const [choice, setChoice] = useState<{ key: string | null | undefined; value: string }>({ key: undefined, value: "" });
   const selectedSeries = choice.key === modelKey ? choice.value : inquiryModel?.name ?? t.notSure;
   const [state, setState] = useState<SubmitState>({ status: "idle", message: "" });
+  const [fallbackBody, setFallbackBody] = useState("");
+  const [copyStatus, setCopyStatus] = useState("");
 
   const mailtoHref = useMemo(
-    () => `mailto:${salesEmail}?subject=Industrial%20Robot%20Project%20Inquiry`,
-    [],
+    () => `mailto:${salesEmail}?subject=Industrial%20Robot%20Project%20Inquiry${fallbackBody ? `&body=${encodeURIComponent(fallbackBody)}` : ""}`,
+    [fallbackBody],
   );
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -123,6 +139,8 @@ export function InquiryForm({
     const form = event.currentTarget;
     const formData = new FormData(form);
     const payload = Object.fromEntries(formData.entries());
+    setFallbackBody(buildPlainText(normalizeInquiry({ ...payload, locale })));
+    setCopyStatus("");
 
     try {
       const response = await fetch("/api/inquiry", {
@@ -131,6 +149,11 @@ export function InquiryForm({
         body: JSON.stringify({ ...payload, locale }),
       });
 
+      if (response.status === 400) {
+        const result = await response.json();
+        setState({ status: "error", message: typeof result.message === "string" ? result.message : t.invalid });
+        return;
+      }
       if (!response.ok) {
         throw new Error("Inquiry delivery failed.");
       }
@@ -138,7 +161,7 @@ export function InquiryForm({
       form.reset();
       setState({ status: "success", message: t.success });
     } catch {
-      setState({ status: "error", message: t.error });
+      setState({ status: "error", message: t.error, showFallback: true });
     }
   }
 
@@ -164,6 +187,8 @@ export function InquiryForm({
           <input
             name="name"
             required
+            autoComplete="name"
+            maxLength={120}
             className="h-12 rounded-md border border-white/12 bg-black/24 px-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#f5b41b]"
             placeholder={t.namePlaceholder}
           />
@@ -191,7 +216,9 @@ export function InquiryForm({
           <input
             name="email"
             type="email"
-            required
+            autoComplete="email"
+            maxLength={160}
+            required={locale !== "zh"}
             className="h-12 rounded-md border border-white/12 bg-black/24 px-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#f5b41b]"
             placeholder={t.emailPlaceholder}
           />
@@ -212,6 +239,8 @@ export function InquiryForm({
           {t.company}
           <input
             name="company"
+            autoComplete="organization"
+            maxLength={180}
             className="h-12 rounded-md border border-white/12 bg-black/24 px-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#f5b41b]"
             placeholder={t.companyPlaceholder}
           />
@@ -259,6 +288,7 @@ export function InquiryForm({
           required
           rows={5}
           minLength={10}
+          maxLength={3000}
           className="rounded-md border border-white/12 bg-black/24 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#f5b41b]"
           placeholder={t.detailsPlaceholder}
         />
@@ -332,6 +362,7 @@ export function InquiryForm({
       >
         {state.status === "submitting" ? t.submitting : t.submit}
       </button>
+      <p className="text-xs leading-6 text-white/50">{t.privacyNote}</p>
 
       {state.status !== "idle" && state.message ? (
         <div
@@ -343,16 +374,26 @@ export function InquiryForm({
           role="status"
         >
           <p>{state.message}</p>
-          {state.status === "error" ? (
+          {state.status === "error" && state.showFallback ? (
             <div className="mt-3 flex flex-wrap gap-2">
+              <a className="text-[#f5b41b] underline-offset-4 hover:underline" href="tel:+8613266005525">{t.phoneCta}</a>
               <a className="text-[#f5b41b] underline-offset-4 hover:underline" href={mailtoHref}>
                 {t.emailSales}
               </a>
               <a className="text-[#f5b41b] underline-offset-4 hover:underline" href={whatsappUrl}>
                 {t.whatsappCta}
               </a>
+              <button type="button" className="text-[#f5b41b] underline-offset-4 hover:underline" onClick={async () => {
+                try {
+                  await navigator.clipboard.writeText(fallbackBody);
+                  setCopyStatus(t.copied);
+                } catch {
+                  setCopyStatus(t.copyFailed);
+                }
+              }}>{t.copyDetails}</button>
             </div>
           ) : null}
+          {copyStatus ? <p className="mt-3 text-xs">{copyStatus}</p> : null}
         </div>
       ) : null}
     </form>

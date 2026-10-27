@@ -1,3 +1,46 @@
+// Original artwork from the owner-supplied 2026 industrial catalog.
+// Verified against model columns on PDF pages 3-8.
+const catalogProductImages: Record<string, string> = {
+  "ECR8-1200": "/images/products/catalog-2026/ecr8-1200.webp",
+  "ECR10-1400": "/images/products/catalog-2026/ecr10-1400.webp",
+  "ECR30-1850": "/images/products/catalog-2026/ecr30-1850.webp",
+  "ECR50-1850": "/images/products/catalog-2026/ecr50-1850.webp",
+  "ECR100-1850": "/images/products/catalog-2026/ecr100-1850.webp",
+  "SCH03AE-200-110": "/images/products/catalog-2026/sch03ae-200-110.webp",
+  "SCH05AE-400-200": "/images/products/catalog-2026/sch05ae-400-200.webp",
+  "SCH05AE-600-200": "/images/products/catalog-2026/sch05ae-600-200.webp",
+  "SCH05A-600-200": "/images/products/catalog-2026/sch05a-600-200.webp",
+  "SCH10AE-800-450": "/images/products/catalog-2026/sch10ae-800-450.webp",
+  "SCH10AE-1300-450": "/images/products/catalog-2026/sch10ae-1300-450.webp",
+  "SCH10D-800-400": "/images/products/catalog-2026/sch10d-800-400.webp",
+  "SCH20D-1300-400": "/images/products/catalog-2026/sch20d-1300-400.webp",
+  "SCH20D-1950-1850": "/images/products/catalog-2026/sch20d-1950-1850.webp",
+  "SCH30E-1950-1850": "/images/products/catalog-2026/sch30e-1950-1850.webp",
+  "SCH50-1950-1800": "/images/products/catalog-2026/sch50-1950-1800.webp",
+  "SCH80-1950-1800": "/images/products/catalog-2026/sch80-1950-1800.webp",
+  "SCH100-1950-1800": "/images/products/catalog-2026/sch100-1950-1800.webp",
+  "SCH100S-1950-1800": "/images/products/catalog-2026/sch100s-1950-1800.webp",
+  "SCH130E-2200-1800": "/images/products/catalog-2026/sch130e-2200-1800.webp",
+  "SCH210E-2350-1650": "/images/products/catalog-2026/sch210e-2350-1650.webp",
+  "SCH300E-2350-1650": "/images/products/catalog-2026/sch300e-2350-1650.webp",
+  "SCH500-800E": "/images/products/catalog-2026/sch500-800e-3200-1650.webp",
+  "SAR80-2450-2300": "/images/products/catalog-2026/sar80-2450-2300.webp",
+  "SAR130-2550-2400": "/images/products/catalog-2026/sar130-2550-2400.webp",
+  "SAR210/300-2650-2300": "/images/products/catalog-2026/sar210-300-2650-2300.webp",
+  "SAR500/800-3500-3100": "/images/products/catalog-2026/sar500-800-3500-3100.webp",
+  "SCR180-3200": "/images/products/catalog-2026/scr180-3200.webp",
+  "SCR180CQ-3200": "/images/products/catalog-2026/scr180cq-3200.webp",
+  "SRL10-900-650": "/images/products/catalog-2026/srl10-900-650.webp",
+  "SRL20-1500-1000": "/images/products/catalog-2026/srl20-1500-1000.webp",
+  "STC5-1250-400": "/images/products/catalog-2026/stc5-1250-400.webp",
+  "STC10-1450-400": "/images/products/catalog-2026/stc10-1450-400.webp",
+  "SAR12-1400 Split Type": "/images/products/catalog-2026/sar12-1400-split.webp",
+  "SAR12-1400 Integrated Cabinet": "/images/products/catalog-2026/sar12-1400-integrated.webp",
+  "SCD30-1850-400": "/images/products/catalog-2026/scd30-1850-400.webp",
+  "ER10-1400": "/images/products/catalog-2026/er10-1400.webp",
+  "ER20-1700": "/images/products/catalog-2026/er20-1700.webp",
+};
+
 export type ProductModelSpec = {
   name: string;
   value: string;
@@ -75,6 +118,7 @@ function joints(values: string[]) {
 function model(input: Omit<ProductModel, "slug"> & { slug?: string }): ProductModel {
   return {
     ...input,
+    image: catalogProductImages[input.name] ?? input.image,
     optionNote: input.optionNote ?? (input.series === "SCH-AE Series" ? "Optional A5;" : input.name === "SCH100S-1950-1800" ? "Optional A5/A6; standard body/base color: yellow/yellow." : undefined),
     slug: input.slug ?? slugifyModel(input.name),
   };
