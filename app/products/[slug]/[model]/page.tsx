@@ -49,7 +49,7 @@ export async function generateMetadata({
       `/zh/products/${productModel.seriesSlug}/${productModel.slug}`,
     ),
     openGraph: {
-      title: `${productModel.name} Industrial Robot`,
+      title: getProductModelMetaTitle(productModel),
       description,
       images: [productModel.image],
       type: "website",

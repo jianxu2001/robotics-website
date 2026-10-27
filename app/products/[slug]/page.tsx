@@ -36,6 +36,12 @@ export async function generateMetadata({
   return {
     title: getProductSeriesMetaTitle(series),
     description: getProductSeriesMetaDescription(series),
+    openGraph: {
+      title: getProductSeriesMetaTitle(series),
+      description: getProductSeriesMetaDescription(series),
+      images: [series.image],
+      type: "website",
+    },
     alternates: localizedAlternates(
       `/products/${series.slug}`,
       `/products/${series.slug}`,

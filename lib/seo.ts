@@ -244,7 +244,7 @@ export function getSolutionPageStructuredData(page: SolutionPage) {
     getOrganizationJsonLd(),
     getBreadcrumbJsonLd(pageUrl, [
       { name: "Home", url: siteUrl },
-      { name: "Solutions", url: absoluteUrl("/solutions") },
+      { name: "Applications", url: absoluteUrl("/industries") },
       { name: page.title, url: pageUrl },
     ]),
     getWebPageJsonLd({
@@ -261,6 +261,16 @@ const productSeriesMetadataOverrides: Record<
   string,
   { title: string; description: string }
 > = {
+  "cr-series": {
+    title: "Collaborative Palletizing Robots | 30-50 kg | SCR Robot",
+    description:
+      "Compare 30 kg and 50 kg collaborative palletizers with 1,900 mm reach. Fixed-base and lifting workstations for carton palletizing. Request a quote.",
+  },
+  "br-series": {
+    title: "Robotic Case Packing Workstations | 30-50 kg | SCR Robot",
+    description:
+      "Explore BR-30 and BR-50 robotic case packing workstations with vacuum handling and conveyor integration. Compare packing rates and request a quote.",
+  },
   "ecr-series": {
     title: "ECR Light-Duty Palletizing Robots | SCR Robot",
     description:
@@ -304,6 +314,12 @@ export function getProductSeriesMetaDescription(series: ProductSeries) {
 }
 
 export function getProductModelMetaTitle(model: ProductModel) {
+  if (model.seriesSlug === "cr-series") {
+    return `${model.name} Collaborative Palletizer | ${model.payload} | SCR Robot`;
+  }
+  if (model.seriesSlug === "br-series") {
+    return `${model.name} Robotic Case Packer | ${model.payload} | SCR Robot`;
+  }
   const title = `${model.name} Robot | ${model.payload}, ${model.reach} | SCR Robot`;
 
   if ([...title].length <= 70) {

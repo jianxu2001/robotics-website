@@ -5,7 +5,7 @@ import { productModels } from "@/lib/product-data";
 import { solutionPages } from "@/lib/solution-pages";
 import { absoluteUrl } from "@/lib/seo";
 
-const lastModified = "2026-10-24T00:00:00.000Z";
+const lastModified = "2026-10-27T00:00:00.000Z";
 
 const pairedRoutes = [
   { en: "/", zh: "/zh", priority: 1 },
@@ -79,11 +79,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     canonicalEntry(`/solutions/${page.slug}`, 0.76),
   );
 
-  return [
+  const entries = [
     ...staticEntries,
     ...industryEntries,
     ...productSeriesEntries,
     ...modelEntries,
     ...solutionEntries,
   ];
+  const seen = new Set<string>();
+  return entries.filter((entry) => {
+    if (seen.has(entry.url)) return false;
+    seen.add(entry.url);
+    return true;
+  });
 }
