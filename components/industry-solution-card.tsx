@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ApplicationMediaPanel } from "@/components/application-media-panel";
 import { IndustrySolution } from "@/lib/industry-solutions";
 
 type IndustrySolutionCardProps = {
@@ -26,16 +26,9 @@ export function IndustrySolutionCard({
       className="scroll-mt-36 overflow-hidden rounded-lg border border-white/10 bg-[#11161b] shadow-[0_22px_60px_rgba(0,0,0,0.24)]"
     >
       <div className="grid lg:grid-cols-[0.82fr_1.18fr]">
-        <div className="relative min-h-72 overflow-hidden">
-          <Image
-            src={solution.image}
-            alt={`${solution.title} automation solution`}
-            fill
-            sizes="(min-width: 1024px) 38vw, 100vw"
-            className="object-cover opacity-82"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#080a0d] via-transparent to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-6">
+        <div className="min-w-0 self-start p-5 md:p-6">
+          <ApplicationMediaPanel media={solution.media} />
+          <div className="pt-6">
             <p className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-[#f5b41b]">
               {labels.recommended}
             </p>

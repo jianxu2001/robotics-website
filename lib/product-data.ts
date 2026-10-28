@@ -89,13 +89,13 @@ const standardEnvironment = [
 ];
 
 const images = {
-  ecr: "/images/bejing1%20(1).jpg",
-  sch: "/images/bejing1%20(2).jpg",
-  sar: "/images/bejing1%20(1).jpg",
-  scr: "/images/bejing1%20(2).jpg",
-  srl: "/images/bejing1%20(3).jpg",
-  stc: "/images/bejing1%20(3).jpg",
-  er: "/images/bejing1%20(1).jpg",
+  ecr: "/images/products/catalog-2026/ecr30-1850.webp",
+  sch: "/images/products/catalog-2026/sch100-1950-1800.webp",
+  sar: "/images/products/catalog-2026/sar130-2550-2400.webp",
+  scr: "/images/products/catalog-2026/scr180-3200.webp",
+  srl: "/images/products/catalog-2026/srl20-1500-1000.webp",
+  stc: "/images/products/catalog-2026/stc10-1450-400.webp",
+  er: "/images/products/catalog-2026/er20-1700.webp",
 };
 
 function slugifyModel(name: string) {

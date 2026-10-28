@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ProductGroup } from "@/lib/catalog";
 import { IndustrialCard } from "@/components/industrial-card";
+import { isProductRender } from "@/lib/product-media";
 
 type ProductGroupCardLabels = {
   productLines: string;
@@ -25,13 +26,13 @@ export function ProductGroupCard({
   return (
     <div id={group.slug} className="scroll-mt-36">
       <IndustrialCard className="group overflow-hidden">
-        <div className={`relative min-h-52 overflow-hidden border-b border-white/10 ${group.image.includes("-dark-") ? "product-stage" : ""}`}>
+        <div className={`relative min-h-52 overflow-hidden border-b border-white/10 ${isProductRender(group.image) ? "product-stage" : ""}`}>
           <Image
             src={group.image}
             alt={group.title}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-            className={`${group.image.includes("-dark-") ? "product-image" : "object-cover opacity-82"} transition duration-500 group-hover:scale-105`}
+            className={`${isProductRender(group.image) ? "product-image" : "object-cover opacity-82"} transition duration-500 group-hover:scale-105`}
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,13,0.1),rgba(8,10,13,0.86))]" />
           <div className="absolute bottom-0 left-0 right-0 p-6">

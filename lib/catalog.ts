@@ -62,7 +62,7 @@ export const productCategories: ProductCategory[] = [
     title: "Palletizing / Depalletizing Robots",
     description:
       "Four-axis robot platforms for end-of-line palletizing, depalletizing, bag stacking, carton handling, pallet flow, and complete robot cells.",
-    image: "/images/bejing1%20(2).jpg",
+    image: "/images/products/catalog-2026/sch100-1950-1800.webp",
     series: ["ECR Series", "SCH Series", "SAR Series", "SCR Series"],
   },
   {
@@ -70,7 +70,7 @@ export const productCategories: ProductCategory[] = [
     title: "Desktop Robots",
     description:
       "Compact desktop-class robot configurations for light handling, small work cells, laboratory-style automation, and limited-space production lines.",
-    image: "/images/bejing1%20(1).jpg",
+    image: "/images/products/catalog-2026/sch03ae-200-110.webp",
     series: ["SCH-AE Series"],
   },
   {
@@ -78,7 +78,7 @@ export const productCategories: ProductCategory[] = [
     title: "General-Purpose Robots",
     description:
       "Flexible six-axis robot platforms for handling, machine tending, assembly support, part transfer, and general factory automation.",
-    image: "/images/bejing1%20(1).jpg",
+    image: "/images/products/catalog-2026/er20-1700.webp",
     series: ["ER Series"],
   },
   {
@@ -86,7 +86,7 @@ export const productCategories: ProductCategory[] = [
     title: "Stamping Dedicated Robots",
     description:
       "Dedicated robot platforms for press loading, stamping transfer, forging support, repetitive part movement, and line-specific tooling.",
-    image: "/images/bejing1%20(3).jpg",
+    image: "/images/products/catalog-2026/stc10-1450-400.webp",
     series: ["STC Series", "SAR12 Series"],
   },
   {
@@ -94,7 +94,7 @@ export const productCategories: ProductCategory[] = [
     title: "Machine Loading / Unloading Robots",
     description:
       "Compact robot systems for machine loading, unloading, part transfer, fixtures, repetitive handling, and line-side production cells.",
-    image: "/images/bejing1%20(3).jpg",
+    image: "/images/products/catalog-2026/srl10-900-650.webp",
     series: ["SRL Series"],
   },
   {
@@ -225,7 +225,7 @@ const productSeriesDefinitions: Omit<ProductSeries, "models">[] = [
     category: "Palletizing / depalletizing and compact handling",
     summary:
       "The ECR range covers compact four-axis robots for fast, repeatable handling where payload, reach, and cost efficiency need to stay balanced.",
-    image: "/images/bejing1%20(1).jpg",
+    image: "/images/products/catalog-2026/ecr30-1850.webp",
     payloadRange: "3-100 kg",
     reachRange: "200-2,050 mm",
     axes: "4-axis",
@@ -244,7 +244,7 @@ const productSeriesDefinitions: Omit<ProductSeries, "models">[] = [
     category: "Palletizing / depalletizing robots",
     summary:
       "SCH robots are designed for industrial palletizing and heavy material handling, with payload options extending up to 800 kg for demanding factory lines.",
-    image: "/images/bejing1%20(2).jpg",
+    image: "/images/products/catalog-2026/sch100-1950-1800.webp",
     payloadRange: "3-800 kg",
     reachRange: "200-3,500 mm",
     axes: "4-axis, optional 5th/6th axis on selected models",
@@ -263,7 +263,7 @@ const productSeriesDefinitions: Omit<ProductSeries, "models">[] = [
     category: "Palletizing / depalletizing and long-reach transfer",
     summary:
       "The SAR range supports large working envelopes and heavy payloads for industrial transfer, palletizing, and line-side handling.",
-    image: "/images/bejing1%20(1).jpg",
+    image: "/images/products/catalog-2026/sar130-2550-2400.webp",
     payloadRange: "12-800 kg",
     reachRange: "1,454-3,500 mm",
     axes: "4-axis",
@@ -282,7 +282,7 @@ const productSeriesDefinitions: Omit<ProductSeries, "models">[] = [
     category: "Palletizing / depalletizing robots",
     summary:
       "The SCR180-3200 is a dedicated high-payload four-axis robot for end-of-line palletizing, large cartons, bags, and heavy factory loads.",
-    image: "/images/bejing1%20(2).jpg",
+    image: "/images/products/catalog-2026/scr180-3200.webp",
     payloadRange: "180 kg",
     reachRange: "3,200 mm",
     axes: "4-axis, optional 5th axis",
@@ -301,7 +301,7 @@ const productSeriesDefinitions: Omit<ProductSeries, "models">[] = [
     category: "Machine loading / unloading robots",
     summary:
       "SRL robots provide lightweight four-axis automation for compact production cells, small handling tasks, and line-side transfer.",
-    image: "/images/bejing1%20(3).jpg",
+    image: "/images/products/catalog-2026/srl20-1500-1000.webp",
     payloadRange: "10-20 kg",
     reachRange: "900-1,500 mm",
     axes: "4-axis",
@@ -320,7 +320,7 @@ const productSeriesDefinitions: Omit<ProductSeries, "models">[] = [
     category: "Stamping dedicated robots",
     summary:
       "The STC range is built for stamping transfer and press automation, helping factories reduce manual handling around repetitive press operations.",
-    image: "/images/bejing1%20(3).jpg",
+    image: "/images/products/catalog-2026/stc10-1450-400.webp",
     payloadRange: "5-10 kg",
     reachRange: "1,250-1,450 mm",
     axes: "4-axis",
@@ -339,7 +339,7 @@ const productSeriesDefinitions: Omit<ProductSeries, "models">[] = [
     category: "General-purpose robots",
     summary:
       "ER six-axis robots support flexible motion for handling, tending, and general automation tasks requiring articulated reach.",
-    image: "/images/bejing1%20(1).jpg",
+    image: "/images/products/catalog-2026/er20-1700.webp",
     payloadRange: "10-20 kg",
     reachRange: "1,400-1,717 mm",
     axes: "6-axis",
@@ -357,7 +357,7 @@ const productSeriesDefinitions: Omit<ProductSeries, "models">[] = [
   "title": "Dedicated Stamping Robots",
   "category": "Stamping automation",
   "summary": "SCD30-1850-400 supports 30/50/80 kg payload configurations and customizable reach for press-side transfer.",
-  "image": "/images/bejing1%20(3).jpg",
+  "image": "/images/products/catalog-2026/scd30-1850-400.webp",
   "payloadRange": "30-80 kg",
   "reachRange": "1,850-2,700 mm",
   "axes": "4-axis",

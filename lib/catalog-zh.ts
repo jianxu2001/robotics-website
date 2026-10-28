@@ -124,7 +124,7 @@ export const productCategoriesZh: ProductCategory[] = [
     title: "码垛/拆垛机器人",
     description:
       "面向终端码垛、拆垛、袋装堆垛、纸箱搬运、托盘流转和完整机器人工作站的四轴机器人平台。",
-    image: "/images/bejing1%20(2).jpg",
+    image: "/images/products/catalog-2026/sch100-1950-1800.webp",
     series: ["ECR系列", "SCH系列", "SAR系列", "SCR系列"],
   },
   {
@@ -132,7 +132,7 @@ export const productCategoriesZh: ProductCategory[] = [
     title: "桌面型机器人",
     description:
       "适用于轻量搬运、小型工装、桌面自动化和空间受限生产单元的紧凑型机器人配置。",
-    image: "/images/bejing1%20(1).jpg",
+    image: "/images/products/catalog-2026/sch03ae-200-110.webp",
     series: ["SCH-AE系列"],
   },
   {
@@ -140,7 +140,7 @@ export const productCategoriesZh: ProductCategory[] = [
     title: "通用型机器人",
     description:
       "面向搬运、机床上下料、装配辅助、工件转运和通用工厂自动化的柔性六轴机器人平台。",
-    image: "/images/bejing1%20(1).jpg",
+    image: "/images/products/catalog-2026/er20-1700.webp",
     series: ["ER系列"],
   },
   {
@@ -148,7 +148,7 @@ export const productCategoriesZh: ProductCategory[] = [
     title: "冲压专用机器人",
     description:
       "用于压力机上下料、冲压转运、锻压辅助、重复零件搬运和专用工装集成的机器人平台。",
-    image: "/images/bejing1%20(3).jpg",
+    image: "/images/products/catalog-2026/stc10-1450-400.webp",
     series: ["STC系列", "SAR12系列"],
   },
   {
@@ -156,7 +156,7 @@ export const productCategoriesZh: ProductCategory[] = [
     title: "机床上料/下料机器人",
     description:
       "适用于机床上料、下料、工件转运、夹具配套、重复搬运和产线侧紧凑自动化单元。",
-    image: "/images/bejing1%20(3).jpg",
+    image: "/images/products/catalog-2026/srl10-900-650.webp",
     series: ["SRL系列"],
   },
   {

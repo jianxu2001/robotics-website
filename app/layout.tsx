@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "SCR Robot | Industrial Robot Automation Supplier",
     description:
       "Palletizing, depalletizing, stamping, tending, and conveyor automation systems for factory projects worldwide.",
-    images: ["/images/bejing1%20(1).jpg"],
+    images: ["/images/scr-logo-wordmark.png"],
     type: "website",
   },
   icons: {

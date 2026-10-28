@@ -90,7 +90,8 @@ html {
 }
 
 .homepage-hero-slide {
-  object-fit: cover;
+  object-fit: contain;
+  object-position: right center;
   opacity: 0;
   transform: scale(1.04);
   transition:

@@ -73,7 +73,7 @@ const jsonLd = [
     url: pageUrl,
     name: pageTitle,
     description: pageDescription,
-    image: absoluteUrl("/images/bejing1%20(2).jpg"),
+    image: absoluteUrl("/images/products/catalog-2026/sch100-1950-1800.webp"),
   }),
   {
     "@context": "https://schema.org",
@@ -103,7 +103,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: pageTitle,
     description: pageDescription,
-    images: ["/images/bejing1%20(2).jpg"],
+    images: ["/images/products/catalog-2026/sch100-1950-1800.webp"],
     type: "website",
   },
 };
@@ -123,7 +123,7 @@ export default function SchHeavyDutyPalletizingRobotsPage() {
         <section className="relative border-b border-white/10">
           <div className="absolute inset-0">
             <Image
-              src="/images/bejing1%20(2).jpg"
+              src="/images/products/catalog-2026/sch100-1950-1800.webp"
               alt="SCH Series heavy-duty four-axis palletizing robot cell"
               fill
               priority

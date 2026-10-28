@@ -1,3 +1,5 @@
+import { isProductRender } from "@/lib/product-media";
+import { HomepageHeroMedia } from "@/components/homepage-hero-media";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -89,14 +91,7 @@ export default function ZhHomePage() {
       <SiteHeader locale="zh" alternateHref="/" />
       <main id="top" className="min-h-screen overflow-hidden bg-[#080a0d] text-white">
         <section className="relative min-h-[92vh] border-b border-white/10 pt-40 sm:pt-32 lg:pt-24">
-          <Image
-            src="/images/bejing1%20(1).jpg"
-            alt="工业机器人码垛自动化单元"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover opacity-48"
-          />
+          <HomepageHeroMedia />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,10,13,0.97)_0%,rgba(8,10,13,0.78)_46%,rgba(8,10,13,0.36)_100%)]" />
           <div className="absolute inset-0 industrial-grid opacity-50" />
           <div className="relative mx-auto flex min-h-[calc(92vh-8rem)] max-w-7xl items-center px-5 py-10 sm:min-h-[calc(92vh-6rem)] lg:px-8">
@@ -155,13 +150,13 @@ export default function ZhHomePage() {
             {productCategoriesZh.map((category) => (
               <IndustrialCard key={category.title} className="group overflow-hidden">
                 <div className="grid min-h-full lg:grid-cols-[0.9fr_1.1fr]">
-                  <div className={`relative min-h-56 overflow-hidden ${category.image.includes("-dark-") ? "product-stage" : ""}`}>
+                  <div className={`relative min-h-56 overflow-hidden ${isProductRender(category.image) ? "product-stage" : ""}`}>
                     <Image
                       src={category.image}
                       alt={category.title}
                       fill
                       sizes="(min-width: 768px) 50vw, 100vw"
-                      className={`${category.image.includes("-dark-") ? "product-image" : "object-cover"} transition duration-500 group-hover:scale-105`}
+                      className={`${isProductRender(category.image) ? "product-image" : "object-cover"} transition duration-500 group-hover:scale-105`}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#080a0d] via-transparent to-transparent" />
                   </div>

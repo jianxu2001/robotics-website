@@ -1,3 +1,5 @@
+import { applicationImageFields } from "@/lib/application-media";
+
 export type SolutionPage = {
   slug: string;
   title: string;
@@ -7,6 +9,8 @@ export type SolutionPage = {
   heroTitle: string;
   heroDescription: string;
   image: string;
+  imageAlt: string;
+  imageCaption: string;
   painPoints: { title: string; text: string }[];
   solutionIntro: string;
   solutionComponents: string[];
@@ -32,7 +36,7 @@ export const solutionPages: SolutionPage[] = [
       "Bag Depalletizing Robot System for Heavy Bags and Powder Lines",
     heroDescription:
       "SCR Robot builds turnkey bag depalletizing cells that pick 20–50 kg bags from inbound pallets and feed them into hoppers, conveyors, or processing stations. The system covers robot arm, 3D vision or position detection, custom bag gripper, outfeed conveyor, safety guarding, and PLC/HMI control — engineered to your bag type, pallet pattern, and throughput target.",
-    image: "/images/bejing1%20(1).jpg",
+    ...applicationImageFields("bag-depalletizing"),
     painPoints: [
       {
         title: "Manual unloading of 20–50 kg bags is labor intensive",
@@ -201,7 +205,7 @@ export const solutionPages: SolutionPage[] = [
       "Automatic Bag Opening and Feeding Systems for Powder Materials",
     heroDescription:
       "SCR Robot builds integrated bag breaking and powder feeding stations that cut, open, and discharge 20–50 kg bags into mixers, silos, hoppers, or conveyors. The system covers bag loading conveyor, automatic cutting or opening unit, discharge hopper with dust collection, empty bag waste handling, and PLC/HMI with safety guarding — designed to reduce manual powder contact and maintain consistent feed rates.",
-    image: "/images/bejing1%20(3).jpg",
+    ...applicationImageFields("bag-feeding"),
     painPoints: [
       {
         title: "Manual bag cutting creates dust and waste",
@@ -369,7 +373,7 @@ export const solutionPages: SolutionPage[] = [
       "Robotic Bag Palletizing System for 20–50 kg Bags",
     heroDescription:
       "SCR Robot builds end-of-line robotic bag palletizing cells that stack filled 20–50 kg bags onto pallets with configurable patterns, layer heights, and discharge sequences. The system covers robot arm, bag infeed conveyor, bag flattening or positioning unit, custom bag gripper, pallet magazine or dispenser, safety fencing, pallet pattern programming, and PLC/HMI control — engineered to your bag type, throughput, and pallet specification.",
-    image: "/images/bejing1%20(2).jpg",
+    ...applicationImageFields("bag-palletizing"),
     painPoints: [
       {
         title: "Manual palletizing causes back strain and inconsistent stacking",

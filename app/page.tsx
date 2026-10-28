@@ -1,3 +1,4 @@
+import { isProductRender } from "@/lib/product-media";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -82,7 +83,7 @@ const quoteInputs = [
 
 const jsonLd = {
   ...getOrganizationJsonLd(),
-  logo: absoluteUrl("/images/scr-factory-guangdong-v1.png"),
+  logo: absoluteUrl("/images/scr-logo-wordmark.png"),
   foundingDate: "2017-06-13",
   description: companyProfile.description,
   areaServed: "Worldwide",
@@ -274,13 +275,13 @@ export default function Home() {
             {productCategories.map((category) => (
               <IndustrialCard key={category.title} className="group overflow-hidden">
                 <div className="grid min-h-full lg:grid-cols-[0.9fr_1.1fr]">
-                  <div className={`relative min-h-56 overflow-hidden ${category.image.includes("-dark-") ? "product-stage" : ""}`}>
+                  <div className={`relative min-h-56 overflow-hidden ${isProductRender(category.image) ? "product-stage" : ""}`}>
                     <Image
                       src={category.image}
                       alt={category.title}
                       fill
                       sizes="(min-width: 768px) 50vw, 100vw"
-                      className={`${category.image.includes("-dark-") ? "product-image" : "object-cover"} transition duration-500 group-hover:scale-105`}
+                      className={`${isProductRender(category.image) ? "product-image" : "object-cover"} transition duration-500 group-hover:scale-105`}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#080a0d] via-transparent to-transparent" />
                   </div>

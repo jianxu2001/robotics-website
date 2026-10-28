@@ -1,3 +1,5 @@
+import { applicationImageFields } from "@/lib/application-media";
+
 export type IndustryPage = {
   slug: string;
   title: string;
@@ -7,6 +9,8 @@ export type IndustryPage = {
   heroTitle: string;
   heroDescription: string;
   image: string;
+  imageAlt: string;
+  imageCaption: string;
   materials: string[];
   packages: string[];
   productionContext: string;
@@ -42,6 +46,8 @@ type IndustryInput = {
   heroTitle: string;
   heroDescription: string;
   image: string;
+  imageAlt: string;
+  imageCaption: string;
   materials: string[];
   packages: string[];
   productionContext: string;
@@ -213,7 +219,7 @@ export const industryPages: IndustryPage[] = [
     heroTitle: "Plastic Manufacturing Robot Automation for Depalletizing, Feeding, and Palletizing",
     heroDescription:
       "Automate resin bags, molded plastic parts, cartons, containers, and packaging lines with robot cells planned around product weight, pallet pattern, conveyors, and factory layout.",
-    image: "/images/bejing1%20(2).jpg",
+    ...applicationImageFields("material-handling-line"),
     materials: ["plastic resin bags", "molded plastic parts", "containers", "cartons", "film rolls"],
     packages: ["resin sacks", "cartons", "cases", "totes", "wrapped bundles"],
     productionContext:
@@ -256,7 +262,7 @@ export const industryPages: IndustryPage[] = [
     heroTitle: "Chemical Processing Robot Automation for Safer Bag Handling and Palletizing",
     heroDescription:
       "Plan robot cells for chemical bags, drums, cartons, powders, and granular materials with attention to dust, containment, payload, gripper design, and downstream equipment.",
-    image: "/images/scr-factory-guangdong-v1.png",
+    ...applicationImageFields("material-handling-line"),
     materials: ["chemical powders", "granules", "additives", "drums", "bagged raw materials"],
     packages: ["woven bags", "valve bags", "cartons", "drums", "pails"],
     productionContext:
@@ -299,7 +305,7 @@ export const industryPages: IndustryPage[] = [
     heroTitle: "Building Materials Robot Automation for Heavy Bags, Boards, Tiles, and Pallets",
     heroDescription:
       "Use SCR Robot systems to handle heavy building material bags, boards, tiles, cartons, and pallet flow with robots, grippers, conveyors, and safety planning.",
-    image: "/images/bejing1%20(3).jpg",
+    ...applicationImageFields("material-handling-line"),
     materials: ["dry mortar", "cement additives", "tiles", "boards", "construction chemicals"],
     packages: ["heavy bags", "cartons", "bundles", "boards", "palletized stacks"],
     productionContext:
@@ -342,7 +348,7 @@ export const industryPages: IndustryPage[] = [
     heroTitle: "Food Ingredients Robot Automation for Bag Feeding, Depalletizing, and Palletizing",
     heroDescription:
       "Automate ingredient bags, cartons, and packaging lines with robot systems designed for stable feeding, repeatable palletizing, and safer material handling.",
-    image: "/images/bejing1%20(1).jpg",
+    ...applicationImageFields("material-handling-line"),
     materials: ["flour", "starch", "sugar", "seasoning powder", "food additives"],
     packages: ["paper bags", "woven bags", "cartons", "cases", "ingredient sacks"],
     productionContext:
@@ -385,7 +391,7 @@ export const industryPages: IndustryPage[] = [
     heroTitle: "Animal Feed Robot Automation for Bag Handling, Feeding, and Palletizing",
     heroDescription:
       "Automate feed bags, additive sacks, cartons, and end-of-line palletizing with robot cells planned around bag deformation, dust, throughput, and pallet stability.",
-    image: "/images/bejing1%20(2).jpg",
+    ...applicationImageFields("material-handling-line"),
     materials: ["pellet feed", "powder feed", "premix", "additives", "bagged raw materials"],
     packages: ["feed bags", "sacks", "cartons", "woven bags", "bulk ingredient bags"],
     productionContext:
@@ -428,7 +434,7 @@ export const industryPages: IndustryPage[] = [
     heroTitle: "Fertilizer Production Robot Automation for Bags, Feeding Lines, and Pallets",
     heroDescription:
       "Use robot automation to handle fertilizer bags, granular materials, additives, and palletizing cells with attention to dust, corrosion risk, payload, and stack quality.",
-    image: "/images/bejing1%20(3).jpg",
+    ...applicationImageFields("material-handling-line"),
     materials: ["compound fertilizer", "granular fertilizer", "powder additives", "soil amendments", "bagged raw materials"],
     packages: ["fertilizer bags", "woven sacks", "cartons", "palletized bags", "bulk additive bags"],
     productionContext:
@@ -471,7 +477,7 @@ export const industryPages: IndustryPage[] = [
     heroTitle: "Mining Materials Robot Automation for Heavy Bags, Powders, and Pallets",
     heroDescription:
       "Automate mineral powder bags, ore additives, cartons, and heavy material handling with robust robot cells for depalletizing, feeding, and palletizing.",
-    image: "/images/scr-factory-guangdong-v1.png",
+    ...applicationImageFields("material-handling-line"),
     materials: ["mineral powders", "ore additives", "abrasive materials", "processed minerals", "bagged compounds"],
     packages: ["heavy bags", "woven sacks", "bulk cartons", "palletized materials", "drums"],
     productionContext:
@@ -514,7 +520,7 @@ export const industryPages: IndustryPage[] = [
     heroTitle: "Refractory Materials Robot Automation for Bags, Bricks, Mixes, and Pallets",
     heroDescription:
       "Plan robot systems for refractory mixes, bricks, bags, cartons, depalletizing, automatic feeding, and palletizing in dusty, heavy-duty environments.",
-    image: "/images/bejing1%20(3).jpg",
+    ...applicationImageFields("material-handling-line"),
     materials: ["refractory mixes", "bricks", "castables", "powders", "ceramic raw materials"],
     packages: ["bags", "cartons", "brick stacks", "bundles", "palletized loads"],
     productionContext:
@@ -557,7 +563,7 @@ export const industryPages: IndustryPage[] = [
     heroTitle: "Cement Products Robot Automation for Heavy Bags, Blocks, and Pallets",
     heroDescription:
       "Automate cement bags, dry mortar bags, blocks, cartons, and pallet flow with heavy-duty robot systems designed for dust, payload, and stable stacking.",
-    image: "/images/bejing1%20(2).jpg",
+    ...applicationImageFields("material-handling-line"),
     materials: ["cement bags", "dry mortar", "blocks", "tile adhesive", "construction mixes"],
     packages: ["paper bags", "woven bags", "blocks", "cartons", "palletized stacks"],
     productionContext:
@@ -600,7 +606,7 @@ export const industryPages: IndustryPage[] = [
     heroTitle: "Powder Handling Robot Automation for Bags, Feeding, Depalletizing, and Palletizing",
     heroDescription:
       "Use robot automation to move powder bags, sacks, cartons, and packaged materials into feeding, bag opening, transfer, and palletizing workflows.",
-    image: "/images/scr-factory-guangdong-v1.png",
+    ...applicationImageFields("material-handling-line"),
     materials: ["powder ingredients", "mineral powder", "chemical powder", "food powder", "additives"],
     packages: ["powder bags", "sacks", "cartons", "valve bags", "palletized bags"],
     productionContext:

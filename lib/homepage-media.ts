@@ -1,9 +1,9 @@
 export const HERO_ROTATION_MS = 4000;
 
 export const homepageHeroSlides = [
-  "/images/scr-hero-depalletizing.webp",
-  "/images/scr-hero-palletizing.webp",
-  "/images/scr-hero-bag-feeding.webp",
+  "/images/scr-hero-cr50l.webp",
+  "/images/scr-hero-stc10.webp",
+  "/images/scr-hero-sch100.webp",
 ] as const;
 
 export function getNextHeroSlideIndex(

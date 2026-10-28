@@ -122,17 +122,9 @@ export function IndustryPageTemplate({ page }: IndustryPageTemplateProps) {
       <SiteHeader alternateHref="/zh/industries" />
       <main className="min-h-screen bg-[#080a0d] pt-40 text-white sm:pt-32 lg:pt-28">
         <section className="relative overflow-hidden border-b border-white/10">
-          <Image
-            src={page.image}
-            alt={`${page.title} robot automation`}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover opacity-42"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,10,13,0.98),rgba(8,10,13,0.78),rgba(8,10,13,0.42))]" />
           <div className="absolute inset-0 industrial-grid opacity-45" />
-          <div className="relative mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
+          <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-20">
+            <div>
             <div className="text-sm text-white/58">
               <Link href="/industries" className="transition hover:text-white">
                 Industries
@@ -143,7 +135,7 @@ export function IndustryPageTemplate({ page }: IndustryPageTemplateProps) {
             <p className="mt-10 font-mono text-sm font-bold uppercase tracking-[0.18em] text-[#f5b41b]">
               {page.eyebrow}
             </p>
-            <h1 className="mt-5 max-w-5xl text-4xl font-semibold leading-tight md:text-6xl">
+            <h1 className="mt-5 max-w-5xl text-4xl font-semibold leading-tight sm:text-5xl">
               {page.heroTitle}
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-white/72">
@@ -155,6 +147,13 @@ export function IndustryPageTemplate({ page }: IndustryPageTemplateProps) {
                 WhatsApp
               </CtaLink>
             </div>
+            </div>
+            <figure className="overflow-hidden rounded-lg border border-white/10 bg-[#0b131b]">
+              <div className="relative aspect-[4/3]">
+                <Image src={page.image} alt={page.imageAlt} fill priority sizes="(min-width:1024px) 42vw, 100vw" className="object-contain" />
+              </div>
+              <figcaption className="border-t border-white/10 px-5 py-4 text-sm leading-6 text-white/65">{page.imageCaption}</figcaption>
+            </figure>
           </div>
         </section>
 
