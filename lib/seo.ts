@@ -141,36 +141,39 @@ export function getProductSeriesStructuredData(series: ProductSeries) {
   ];
 }
 
-export function getProductModelStructuredData(model: ProductModel) {
-  const modelUrl = absoluteUrl(`/products/${model.seriesSlug}/${model.slug}`);
-  const seriesUrl = absoluteUrl(`/products/${model.seriesSlug}`);
+export function getProductModelStructuredData(model: ProductModel, locale: "en" | "zh" = "en") {
+  const zh = locale === "zh";
+  const prefix = zh ? "/zh" : "";
+  const modelUrl = absoluteUrl(`${prefix}/products/${model.seriesSlug}/${model.slug}`);
+  const seriesUrl = absoluteUrl(`${prefix}/products/${model.seriesSlug}`);
 
   const structuredData: unknown[] = [
     getOrganizationJsonLd(),
     getBreadcrumbJsonLd(modelUrl, [
-      { name: "Home", url: siteUrl },
-      { name: "Products", url: absoluteUrl("/products") },
+      { name: zh ? "首页" : "Home", url: absoluteUrl(zh ? "/zh" : "/") },
+      { name: zh ? "产品" : "Products", url: absoluteUrl(`${prefix}/products`) },
       { name: model.series, url: seriesUrl },
       { name: model.name, url: modelUrl },
     ]),
-    getWebPageJsonLd({
+    { ...getWebPageJsonLd({
       url: modelUrl,
-      name: getProductModelMetaTitle(model),
-      description: getProductModelMetaDescription(model),
+      name: getProductModelMetaTitle(model, locale),
+      description: getProductModelMetaDescription(model, locale),
       image: absoluteUrl(model.image),
-    }),
-    getProductModelJsonLd(model, modelUrl),
+    }), inLanguage: zh ? "zh-CN" : "en" },
+    getProductModelJsonLd(model, modelUrl, locale),
   ];
 
   return structuredData;
 }
 
-function getProductModelJsonLd(model: ProductModel, modelUrl: string) {
+function getProductModelJsonLd(model: ProductModel, modelUrl: string, locale: "en" | "zh") {
+  const zh = locale === "zh";
   return {
     "@context": "https://schema.org",
     "@type": "Product",
     "@id": `${modelUrl}#product`,
-    name: `${model.name} ${model.category}`,
+    name: `${model.name} ${zh ? (model.categoryZh ?? "工业机器人") : model.category}`,
     brand: {
       "@type": "Brand",
       name: companyProfile.shortName,
@@ -180,8 +183,8 @@ function getProductModelJsonLd(model: ProductModel, modelUrl: string) {
     },
     sku: model.name,
     model: model.name,
-    description: getProductModelMetaDescription(model),
-    category: `Industrial Robot / ${model.category}`,
+    description: getProductModelMetaDescription(model, locale),
+    category: zh ? (model.categoryZh ?? "工业机器人") : `Industrial Robot / ${model.category}`,
     url: modelUrl,
     image: absoluteUrl(model.image),
     additionalProperty: model.specifications ? model.specifications.map((item) => ({ "@type": "PropertyValue", name: item.name, value: item.value })) : [
@@ -320,7 +323,8 @@ export function getProductSeriesMetaDescription(series: ProductSeries) {
   return `Review ${series.series} robot specs, payload ${series.payloadRange}, reach ${series.reachRange}, applications, and model data for factory automation projects.`;
 }
 
-export function getProductModelMetaTitle(model: ProductModel) {
+export function getProductModelMetaTitle(model: ProductModel, locale: "en" | "zh" = "en") {
+  if (locale === "zh") return `${model.name} | ${model.categoryZh ?? "工业机器人参数"}`;
   if (model.seriesSlug === "stc-series") {
     return `${model.name} Press Transfer Robot | ${model.payload} | SCR Robot`;
   }
@@ -339,12 +343,19 @@ export function getProductModelMetaTitle(model: ProductModel) {
   return `${model.name} Robot | ${model.payload} Payload | SCR Robot`;
 }
 
-export function getProductModelMetaDescription(model: ProductModel) {
+export function getProductModelMetaDescription(model: ProductModel, locale: "en" | "zh" = "en") {
+  if (locale === "zh") return model.positioningZh ?? `${model.name}，负载 ${model.payload}，臂展 ${model.reach}，查看完整技术参数和原始产品画册。`;
   if (model.specifications) return model.positioning;
   return `${model.name}: ${model.payload} payload, ${model.reach} reach, ${model.repeatability} repeatability. Request SCR Robot selection help for ${model.applications[0].toLowerCase()} projects.`;
 }
 
-export function getProductModelFaqs(model: ProductModel): FaqItem[] {
+export function getProductModelFaqs(model: ProductModel, locale: "en" | "zh" = "en"): FaqItem[] {
+  if (locale === "zh") return [
+    { question: `${model.name} 是否适合我的产品？`, answer: "请结合产品尺寸、重量、包装形式、夹具重量、目标节拍和现场布局确认。" },
+    { question: "能否提供整套自动化工作站？", answer: "可根据项目需求评估机器人、夹具、输送、托盘流转、控制及安全防护的集成范围。" },
+    { question: "如何确认最终设备配置？", answer: "请提供实际产品、重心和工况要求，由工程团队核对工作范围和配置。" },
+    { question: "询价需要哪些资料？", answer: "产品照片、重量、尺寸、目标产能、托盘或纸箱规格、厂房布局、电压要求和目的地。" },
+  ];
   return [
     {
       question: `Is ${model.name} suitable for my product?`,

@@ -202,7 +202,7 @@ export const productGroupsZh: ProductGroup[] = [
       {
         name: "SCH-AE系列",
         description: "紧凑型 SCH-AE 机型，适合桌面级搬运、小型工装和有限空间自动化单元。",
-        href: "/zh/products/sch-series",
+        href: "/zh/products#desktop-robots",
       },
     ],
   },

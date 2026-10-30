@@ -37,9 +37,9 @@ export async function POST(request: Request) {
   const delivered = deliveries.some((delivery) => delivery.ok);
 
   if (!delivered) {
-    const message =
-      deliveries[0]?.message ||
-      "Inquiry delivery is not configured. Please set RESEND_API_KEY or CONTACT_WEBHOOK_URL.";
+    const message = inquiry.locale === "zh"
+      ? "暂未能确认提交结果，请通过电话或邮箱确认。"
+      : "We could not confirm submission. Please contact us by phone or email.";
 
     return NextResponse.json({ message }, { status: 503 });
   }
@@ -78,6 +78,7 @@ async function sendWithResend(inquiry: Inquiry) {
 
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
+      signal: AbortSignal.timeout(12_000),
       headers: {
         Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
         "Content-Type": "application/json",
@@ -111,6 +112,7 @@ async function sendToWebhook(inquiry: Inquiry) {
   try {
     const response = await fetch(process.env.CONTACT_WEBHOOK_URL as string, {
       method: "POST",
+      signal: AbortSignal.timeout(12_000),
       headers: {
         "Content-Type": "application/json",
         ...(process.env.CONTACT_WEBHOOK_SECRET

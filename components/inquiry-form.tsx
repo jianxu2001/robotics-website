@@ -35,7 +35,7 @@ const copy = {
     productType: "Product Type",
     series: "Preferred series / model",
     notSure: "Not sure",
-    details: "Message",
+    details: "Message (at least 10 characters)",
     detailsPlaceholder:
       "Briefly describe your product, packaging, production line, and what you need the robot to do...",
     engineeringDetails: "Engineering Details (optional — helps us respond faster)",
@@ -55,7 +55,7 @@ const copy = {
     submitting: "Sending...",
     success: "Inquiry sent. We will review the project data and contact you as soon as possible.",
     error:
-      "Automatic submission is not available right now. Please email us directly or contact us on WhatsApp.",
+      "We could not confirm submission. Your details are still here. Contact us by email, phone or WhatsApp to confirm receipt.",
     emailSales: "Email Sales",
     whatsappCta: "WhatsApp",
     phoneCta: "Call Sales",
@@ -100,7 +100,7 @@ const copy = {
     submit: "发送询盘",
     submitting: "发送中...",
     success: "询盘已提交，我们会尽快通过您留下的电话或邮箱联系您。",
-    error: "本次暂未能提交，填写的资料已保留。您可以电话联系、发送邮件，或复制项目资料后联系我们。",
+    error: "暂未能确认提交结果，填写的资料已保留。您可以电话或邮件确认是否收到，或复制项目资料后联系我们。",
     emailSales: "邮件联系",
     whatsappCta: "WhatsApp",
     phoneCta: "电话联系",
@@ -142,11 +142,14 @@ export function InquiryForm({
     setFallbackBody(buildPlainText(normalizeInquiry({ ...payload, locale })));
     setCopyStatus("");
 
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 20_000);
     try {
       const response = await fetch("/api/inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...payload, locale }),
+        signal: controller.signal,
       });
 
       if (response.status === 400) {
@@ -157,16 +160,20 @@ export function InquiryForm({
       if (!response.ok) {
         throw new Error("Inquiry delivery failed.");
       }
+      const result = await response.json();
+      if (result.ok !== true) throw new Error("Inquiry acknowledgement missing.");
 
       form.reset();
       setState({ status: "success", message: t.success });
     } catch {
       setState({ status: "error", message: t.error, showFallback: true });
+    } finally {
+      window.clearTimeout(timeout);
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-5">
+    <form onSubmit={handleSubmit} aria-busy={state.status === "submitting"} className="grid gap-5">
       <input
         type="text"
         name="website"

@@ -11,6 +11,19 @@ import { selectionGuides, guidePath } from "@/lib/selection-guides";
 
 const lastModified = "2026-10-27T00:00:00.000Z";
 
+function contentLastModified(pathname: string) {
+  if (pathname === "/products" || pathname === "/zh/products"
+    || /^\/zh\/products\/[^/]+\/[^/]+$/.test(pathname)
+    || pathname === "/products/sch-series/sch100-1950-1800") return "2026-10-30T00:00:00.000Z";
+  // Image-to-application corrections and catalog imagery published on Oct 28.
+  if (pathname === "/" || pathname === "/zh"
+    || /^\/(zh\/)?products(\/|$)/.test(pathname)
+    || /^\/(zh\/)?industries(\/|$)/.test(pathname)
+    || pathname === "/case-studies" || pathname === "/zh/case-studies"
+    || pathname.startsWith("/solutions/")) return "2026-10-28T00:00:00.000Z";
+  return lastModified;
+}
+
 const pairedRoutes = [
   { en: "/", zh: "/zh", priority: 1 },
   { en: "/products", zh: "/zh/products", priority: 0.95 },
@@ -40,7 +53,7 @@ function pairedEntry(
 ): MetadataRoute.Sitemap[number] {
   return {
     url: absoluteUrl(url),
-    lastModified,
+    lastModified: contentLastModified(url),
     changeFrequency: "monthly",
     priority,
   };
@@ -52,7 +65,7 @@ function canonicalEntry(
 ): MetadataRoute.Sitemap[number] {
   return {
     url: absoluteUrl(pathname),
-    lastModified,
+    lastModified: contentLastModified(pathname),
     changeFrequency: "monthly",
     priority,
   };

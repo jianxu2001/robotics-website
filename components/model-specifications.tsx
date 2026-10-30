@@ -7,6 +7,7 @@ import { getProductModelFaqs } from "@/lib/seo";
 import { modelInquiryHref } from "@/lib/product-selection";
 import { stc10CasePaths } from "@/lib/stc10-case";
 import { cr50lCasePaths } from "@/lib/cr50l-case";
+import { sch100CasePaths } from "@/lib/sch100-case";
 import { isProductRender } from "@/lib/product-media";
 
 const labels: Record<string, string> = {
@@ -73,6 +74,7 @@ export function ProductModelDetail({ model, locale = "en" }: { model: ProductMod
           <p className="mt-6 text-lg leading-8 text-white/70">{zh ? (model.positioningZh ?? `${model.name}，最大负载 ${model.payload}，臂展 ${model.reach}。选型请结合夹具重量、产品尺寸、工作范围和目标节拍。`) : model.positioning}</p>
           <div className="mt-8 flex flex-wrap gap-3"><CtaLink href={modelInquiryHref(model, locale)}>{zh ? "咨询此型号与报价" : "Enquire About This Model"}</CtaLink><a href={catalog} className="inline-flex items-center rounded-md border border-white/20 px-5 py-3 text-sm font-semibold transition hover:border-[#f5b41b]">{zh ? "下载产品画册 PDF" : "Download Catalog PDF"}</a></div>
           {model.name === "STC10-1450-400" && <Link href={stc10CasePaths[locale]} className="mt-5 inline-flex text-sm font-semibold text-[#f5b41b] hover:text-[#ffd36b]">{zh ? "观看 STC10 冲压线应用案例与现场视频 →" : "Watch the STC10 press automation case and site video →"}</Link>}
+          {model.name === "SCH100-1950-1800" && <Link href={sch100CasePaths[locale]} className="mt-5 inline-flex text-sm font-semibold text-[#f5b41b] hover:text-[#ffd36b]">{zh ? "观看 SCH100 定制地轨拆包上料案例 · 标准机不带地轨 →" : "Watch SCH100 bag feeding with a custom track · standard robot excludes track →"}</Link>}
           {model.name === "CR50L-1900" && <Link href={cr50lCasePaths[locale]} className="mt-5 inline-flex text-sm font-semibold text-[#f5b41b] hover:text-[#ffd36b]">{zh ? "观看 CR50L 升降式纸箱码垛案例与视频 →" : "Watch the CR50L lifting carton palletizing case →"}</Link>}
           <div className="mt-8 grid grid-cols-2 gap-3">{metrics.map(([label, value]) => <div key={label} className="rounded-lg border border-white/10 bg-black/20 p-4"><p className="text-xs text-white/50">{label}</p><p className="mt-2 text-xl font-semibold text-[#ffd36b]">{value}</p></div>)}</div>
         </div>
@@ -94,12 +96,7 @@ export function ProductModelDetail({ model, locale = "en" }: { model: ProductMod
       </section>
       <section className="section-shell border-t border-white/10">
         <h2 className="mb-6 text-2xl font-semibold">{zh ? "选型常见问题" : "FAQ"}</h2>
-        <div className="grid gap-4 md:grid-cols-2">{(zh ? [
-          { question: `${model.name} 是否适合我的产品？`, answer: "请结合产品尺寸、重量、包装形式、夹具重量、目标节拍和现场布局确认。" },
-          { question: "能否提供整套自动化工作站？", answer: "可根据项目需求评估机器人、夹具、输送、托盘流转、控制及安全防护的集成范围。" },
-          { question: "如何确认最终设备配置？", answer: "请提供实际产品、重心和工况要求，由工程团队核对工作范围和配置。" },
-          { question: "询价需要哪些资料？", answer: "产品照片、重量、尺寸、目标产能、托盘或纸箱规格、厂房布局、电压要求和目的地。" },
-        ] : getProductModelFaqs(model)).map((faq) => <div key={faq.question} className="rounded-lg border border-white/10 p-5"><h3 className="font-semibold">{faq.question}</h3><p className="mt-3 leading-7 text-white/60">{faq.answer}</p></div>)}</div>
+        <div className="grid gap-4 md:grid-cols-2">{getProductModelFaqs(model, locale).map((faq) => <div key={faq.question} className="rounded-lg border border-white/10 p-5"><h3 className="font-semibold">{faq.question}</h3><p className="mt-3 leading-7 text-white/60">{faq.answer}</p></div>)}</div>
       </section>
       <section className="border-t border-white/10 bg-[#0c0f13]"><div className="section-shell flex flex-col justify-between gap-7 md:flex-row md:items-center"><div><h2 className="text-2xl font-semibold">{zh ? "确认这款产品是否适合您的产线" : "Check this model against your production line"}</h2><p className="mt-4 max-w-3xl leading-7 text-white/60">{zh ? "请提供产品照片、重量、尺寸、产能、托盘或纸箱规格及现场布局，便于确认设备配置。" : "Send product photos, weight, dimensions, target output, pallet or carton specifications and the available floor layout for configuration review."}</p></div><CtaLink href={modelInquiryHref(model, locale)}>{zh ? "发送项目需求" : "Send Project Details"}</CtaLink></div></section>
     </main>
