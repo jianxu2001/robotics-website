@@ -28,14 +28,14 @@ export const solutionPages: SolutionPage[] = [
     slug: "bag-depalletizing-system",
     title: "Bag Depalletizing Robot System",
     seoTitle:
-      "Bag Depalletizing Robot System for Powder and Bulk Material Lines | SCR Robot",
+      "Bag Depalletizing & Bag Emptying Systems | SCR Robot",
     description:
-      "Robotic bag depalletizing systems for 20–50 kg powder, chemical, and bulk material bags. Automatic pallet unloading, bag feeding to hopper or conveyor. Request engineering review.",
+      "Plan bag depalletizing, opening and powder feeding around your bags and line. See an SCH100 bag-feeding installation and send photos for configuration review.",
     eyebrow: "Bag depalletizing automation",
     heroTitle:
-      "Bag Depalletizing Robot System for Heavy Bags and Powder Lines",
+      "Bag Depalletizing and Powder Feeding for Your Production Line",
     heroDescription:
-      "SCR Robot builds turnkey bag depalletizing cells that pick 20–50 kg bags from inbound pallets and feed them into hoppers, conveyors, or processing stations. The system covers robot arm, 3D vision or position detection, custom bag gripper, outfeed conveyor, safety guarding, and PLC/HMI control — engineered to your bag type, pallet pattern, and throughput target.",
+      "Unload incoming bag pallets and connect the handling process to your conveyor, hopper or mixer. SCR Robot reviews the bag, gripper, robot reach and downstream interface together. If the material must be emptied, bag opening and discharge are planned as part of the project scope.",
     ...applicationImageFields("bag-depalletizing"),
     painPoints: [
       {
@@ -197,14 +197,14 @@ export const solutionPages: SolutionPage[] = [
     slug: "automatic-bag-breaking-feeding-system",
     title: "Automatic Bag Breaking and Feeding System",
     seoTitle:
-      "Automatic Bag Opening & Feeding Systems | SCR Robot",
+      "Automatic Bag Opening & Powder Feeding | SCR Robot",
     description:
-      "Plan robotic bag opening, breaking and material feeding with SCR Robot. Review the process, site requirements and a real SCH100 customer video with a custom track.",
+      "Automate bag opening and powder feeding to a hopper or mixer. Watch an SCH100 customer installation with a custom linear track, then send your bag and layout data.",
     eyebrow: "Bag breaking and powder feeding automation",
     heroTitle:
-      "Automatic Bag Opening and Feeding Systems for Powder Materials",
+      "Open Bags and Feed Powder into Your Process",
     heroDescription:
-      "SCR Robot builds integrated bag breaking and powder feeding stations that cut, open, and discharge 20–50 kg bags into mixers, silos, hoppers, or conveyors. The system covers bag loading conveyor, automatic cutting or opening unit, discharge hopper with dust collection, empty bag waste handling, and PLC/HMI with safety guarding — designed to reduce manual powder contact and maintain consistent feed rates.",
+      "Bring bag pickup, opening, material discharge and packaging-bag handling into one project review. SCR Robot checks the actual bag construction, powder behavior, receiving inlet and dust-control requirements before defining the equipment scope. See the SCH100 installation below for a real bag-handling example.",
     ...applicationImageFields("bag-feeding"),
     painPoints: [
       {

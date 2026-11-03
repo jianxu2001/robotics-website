@@ -6,7 +6,8 @@ import { CtaLink } from "@/components/cta-link";
 import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
-import { whatsappUrl } from "@/lib/contact";
+import { photoContactLinks, projectContactHref, type InquiryTopic } from "@/lib/contact-context";
+import { SolutionSiteVideo } from "@/components/solution-site-video";
 import { solutionPages } from "@/lib/solution-pages";
 import { solutionEngineering } from "@/lib/solution-engineering";
 import {
@@ -93,6 +94,11 @@ export default async function SolutionDetailPage({
 
   const structuredData = getSolutionPageStructuredData(page);
   const engineering = solutionEngineering[page.slug];
+  const sourcePath = `/solutions/${page.slug}`;
+  const topic: InquiryTopic = page.slug === "bag-depalletizing-system" ? "bag-depalletizing" : page.slug === "automatic-bag-breaking-feeding-system" ? "bag-opening-feeding" : "bag-palletizing";
+  const projectHref = projectContactHref(sourcePath, topic);
+  const photosHref = projectContactHref(sourcePath, topic, "en", "photos");
+  const photos = photoContactLinks("en", { topic, sourcePath });
 
   return (
     <>
@@ -127,11 +133,12 @@ export default async function SolutionDetailPage({
               {page.heroDescription}
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <CtaLink href="/contact">Request Engineering Review</CtaLink>
-              <CtaLink href="/contact" variant="secondary">
-                Send Product Photos First
+              <CtaLink href={projectHref}>Request Engineering Review</CtaLink>
+              <CtaLink href={photos.whatsapp} variant="secondary">
+                Send Photos on WhatsApp
               </CtaLink>
             </div>
+            <a href={photos.email} className="mt-4 inline-flex text-sm text-[#ffd36b] hover:underline">Prefer email? Send photos and layout →</a>
             </div>
             <figure className="overflow-hidden rounded-lg border border-white/10 bg-[#0b131b]">
               <div className="relative aspect-[4/3]">
@@ -142,12 +149,12 @@ export default async function SolutionDetailPage({
           </div>
         </section>
 
+        {engineering?.siteExample && <SolutionSiteVideo heading={engineering.siteExample.title} text={engineering.siteExample.text} />}
         {engineering && <section className="section-shell">
           <SectionHeading eyebrow="Process and selection" title="Define the complete handling task." description="Use the actual product, incoming condition and downstream interface to compare configurations." />
           <ol className="mt-8 grid gap-4 md:grid-cols-3">{engineering.workflow.map((step, index) => <li key={step.title} className="rounded-lg border border-white/10 bg-white/[0.035] p-6"><p className="font-mono text-sm text-[#f5b41b]">0{index + 1}</p><h2 className="mt-3 text-xl font-semibold">{step.title}</h2><p className="mt-4 leading-7 text-white/65">{step.text}</p></li>)}</ol>
           <h2 className="mt-12 text-2xl font-semibold">What changes the equipment selection?</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-2">{engineering.selectionChecks.map((check) => <article key={check.item} className="border-l-2 border-[#f5b41b]/60 pl-5"><h3 className="text-lg font-semibold">{check.item}</h3><p className="mt-3 leading-7 text-white/65">{check.why}</p></article>)}</div>
-          {engineering.siteExample && <article className="mt-10 grid overflow-hidden rounded-lg border border-[#f5b41b]/30 bg-[#11161b] sm:grid-cols-[0.45fr_1fr]"><Link href={engineering.siteExample.href} className="bg-black"><Image src={engineering.siteExample.image} alt="SCH100 customer installation for bag pickup and feeding with a custom linear track" width={720} height={1280} sizes="(min-width:640px) 25vw, 100vw" className="h-64 w-full object-contain sm:h-80" /></Link><div className="self-center p-6 sm:p-8"><h2 className="text-2xl font-semibold">{engineering.siteExample.title}</h2><p className="mt-4 leading-8 text-white/65">{engineering.siteExample.text}</p><div className="mt-6"><CtaLink href={engineering.siteExample.href} variant="secondary">Watch the Site Video</CtaLink></div></div></article>}
         </section>}
 
         {/* ── Pain Points ── */}
@@ -279,7 +286,7 @@ export default async function SolutionDetailPage({
             </div>
           </div>
           <div className="mt-10 text-center">
-            <CtaLink href="/contact">Send Photos for Engineering Review</CtaLink>
+            <CtaLink href={photosHref}>Choose WhatsApp or Email for Photos</CtaLink>
           </div>
         </section>
 
@@ -356,9 +363,9 @@ export default async function SolutionDetailPage({
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-                  <CtaLink href="/contact">Request Engineering Review</CtaLink>
-                  <CtaLink href={whatsappUrl} variant="secondary">
-                    WhatsApp
+                  <CtaLink href={projectHref}>Request Engineering Review</CtaLink>
+                  <CtaLink href={photos.whatsapp} variant="secondary">
+                    Send Photos on WhatsApp
                   </CtaLink>
                 </div>
               </div>

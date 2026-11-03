@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CtaLink } from "@/components/cta-link";
 import { ProductMegaMenu } from "@/components/product-mega-menu";
 import { whatsappUrl } from "@/lib/contact";
+import { LanguageSwitchLink } from "@/components/language-switch-link";
 
 type SiteHeaderProps = {
   locale?: "en" | "zh";
@@ -81,12 +82,12 @@ export function SiteHeader({
           >
             WhatsApp
           </a>
-          <Link
+          <LanguageSwitchLink
             href={alternateHref ?? (isZh ? "/" : "/zh")}
             className="hidden rounded-md border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold uppercase tracking-[0.08em] text-white/68 transition hover:border-[#f5b41b]/60 hover:text-white sm:inline-flex"
           >
             {isZh ? "EN" : "中文"}
-          </Link>
+          </LanguageSwitchLink>
           <CtaLink href={isZh ? "/zh/contact#inquiry" : "/contact#inquiry"} className="shrink-0 whitespace-nowrap px-4 py-2.5 max-sm:px-3 max-sm:text-xs">
             {isZh ? "获取报价" : "Get Quote"}
           </CtaLink>
@@ -109,12 +110,12 @@ export function SiteHeader({
               {item.label}
             </Link>
           ))}
-          <Link
+          <LanguageSwitchLink
             href={alternateHref ?? (isZh ? "/" : "/zh")}
             className="rounded-md border border-white/10 bg-white/5 px-2 py-2 text-center transition hover:border-[#f5b41b]/60 hover:text-white sm:shrink-0 sm:px-3"
           >
             {isZh ? "EN" : "中文"}
-          </Link>
+          </LanguageSwitchLink>
         </div>
       </div>
     </header>

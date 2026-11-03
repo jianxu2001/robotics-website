@@ -8,9 +8,10 @@ import { InquiryForm } from "@/components/inquiry-form";
 import { CompanyContactDetails } from "@/components/company-contact-details";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
-import { salesEmail, whatsappNumber, whatsappUrl } from "@/lib/contact";
+import { salesEmail, whatsappNumber } from "@/lib/contact";
 import { productGroupsZh, productInquiryOptionsZh } from "@/lib/catalog-zh";
 import { getOrganizationJsonLd, localizedAlternates, serializeJsonLd } from "@/lib/seo";
+import { photoContactLinks } from "@/lib/contact-context";
 
 export const metadata: Metadata = {
   title: "联系 SCR Robot | 获取工业机器人项目报价",
@@ -39,6 +40,7 @@ const applicationOptions = [
 ];
 
 export default function ZhContactPage() {
+  const photos = photoContactLinks("zh", { sourcePath: "/zh/contact" });
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(getOrganizationJsonLd()) }} />
@@ -48,7 +50,7 @@ export default function ZhContactPage() {
           <SectionHeading
             eyebrow="联系销售工程师"
             title="获取机器人或自动化系统方案。"
-            description="请提供产品、工艺、负载、臂展和工厂布局信息，我们将协助判断合适的机器人系列和自动化单元结构。"
+            description="可通过邮件或 WhatsApp 发送照片，也可以先留下简短需求。告诉我们物料、重量和要完成的动作，详细工程参数可在沟通时补充。"
             level={1}
           />
         </section>
@@ -68,10 +70,7 @@ export default function ZhContactPage() {
                 </p>
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                   <CtaLink href="tel:+8613266005525">电话咨询</CtaLink>
-                  <CtaLink href={`mailto:${salesEmail}?subject=Industrial%20Robot%20Project%20Inquiry`} variant="secondary">邮件联系</CtaLink>
-                  <CtaLink href={whatsappUrl} variant="secondary">
-                    WhatsApp
-                  </CtaLink>
+                  <CtaLink href={photos.email} variant="secondary">通过邮件发照片</CtaLink>
                 </div>
                 <div className="mt-5 grid gap-2 text-sm text-white/70">
                   <a href="tel:+8613266005525" className="hover:text-white">{whatsappNumber}</a>
@@ -99,7 +98,7 @@ export default function ZhContactPage() {
               </div>
             </div>
 
-            <div id="inquiry" className="scroll-mt-44 lg:scroll-mt-24"><IndustrialCard className="p-6 md:p-8">
+            <div id="inquiry" className="order-first scroll-mt-44 lg:order-none lg:scroll-mt-24"><div id="photos" className="scroll-mt-44 lg:scroll-mt-24"><IndustrialCard className="p-6 md:p-8">
               <Suspense fallback={<p className="text-sm text-white/60">正在加载询盘表单…</p>}>
               <InquiryForm
                 modelOptions={productModels.map((model) => ({ key: `${model.seriesSlug}/${model.slug}`, name: model.name, application: productGroupsZh.find((group) => group.slug === getModelCategory(model))?.title ?? "" }))}
@@ -108,7 +107,7 @@ export default function ZhContactPage() {
                 seriesOptions={productInquiryOptionsZh}
               />
               </Suspense>
-            </IndustrialCard></div>
+            </IndustrialCard></div></div>
           </div>
         </section>
 

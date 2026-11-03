@@ -9,6 +9,13 @@ import {
   type InquiryPayload,
 } from "@/lib/inquiry";
 
+export async function GET() {
+  return NextResponse.json(
+    { acceptingInquiries: Boolean(process.env.RESEND_API_KEY || process.env.CONTACT_WEBHOOK_URL) },
+    { headers: { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } },
+  );
+}
+
 export async function POST(request: Request) {
   let body: InquiryPayload;
 
@@ -26,7 +33,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const inquiry = normalizeInquiry(body);
+  const inquiry = { ...normalizeInquiry(body), reference: `SCR-${crypto.randomUUID()}` };
   const validationError = validateInquiry(inquiry);
 
   if (validationError) {
@@ -35,6 +42,7 @@ export async function POST(request: Request) {
 
   const deliveries = await deliverInquiry(inquiry);
   const delivered = deliveries.some((delivery) => delivery.ok);
+  console.info("inquiry_delivery", { reference: inquiry.reference, delivered, sourcePath: inquiry.sourcePath || "" });
 
   if (!delivered) {
     const message = inquiry.locale === "zh"
@@ -44,7 +52,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ message }, { status: 503 });
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, reference: inquiry.reference });
 }
 
 async function deliverInquiry(inquiry: Inquiry) {
@@ -88,7 +96,7 @@ async function sendWithResend(inquiry: Inquiry) {
         to,
         bcc: bcc.length ? bcc : undefined,
         ...(inquiry.email ? { reply_to: inquiry.email } : {}),
-        subject: `[SCR Robot Inquiry] ${inquiry.application || "Project request"} - ${inquiry.name}`,
+        subject: `[SCR Robot Inquiry] ${inquiry.reference} ${inquiry.application || "Project request"} - ${inquiry.name}`,
         text: buildPlainText(inquiry),
         html: buildHtml(inquiry),
       }),

@@ -8,9 +8,10 @@ import { InquiryForm } from "@/components/inquiry-form";
 import { CompanyContactDetails } from "@/components/company-contact-details";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
-import { salesEmail, whatsappNumber, whatsappUrl } from "@/lib/contact";
+import { salesEmail, whatsappNumber } from "@/lib/contact";
 import { productGroups, productInquiryOptions } from "@/lib/catalog";
 import { getOrganizationJsonLd, localizedAlternates, serializeJsonLd } from "@/lib/seo";
+import { photoContactLinks } from "@/lib/contact-context";
 
 export const metadata: Metadata = {
   title: "Contact SCR Robot | Send Product Photo for Robot Recommendation",
@@ -39,6 +40,7 @@ const applicationOptions = [
 ];
 
 export default function ContactPage() {
+  const photos = photoContactLinks("en", { sourcePath: "/contact" });
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(getOrganizationJsonLd()) }} />
@@ -48,7 +50,7 @@ export default function ContactPage() {
           <SectionHeading
             eyebrow="Contact sales engineering"
             title="Request a robot automation quote with your project data."
-            description="Not sure about the robot model? Send your product photo first and our engineering team will recommend a practical solution. Tell us your product, payload, reach, cycle time, pallet pattern, layout, and destination country."
+            description="Send photos through WhatsApp or email, or leave a short project enquiry. Start with your product, weight and the task you want to automate; detailed engineering data can follow."
             level={1}
           />
         </section>
@@ -69,11 +71,11 @@ export default function ContactPage() {
                   We will map the right robot, gripper, conveyor, and cell layout for your production.
                 </p>
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                  <CtaLink href={`mailto:${salesEmail}?subject=Industrial%20Robot%20Project%20Inquiry`}>
-                    Email Project Data
+                  <CtaLink href={photos.email}>
+                    Email Photos / Layout
                   </CtaLink>
-                  <CtaLink href={whatsappUrl} variant="secondary">
-                    WhatsApp
+                  <CtaLink href={photos.whatsapp} variant="secondary">
+                    Photos on WhatsApp
                   </CtaLink>
                 </div>
                 <div className="mt-5 grid gap-2 text-sm text-white/70">
@@ -102,7 +104,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div id="inquiry" className="scroll-mt-44 lg:scroll-mt-24"><IndustrialCard className="p-6 md:p-8">
+            <div id="inquiry" className="order-first scroll-mt-44 lg:order-none lg:scroll-mt-24"><div id="photos" className="scroll-mt-44 lg:scroll-mt-24"><IndustrialCard className="p-6 md:p-8">
               <Suspense fallback={<p className="text-sm text-white/60">Loading inquiry form…</p>}>
               <InquiryForm
                 modelOptions={productModels.map((model) => ({ key: `${model.seriesSlug}/${model.slug}`, name: model.name, application: productGroups.find((group) => group.slug === getModelCategory(model))?.title ?? "" }))}
@@ -110,7 +112,7 @@ export default function ContactPage() {
                 seriesOptions={productInquiryOptions}
               />
               </Suspense>
-            </IndustrialCard></div>
+            </IndustrialCard></div></div>
           </div>
         </section>
 

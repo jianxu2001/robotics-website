@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
+import { photoContactLinks, projectContactHref } from "@/lib/contact-context";
 import { DeferredPromoVideo } from "@/components/deferred-promo-video";
 import { HomepageHeroMedia } from "@/components/homepage-hero-media";
 import { IndustrialCard } from "@/components/industrial-card";
@@ -98,6 +99,8 @@ const jsonLd = {
 };
 
 export default function Home() {
+  const homePhotos = photoContactLinks("en", { sourcePath: "/" });
+  const homeInquiry = projectContactHref("/");
   const featuredSeries = productSeries.filter((series) =>
     ["sch-series", "scr-series", "er-series"].includes(series.slug),
   );
@@ -132,7 +135,7 @@ export default function Home() {
                 get a practical robot proposal.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <CtaLink href="/contact">Send Product Photos for Robot Selection</CtaLink>
+                <CtaLink href={homePhotos.whatsapp}>Send Photos on WhatsApp</CtaLink>
                 <CtaLink href="/products" variant="secondary">
                   Compare Robot Series
                 </CtaLink>
@@ -189,7 +192,7 @@ export default function Home() {
               ))}
             </div>
             <div className="mt-10">
-              <CtaLink href="/contact">Request Engineering Review</CtaLink>
+              <CtaLink href={homeInquiry}>Request Engineering Review</CtaLink>
             </div>
           </div>
         </section>
@@ -242,7 +245,7 @@ export default function Home() {
             ))}
           </div>
           <div className="mt-10 text-center">
-            <CtaLink href="/contact">Request Engineering Review</CtaLink>
+            <CtaLink href={homeInquiry}>Request Engineering Review</CtaLink>
           </div>
         </section>
 
@@ -353,7 +356,7 @@ export default function Home() {
               View Industry Solutions
             </CtaLink>
             <CtaLink href="/case-studies" variant="ghost">
-              View Case Concepts
+              View Customer Cases & Site Videos
             </CtaLink>
           </div>
         </section>
@@ -436,7 +439,7 @@ export default function Home() {
                 conveyors, guarding, and PLC control into a complete powder
                 handling automation cell.
               </p>
-              <CtaLink href="/contact" variant="secondary">
+              <CtaLink href={homeInquiry} variant="secondary">
                 Request a Layout Review
               </CtaLink>
             </div>
@@ -506,7 +509,7 @@ export default function Home() {
                 ))}
               </div>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <CtaLink href="/contact">Send Project Details</CtaLink>
+                <CtaLink href={homeInquiry}>Send Project Details</CtaLink>
                 <CtaLink href={whatsappUrl} variant="secondary">
                   WhatsApp
                 </CtaLink>
@@ -537,7 +540,7 @@ export default function Home() {
                 )}
               </div>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <CtaLink href="/contact">Get Engineering Review</CtaLink>
+                <CtaLink href={homeInquiry}>Get Engineering Review</CtaLink>
                 <CtaLink href={whatsappUrl} variant="secondary">
                   WhatsApp
                 </CtaLink>

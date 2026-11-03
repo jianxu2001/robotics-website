@@ -74,5 +74,6 @@ export function filterCatalogModels(models: CatalogModel[], filters: ProductFilt
 }
 
 export function modelInquiryHref(model: Pick<ProductModel, "slug" | "seriesSlug">, locale: "en" | "zh" = "en") {
-  return `${locale === "zh" ? "/zh" : ""}/contact?model=${encodeURIComponent(`${model.seriesSlug}/${model.slug}`)}#inquiry`;
+  const prefix = locale === "zh" ? "/zh" : "";
+  return `${prefix}/contact?model=${encodeURIComponent(`${model.seriesSlug}/${model.slug}`)}&source=${encodeURIComponent(`${prefix}/products/${model.seriesSlug}/${model.slug}`)}#inquiry`;
 }

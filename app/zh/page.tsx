@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
+import { projectContactHref } from "@/lib/contact-context";
 import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SeriesCard } from "@/components/series-card";
@@ -81,6 +82,7 @@ export const metadata: Metadata = {
 };
 
 export default function ZhHomePage() {
+  const homeInquiry = projectContactHref("/zh", undefined, "zh");
   const featuredSeries = productSeriesZh.filter((series) =>
     ["sch-series", "scr-series", "er-series"].includes(series.slug),
   );
@@ -107,7 +109,7 @@ export default function ZhHomePage() {
                 3D 视觉破包投料和输送自动化解决方案，帮助制造企业提升效率与稳定性。
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <CtaLink href="/zh/contact">获取报价</CtaLink>
+                <CtaLink href={homeInquiry}>获取报价</CtaLink>
                 <CtaLink href="/zh/products" variant="secondary">
                   查看产品系列
                 </CtaLink>
@@ -330,7 +332,7 @@ export default function ZhHomePage() {
                 ))}
               </div>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <CtaLink href="/zh/contact">发送询盘</CtaLink>
+                <CtaLink href={homeInquiry}>发送询盘</CtaLink>
                 <CtaLink href={whatsappUrl} variant="secondary">
                   WhatsApp
                 </CtaLink>
@@ -356,7 +358,7 @@ export default function ZhHomePage() {
                 ))}
               </div>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <CtaLink href="/zh/contact">联系销售</CtaLink>
+                <CtaLink href={homeInquiry}>联系销售</CtaLink>
                 <CtaLink href={whatsappUrl} variant="secondary">WhatsApp</CtaLink>
               </div>
             </IndustrialCard>

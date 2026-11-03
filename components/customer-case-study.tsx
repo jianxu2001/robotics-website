@@ -84,6 +84,7 @@ export function CustomerCaseStudy({ project, locale }: { project: CustomerCasePr
               <figure className={`order-first lg:order-none ${isPortrait ? "mx-auto w-full max-w-[21rem] lg:mr-0" : "w-full"}`}>
                 <video
                   id="site-video"
+                  data-case-video={project.id}
                   controls
                   playsInline
                   preload="none"

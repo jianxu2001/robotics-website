@@ -1,11 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {
+import "./register-paths.mjs";
+const {
   buildHtml,
   buildPlainText,
   normalizeInquiry,
   validateInquiry,
-} from "../lib/inquiry.ts";
+} = await import("../lib/inquiry.ts");
 
 const submittedAt = "2026-07-15T08:00:00.000Z";
 

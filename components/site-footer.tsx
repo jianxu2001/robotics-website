@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { salesEmail, whatsappNumber, whatsappUrl } from "@/lib/contact";
 import { companyIdentity } from "@/lib/company-identity";
+import { AnalyticsPreferencesButton } from "@/components/website-analytics";
 
 export function SiteFooter() {
   const pathname = usePathname();
@@ -44,7 +45,7 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
-      <p className="mx-auto mt-8 max-w-7xl border-t border-white/10 pt-5 text-xs text-white/40">© {new Date().getUTCFullYear()} SCR Robot</p>
+      <p className="mx-auto mt-8 max-w-7xl border-t border-white/10 pt-5 text-xs text-white/40">© {new Date().getUTCFullYear()} SCR Robot<AnalyticsPreferencesButton /></p>
     </footer>
   );
 }

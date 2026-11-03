@@ -1,3 +1,5 @@
+import { cleanSourcePath } from "./contact-context";
+
 export type InquiryPayload = {
   locale?: string;
   name?: string;
@@ -15,10 +17,13 @@ export type InquiryPayload = {
   layoutCondition?: string;
   destinationCountry?: string;
   website?: string;
+  sourcePath?: string;
 };
 
-export type Inquiry = Required<Omit<InquiryPayload, "website">> & {
+export type Inquiry = Required<Omit<InquiryPayload, "website" | "sourcePath">> & {
   submittedAt: string;
+  sourcePath?: string;
+  reference?: string;
 };
 
 const maxLength = {
@@ -43,6 +48,7 @@ export function normalizeInquiry(
   submittedAt = new Date().toISOString(),
 ): Inquiry {
   return {
+    ...(cleanSourcePath(body.sourcePath) ? { sourcePath: cleanSourcePath(body.sourcePath) } : {}),
     locale: clean(body.locale, 8) || "en",
     name: clean(body.name, maxLength.name),
     email: clean(body.email, maxLength.email),
@@ -89,6 +95,8 @@ export function validateInquiry(inquiry: Inquiry) {
 export function buildPlainText(inquiry: Inquiry) {
   return [
     "New SCR Robot website inquiry",
+    `Reference: ${inquiry.reference || "-"}`,
+    `Source page: ${inquiry.sourcePath || "-"}`,
     "",
     `Name: ${inquiry.name}`,
     `Phone / 手机号码: ${inquiry.phone || "-"}`,
@@ -113,6 +121,8 @@ export function buildPlainText(inquiry: Inquiry) {
 
 export function buildHtml(inquiry: Inquiry) {
   const rows = [
+    ["Reference", inquiry.reference || "-"],
+    ["Source page", inquiry.sourcePath || "-"],
     ["Name", inquiry.name],
     ["Phone / 手机号码", inquiry.phone || "-"],
     ["Email", inquiry.email],

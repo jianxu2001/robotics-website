@@ -12,6 +12,7 @@ import { selectionGuides, guidePath } from "@/lib/selection-guides";
 const lastModified = "2026-10-27T00:00:00.000Z";
 
 function contentLastModified(pathname: string) {
+  if (["/", "/zh", "/contact", "/zh/contact"].includes(pathname) || pathname.startsWith("/solutions/")) return "2026-11-03T00:00:00.000Z";
   if (pathname === "/products" || pathname === "/zh/products"
     || /^\/zh\/products\/[^/]+\/[^/]+$/.test(pathname)
     || pathname === "/products/sch-series/sch100-1950-1800") return "2026-10-30T00:00:00.000Z";
