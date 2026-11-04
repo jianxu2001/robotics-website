@@ -107,6 +107,7 @@ export function WebsiteAnalytics() {
     {(choice === null || showSettings) && <section aria-label={zh ? "访问统计选择" : "Analytics choice"} className="fixed inset-x-4 bottom-4 z-[70] mx-auto max-w-3xl rounded-xl border border-white/20 bg-[#11171d] p-5 text-white shadow-2xl">
       <p className="font-semibold">{zh ? "允许访问与咨询统计？" : "Allow website analytics?"}</p>
       <p className="mt-2 text-sm leading-6 text-white/65">{zh ? "用于了解哪些页面带来咨询。姓名、电话、邮箱和项目正文不会发送到统计平台。选择不影响联系与询盘功能。" : "Help us understand which pages lead to enquiries. We do not send your name, phone, email or project message to analytics. Contact and enquiry features work with either choice."}</p>
+      <a href={zh ? "/zh/privacy" : "/privacy"} className="mt-2 inline-block text-sm text-[#f5b41b] underline underline-offset-4">{zh ? "隐私与统计说明（Google Analytics）" : "Privacy & analytics details (Google Analytics)"}</a>
       {choice === "accepted" && <p className="mt-2 text-xs text-white/60">{zh ? "关闭统计会刷新页面，请先保存未提交的内容。" : "Turning analytics off reloads this page. Save any unsubmitted details first."}</p>}
       <div className="mt-4 flex flex-wrap gap-3"><button type="button" onClick={() => choose("accepted")} className="rounded-lg bg-[#f5b41b] px-4 py-2.5 text-sm font-semibold text-black">{zh ? "允许访问统计" : "Allow analytics"}</button><button type="button" onClick={() => choose("rejected")} className="rounded-lg border border-white/30 px-4 py-2.5 text-sm">{zh ? "仅必要功能" : "Necessary only"}</button></div>
     </section>}

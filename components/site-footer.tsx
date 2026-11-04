@@ -17,6 +17,7 @@ export function SiteFooter() {
     [zh ? "选型指南" : "Selection Guides", `${prefix}/guides`],
     [zh ? "关于我们" : "About", `${prefix}/about`],
     [zh ? "联系我们" : "Contact", `${prefix}/contact`],
+    [zh ? "隐私与统计" : "Privacy & Analytics", `${prefix}/privacy`],
   ];
 
   return (

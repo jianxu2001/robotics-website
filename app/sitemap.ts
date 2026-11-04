@@ -12,6 +12,7 @@ import { selectionGuides, guidePath } from "@/lib/selection-guides";
 const lastModified = "2026-10-27T00:00:00.000Z";
 
 function contentLastModified(pathname: string) {
+  if (pathname === "/privacy" || pathname === "/zh/privacy") return "2026-11-04T00:00:00.000Z";
   if (["/", "/zh", "/contact", "/zh/contact"].includes(pathname) || pathname.startsWith("/solutions/")) return "2026-11-03T00:00:00.000Z";
   if (pathname === "/products" || pathname === "/zh/products"
     || /^\/zh\/products\/[^/]+\/[^/]+$/.test(pathname)
@@ -46,6 +47,7 @@ const pairedRoutes = [
   { en: cr50lCasePaths.en, zh: cr50lCasePaths.zh, priority: 0.78 },
   { en: "/about", zh: "/zh/about", priority: 0.7 },
   { en: "/contact", zh: "/zh/contact", priority: 0.8 },
+  { en: "/privacy", zh: "/zh/privacy", priority: 0.2 },
 ];
 
 function pairedEntry(

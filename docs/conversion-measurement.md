@@ -1,6 +1,8 @@
 # Enquiry measurement and delivery acceptance
 
-GA4 is prepared but inactive. The owner confirmed on 2026-11-03 that no GA4 property has been created. The production code does not load Google tags until both a valid measurement ID and the stream configuration review are supplied, and the visitor opts in.
+GA4 was configured on 2026-11-04 after the owner confirmed the account terms. The SCR Robot Website stream uses public measurement ID G-2FPXZTX0CL (stream 16270863364). Enhanced Measurement was explicitly disabled in the stream setup before enabling the site configuration. Google tags load only after the visitor opts in. English and Chinese privacy notices are linked from the footer and analytics choice panel.
+
+The authorized production receipt test on 2026-11-04 received an API success reference and reached the confirmed company Gmail inbox. The reference, source page, clearly labeled test message and Reply-To header matched. This verifies that single test; it does not establish future delivery or sales qualification. The current sender is the Resend default onboarding address; a company sender domain can be configured after its DNS is verified.
 
 ## GA4 setup
 
@@ -11,7 +13,7 @@ Use the company-controlled Google account at https://analytics.google.com/.
 - Reporting timezone: Asia/Shanghai. Confirm the currency with the owner; it does not indicate published product prices.
 - Disable Enhanced Measurement for this stream before enabling the tag. Automatic outbound/form tracking can include raw link destinations; the site provides its own allowlisted contact and form events.
 - Copy the public G- measurement ID to siteSettings.gaMeasurementId in lib/site-settings.ts (or NEXT_PUBLIC_GA_MEASUREMENT_ID). Set enhancedMeasurementDisabled to true only after checking that stream setting.
-- Review and accept any Google account/Analytics terms yourself. No account, legal terms or new third-party access was accepted by the agent.
+- Account terms were confirmed by the owner at action time before final submission. No new third-party reporting access was authorized or added.
 - Mark generate_lead as a key event. It means the site received a successful delivery acknowledgement, not sales qualification, inbox inspection, quotation or an order.
 - Check Realtime/DebugView using clearly identified test interactions. Do not label click events as successful enquiries.
 
