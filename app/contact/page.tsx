@@ -11,7 +11,7 @@ import { SiteHeader } from "@/components/site-header";
 import { salesEmail, whatsappNumber } from "@/lib/contact";
 import { productGroups, productInquiryOptions } from "@/lib/catalog";
 import { getOrganizationJsonLd, localizedAlternates, serializeJsonLd } from "@/lib/seo";
-import { photoContactLinks } from "@/lib/contact-context";
+import { inquiryTopics, photoContactLinks } from "@/lib/contact-context";
 
 export const metadata: Metadata = {
   title: "Contact SCR Robot | Send Product Photo for Robot Recommendation",
@@ -30,6 +30,7 @@ const quoteChecklist = [
 ];
 
 const applicationOptions = [
+  inquiryTopics["carton-palletizing"].en,
   "Palletizing",
   "Depalletizing",
   "Distributor / integrator partnership",

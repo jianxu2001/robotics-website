@@ -62,7 +62,7 @@ export default function IndustriesPage() {
               {industrySolutions.map((solution) => (
                 <a
                   key={solution.slug}
-                  href={`#${solution.slug}`}
+                  href={solution.detailLink?.href ?? `#${solution.slug}`}
                   className="rounded-lg border border-white/10 bg-white/[0.045] p-5 transition hover:border-[#f5b41b]/50 hover:bg-white/[0.07]"
                 >
                   <div className="mb-5 h-1 w-12 bg-[#d71920]" />

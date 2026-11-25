@@ -1,8 +1,12 @@
+import Link from "next/link";
 import { ApplicationMediaPanel } from "@/components/application-media-panel";
-import { IndustrySolution } from "@/lib/industry-solutions";
+import { CtaLink } from "@/components/cta-link";
+import { productSeries } from "@/lib/catalog";
+import type { IndustrySolution } from "@/lib/industry-solutions";
 
 type IndustrySolutionCardProps = {
   solution: IndustrySolution;
+  locale?: "en" | "zh";
   labels?: {
     painPoints: string;
     approach: string;
@@ -13,6 +17,7 @@ type IndustrySolutionCardProps = {
 
 export function IndustrySolutionCard({
   solution,
+  locale = "en",
   labels = {
     painPoints: "Buyer challenges",
     approach: "SCR approach",
@@ -20,6 +25,9 @@ export function IndustrySolutionCard({
     scope: "Typical system scope",
   },
 }: IndustrySolutionCardProps) {
+  const prefix = locale === "zh" ? "/zh" : "";
+  const seriesClass = "rounded-md border border-white/12 bg-black/48 px-3 py-2 text-sm font-semibold text-white/78";
+
   return (
     <article
       id={solution.slug}
@@ -33,14 +41,15 @@ export function IndustrySolutionCard({
               {labels.recommended}
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
-              {solution.recommendedSeries.map((series) => (
-                <span
-                  key={series}
-                  className="rounded-md border border-white/12 bg-black/48 px-3 py-2 text-xs font-semibold text-white/78"
-                >
-                  {series}
-                </span>
-              ))}
+              {solution.recommendedSeries.map((series) => {
+                const product = productSeries.find((item) => item.series === series);
+                if (!product) return <span key={series} className={seriesClass}>{series}</span>;
+                return (
+                  <Link key={series} href={`${prefix}/products/${product.slug}`} className={`${seriesClass} underline decoration-white/30 underline-offset-4 transition hover:border-[#f5b41b]/60 hover:text-white`}>
+                    {series}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -50,6 +59,11 @@ export function IndustrySolutionCard({
             {solution.title}
           </h2>
           <p className="mt-5 leading-7 text-white/64">{solution.summary}</p>
+          {solution.detailLink && (
+            <div className="mt-6">
+              <CtaLink href={solution.detailLink.href} variant="secondary">{solution.detailLink.label}</CtaLink>
+            </div>
+          )}
 
           <div className="mt-8 grid gap-5 xl:grid-cols-2">
             <SolutionList title={labels.painPoints} items={solution.painPoints} accent="red" />

@@ -5,6 +5,7 @@ export type IndustrySolution = {
   title: string;
   summary: string;
   media: ApplicationMedia;
+  detailLink?: { href: string; label: string };
   painPoints: string[];
   approach: string[];
   recommendedSeries: string[];
@@ -16,8 +17,12 @@ export const industrySolutions: IndustrySolution[] = [
     slug: "palletizing",
     title: "Carton Palletizing & End-of-Line Automation",
     summary:
-      "Robot palletizing systems for cartons, boxes and cases. The linked CR50L video shows a lifting workstation handling cartons at pallet positions.",
+      "Plan carton pickup, conveyor infeed and pallet positions around a fixed-base or lifting CR workstation.",
     media: getApplicationMedia("carton-palletizing", "en"),
+    detailLink: {
+      href: "/solutions/robotic-carton-palletizing-system",
+      label: "View the carton palletizing system",
+    },
     painPoints: [
       "Manual stacking is labor intensive and difficult to keep stable across shifts.",
       "Different SKUs, pallet sizes, and stacking patterns slow down quotation and line design.",
@@ -133,7 +138,7 @@ export const industrySolutionsZh: IndustrySolution[] = [
     slug: "palletizing",
     title: "纸箱码垛与末端自动化",
     summary:
-      "面向纸箱与箱装产品的末端码垛方案，配图对应 CR50L 升降工作站纸箱取放与托盘作业视频。",
+      "面向纸箱与箱装产品的末端码垛方案，根据输送取料、堆垛高度和托盘位置选择固定式或升降式 CR 工作站。",
     media: getApplicationMedia("carton-palletizing", "zh"),
     painPoints: ["人工堆垛强度高，跨班次稳定性难以保持。", "SKU、托盘尺寸和垛型变化会影响方案设计和报价速度。", "重载物料增加安全风险，也让产线节拍更难稳定。"],
     approach: ["根据真实产品匹配负载、臂展、夹具、堆垛高度和线速。", "把机器人、进料输送、托盘位置、安全防护和垛型逻辑作为完整单元设计。", "提供便于海外买家内部工程评审和采购审批的方案概念。"],

@@ -62,6 +62,7 @@ export default function ZhIndustriesPage() {
               <IndustrySolutionCard
                 key={solution.slug}
                 solution={solution}
+                locale="zh"
                 labels={{
                   painPoints: "客户痛点",
                   approach: "SCR 方案思路",

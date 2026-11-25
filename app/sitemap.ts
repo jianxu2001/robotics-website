@@ -13,6 +13,8 @@ const lastModified = "2026-10-27T00:00:00.000Z";
 
 function contentLastModified(pathname: string) {
   if (pathname === "/" || pathname === "/zh"
+    || pathname === "/contact" || pathname === "/zh/contact"
+    || pathname === "/industries" || pathname === "/zh/industries"
     || pathname === "/case-studies" || pathname === "/zh/case-studies"
     || pathname === cr50lCasePaths.en || pathname === cr50lCasePaths.zh
     || pathname === "/solutions/robotic-carton-palletizing-system"

@@ -68,3 +68,13 @@ test("page analytics excludes query strings and sends only the referrer origin",
   assert.equal(analyticsPage("https://www.scr-robot.com/contact?email=private", "/contact"), null);
   assert.deepEqual(analyticsPage("https://www.scr-robot.com/contact", "/contact", "https://www.google.com/search?q=private"), {page_location:"https://www.scr-robot.com/contact", page_referrer:"https://www.google.com/"});
 });
+
+test("carton application navigation leads to the carton solution with a direct inquiry path", async () => {
+  const { industrySolutions, industrySolutionsZh } = await import("../lib/industry-solutions.ts");
+  const { solutionPages } = await import("../lib/solution-pages.ts");
+  const carton = industrySolutions.find((entry) => entry.slug === "palletizing");
+  const page = solutionPages.find((entry) => `/solutions/${entry.slug}` === carton.detailLink?.href);
+  assert.equal(page?.inquiryTopic, "carton-palletizing");
+  assert.ok(carton.recommendedSeries.includes("CR Series"));
+  assert.ok(industrySolutionsZh.find((entry) => entry.slug === "palletizing").recommendedSeries.includes("CR Series"));
+});

@@ -11,7 +11,7 @@ import { SiteHeader } from "@/components/site-header";
 import { salesEmail, whatsappNumber } from "@/lib/contact";
 import { productGroupsZh, productInquiryOptionsZh } from "@/lib/catalog-zh";
 import { getOrganizationJsonLd, localizedAlternates, serializeJsonLd } from "@/lib/seo";
-import { photoContactLinks } from "@/lib/contact-context";
+import { inquiryTopics, photoContactLinks } from "@/lib/contact-context";
 
 export const metadata: Metadata = {
   title: "联系 SCR Robot | 获取工业机器人项目报价",
@@ -30,6 +30,7 @@ const quoteChecklist = [
 ];
 
 const applicationOptions = [
+  inquiryTopics["carton-palletizing"].zh,
   "码垛",
   "拆垛",
   "经销商 / 系统集成商合作",
