@@ -136,7 +136,7 @@ export default async function ZhProductDetailPage({ params }: ProductDetailPageP
           </div>
         </section>
         <RelatedSelectionGuides seriesSlug={series.slug} locale="zh" />
-        {series.slug === "cr-series" && <section className="section-shell border-t border-white/10"><h2 className="text-2xl font-semibold">CR50L 升降工作站应用视频</h2><FeaturedCustomerCase project={cr50lCaseProject} locale="zh" /></section>}
+        {series.slug === "cr-series" && <section className="section-shell border-t border-white/10"><h2 className="text-2xl font-semibold">CR50L 升降工作站配置</h2><FeaturedCustomerCase project={cr50lCaseProject} locale="zh" /></section>}
       </main>
     </>
   );

@@ -8,8 +8,6 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { photoContactLinks, projectContactHref } from "@/lib/contact-context";
 import { SolutionSiteVideo } from "@/components/solution-site-video";
-import { FeaturedCustomerCase } from "@/components/customer-case-study";
-import { cr50lCaseProject } from "@/lib/cr50l-case";
 import { solutionPages } from "@/lib/solution-pages";
 import { solutionEngineering } from "@/lib/solution-engineering";
 import {
@@ -149,18 +147,34 @@ export default async function SolutionDetailPage({
               </div>
             )}
             </div>
-            <figure className="overflow-hidden rounded-lg border border-white/10 bg-[#0b131b]">
+            <figure className={`overflow-hidden rounded-lg border border-white/10 ${topic === "carton-palletizing" ? "bg-[#f0f2f3]" : "bg-[#0b131b]"}`}>
               <div className="relative aspect-[4/3]">
                 <Image src={page.image} alt={page.imageAlt} fill priority sizes="(min-width:1024px) 42vw, 100vw" className="object-contain" />
               </div>
-              <figcaption className="border-t border-white/10 px-5 py-4 text-sm leading-6 text-white/65">{page.imageCaption}</figcaption>
+              <figcaption className={`border-t px-5 py-4 text-sm leading-6 ${topic === "carton-palletizing" ? "border-black/10 text-[#39434b]" : "border-white/10 text-white/65"}`}>{page.imageCaption}</figcaption>
             </figure>
           </div>
         </section>
 
         {topic === "carton-palletizing" && (
-          <section className="section-shell">
-            <FeaturedCustomerCase project={cr50lCaseProject} />
+          <section className="border-b border-white/10">
+            <div className="section-shell">
+              <h2 className="text-2xl font-semibold sm:text-3xl">From conveyor to pallet</h2>
+              <ol className="mt-7 grid divide-y divide-white/10 overflow-hidden rounded-lg border border-white/10 bg-[#11161b] md:grid-cols-3 md:divide-x md:divide-y-0">
+                <li className="p-6">
+                  <h3 className="font-semibold text-[#ffd36b]">Conveyor infeed</h3>
+                  <p className="mt-3 leading-7 text-white/65">Present each sealed carton in a repeatable pickup position.</p>
+                </li>
+                <li className="p-6">
+                  <h3 className="font-semibold text-[#ffd36b]">Carton pickup</h3>
+                  <p className="mt-3 leading-7 text-white/65">Match the gripper to the carton surface, dimensions and combined pickup load.</p>
+                </li>
+                <li className="p-6">
+                  <h3 className="font-semibold text-[#ffd36b]">Pallet stacking</h3>
+                  <p className="mt-3 leading-7 text-white/65">Set the layer pattern, target stack height and pallet exchange method for the line.</p>
+                </li>
+              </ol>
+            </div>
           </section>
         )}
         {engineering?.siteExample && <SolutionSiteVideo heading={engineering.siteExample.title} text={engineering.siteExample.text} />}

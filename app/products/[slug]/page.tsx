@@ -1,7 +1,6 @@
 import { isProductRender } from "@/lib/product-media";
 import { RelatedSelectionGuides } from "@/components/selection-guide";
-import { FeaturedCustomerCase } from "@/components/customer-case-study";
-import { cr50lCaseProject } from "@/lib/cr50l-case";
+import { cr50lCasePaths } from "@/lib/cr50l-case";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -182,7 +181,11 @@ export default async function ProductDetailPage({
               enableModelLinks
             />
           </div>
-          {isCrSeries && <FeaturedCustomerCase project={cr50lCaseProject} />}
+          {isCrSeries && (
+            <Link href={cr50lCasePaths.en} className="mt-6 inline-flex font-semibold text-[#ffd36b] underline underline-offset-4">
+              View the CR50L lifting configuration
+            </Link>
+          )}
         </section>
 
         {isCrSeries && (

@@ -1,11 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {
+import "./register-paths.mjs";
+const {
   getDeferredVideoSource,
   getHeroRotationDelay,
   getNextHeroSlideIndex,
   homepageHeroSlides,
-} from "../lib/homepage-media.ts";
+} = await import("../lib/homepage-media.ts");
+const { getApplicationMedia } = await import("../lib/application-media.ts");
 
 test("hero rotation advances and wraps to the first slide", () => {
   assert.equal(getNextHeroSlideIndex(0, 3), 1);
@@ -26,4 +28,14 @@ test("video source is absent until the player is activated", () => {
 test("hero rotation uses dedicated web-optimized images", () => {
   assert.equal(homepageHeroSlides.length, 3);
   assert.ok(homepageHeroSlides.every((slide) => slide.endsWith(".webp")));
+});
+
+test("carton palletizing uses the product illustration across hero and application cards", () => {
+  const en = getApplicationMedia("carton-palletizing", "en");
+  const zh = getApplicationMedia("carton-palletizing", "zh");
+  assert.equal(en.kind, "product-render");
+  assert.equal(en.src, homepageHeroSlides[0]);
+  assert.equal(zh.src, en.src);
+  assert.equal(zh.caseHref, `/zh${en.caseHref}`);
+  assert.equal(getApplicationMedia("stamping-transfer").kind, "video-frame");
 });

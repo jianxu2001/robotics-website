@@ -12,7 +12,9 @@ import { selectionGuides, guidePath } from "@/lib/selection-guides";
 const lastModified = "2026-10-27T00:00:00.000Z";
 
 function contentLastModified(pathname: string) {
-  if (pathname === "/"
+  if (pathname === "/" || pathname === "/zh"
+    || pathname === "/case-studies" || pathname === "/zh/case-studies"
+    || pathname === cr50lCasePaths.en || pathname === cr50lCasePaths.zh
     || pathname === "/solutions/robotic-carton-palletizing-system"
     || pathname === "/solutions/robotic-bag-palletizing-system"
     || /^\/(?:zh\/)?products\/cr-series(?:\/|$)/.test(pathname)) {

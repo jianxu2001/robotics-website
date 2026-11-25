@@ -1,3 +1,4 @@
+import { crWorkstationIllustration } from "@/lib/cr-visuals";
 import type { InquiryTopic } from "@/lib/contact-context";
 import { applicationImageFields } from "@/lib/application-media";
 
@@ -538,13 +539,13 @@ export const solutionPages: SolutionPage[] = [
     inquiryTopic: "carton-palletizing",
     title: "Carton Palletizing System",
     seoTitle: "Robotic Carton Palletizing System | SCR Robot",
-    description: "Plan a collaborative carton palletizing system from conveyor infeed to pallet exchange. Compare CR workstations, watch a CR50L application and request a quote.",
+    description: "Plan a collaborative carton palletizing system from conveyor infeed to pallet exchange. Compare CR workstation configurations and request a quote.",
     eyebrow: "End-of-line automation",
     heroTitle: "Robotic Carton Palletizing System",
     heroDescription: "Stack sealed cartons from a conveyor onto pallets using an SCR CR collaborative palletizer. Configure carton pickup, pallet positions and stack height around the end of your packing line.",
-    image: "/images/case-studies/cr50l-lifting-palletizing/03-lifting-workstation.jpg",
-    imageAlt: "CR50L collaborative carton palletizing workstation with a lifting column and adjacent conveyor",
-    imageCaption: "CR50L lifting workstation, conveyor and pallet area, shown in the existing application video.",
+    image: crWorkstationIllustration.src,
+    imageAlt: "CR collaborative palletizer with carton pickup tooling and conveyor infeed",
+    imageCaption: crWorkstationIllustration.captions.en,
     painPoints: [
       {
         title: "Cartons arrive in different sizes",
@@ -629,7 +630,7 @@ export const solutionPages: SolutionPage[] = [
       {
         title: "CR50L carton palletizing application",
         href: "/case-studies/cr50l-lifting-carton-palletizing",
-        text: "Watch the existing video of carton pickup, transfer and handling around the pallet stack."
+        text: "See the lifting workstation configuration, carton handling sequence and tooling."
       },
       {
         title: "30 kg vs 50 kg palletizer selection",

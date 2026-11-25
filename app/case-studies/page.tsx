@@ -15,7 +15,7 @@ import { localizedAlternates } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Robot Automation Case Studies | SCR Robot",
   description:
-    "Watch CR50L lifting carton palletizing, STC10 press transfer and SCH100 bag-opening applications. Explore robot workstations through real operating footage.",
+    "Explore the CR50L carton palletizing configuration and see STC10 press transfer and SCH100 bag opening in operation.",
   alternates: localizedAlternates(
     "/case-studies",
     "/case-studies",

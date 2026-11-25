@@ -1,7 +1,9 @@
+import { crWorkstationIllustration } from "./cr-visuals";
+
 export const HERO_ROTATION_MS = 4000;
 
 export const homepageHeroSlides = [
-  "/images/scr-hero-cr50l.webp",
+  crWorkstationIllustration.src,
   "/images/scr-hero-stc10.webp",
   "/images/scr-hero-sch100.webp",
 ] as const;

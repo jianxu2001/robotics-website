@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CtaLink } from "@/components/cta-link";
 import { SiteHeader } from "@/components/site-header";
-import { type CaseLocale, type CustomerCaseProject } from "@/lib/customer-case";
+import { getCustomerCaseImage, type CaseLocale, type CustomerCaseProject } from "@/lib/customer-case";
 
 function localPath(url: string) {
   const { pathname, search, hash } = new URL(url);
@@ -12,26 +12,30 @@ function localPath(url: string) {
 export function FeaturedCustomerCase({ project, locale = "en" }: { project: CustomerCaseProject; locale?: CaseLocale }) {
   const copy = project.content[locale];
   const isZh = locale === "zh";
+  const video = "video" in project.media ? project.media : null;
+  const cover = getCustomerCaseImage(project.media);
   const isPortrait = project.media.height > project.media.width;
   return (
     <article id={project.id} className="mt-10 overflow-hidden rounded-lg border border-[#f5b41b]/30 bg-[#11161b]">
       <div className={isPortrait ? "grid md:grid-cols-[0.7fr_1.3fr]" : "grid md:grid-cols-2"}>
         <Link
           href={project.paths[locale]}
-          className="relative flex justify-center bg-[#080a0d]"
+          className={`relative flex justify-center ${video ? "bg-[#080a0d]" : "bg-[#f0f2f3]"}`}
           aria-label={copy.title}
         >
           <Image
-            src={`${project.media.images}/${project.media.poster}`}
-            alt={copy.title}
+            src={cover}
+            alt={video ? copy.title : project.media.captions[locale]}
             width={project.media.width}
             height={project.media.height}
             sizes="(min-width: 768px) 30vw, 100vw"
             className="h-80 w-full object-contain md:h-full md:max-h-[32rem]"
           />
-          <span className="absolute bottom-4 left-4 rounded border border-white/20 bg-black/80 px-3 py-1 text-xs text-white">
-            {isZh ? `现场视频 · 约 ${Math.round(project.media.durationSeconds)} 秒` : `Site video · Approx. ${Math.round(project.media.durationSeconds)} seconds`}
-          </span>
+          {video && (
+            <span className="absolute bottom-4 left-4 rounded border border-white/20 bg-black/80 px-3 py-1 text-xs text-white">
+              {isZh ? `现场视频 · 约 ${Math.round(video.durationSeconds)} 秒` : `Site video · Approx. ${Math.round(video.durationSeconds)} seconds`}
+            </span>
+          )}
         </Link>
         <div className="flex flex-col justify-center p-6 md:p-9">
           <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#f5b41b]">{copy.eyebrow}</p>
@@ -42,7 +46,11 @@ export function FeaturedCustomerCase({ project, locale = "en" }: { project: Cust
           <p className="mt-5 leading-7 text-white/66">{copy.summary}</p>
           <p className="mt-5 border-l-2 border-[#f5b41b] pl-4 text-sm leading-7 text-white/75">{copy.configurationNote}</p>
           <div className="mt-6">
-            <CtaLink href={project.paths[locale]}>{isZh ? "查看案例与现场视频" : "View Case & Site Video"}</CtaLink>
+            <CtaLink href={project.paths[locale]}>
+              {video
+                ? (isZh ? "查看案例与现场视频" : "View Case & Site Video")
+                : (isZh ? "查看工作站配置" : "View Workstation Configuration")}
+            </CtaLink>
           </div>
         </div>
       </div>
@@ -53,6 +61,8 @@ export function FeaturedCustomerCase({ project, locale = "en" }: { project: Cust
 export function CustomerCaseStudy({ project, locale }: { project: CustomerCaseProject; locale: CaseLocale }) {
   const copy = project.content[locale];
   const isZh = locale === "zh";
+  const video = "video" in project.media ? project.media : null;
+  const cover = getCustomerCaseImage(project.media);
   const isPortrait = project.media.height > project.media.width;
   const casesHref = isZh ? "/zh/case-studies" : "/case-studies";
   return (
@@ -81,27 +91,44 @@ export function CustomerCaseStudy({ project, locale }: { project: CustomerCasePr
                   <CtaLink href={localPath(copy.productHref)} variant="secondary">{copy.productLabel}</CtaLink>
                 </div>
               </div>
-              <figure className={`order-first lg:order-none ${isPortrait ? "mx-auto w-full max-w-[21rem] lg:mr-0" : "w-full"}`}>
-                <video
-                  id="site-video"
-                  data-case-video={project.id}
-                  controls
-                  playsInline
-                  preload="none"
-                  width={project.media.width}
-                  height={project.media.height}
-                  poster={`${project.media.images}/${project.media.poster}`}
-                  aria-label={`${copy.title} ${isZh ? "现场视频" : "site video"}`}
-                  aria-describedby={`${project.id}-configuration`}
-                  className={`h-auto w-full rounded-lg border border-white/15 bg-black object-contain ${isPortrait ? "aspect-[9/16] max-h-[37rem]" : "aspect-video"}`}
-                >
-                  <source src={project.media.video} type="video/mp4" />
-                  <track kind="subtitles" src={project.media.subtitles.en} srcLang="en" label="English — workflow" default={!isZh} />
-                  <track kind="subtitles" src={project.media.subtitles.zh} srcLang="zh-CN" label="中文 · 工艺说明" default={isZh} />
-                  <a href={project.media.video}>{isZh ? "打开现场视频" : "Open site video"}</a>
-                </video>
-                <figcaption className="mt-3 text-center text-xs leading-6 text-white/55">{project.media.captions[locale]}<br />{isZh ? "可在播放器中切换中英文工艺说明字幕。" : "English and Chinese workflow subtitles are available in the player."}</figcaption>
-              </figure>
+              {video ? (
+                <figure className={`order-first lg:order-none ${isPortrait ? "mx-auto w-full max-w-[21rem] lg:mr-0" : "w-full"}`}>
+                  <video
+                    id="site-video"
+                    data-case-video={project.id}
+                    controls
+                    playsInline
+                    preload="none"
+                    width={project.media.width}
+                    height={project.media.height}
+                    poster={cover}
+                    aria-label={`${copy.title} ${isZh ? "现场视频" : "site video"}`}
+                    aria-describedby={`${project.id}-configuration`}
+                    className={`h-auto w-full rounded-lg border border-white/15 bg-black object-contain ${isPortrait ? "aspect-[9/16] max-h-[37rem]" : "aspect-video"}`}
+                  >
+                    <source src={video.video} type="video/mp4" />
+                    <track kind="subtitles" src={video.subtitles.en} srcLang="en" label="English — workflow" default={!isZh} />
+                    <track kind="subtitles" src={video.subtitles.zh} srcLang="zh-CN" label="中文 · 工艺说明" default={isZh} />
+                    <a href={video.video}>{isZh ? "打开现场视频" : "Open site video"}</a>
+                  </video>
+                  <figcaption className="mt-3 text-center text-xs leading-6 text-white/55">{project.media.captions[locale]}<br />{isZh ? "可在播放器中切换中英文工艺说明字幕。" : "English and Chinese workflow subtitles are available in the player."}</figcaption>
+                </figure>
+              ) : (
+                <figure className="overflow-hidden rounded-xl border border-white/15 bg-[#f0f2f3]">
+                  <Image
+                    src={cover}
+                    alt={project.media.captions[locale]}
+                    width={project.media.width}
+                    height={project.media.height}
+                    sizes="(min-width: 1024px) 45vw, 100vw"
+                    preload
+                    className="h-auto w-full object-contain"
+                  />
+                  <figcaption className="border-t border-black/10 px-4 py-3 text-sm text-[#39434b]">
+                    {project.media.captions[locale]}
+                  </figcaption>
+                </figure>
+              )}
             </div>
           </div>
         </section>
@@ -117,18 +144,20 @@ export function CustomerCaseStudy({ project, locale }: { project: CustomerCasePr
             <h2 className="text-2xl font-semibold sm:text-3xl">{copy.workflowTitle}</h2>
             <div className={`mt-7 grid gap-5 sm:grid-cols-2 ${isPortrait ? "lg:grid-cols-4" : ""}`}>
               {copy.steps.map((step, index) => (
-                <article key={step.image} className="overflow-hidden rounded-lg border border-white/10 bg-[#11161b]">
-                  <div className="relative bg-black">
-                    <Image
-                      src={`${project.media.images}/${step.image}`}
-                      alt={step.alt}
-                      width={project.media.width}
-                      height={project.media.height}
-                      sizes={isPortrait ? "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" : "(min-width: 640px) 50vw, 100vw"}
-                      className="h-auto w-full object-contain"
-                    />
-                    <span className="absolute bottom-3 right-3 rounded border border-white/20 bg-black/80 px-2 py-1 text-xs text-white">{step.time}</span>
-                  </div>
+                <article key={step.title} className="overflow-hidden rounded-lg border border-white/10 bg-[#11161b]">
+                  {video && step.image && (
+                    <div className="relative bg-black">
+                      <Image
+                        src={`${video.images}/${step.image}`}
+                        alt={step.alt ?? step.title}
+                        width={video.width}
+                        height={video.height}
+                        sizes={isPortrait ? "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" : "(min-width: 640px) 50vw, 100vw"}
+                        className="h-auto w-full object-contain"
+                      />
+                      {step.time && <span className="absolute bottom-3 right-3 rounded border border-white/20 bg-black/80 px-2 py-1 text-xs text-white">{step.time}</span>}
+                    </div>
+                  )}
                   <div className="p-5">
                     <p className="text-xs font-bold tracking-[0.12em] text-[#f5b41b]">0{index + 1}</p>
                     <h3 className="mt-2 text-lg font-semibold">{step.title}</h3>

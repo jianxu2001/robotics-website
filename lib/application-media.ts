@@ -1,15 +1,16 @@
+import { crWorkstationIllustration } from "./cr-visuals";
+
 export type ApplicationLocale = "en" | "zh";
 export type ApplicationMediaKey = "carton-palletizing" | "stamping-transfer" | "bag-feeding" | "bag-palletizing" | "bag-depalletizing" | "vision-bag-feeding" | "machine-tending" | "conveyor-flow" | "material-handling-line";
 export type ApplicationMedia = {
   src: string;
   alt: string;
   caption: string;
-  kind: "video-frame" | "schematic";
+  kind: "video-frame" | "schematic" | "product-render";
   caseHref?: string;
 };
 
 const photos = {
-  "carton-palletizing": { src: "/images/case-studies/cr50l-lifting-palletizing/02-pallet-placement.jpg", slug: "cr50l-lifting-carton-palletizing", en: "CR50L lifting carton palletizing — site video frame", zh: "CR50L 升降式纸箱码垛 · 视频原帧" },
   "stamping-transfer": { src: "/images/case-studies/stc10-stamping/01-line-layout.jpg", slug: "stc10-press-loading-unloading-transfer", en: "STC10 inter-press transfer — site video frame", zh: "STC10 冲压线转运 · 视频原帧" },
   "bag-feeding": { src: "/images/case-studies/sch100-bag-feeding/03-feeding.jpg", slug: "sch100-bag-opening-feeding-custom-linear-track", en: "SCH100 bag opening and feeding — customer-specific linear track", zh: "SCH100 拆包上料 · 客户定制地轨配置" },
 } as const;
@@ -23,6 +24,15 @@ const diagrams = {
 } as const;
 
 export function getApplicationMedia(key: ApplicationMediaKey, locale: ApplicationLocale = "en"): ApplicationMedia {
+  if (key === "carton-palletizing") {
+    return {
+      src: crWorkstationIllustration.src,
+      alt: crWorkstationIllustration.captions[locale],
+      caption: locale === "zh" ? "CR 系列示意图 · 查看升降配置" : "CR Series illustration · View lifting configuration",
+      kind: "product-render",
+      caseHref: `${locale === "zh" ? "/zh" : ""}/case-studies/cr50l-lifting-carton-palletizing`,
+    };
+  }
   if (key in photos) {
     const photo = photos[key as keyof typeof photos];
     return { src: photo.src, alt: photo[locale], caption: photo[locale], kind: "video-frame", caseHref: `${locale === "zh" ? "/zh" : ""}/case-studies/${photo.slug}` };

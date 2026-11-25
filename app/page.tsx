@@ -5,8 +5,7 @@ import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
 import { photoContactLinks, projectContactHref } from "@/lib/contact-context";
 import { DeferredPromoVideo } from "@/components/deferred-promo-video";
-import { cr50lCasePaths } from "@/lib/cr50l-case";
-import { homepageHeroSlides } from "@/lib/homepage-media";
+import { crWorkstationIllustration } from "@/lib/cr-visuals";
 import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SeriesCard } from "@/components/series-card";
@@ -24,11 +23,11 @@ import { absoluteUrl, getOrganizationJsonLd, localizedAlternates, serializeJsonL
 export const metadata: Metadata = {
   title: "Collaborative Palletizing Systems for Cartons | SCR Robot",
   description:
-    "Compare SCR Robot’s 30 kg and 50 kg collaborative palletizers for cartons. See fixed-base and lifting workstations, watch the CR50L in action, and request a quote.",
+    "Compare SCR Robot’s 30 kg and 50 kg collaborative palletizers for cartons. Compare fixed-base and lifting workstations and request a configuration for your line.",
   openGraph: {
     title: "Collaborative Palletizing Systems for Cartons | SCR Robot",
     description: "30 kg and 50 kg CR workstations for end-of-line carton palletizing.",
-    images: [homepageHeroSlides[0]],
+    images: [crWorkstationIllustration.src],
   },
   alternates: localizedAlternates("/", "/", "/zh"),
 };
@@ -120,48 +119,51 @@ export default function Home() {
       <SiteHeader alternateHref="/zh" />
 
       <main id="top" className="min-h-screen overflow-hidden bg-[#080a0d] text-white">
-        <section className="relative min-h-[92vh] border-b border-white/10 pt-40 sm:pt-32 lg:pt-24">
-          <Image
-            src={homepageHeroSlides[0]}
-            alt=""
-            fill
-            preload
-            sizes="100vw"
-            className="object-cover object-[65%_center] sm:object-center"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,10,13,0.97)_0%,rgba(8,10,13,0.78)_46%,rgba(8,10,13,0.36)_100%)]" />
-          <div className="absolute inset-0 industrial-grid opacity-50" />
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,transparent,rgba(8,10,13,0.98))]" />
-
-          <div className="relative mx-auto flex min-h-[calc(92vh-8rem)] max-w-7xl items-center px-5 py-10 sm:min-h-[calc(92vh-6rem)] lg:px-8">
-            <div className="max-w-5xl">
-              <h1 className="max-w-4xl text-4xl font-semibold leading-[1.05] text-white md:text-6xl lg:text-7xl">
-                Collaborative Palletizing Systems for Cartons
-              </h1>
-              <p className="mt-7 max-w-2xl text-lg leading-8 text-white/80 md:text-xl">
-                Compare 30 kg and 50 kg CR workstations for end-of-line carton stacking.
-                Choose a fixed base or a lifting column to fit your target pallet height.
-              </p>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <CtaLink href="/products/cr-series">Compare CR Palletizers</CtaLink>
-                <CtaLink href={homePhotos.whatsapp} variant="secondary">Send Carton Details on WhatsApp</CtaLink>
+        <section className="relative overflow-hidden border-b border-white/10 bg-[#0b1015] pt-40 sm:pt-32 lg:pt-28">
+          <div className="absolute inset-0 industrial-grid opacity-35" />
+          <div className="relative mx-auto max-w-7xl px-5 pb-10 pt-6 sm:pb-14 sm:pt-12 lg:px-8">
+            <div className="grid items-center gap-9 lg:grid-cols-[1fr_0.92fr] lg:gap-12">
+              <div>
+                <h1 className="max-w-3xl text-4xl font-semibold leading-[1.05] text-white md:text-6xl">
+                  Collaborative Palletizing Systems for Cartons
+                </h1>
+                <p className="mt-6 max-w-xl text-lg leading-8 text-white/75">
+                  Compare 30 kg and 50 kg CR workstations for end-of-line carton stacking.
+                  Choose a fixed base or a lifting column to fit your target pallet height.
+                </p>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  <CtaLink href="/products/cr-series">Compare CR Palletizers</CtaLink>
+                  <CtaLink href={homePhotos.whatsapp} variant="secondary">Send Carton Details on WhatsApp</CtaLink>
+                </div>
+                <Link href="/solutions/robotic-carton-palletizing-system" className="mt-5 inline-flex text-sm font-semibold text-[#ffe0a0] underline underline-offset-4">
+                  Explore the carton palletizing system
+                </Link>
               </div>
-              <Link href={cr50lCasePaths.en} className="mt-6 inline-flex text-sm font-semibold text-[#ffe0a0] underline underline-offset-4">
-                Watch the CR50L palletizing cartons
-              </Link>
 
-              <div className="mt-10 grid max-w-5xl grid-cols-2 gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 sm:grid-cols-4">
-                {stats.map((stat) => (
-                  <div key={stat.label} className="bg-[#0d1116]/84 p-5">
-                    <div className="text-2xl font-bold text-white md:text-3xl">
-                      {stat.value}
-                    </div>
-                    <div className="mt-2 text-xs leading-5 text-white/52">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <figure className="overflow-hidden rounded-xl border border-white/15 bg-[#f0f2f3]">
+                <div className="relative aspect-[1.18]">
+                  <Image
+                    src={crWorkstationIllustration.src}
+                    alt="CR collaborative palletizer with carton pickup tooling, a conveyor and pallet positions"
+                    fill
+                    preload
+                    sizes="(min-width: 1024px) 45vw, 100vw"
+                    className="object-contain"
+                  />
+                </div>
+                <figcaption className="border-t border-black/10 px-4 py-3 text-sm text-[#39434b]">
+                  {crWorkstationIllustration.captions.en}
+                </figcaption>
+              </figure>
+            </div>
+
+            <div className="mt-9 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 sm:grid-cols-4">
+              {stats.map((stat) => (
+                <div key={stat.label} className="bg-[#10161c] p-4 sm:p-5">
+                  <div className="text-xl font-bold text-white md:text-2xl">{stat.value}</div>
+                  <div className="mt-2 text-sm leading-5 text-white/60">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </section>

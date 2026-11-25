@@ -15,7 +15,7 @@ import { localizedAlternates } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "机器人客户案例与应用方案 | SCR Robot",
   description:
-    "观看 CR50L 升降式纸箱码垛、STC10 冲压上下料与工序转运、SCH100 定制地轨拆包上料视频，了解机器人工作站的实际应用。",
+    "查看 CR50L 升降式纸箱码垛配置，以及 STC10 冲压转运和 SCH100 定制地轨拆包上料的运行场景。",
   alternates: localizedAlternates(
     "/zh/case-studies",
     "/case-studies",
