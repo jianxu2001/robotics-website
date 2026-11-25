@@ -12,7 +12,10 @@ import { selectionGuides, guidePath } from "@/lib/selection-guides";
 const lastModified = "2026-10-27T00:00:00.000Z";
 
 function contentLastModified(pathname: string) {
-  if (pathname === "/" || /^\/(?:zh\/)?products\/cr-series(?:\/|$)/.test(pathname)) {
+  if (pathname === "/"
+    || pathname === "/solutions/robotic-carton-palletizing-system"
+    || pathname === "/solutions/robotic-bag-palletizing-system"
+    || /^\/(?:zh\/)?products\/cr-series(?:\/|$)/.test(pathname)) {
     return "2026-11-25T00:00:00.000Z";
   }
   if (pathname === "/privacy" || pathname === "/zh/privacy") return "2026-11-04T00:00:00.000Z";

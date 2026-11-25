@@ -217,10 +217,10 @@ export default function Home() {
           <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {[
               {
-                title: "Collaborative Carton Palletizers",
+                title: "Robotic Carton Palletizing System",
                 description:
-                  "Compare the CR30, CR30L, CR50 and CR50L workstations for end-of-line carton stacking.",
-                href: "/products/cr-series",
+                  "Plan conveyor infeed, carton pickup and pallet stacking around a fixed-base or lifting CR workstation.",
+                href: "/solutions/robotic-carton-palletizing-system",
               },
               {
                 title: "Bag Depalletizing Robot System",

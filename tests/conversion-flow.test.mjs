@@ -17,6 +17,18 @@ test("project links preserve the reviewed task and source, without arbitrary URL
   assert.equal(url.searchParams.get("source"), "/solutions/bag-depalletizing-system");
   assert.equal(url.hash, "#inquiry");
 });
+test("the carton palletizing solution preserves the carton application and its source", async () => {
+  const { solutionPages } = await import("../lib/solution-pages.ts");
+  const slug = "robotic-carton-palletizing-system";
+  const page = solutionPages.find((p) => p.slug === slug);
+  assert.equal(page.inquiryTopic, "carton-palletizing");
+  const url = new URL(projectContactHref(`/solutions/${slug}`, page.inquiryTopic), "https://www.scr-robot.com");
+  assert.equal(url.searchParams.get("topic"), "carton-palletizing");
+  assert.equal(url.searchParams.get("source"), `/solutions/${slug}`);
+  assert.ok(page.internalLinks.some((link) => link.href === "/products/cr-series"));
+  assert.ok(page.internalLinks.some((link) => link.href === "/case-studies/cr50l-lifting-carton-palletizing"));
+});
+
 test("photo handoff opens the known sales channels with task and model context", () => {
   const links = photoContactLinks("zh", { topic:"bag-opening-feeding", model:"SCH100-1950-1800", sourcePath:"/products/sch-series/sch100-1950-1800" });
   const whatsapp = new URL(links.whatsapp);

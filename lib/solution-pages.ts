@@ -1,7 +1,9 @@
+import type { InquiryTopic } from "@/lib/contact-context";
 import { applicationImageFields } from "@/lib/application-media";
 
 export type SolutionPage = {
   slug: string;
+  inquiryTopic: InquiryTopic;
   title: string;
   seoTitle: string;
   description: string;
@@ -26,6 +28,7 @@ export const solutionPages: SolutionPage[] = [
   // ── Page 1: Bag Depalletizing System ──
   {
     slug: "bag-depalletizing-system",
+    inquiryTopic: "bag-depalletizing",
     title: "Bag Depalletizing Robot System",
     seoTitle:
       "Bag Depalletizing & Bag Emptying Systems | SCR Robot",
@@ -195,6 +198,7 @@ export const solutionPages: SolutionPage[] = [
   // ── Page 2: Automatic Bag Breaking and Feeding System ──
   {
     slug: "automatic-bag-breaking-feeding-system",
+    inquiryTopic: "bag-opening-feeding",
     title: "Automatic Bag Breaking and Feeding System",
     seoTitle:
       "Automatic Bag Opening & Powder Feeding | SCR Robot",
@@ -363,6 +367,7 @@ export const solutionPages: SolutionPage[] = [
   // ── Page 3: Robotic Bag Palletizing System ──
   {
     slug: "robotic-bag-palletizing-system",
+    inquiryTopic: "bag-palletizing",
     title: "Robotic Bag Palletizing System",
     seoTitle:
       "Robotic Bag Palletizing System for 20–50 kg Bags | SCR Robot",
@@ -527,5 +532,115 @@ export const solutionPages: SolutionPage[] = [
         text: "Explore robot automation across plastic, chemical, food, feed, fertilizer, and building material industries.",
       },
     ],
+  },
+  {
+    slug: "robotic-carton-palletizing-system",
+    inquiryTopic: "carton-palletizing",
+    title: "Carton Palletizing System",
+    seoTitle: "Robotic Carton Palletizing System | SCR Robot",
+    description: "Plan a collaborative carton palletizing system from conveyor infeed to pallet exchange. Compare CR workstations, watch a CR50L application and request a quote.",
+    eyebrow: "End-of-line automation",
+    heroTitle: "Robotic Carton Palletizing System",
+    heroDescription: "Stack sealed cartons from a conveyor onto pallets using an SCR CR collaborative palletizer. Configure carton pickup, pallet positions and stack height around the end of your packing line.",
+    image: "/images/case-studies/cr50l-lifting-palletizing/03-lifting-workstation.jpg",
+    imageAlt: "CR50L collaborative carton palletizing workstation with a lifting column and adjacent conveyor",
+    imageCaption: "CR50L lifting workstation, conveyor and pallet area, shown in the existing application video.",
+    painPoints: [
+      {
+        title: "Cartons arrive in different sizes",
+        text: "List each carton’s dimensions, weight and top surface. These details help establish how it should be presented and picked."
+      },
+      {
+        title: "The conveyor and pallet have different working heights",
+        text: "Review the conveyor pickup level and each pallet layer with the tool fitted. Use the highest and furthest placement positions when comparing fixed-base and lifting workstations."
+      },
+      {
+        title: "Pallet exchange interrupts stacking",
+        text: "Decide how finished pallets leave and empty pallets enter. The exchange method and available buffer are part of the line layout and throughput review."
+      }
+    ],
+    solutionIntro: "A line can combine a carton infeed, robot and gripper, pallet staging and controls. Select the CR configuration around the cartons, the line interface and the contract scope. The completed layout defines where cartons are sensed, picked and stacked and how each new pallet is introduced.",
+    solutionComponents: [
+      "CR collaborative palletizing workstation with fixed base or lifting column",
+      "Carton pickup tooling selected for carton surface, size and load",
+      "Infeed conveyor interface and carton positioning",
+      "Pallet positions and stacking recipes",
+      "Control interface with the packing line and a plan for pallet exchange",
+      "Operator access and protective measures specified for the installation"
+    ],
+    materials: [
+      "Sealed corrugated cartons",
+      "Shipping cases",
+      "Multiple carton sizes subject to tooling review"
+    ],
+    industries: [
+      "Food and beverage packaging lines",
+      "Consumer goods packing lines",
+      "Packaging machinery integration"
+    ],
+    systemConfig: [
+      {
+        parameter: "Robot and tooling",
+        value: "CR30, CR30L, CR50 or CR50L. The catalog maximum payload is 30 kg or 50 kg by model. Review the cartons and tooling together."
+      },
+      {
+        parameter: "Fixed-base and lifting options",
+        value: "Catalog palletizing height including pallet is up to 1,800 mm for CR30 and CR50 and up to 2,300 mm for CR30L and CR50L. Lifting models include a standard 500 mm stroke. Confirm the working envelope for the line."
+      },
+      {
+        parameter: "Conveyor and pallet positions",
+        value: "Review pickup height, pallet dimensions and corner positions at every layer. Confirm how the upstream line signals when a carton is ready."
+      },
+      {
+        parameter: "Throughput",
+        value: "Confirm cartons per minute under the intended operating conditions, including the pickup pattern, stacking height and pallet change."
+      }
+    ],
+    quoteInputs: [
+      "Carton length, width and height, plus minimum and maximum weight",
+      "Required cartons per minute and a short infeed video if available",
+      "Pallet dimensions, pattern and target stack height including the pallet",
+      "Conveyor height, available floor space and pallet exchange method"
+    ],
+    faq: [
+      {
+        question: "When should I choose a lifting carton palletizer?",
+        answer: "Check the lowest pickup and highest pallet layer with clearance for the tool and cartons. CR30L and CR50L add a lifting column with a standard 500 mm stroke. CR30 and CR50 are fixed-base options."
+      },
+      {
+        question: "Can the system connect to an existing carton conveyor?",
+        answer: "We can review the existing infeed and its controls. Send the pickup height, carton direction and arrival rate so the interface can be included in the proposal."
+      },
+      {
+        question: "Does the 30 kg or 50 kg figure describe carton weight?",
+        answer: "These are catalog maximum payloads. Confirm the combined pickup with the tooling, carton count, load position and movement for your application."
+      },
+      {
+        question: "How do you determine cartons per minute?",
+        answer: "Use the required carton arrival rate and then review pickup, travel, placement and pallet exchange as one process. Output depends on the layout, stack pattern and tool."
+      }
+    ],
+    internalLinks: [
+      {
+        title: "CR collaborative palletizer models",
+        href: "/products/cr-series",
+        text: "Compare the four fixed-base and lifting models, including drawings and catalog parameters."
+      },
+      {
+        title: "CR50L carton palletizing application",
+        href: "/case-studies/cr50l-lifting-carton-palletizing",
+        text: "Watch the existing video of carton pickup, transfer and handling around the pallet stack."
+      },
+      {
+        title: "30 kg vs 50 kg palletizer selection",
+        href: "/guides/30kg-vs-50kg-palletizer",
+        text: "Review load and working positions before choosing a workstation."
+      },
+      {
+        title: "Robotic bag palletizing system",
+        href: "/solutions/robotic-bag-palletizing-system",
+        text: "Review the infeed and tooling options for filled bags."
+      }
+    ]
   },
 ];

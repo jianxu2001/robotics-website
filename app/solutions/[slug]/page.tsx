@@ -6,8 +6,10 @@ import { CtaLink } from "@/components/cta-link";
 import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
-import { photoContactLinks, projectContactHref, type InquiryTopic } from "@/lib/contact-context";
+import { photoContactLinks, projectContactHref } from "@/lib/contact-context";
 import { SolutionSiteVideo } from "@/components/solution-site-video";
+import { FeaturedCustomerCase } from "@/components/customer-case-study";
+import { cr50lCaseProject } from "@/lib/cr50l-case";
 import { solutionPages } from "@/lib/solution-pages";
 import { solutionEngineering } from "@/lib/solution-engineering";
 import {
@@ -95,7 +97,7 @@ export default async function SolutionDetailPage({
   const structuredData = getSolutionPageStructuredData(page);
   const engineering = solutionEngineering[page.slug];
   const sourcePath = `/solutions/${page.slug}`;
-  const topic: InquiryTopic = page.slug === "bag-depalletizing-system" ? "bag-depalletizing" : page.slug === "automatic-bag-breaking-feeding-system" ? "bag-opening-feeding" : "bag-palletizing";
+  const topic = page.inquiryTopic;
   const projectHref = projectContactHref(sourcePath, topic);
   const photosHref = projectContactHref(sourcePath, topic, "en", "photos");
   const photos = photoContactLinks("en", { topic, sourcePath });
@@ -139,6 +141,13 @@ export default async function SolutionDetailPage({
               </CtaLink>
             </div>
             <a href={photos.email} className="mt-4 inline-flex text-sm text-[#ffd36b] hover:underline">Prefer email? Send photos and layout →</a>
+            {topic === "bag-palletizing" && (
+              <div className="mt-5">
+                <Link href="/solutions/robotic-carton-palletizing-system" className="text-sm font-semibold text-[#ffd36b] underline underline-offset-4">
+                  Explore robotic carton palletizing
+                </Link>
+              </div>
+            )}
             </div>
             <figure className="overflow-hidden rounded-lg border border-white/10 bg-[#0b131b]">
               <div className="relative aspect-[4/3]">
@@ -149,6 +158,11 @@ export default async function SolutionDetailPage({
           </div>
         </section>
 
+        {topic === "carton-palletizing" && (
+          <section className="section-shell">
+            <FeaturedCustomerCase project={cr50lCaseProject} />
+          </section>
+        )}
         {engineering?.siteExample && <SolutionSiteVideo heading={engineering.siteExample.title} text={engineering.siteExample.text} />}
         {engineering && <section className="section-shell">
           <SectionHeading eyebrow="Process and selection" title="Define the complete handling task." description="Use the actual product, incoming condition and downstream interface to compare configurations." />
@@ -248,7 +262,7 @@ export default async function SolutionDetailPage({
             <SectionHeading
               eyebrow="System configuration"
               title="Key parameters confirmed during engineering review."
-              description="The values below represent typical project ranges and considerations. Final specifications are confirmed after SCR Robot reviews your product photos, bag data, throughput target, and factory layout."
+              description="The values below represent typical project ranges and considerations. Final specifications are confirmed after SCR Robot reviews your product photos, dimensions, target output and factory layout."
             />
             <div className="mt-10">
               <IndustrialCard className="overflow-hidden p-0">
@@ -356,7 +370,7 @@ export default async function SolutionDetailPage({
                     Ready to discuss your {page.title.toLowerCase()} project?
                   </h2>
                   <p className="mt-4 max-w-3xl leading-7 text-white/62">
-                    Send product photos, bag weight, dimensions, target output,
+                    Send product photos, unit weight, dimensions, target output,
                     layout, and destination country. SCR Robot will recommend a
                     practical {page.slug.includes("palletizing") && !page.slug.includes("depalletizing") ? "palletizing" : page.slug.includes("breaking") ? "bag breaking and feeding" : "depalletizing"} system scope and the next engineering
                     discussion.

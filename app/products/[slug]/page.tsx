@@ -3,6 +3,7 @@ import { RelatedSelectionGuides } from "@/components/selection-guide";
 import { FeaturedCustomerCase } from "@/components/customer-case-study";
 import { cr50lCaseProject } from "@/lib/cr50l-case";
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CtaLink } from "@/components/cta-link";
@@ -204,7 +205,10 @@ export default async function ProductDetailPage({
                 </p>
                 <div className="mt-5 flex flex-wrap gap-3">
                   <CtaLink href={crQuote}>Send Carton Details</CtaLink>
-                  <CtaLink href="/products/br-series" variant="secondary">Explore BR Case Packers</CtaLink>
+                  <CtaLink href="/solutions/robotic-carton-palletizing-system" variant="secondary">Explore the Carton Palletizing System</CtaLink>
+                  <Link href="/products/br-series" className="inline-flex items-center px-3 py-2 text-sm font-semibold text-[#ffd36b] underline underline-offset-4">
+                    Explore BR Case Packers
+                  </Link>
                 </div>
               </div>
             </div>
