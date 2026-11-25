@@ -75,5 +75,6 @@ export function filterCatalogModels(models: CatalogModel[], filters: ProductFilt
 
 export function modelInquiryHref(model: Pick<ProductModel, "slug" | "seriesSlug">, locale: "en" | "zh" = "en") {
   const prefix = locale === "zh" ? "/zh" : "";
-  return `${prefix}/contact?model=${encodeURIComponent(`${model.seriesSlug}/${model.slug}`)}&source=${encodeURIComponent(`${prefix}/products/${model.seriesSlug}/${model.slug}`)}#inquiry`;
+  const context = model.seriesSlug === "cr-series" ? "&topic=carton-palletizing" : "";
+  return `${prefix}/contact?model=${encodeURIComponent(`${model.seriesSlug}/${model.slug}`)}&source=${encodeURIComponent(`${prefix}/products/${model.seriesSlug}/${model.slug}`)}${context}#inquiry`;
 }

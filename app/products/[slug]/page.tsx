@@ -10,6 +10,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { SpecTable } from "@/components/spec-table";
 import { productSeries } from "@/lib/catalog";
+import { photoContactLinks, projectContactHref } from "@/lib/contact-context";
 import { getProductModelsBySeries } from "@/lib/product-data";
 import {
   getProductSeriesMetaDescription,
@@ -65,6 +66,10 @@ export default async function ProductDetailPage({
   }
 
   const structuredData = getProductSeriesStructuredData(series);
+  const isCrSeries = series.slug === "cr-series";
+  const seriesPath = `/products/${series.slug}`;
+  const crQuote = projectContactHref(seriesPath, "carton-palletizing");
+  const crPhotos = photoContactLinks("en", { sourcePath: seriesPath, topic: "carton-palletizing" });
 
   return (
     <>
@@ -101,10 +106,18 @@ export default async function ProductDetailPage({
               {series.summary}
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <CtaLink href="/contact">Request Model Selection</CtaLink>
-              <CtaLink href="/products" variant="secondary">
-                Back to Products
-              </CtaLink>
+              {isCrSeries ? (
+                <>
+                  <CtaLink href={crQuote}>Request a Palletizer Quote</CtaLink>
+                  <CtaLink href="#compare-cr-models" variant="secondary">Compare the Four Models</CtaLink>
+                  <CtaLink href={crPhotos.whatsapp} variant="ghost">Send Details on WhatsApp</CtaLink>
+                </>
+              ) : (
+                <>
+                  <CtaLink href="/contact">Request Model Selection</CtaLink>
+                  <CtaLink href="/products" variant="secondary">Back to Products</CtaLink>
+                </>
+              )}
               {series.slug === "sch-series" ? <CtaLink href="/products/sch-heavy-duty-palletizing-robots" variant="ghost">Heavy-Duty Palletizing Guide</CtaLink> : null}
             </div>
           </div>
@@ -153,11 +166,13 @@ export default async function ProductDetailPage({
           </div>
         </section>
 
-        <section className="section-shell">
+        <section id={isCrSeries ? "compare-cr-models" : undefined} className="section-shell scroll-mt-44 lg:scroll-mt-28">
           <SectionHeading
             eyebrow="Model specifications"
-            title={`${series.series} catalog models`}
-            description="Representative technical data extracted from the product catalog and rewritten for international buyers."
+            title={isCrSeries ? "Compare CR30, CR30L, CR50 and CR50L" : `${series.series} catalog models`}
+            description={isCrSeries
+              ? "Choose by carton weight, tooling and target stack height. Maximum payload and palletizing height are catalog values. Send your carton dimensions, weight and target output so we can confirm a configuration."
+              : "Representative technical data extracted from the product catalog and rewritten for international buyers."}
           />
           <div className="mt-10">
             <SpecTable
@@ -166,7 +181,35 @@ export default async function ProductDetailPage({
               enableModelLinks
             />
           </div>
+          {isCrSeries && <FeaturedCustomerCase project={cr50lCaseProject} />}
         </section>
+
+        {isCrSeries && (
+          <section className="border-t border-white/10 bg-[#0f1318]">
+            <div className="section-shell grid items-start gap-8 lg:grid-cols-2">
+              <div>
+                <h2 className="text-2xl font-semibold text-white">What the CR30 workstation includes</h2>
+                <p className="mt-4 max-w-2xl leading-7 text-white/70">
+                  The fixed-base CR30 is quoted as one integrated package with the robot, base,
+                  control cabinet, controls, operating and programming software, and an end-of-arm tool.
+                  We select vacuum tooling or a gripper to suit the carton. Ask about a lifting model
+                  if your line needs a taller stack.
+                </p>
+              </div>
+              <div>
+                <h2 className="text-2xl font-semibold text-white">Get a model recommendation</h2>
+                <p className="mt-4 max-w-2xl leading-7 text-white/70">
+                  Start with carton size, weight and target cartons per minute. A line photo or short video helps.
+                  If you are a distributor or system integrator, add your market and application to the enquiry.
+                </p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <CtaLink href={crQuote}>Send Carton Details</CtaLink>
+                  <CtaLink href="/products/br-series" variant="secondary">Explore BR Case Packers</CtaLink>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="border-t border-white/10 bg-[#0c0f13]">
           <div className="section-shell">
@@ -190,7 +233,6 @@ export default async function ProductDetailPage({
           </div>
         </section>
         <RelatedSelectionGuides seriesSlug={series.slug} />
-        {series.slug === "cr-series" && <section className="section-shell border-t border-white/10"><h2 className="text-2xl font-semibold">CR50L lifting workstation in action</h2><FeaturedCustomerCase project={cr50lCaseProject} /></section>}
       </main>
     </>
   );

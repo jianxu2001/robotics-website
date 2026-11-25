@@ -5,7 +5,8 @@ import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
 import { photoContactLinks, projectContactHref } from "@/lib/contact-context";
 import { DeferredPromoVideo } from "@/components/deferred-promo-video";
-import { HomepageHeroMedia } from "@/components/homepage-hero-media";
+import { cr50lCasePaths } from "@/lib/cr50l-case";
+import { homepageHeroSlides } from "@/lib/homepage-media";
 import { IndustrialCard } from "@/components/industrial-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SeriesCard } from "@/components/series-card";
@@ -21,9 +22,14 @@ import { whatsappUrl } from "@/lib/contact";
 import { absoluteUrl, getOrganizationJsonLd, localizedAlternates, serializeJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Robotic Palletizing, Depalletizing & Bag Feeding Systems | SCR Robot",
+  title: "Collaborative Palletizing Systems for Cartons | SCR Robot",
   description:
-    "SCR Robot builds turnkey automation cells for 20–50 kg bags, cartons, powder materials, and end-of-line palletizing. Send your product photo for a practical robot proposal.",
+    "Compare SCR Robot’s 30 kg and 50 kg collaborative palletizers for cartons. See fixed-base and lifting workstations, watch the CR50L in action, and request a quote.",
+  openGraph: {
+    title: "Collaborative Palletizing Systems for Cartons | SCR Robot",
+    description: "30 kg and 50 kg CR workstations for end-of-line carton palletizing.",
+    images: [homepageHeroSlides[0]],
+  },
   alternates: localizedAlternates("/", "/", "/zh"),
 };
 
@@ -99,7 +105,7 @@ const jsonLd = {
 };
 
 export default function Home() {
-  const homePhotos = photoContactLinks("en", { sourcePath: "/" });
+  const homePhotos = photoContactLinks("en", { sourcePath: "/", topic: "carton-palletizing" });
   const homeInquiry = projectContactHref("/");
   const featuredSeries = productSeries.filter((series) =>
     ["sch-series", "scr-series", "er-series"].includes(series.slug),
@@ -115,31 +121,34 @@ export default function Home() {
 
       <main id="top" className="min-h-screen overflow-hidden bg-[#080a0d] text-white">
         <section className="relative min-h-[92vh] border-b border-white/10 pt-40 sm:pt-32 lg:pt-24">
-          <HomepageHeroMedia />
+          <Image
+            src={homepageHeroSlides[0]}
+            alt=""
+            fill
+            preload
+            sizes="100vw"
+            className="object-cover object-[65%_center] sm:object-center"
+          />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,10,13,0.97)_0%,rgba(8,10,13,0.78)_46%,rgba(8,10,13,0.36)_100%)]" />
           <div className="absolute inset-0 industrial-grid opacity-50" />
           <div className="absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,transparent,rgba(8,10,13,0.98))]" />
 
           <div className="relative mx-auto flex min-h-[calc(92vh-8rem)] max-w-7xl items-center px-5 py-10 sm:min-h-[calc(92vh-6rem)] lg:px-8">
             <div className="max-w-5xl">
-              <p className="mb-5 inline-flex max-w-full rounded-md border border-[#f5b41b]/40 bg-black/50 px-3 py-2 text-xs font-bold uppercase tracking-[0.14em] text-[#f5b41b] sm:tracking-[0.18em]">
-                Intelligent factory solutions from South China Robotics
-              </p>
-              <h1 className="max-w-5xl text-4xl font-semibold leading-[1.05] text-white md:text-6xl lg:text-7xl">
-                Robotic Palletizing, Depalletizing &amp; Bag Feeding Systems for Heavy Factory Work
+              <h1 className="max-w-4xl text-4xl font-semibold leading-[1.05] text-white md:text-6xl lg:text-7xl">
+                Collaborative Palletizing Systems for Cartons
               </h1>
-              <p className="mt-7 max-w-3xl text-lg leading-8 text-white/72 md:text-xl">
-                SCR Robot builds turnkey automation cells for 20–50 kg bags, cartons,
-                powder materials, chemical plants, plastic factories, building materials,
-                and end-of-line palletizing lines. Send your product photo and layout to
-                get a practical robot proposal.
+              <p className="mt-7 max-w-2xl text-lg leading-8 text-white/80 md:text-xl">
+                Compare 30 kg and 50 kg CR workstations for end-of-line carton stacking.
+                Choose a fixed base or a lifting column to fit your target pallet height.
               </p>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <CtaLink href={homePhotos.whatsapp}>Send Photos on WhatsApp</CtaLink>
-                <CtaLink href="/products" variant="secondary">
-                  Compare Robot Series
-                </CtaLink>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <CtaLink href="/products/cr-series">Compare CR Palletizers</CtaLink>
+                <CtaLink href={homePhotos.whatsapp} variant="secondary">Send Carton Details on WhatsApp</CtaLink>
               </div>
+              <Link href={cr50lCasePaths.en} className="mt-6 inline-flex text-sm font-semibold text-[#ffe0a0] underline underline-offset-4">
+                Watch the CR50L palletizing cartons
+              </Link>
 
               <div className="mt-10 grid max-w-5xl grid-cols-2 gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 sm:grid-cols-4">
                 {stats.map((stat) => (
@@ -202,11 +211,17 @@ export default function Home() {
           <SectionHeading
             eyebrow="Core automation solutions"
             title="Core Automation Solutions"
-            description="Explore practical robot automation systems for heavy bags, powder materials, and end-of-line palletizing. Send your product photos and layout for an engineering review."
+            description="Explore robot workstations for carton palletizing, bag handling and powder feeding."
             align="center"
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {[
+              {
+                title: "Collaborative Carton Palletizers",
+                description:
+                  "Compare the CR30, CR30L, CR50 and CR50L workstations for end-of-line carton stacking.",
+                href: "/products/cr-series",
+              },
               {
                 title: "Bag Depalletizing Robot System",
                 description:

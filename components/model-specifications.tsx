@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { productModelEnvironment, type ProductModel, type ProductModelSpec } from "@/lib/product-data";
 import { getProductModelFaqs } from "@/lib/seo";
 import { modelInquiryHref } from "@/lib/product-selection";
+import { photoContactLinks } from "@/lib/contact-context";
 import { stc10CasePaths } from "@/lib/stc10-case";
 import { cr50lCasePaths } from "@/lib/cr50l-case";
 import { sch100CasePaths } from "@/lib/sch100-case";
@@ -35,6 +36,12 @@ export function ProductModelDetail({ model, locale = "en" }: { model: ProductMod
   const zh = locale === "zh";
   const prefix = zh ? "/zh" : "";
   const pathname = `/products/${model.seriesSlug}/${model.slug}`;
+  const isCrSeries = model.seriesSlug === "cr-series";
+  const crPhotos = isCrSeries ? photoContactLinks(locale, {
+    topic: "carton-palletizing",
+    model: model.name,
+    sourcePath: `${prefix}${pathname}`,
+  }) : null;
   const catalog = model.catalogFile ?? "/catalogs/scr-industrial-robots-2026.pdf";
   const specifications = model.specifications ?? [
     { name: "Model", value: model.name }, { name: "Series", value: model.series },
@@ -72,7 +79,7 @@ export function ProductModelDetail({ model, locale = "en" }: { model: ProductMod
           <p className="text-sm font-semibold uppercase tracking-widest text-[#f5b41b]">{zh ? (model.categoryZh ?? "工业机器人") : model.category}</p>
           <h1 className="mt-5 break-words text-3xl font-semibold leading-tight sm:text-4xl xl:text-5xl">{model.name}</h1>
           <p className="mt-6 text-lg leading-8 text-white/70">{zh ? (model.positioningZh ?? `${model.name}，最大负载 ${model.payload}，臂展 ${model.reach}。选型请结合夹具重量、产品尺寸、工作范围和目标节拍。`) : model.positioning}</p>
-          <div className="mt-8 flex flex-wrap gap-3"><CtaLink href={modelInquiryHref(model, locale)}>{zh ? "咨询此型号与报价" : "Enquire About This Model"}</CtaLink><a href={catalog} className="inline-flex items-center rounded-md border border-white/20 px-5 py-3 text-sm font-semibold transition hover:border-[#f5b41b]">{zh ? "下载产品画册 PDF" : "Download Catalog PDF"}</a></div>
+          <div className="mt-8 flex flex-wrap gap-3"><CtaLink href={modelInquiryHref(model, locale)}>{zh ? "咨询此型号与报价" : "Enquire About This Model"}</CtaLink>{crPhotos && <CtaLink href={crPhotos.whatsapp} variant="secondary">{zh ? "用 WhatsApp 发送纸箱资料" : "Send Carton Details on WhatsApp"}</CtaLink>}<a href={catalog} className="inline-flex items-center rounded-md border border-white/20 px-5 py-3 text-sm font-semibold transition hover:border-[#f5b41b]">{zh ? "下载产品画册 PDF" : "Download Catalog PDF"}</a></div>
           {model.name === "STC10-1450-400" && <Link href={stc10CasePaths[locale]} className="mt-5 inline-flex text-sm font-semibold text-[#f5b41b] hover:text-[#ffd36b]">{zh ? "观看 STC10 冲压线应用案例与现场视频 →" : "Watch the STC10 press automation case and site video →"}</Link>}
           {model.name === "SCH100-1950-1800" && <Link href={sch100CasePaths[locale]} className="mt-5 inline-flex text-sm font-semibold text-[#f5b41b] hover:text-[#ffd36b]">{zh ? "观看 SCH100 定制地轨拆包上料案例 · 标准机不带地轨 →" : "Watch SCH100 bag feeding with a custom track · standard robot excludes track →"}</Link>}
           {model.name === "CR50L-1900" && <Link href={cr50lCasePaths[locale]} className="mt-5 inline-flex text-sm font-semibold text-[#f5b41b] hover:text-[#ffd36b]">{zh ? "观看 CR50L 升降式纸箱码垛案例与视频 →" : "Watch the CR50L lifting carton palletizing case →"}</Link>}

@@ -12,10 +12,10 @@ type SiteHeaderProps = {
 
 const navItems = {
   en: [
+    { label: "Collaborative Palletizers", href: "/products/cr-series" },
     { label: "Applications", href: "/industries" },
     { label: "Cases", href: "/case-studies" },
     { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
   ],
   zh: [
     { label: "应用", href: "/zh/industries" },

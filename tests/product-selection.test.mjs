@@ -51,6 +51,7 @@ test("model inquiry URLs identify every model in both languages", () => {
       assert.equal(url.pathname, locale === "zh" ? "/zh/contact" : "/contact");
       assert.equal(url.searchParams.get("model"), `${model.seriesSlug}/${model.slug}`);
       assert.equal(url.hash, "#inquiry");
+      assert.equal(url.searchParams.get("topic"), model.seriesSlug === "cr-series" ? "carton-palletizing" : null);
     }
   }
 });
